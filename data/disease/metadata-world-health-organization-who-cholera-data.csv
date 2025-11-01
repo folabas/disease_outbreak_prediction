@@ -1,0 +1,36 @@
+Field,Label,Value
+id,Dataset ID,be1d77b2-60a4-41fd-85f7-96c2cb7daf8e
+title,Title of Dataset,World Health Organization (WHO)  Cholera Data
+name,Dataset URL,world-health-organization-who-cholera-data
+notes,Description,This dataset presents cholera data from the World Health Organization (WHO) across various countries.
+dataset_source,Source,World Health Organization 
+organization,Contributor,World Health Organization
+dataset_date,Reference Period,[2023-01-02T00:00:00 TO *]
+last_modified,Updated,2025-10-28T08:44:05.770531
+data_update_frequency,Expected Update Frequency,Live
+groups,Location,"Afghanistan, Bangladesh, Burundi, Cameroon, Comoros, Congo, Democratic Republic of the Congo, Dominican Republic, Eswatini, Ethiopia, Haiti, India, Iraq, Kenya, Lebanon, Malawi, Mozambique, Nigeria, Pakistan, Philippines, Somalia, South Africa, South Sudan, Sudan, Syrian Arab Republic, Togo, Uganda, United Republic of Tanzania, Yemen, Zambia, Zimbabwe"
+license_title,License,Creative Commons Attribution for Intergovernmental Organisations (CC BY-IGO)
+methodology,Methodology,Registry
+methodology_other,Define Methodology,
+caveats,Caveats/Comments,"Caution must be taken when interpreting all data presented. Differences are to be expected between information products published by WHO, public health authorities, and other sources using different inclusion criteria and different data cut-off times. While steps are taken to ensure accuracy and reliability, all data are subject to continuous verification and change. Case detection, definitions, testing strategies, reporting practice, and lag times differ between countries/territories/areas. These factors, amongst others, influence the counts presented, with variable underestimation of true case and death counts, and variable delays to reflecting these data at the global level.
+
+No cholera cases of local transmission have been reported in the European Region.
+Afghanistan reports Acute Watery Diarrhoea (AWD).
+
+Countries, territories, and areas are arranged under the administering WHO region.
+
+Reporting period differs by country. The date corresponds to the first day of the epi-week (from Monday to Sunday)."
+tags,Tags,"disease, epidemics-outbreaks"
+resource_1_created,Created,2024-03-04T15:41:34.982202
+resource_1_description,Description,WHO Cholera data
+resource_1_format,File Format,XLSX
+resource_1_download_url,Download URL,https://who.maps.arcgis.com/sharing/rest/content/items/3aa7bfec5da047a7ba7d4f9bcebd0061/data
+resource_1_id,Resource ID,995e1efe-0631-4bf9-994d-8ddb1d5375ee
+resource_1_last_modified,Updated,2025-10-28T08:44:05.770531
+resource_1_metadata_modified,Metadata Updated,2025-10-28T10:12:33.844402
+resource_1_microdata,Microdata,False
+resource_1_dataset_id,Dataset ID,be1d77b2-60a4-41fd-85f7-96c2cb7daf8e
+resource_1_resource_type,Resource Type,api
+resource_1_name,Resource Name,WHO Cholera data
+resource_1_mimetype,MIME Type,
+resource_1_size,Size,0.0B

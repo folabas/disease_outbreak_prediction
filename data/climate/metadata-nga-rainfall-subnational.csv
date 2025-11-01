@@ -1,0 +1,48 @@
+Field,Label,Value
+id,Dataset ID,ff5dba07-397b-44fb-b04f-bbca782ce793
+title,Title of Dataset,Nigeria: Rainfall Indicators at Subnational Level
+name,Dataset URL,nga-rainfall-subnational
+notes,Description,"This dataset contains dekadal rainfall indicators, computed from Climate Hazards Group InfraRed Precipitation satellite imagery with insitu Station data (CHIRPS) version 2 and the CHIRPS-GEFS short term rainfall forecasts, aggregated by subnational administrative units.  Included indicators are (for each dekad):  10 day rainfall [mm] (rfh)   rainfall 1-month rolling aggregation [mm] (r1h) rainfall 3-month rolling aggregation [mm] (r3h) rainfall long term average [mm] (rfh_avg) rainfall 1-month rolling aggregation long term average [mm] (r1h_avg) rainfall 3-month rolling aggregation long term average [mm] (r3h_avg) rainfall anomaly [%] (rfq) rainfall 1-month anomaly [%] (r1q) rainfall 3-month anomaly [%] (r3q)  The administrative units used for aggregation are based on WFP data and contain a Pcode reference attributed to each unit. The number of input pixels used to create the aggregates, is provided in the n_pixels column. Finally, the type column indicates if the value is based on a forecast, a preliminary or a final product. Forecasts are issued on the 6th, 16th, and 26th of each month for the upcoming 10-day period (dekad), then updated with improved versions on the 1st, 11th, and 21st.  Preliminary observations replace the previous dekad’s forecast on the 3rd, 13th, and 23rd, and are later replaced by final observations—published mid-month (13th or 23rd)—covering all three dekads of the prior month. Please find a summary below: Publication Day: Forecast type, Covers (Dekad)   1st: Updated forecast, 1–10 of the same month   6th: Initial forecast, 11–20 of the same month   11th: Updated forecast, 1–10 of the same month   16th: Initial forecast, 21–end of the same month   21st: Updated forecast, 11–20 of the same month   26th: Initial forecast, 1–10 of the following month  For more on CHIRPS-GEFS forecasts, see: https://www.chc.ucsb.edu/data/chirps-gefs For further details, please see the methodology section."
+dataset_source,Source,Climate Hazards Center UC Santa Barbara & WFP
+organization,Contributor,WFP - World Food Programme
+dataset_date,Reference Period,[1981-01-01T00:00:00 TO 2025-10-31T23:59:59]
+last_modified,Updated,2025-10-23T09:13:51.396613
+data_update_frequency,Expected Update Frequency,Every two weeks
+groups,Location,Nigeria
+license_title,License,Creative Commons Attribution International (CC BY)
+methodology,Methodology,Other
+methodology_other,Define Methodology,"Rainfall estimates are derived from satellite observations and combined with rain gauge data. For more information, please visit the [CHIRPS product page](https://chc.ucsb.edu/data/chirps). For information about the CHIRPS-GEFS short term forecasts, please visit the [information page](https://chc.ucsb.edu/data/chirps-gefs). 
+
+The rainfall estimates (in mm) are averaged by subnational administrative units defined by WFP datasets, and the subsequent indicators (aggregations, averages and anomalies) are calculated directly from the averaged data.
+
+The anomalies (in %) are calculated in reference to the long term average of the timeseries, which is calculated over the reference period 1989-01-01 to 2018-12-31.
+
+To provide valid dates, the dekads are mapped to their start date. Therefore, the 1st dekad corresponds to the 1st of each month, the 2nd dekad to the 11th and the 3rd dekad to the 21st."
+caveats,Caveats/Comments,"To provide real-time data, the prelim version is used which then gets replaced successively by final data as it becomes available. For more information about differences between prelim and final see [CHIRPS Reality Checks](https://wiki.chc.ucsb.edu/CHIRPS_Reality_Checks). Forecast data is successively replaced by preliminary and final data."
+tags,Tags,"climate-weather, environment, hxl"
+resource_1_created,Created,2025-07-14T21:12:46.152674
+resource_1_description,Description,This resource contains the full timeseries to date. File id: 20251023T091214336294_24d40961
+resource_1_format,File Format,CSV
+resource_1_download_url,Download URL,https://data.humdata.org/dataset/ff5dba07-397b-44fb-b04f-bbca782ce793/resource/114874de-df99-4102-b4c8-b44e2db44a5e/download/nga-rainfall-subnat-full.csv
+resource_1_id,Resource ID,114874de-df99-4102-b4c8-b44e2db44a5e
+resource_1_last_modified,Updated,2025-10-23T09:13:49.226784
+resource_1_metadata_modified,Metadata Updated,2025-10-23T09:16:22.277347
+resource_1_microdata,Microdata,False
+resource_1_dataset_id,Dataset ID,ff5dba07-397b-44fb-b04f-bbca782ce793
+resource_1_resource_type,Resource Type,file.upload
+resource_1_name,Resource Name,nga-rainfall-subnat-full.csv
+resource_1_mimetype,MIME Type,
+resource_1_size,Size,147.3M
+resource_2_created,Created,2025-07-14T21:12:46.152680
+resource_2_description,Description,This resource contains a subset of the full timeseries covering the past five years to date. File id: 20251023T091214336294_24d40961
+resource_2_format,File Format,CSV
+resource_2_download_url,Download URL,https://data.humdata.org/dataset/ff5dba07-397b-44fb-b04f-bbca782ce793/resource/2670aa7f-21c1-4ebc-88d6-8d99683e5a60/download/nga-rainfall-subnat-5ytd.csv
+resource_2_id,Resource ID,2670aa7f-21c1-4ebc-88d6-8d99683e5a60
+resource_2_last_modified,Updated,2025-10-23T09:13:51.396613
+resource_2_metadata_modified,Metadata Updated,2025-10-23T09:16:14.969060
+resource_2_microdata,Microdata,False
+resource_2_dataset_id,Dataset ID,ff5dba07-397b-44fb-b04f-bbca782ce793
+resource_2_resource_type,Resource Type,file.upload
+resource_2_name,Resource Name,nga-rainfall-subnat-5ytd.csv
+resource_2_mimetype,MIME Type,
+resource_2_size,Size,15.9M
