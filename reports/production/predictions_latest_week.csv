@@ -1,0 +1,8 @@
+model_type,disease,y_true,y_prob,y_pred,year,week,state
+regressor_weekly_state,Covid-19,0.0,,0.0,2025,48,Abuja
+regressor_weekly_state,Covid-19,0.0,,0.0,2025,48,Edo
+regressor_weekly_state,Covid-19,0.0,,0.0,2025,48,Kano
+regressor_weekly_state,Covid-19,0.0,,0.0,2025,48,Lagos
+regressor_weekly_state,Covid-19,0.0,,0.0,2025,48,Ogun
+regressor_weekly_state,Covid-19,0.0,,0.0,2025,48,Rivers
+regressor_weekly_state,Covid-19,0.0,,0.0,2025,48,Yobe

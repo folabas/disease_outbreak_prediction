@@ -1,0 +1,8 @@
+disease,r2,mae,rmse,n_train,n_test,note
+Cholera,1.0,0.0,0.0,26,7,
+Covid-19,,,,8,0,skipped_insufficient_rows
+Lassa,,,,3,0,skipped_insufficient_rows
+Measles,,,,1,0,skipped_insufficient_rows
+Meningitis,,,,1,0,skipped_insufficient_rows
+Monkeypox,,,,9,0,skipped_insufficient_rows
+Yellow Fever,,,,1,0,skipped_insufficient_rows

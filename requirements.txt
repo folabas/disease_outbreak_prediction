@@ -6,3 +6,4 @@ tabula-py
 pdfminer.six
 tqdm
 python-dateutil
+mlflow

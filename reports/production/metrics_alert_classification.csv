@@ -1,0 +1,2 @@
+disease,roc_auc,pr_auc,precision,recall,f1,n_train,n_test
+Covid-19,,,0.0,0.0,0.0,128,32

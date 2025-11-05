@@ -1,0 +1,54 @@
+name: Weekly Retrain and Promote
+
+on:
+  schedule:
+    - cron: '0 6 * * 1' # Every Monday 06:00 UTC
+  workflow_dispatch:
+
+jobs:
+  retrain:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-cov
+
+      - name: Enable headless Matplotlib
+        run: echo "MPLBACKEND=Agg" >> $GITHUB_ENV
+
+      - name: Retrain regressors
+        run: |
+          python ml/train_regression.py
+          python ml/train_regression_annual.py
+          python ml/train_regression_weekly_country.py
+          python ml/train_regression_weekly_from_annual.py
+
+      - name: Retrain alert classifiers
+        run: python ml/train_alert.py
+
+      - name: Run drift check
+        run: python ml/drift.py
+
+      - name: Upload models as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: models
+          path: models/
+
+      - name: Upload metrics and drift report
+        uses: actions/upload-artifact@v4
+        with:
+          name: reports
+          path: |
+            reports/**/*.csv
+            reports/**/*.json

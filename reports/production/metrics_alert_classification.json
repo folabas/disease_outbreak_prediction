@@ -1,0 +1,12 @@
+[
+  {
+    "disease": "Covid-19",
+    "roc_auc": NaN,
+    "pr_auc": NaN,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "n_train": 128,
+    "n_test": 32
+  }
+]

@@ -1,0 +1,36 @@
+disease,state,year,week,cases_pred,outbreak_risk_prob
+Covid-19,Abia,0,47,2.0017200854700854,1.0
+Covid-19,Abuja,0,49,0.0,1.0
+Covid-19,Adamawa,0,47,1.0,1.0
+Covid-19,Akwa Ibom,0,47,11.131786255411251,1.0
+Covid-19,Anambra,0,47,1.0,1.0
+Covid-19,Bauchi,0,47,8.06234568903319,1.0
+Covid-19,Bayelsa,0,45,0.0,1.0
+Covid-19,Benue,0,47,1.0,1.0
+Covid-19,Borno,0,47,11.27253625541125,1.0
+Covid-19,Cross River,0,45,0.0,1.0
+Covid-19,Delta,0,47,5.986211309523814,1.0
+Covid-19,Ebonyi,0,45,0.0,1.0
+Covid-19,Edo,0,49,0.0,1.0
+Covid-19,Ekiti,0,47,3.957888888888889,1.0
+Covid-19,Enugu,0,47,2.0004700854700856,1.0
+Covid-19,Gombe,0,47,9.10107638888889,1.0
+Covid-19,Imo,0,2,1.0,1.0
+Covid-19,Jigawa,0,47,2.0004700854700856,1.0
+Covid-19,Kaduna,0,47,9.017949404761906,1.0
+Covid-19,Kano,0,49,0.0,1.0
+Covid-19,Katsina,0,47,20.69007837301589,1.0
+Covid-19,Kebbi,0,37,0.0,1.0
+Covid-19,Kwara,0,47,11.037113636363634,1.0
+Covid-19,Lagos,0,49,0.0,1.0
+Covid-19,Nasarawa,0,45,0.0,1.0
+Covid-19,Niger,0,47,2.0017200854700854,1.0
+Covid-19,Ogun,0,49,0.0,1.0
+Covid-19,Ondo,0,47,3.0088748473748472,1.0
+Covid-19,Osun,0,47,19.844103174603177,1.0
+Covid-19,Oyo,0,47,18.44288095238095,1.0
+Covid-19,Plateau,0,47,1.0,1.0
+Covid-19,Rivers,0,49,0.0,1.0
+Covid-19,Sokoto,0,47,1.0,1.0
+Covid-19,Yobe,0,49,0.0,1.0
+Covid-19,Zamfara,0,2,2.002077228327228,1.0

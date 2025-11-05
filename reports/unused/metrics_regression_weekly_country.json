@@ -1,0 +1,64 @@
+[
+  {
+    "disease": "Cholera",
+    "r2": 1.0,
+    "mae": 0.0,
+    "rmse": 0.0,
+    "n_train": 26,
+    "n_test": 7
+  },
+  {
+    "disease": "Covid-19",
+    "r2": NaN,
+    "mae": NaN,
+    "rmse": NaN,
+    "n_train": 8,
+    "n_test": 0,
+    "note": "skipped_insufficient_rows"
+  },
+  {
+    "disease": "Lassa",
+    "r2": NaN,
+    "mae": NaN,
+    "rmse": NaN,
+    "n_train": 3,
+    "n_test": 0,
+    "note": "skipped_insufficient_rows"
+  },
+  {
+    "disease": "Measles",
+    "r2": NaN,
+    "mae": NaN,
+    "rmse": NaN,
+    "n_train": 1,
+    "n_test": 0,
+    "note": "skipped_insufficient_rows"
+  },
+  {
+    "disease": "Meningitis",
+    "r2": NaN,
+    "mae": NaN,
+    "rmse": NaN,
+    "n_train": 1,
+    "n_test": 0,
+    "note": "skipped_insufficient_rows"
+  },
+  {
+    "disease": "Monkeypox",
+    "r2": NaN,
+    "mae": NaN,
+    "rmse": NaN,
+    "n_train": 9,
+    "n_test": 0,
+    "note": "skipped_insufficient_rows"
+  },
+  {
+    "disease": "Yellow Fever",
+    "r2": NaN,
+    "mae": NaN,
+    "rmse": NaN,
+    "n_train": 1,
+    "n_test": 0,
+    "note": "skipped_insufficient_rows"
+  }
+]
