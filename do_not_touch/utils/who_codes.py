@@ -1,0 +1,8 @@
+WHO_INDICATORS = {
+    "Cholera": "CHOLERA_CASES",
+    "Measles": "MEASLES_CASES_REPORTED",
+    "Malaria": "MALARIA_CASES_CONFIRMED",
+    "Yellow Fever": "YFVR_CASES_CONFIRMED",
+    "Meningitis": "MENINGITIS_CASES",
+    "COVID-19": "COVID19CONFIRMEDCASES",
+}

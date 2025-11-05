@@ -1,0 +1,17 @@
+feature,importance
+deaths,0.8999438007041555
+cfr,0.09785730642686064
+cases_last_week,0.0011941628128747407
+relative_humidity_2m_mean,0.0010047300561090284
+week,0.0
+year,0.0
+temperature_2m_mean,0.0
+precipitation_sum,0.0
+who_country_cases,0.0
+population,0.0
+urban_percent,0.0
+deaths_last_week,0.0
+rainfall_change,0.0
+temp_anomaly,0.0
+week_sin,0.0
+week_cos,0.0

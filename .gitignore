@@ -1,0 +1,2 @@
+# Ignore NCDC downloaded PDFs and artifacts
+data/do_not_touch/ncdc/

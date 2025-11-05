@@ -1,0 +1,37 @@
+Saved cleaned dataset → data\processed\outbreakiq_training_data_filled.csv
+
+Top missing (before):
+               Unnamed: 0  missing_count
+        who_country_cases            374
+          rainfall_change            343
+relative_humidity_2m_mean            305
+             temp_anomaly            305
+      temperature_2m_mean            305
+        precipitation_sum            305
+           cases_per_100k            302
+            urban_percent            302
+               population            302
+              report_date            111
+                 week_cos            111
+                     week            111
+                     year            111
+                 week_sin            111
+          cases_last_week             64
+
+Top missing (after):
+               Unnamed: 0  missing_count
+              report_date            111
+relative_humidity_2m_mean              0
+                    state              0
+                    cases              0
+                   deaths              0
+                      cfr              0
+                     year              0
+      temperature_2m_mean              0
+        precipitation_sum              0
+                  disease              0
+               population              0
+                     week              0
+            urban_percent              0
+          cases_last_week              0
+         deaths_last_week              0
