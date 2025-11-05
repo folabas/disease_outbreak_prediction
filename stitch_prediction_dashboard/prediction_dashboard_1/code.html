@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>OutbreakIQ Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#144bb8", // Not used in this version, colors are hardcoded
+            "navy-blue": "#0A2A4E", // Darkest blue for background
+            "deep-blue": "#144BA8", // Mid blue for accents and headers
+            "sky-blue": "#89CFF0", // Light blue for text and highlights
+            "soft-green": "#50C878", // For buttons and positive indicators
+            "light-gray": "#E5E7EB", // For borders and subtle backgrounds in light mode
+            "white": "#FFFFFF",
+            "background-light": "#F8F9FA",
+            "background-dark": "#0A2A4E", // Navy Blue
+            "card-light": "#FFFFFF",
+            "card-dark": "#162E4F", // Slightly lighter navy
+            "border-light": "#E5E7EB",
+            "border-dark": "#2A4A6E",
+          },
+          fontFamily: {
+            "display": ["Manrope", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24
+    }
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-800 dark:text-white">
+<div class="relative min-h-screen w-full">
+<div class="flex flex-col">
+<header class="sticky top-0 z-40 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm border-b border-border-light dark:border-border-dark">
+<div class="flex items-center p-4">
+<button class="text-slate-800 dark:text-white mr-4">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight flex-1">OutbreakIQ</h1>
+</div>
+</header>
+<main class="p-4 space-y-6">
+<div class="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4">
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-card-dark border border-border-light dark:border-border-dark px-4">
+<p class="text-slate-800 dark:text-sky-blue text-sm font-medium leading-normal">Disease: All</p>
+<span class="material-symbols-outlined text-slate-500 dark:text-sky-blue text-base">expand_more</span>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-card-dark border border-border-light dark:border-border-dark px-4">
+<p class="text-slate-800 dark:text-sky-blue text-sm font-medium leading-normal">Region: All</p>
+<span class="material-symbols-outlined text-slate-500 dark:text-sky-blue text-base">expand_more</span>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-card-dark border border-border-light dark:border-border-dark px-4">
+<p class="text-slate-800 dark:text-sky-blue text-sm font-medium leading-normal">Year: 2023</p>
+<span class="material-symbols-outlined text-slate-500 dark:text-sky-blue text-base">expand_more</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-2 rounded-xl p-4 bg-card-light dark:bg-card-dark border border-border-light dark:border-border-dark">
+<p class="text-slate-600 dark:text-slate-400 text-sm font-medium leading-normal">Avg. Rainfall</p>
+<p class="text-deep-blue dark:text-sky-blue tracking-tight text-2xl font-bold leading-tight">1200mm</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-4 bg-card-light dark:bg-card-dark border border-border-light dark:border-border-dark">
+<p class="text-slate-600 dark:text-slate-400 text-sm font-medium leading-normal">Avg. Temperature</p>
+<p class="text-deep-blue dark:text-sky-blue tracking-tight text-2xl font-bold leading-tight">28°C</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-4 bg-card-light dark:bg-card-dark border border-border-light dark:border-border-dark">
+<p class="text-slate-600 dark:text-slate-400 text-sm font-medium leading-normal">Population Density</p>
+<p class="text-deep-blue dark:text-sky-blue tracking-tight text-2xl font-bold leading-tight">212/km²</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-4 bg-card-light dark:bg-card-dark border border-border-light dark:border-border-dark">
+<p class="text-slate-600 dark:text-slate-400 text-sm font-medium leading-normal">Hospital Capacity</p>
+<p class="text-deep-blue dark:text-sky-blue tracking-tight text-2xl font-bold leading-tight">85%</p>
+</div>
+</div>
+<div class="space-y-4">
+<h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-tight">Outbreak Risk Map</h2>
+<div class="p-4 rounded-xl bg-card-light dark:bg-card-dark border border-border-light dark:border-border-dark space-y-4">
+<div class="grid grid-cols-2 gap-3">
+<select class="w-full bg-light-gray/40 dark:bg-navy-blue text-slate-800 dark:text-slate-200 border-light-gray dark:border-border-dark rounded-lg text-sm focus:ring-deep-blue focus:border-deep-blue dark:focus:ring-sky-blue dark:focus:border-sky-blue">
+<option>Select Disease</option>
+<option>Malaria</option>
+<option>Cholera</option>
+</select>
+<select class="w-full bg-light-gray/40 dark:bg-navy-blue text-slate-800 dark:text-slate-200 border-light-gray dark:border-border-dark rounded-lg text-sm focus:ring-deep-blue focus:border-deep-blue dark:focus:ring-sky-blue dark:focus:border-sky-blue">
+<option>Select Region</option>
+<option>North West</option>
+<option>South East</option>
+</select>
+</div>
+<div class="aspect-[4/3] rounded-lg bg-slate-200 dark:bg-navy-blue flex items-center justify-center">
+<img alt="A stylized heatmap of Nigeria showing color-coded outbreak risk levels across different regions." class="w-full h-full object-cover rounded-lg" data-location="Nigeria" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAi4Gc0Hk2tqfz5p_F9Q3ISYmFtCSxyeBb-1guaMRGYN71zpuC3AWwp4RC7q-Q4gvO-BmzzIdukjKDUNwbhLDS4Go1ty860Q02igI-tGi14OhwFuNUGW97J2EqqWowH0qZygybij-hQYzup8-Oqxl8zBaKUB7RReCo9BQT9Dz8AIQDDc_X1YhfOE1KF2JLq7rXyNM0ZdSlf7l5X5e4kyUlT7gSb5L8CwFbh4RbPxxeyuXwzspOm92hguTdC-XojjotW1Lv1ed0g7kZ5"/>
+</div>
+<div class="p-3 rounded-lg bg-deep-blue/10 dark:bg-sky-blue/10">
+<p class="text-deep-blue dark:text-sky-blue text-sm font-medium">High malaria risk predicted in Northern Nigeria (87% probability).</p>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-tight">Data Visualizations</h2>
+<div class="p-4 rounded-xl bg-card-light dark:bg-card-dark border border-border-light dark:border-border-dark space-y-3">
+<h3 class="text-slate-800 dark:text-slate-200 font-semibold">Predicted vs. Actual Cases</h3>
+<div class="w-full h-48 rounded-lg bg-slate-200 dark:bg-navy-blue flex items-center justify-center">
+<img alt="A line chart placeholder showing two lines, one for predicted cases and one for actual cases, over a time-series x-axis." class="w-full h-full object-contain p-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnPz0NZuE1fW20WBus1XBjlutXZxL6Ayz0UKWoNSurBuOtlN1cntTiY-I4E4R5qoDUL4vVAxQ3qPh2EbFCCxGT5vTdYr5nEyD6CV1pKlA8m34rD-GeJQC2b7UWPb0TZo1VTT55kvToWmgQMYbcR1rzU8RlM0XlMZo1jF32Uj0yjHhzMz6LHcq0anUD3cKCZThJHTGHihPTTlzW-ad4KF1APOMs8dRdVQG6GnjvBXHAtmF5PNnBt60evgZwbinOCKCAZ8nwEIXIq70B"/>
+</div>
+</div>
+<div class="p-4 rounded-xl bg-card-light dark:bg-card-dark border border-border-light dark:border-border-dark space-y-3">
+<h3 class="text-slate-800 dark:text-slate-200 font-semibold">Key Risk Factors</h3>
+<div class="w-full h-48 rounded-lg bg-slate-200 dark:bg-navy-blue flex items-center justify-center">
+<img alt="A bar chart placeholder displaying the relative impact of various risk factors like rainfall and hospital density on disease outbreaks." class="w-full h-full object-contain p-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7EF--RE5OwwZsMZ2BtfbLwFwXsqA7re0cACLNHPoP1X0fOsK-_vveTAIdiJhREtshz7OEo3ZJ1_WmdkHFPlQpN2qiiWvoaeo-TLUFqL1d-6IqVVEXjhjP1j9QUTI9EK7rjgL1VnZ9jOrKqc51vTtx-839ceDeBQKoVAuumPRPfeyj8sjt7ad5WE9DVuXco05wyYYPMcb18xRWAUY2DYuLlz9qKW2gySGO7dG5ags3Kt57uE2YoFWcu0R6m13CbVzSHu8nWAE8yBgk"/>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-tight">Run New Prediction</h2>
+<div class="p-4 rounded-xl bg-card-light dark:bg-card-dark border border-border-light dark:border-border-dark space-y-4">
+<div class="grid grid-cols-1 gap-4">
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1" for="disease-type">Disease Type</label>
+<select class="w-full bg-light-gray/40 dark:bg-navy-blue text-slate-800 dark:text-slate-200 border-light-gray dark:border-border-dark rounded-lg text-sm focus:ring-deep-blue focus:border-deep-blue dark:focus:ring-sky-blue dark:focus:border-sky-blue" id="disease-type">
+<option>Malaria</option>
+<option>Cholera</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1" for="region">Region</label>
+<select class="w-full bg-light-gray/40 dark:bg-navy-blue text-slate-800 dark:text-slate-200 border-light-gray dark:border-border-dark rounded-lg text-sm focus:ring-deep-blue focus:border-deep-blue dark:focus:ring-sky-blue dark:focus:border-sky-blue" id="region">
+<option>North West</option>
+<option>South East</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1" for="month">Month/Season</label>
+<select class="w-full bg-light-gray/40 dark:bg-navy-blue text-slate-800 dark:text-slate-200 border-light-gray dark:border-border-dark rounded-lg text-sm focus:ring-deep-blue focus:border-deep-blue dark:focus:ring-sky-blue dark:focus:border-sky-blue" id="month">
+<option>January (Dry)</option>
+<option>July (Wet)</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1" for="rainfall">Rainfall (mm)</label>
+<input class="w-full h-2 bg-slate-200 dark:bg-navy-blue rounded-lg appearance-none cursor-pointer accent-soft-green" id="rainfall" max="2000" min="0" type="range" value="1200"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1" for="temperature">Temperature (°C)</label>
+<input class="w-full h-2 bg-slate-200 dark:bg-navy-blue rounded-lg appearance-none cursor-pointer accent-soft-green" id="temperature" max="40" min="15" type="range" value="28"/>
+</div>
+</div>
+<button class="w-full h-12 flex items-center justify-center rounded-lg bg-soft-green text-white text-base font-bold hover:bg-soft-green/90 transition-colors">
+              Predict
+            </button>
+<div class="p-4 rounded-lg bg-background-light dark:bg-navy-blue space-y-2 border border-border-light dark:border-border-dark">
+<h4 class="text-slate-900 dark:text-white font-bold">Prediction Result</h4>
+<p class="text-sm text-slate-600 dark:text-slate-400"><strong class="text-slate-800 dark:text-slate-200">Risk Level:</strong> <span class="font-semibold text-red-500">High</span></p>
+<p class="text-sm text-slate-600 dark:text-slate-400"><strong class="text-slate-800 dark:text-slate-200">Confidence:</strong> 87%</p>
+<p class="text-sm text-slate-600 dark:text-slate-400"><strong class="text-slate-800 dark:text-slate-200">Recommendations:</strong> Deploy preventative measures, increase public awareness campaigns, and stock up on medical supplies.</p>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>

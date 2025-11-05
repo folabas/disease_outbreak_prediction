@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>OutbreakIQ - Population Analytics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        // OutbreakIQ Theme
+                        "deep-blue": "#0A2463",
+                        "navy-blue": "#3E517A",
+                        "sky-blue": "#73A2D1",
+                        "soft-green": "#84DCC6",
+                        "light-gray": "#F0F2F5",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-display bg-light-gray dark:bg-background-dark">
+<div class="relative flex min-h-screen w-full">
+<!-- SideNavBar -->
+<aside class="flex h-screen flex-col justify-between border-r border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-background-dark sticky top-0">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAR9HR4Tp83mssz8rV7rhircJlkvLwb0ATkvRzAP1kvtc7BjF-3CcTCairueqGDh-Mp6fdrL7_TSgQfMSkGEUWIFizA67FTsEMN0q-9MrEJ3UBIXJ4MvcMhWda_WcYYK0pYffEpp0veHrShL1aXRncX8uVNZjHqR5PAVUtH9bM2_pEhTPJWY8odCc0baPd7U4BQs7AzV0qBoIBs7ABNGsuP8d2by8zoiXq0HXcyFfVZLuF0BccspThnbwKLEConyk-Z_SXdSlVWfAdw");'></div>
+<div class="flex flex-col">
+<h1 class="text-deep-blue dark:text-white text-base font-medium leading-normal">Dr. Amina Yusuf</h1>
+<p class="text-navy-blue dark:text-slate-400 text-sm font-normal leading-normal">Epidemiologist</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2 text-navy-blue dark:text-slate-300 hover:bg-light-gray dark:hover:bg-slate-800 rounded-lg" href="#">
+<span class="material-symbols-outlined text-navy-blue dark:text-slate-300">dashboard</span>
+<p class="text-sm font-medium leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 rounded-lg bg-light-gray dark:bg-slate-800 px-3 py-2" href="#">
+<span class="material-symbols-outlined fill text-deep-blue dark:text-white">groups</span>
+<p class="text-deep-blue dark:text-white text-sm font-medium leading-normal">Population Analytics</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-navy-blue dark:text-slate-300 hover:bg-light-gray dark:hover:bg-slate-800 rounded-lg" href="#">
+<span class="material-symbols-outlined text-navy-blue dark:text-slate-300">trending_up</span>
+<p class="text-sm font-medium leading-normal">Disease Trends</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-navy-blue dark:text-slate-300 hover:bg-light-gray dark:hover:bg-slate-800 rounded-lg" href="#">
+<span class="material-symbols-outlined text-navy-blue dark:text-slate-300">warning</span>
+<p class="text-sm font-medium leading-normal">Risk Assessment</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-navy-blue dark:text-slate-300 hover:bg-light-gray dark:hover:bg-slate-800 rounded-lg" href="#">
+<span class="material-symbols-outlined text-navy-blue dark:text-slate-300">image</span>
+<p class="text-sm font-medium leading-normal">Reports</p>
+</a>
+</nav>
+</div>
+<div class="flex flex-col gap-4">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-deep-blue text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-navy-blue">
+<span class="truncate">New Report</span>
+</button>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 text-navy-blue dark:text-slate-300 hover:bg-light-gray dark:hover:bg-slate-800 rounded-lg" href="#">
+<span class="material-symbols-outlined text-navy-blue dark:text-slate-300">toggle_on</span>
+<p class="text-sm font-medium leading-normal">Settings</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-navy-blue dark:text-slate-300 hover:bg-light-gray dark:hover:bg-slate-800 rounded-lg" href="#">
+<span class="material-symbols-outlined text-navy-blue dark:text-slate-300">help</span>
+<p class="text-sm font-medium leading-normal">Help</p>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 p-8">
+<div class="flex flex-col gap-6">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2">
+<a class="text-navy-blue dark:text-slate-400 text-base font-medium leading-normal hover:underline" href="#">Dashboard</a>
+<span class="text-navy-blue dark:text-slate-400 text-base font-medium leading-normal">/</span>
+<span class="text-deep-blue dark:text-white text-base font-medium leading-normal">Population</span>
+</div>
+<!-- PageHeading -->
+<div class="flex flex-wrap justify-between gap-3">
+<div class="flex min-w-72 flex-col gap-2">
+<p class="text-deep-blue dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">Population Analytics</p>
+<p class="text-navy-blue dark:text-slate-300 text-base font-normal leading-normal">Analyze population growth and density across Nigeria.</p>
+</div>
+</div>
+<!-- ToolBar -->
+<div class="flex flex-wrap items-center justify-between gap-4 rounded-lg bg-white dark:bg-background-dark p-4 border border-slate-200 dark:border-slate-800">
+<div class="flex flex-wrap items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-navy-blue dark:text-slate-300">calendar_month</span>
+<p class="text-navy-blue dark:text-slate-300 text-sm">Date Range:</p>
+<select class="rounded-md border-slate-300 text-sm text-deep-blue dark:bg-slate-800 dark:text-white dark:border-slate-700">
+<option>Last 12 Months</option>
+<option>Last 6 Months</option>
+<option>Last 30 Days</option>
+</select>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-navy-blue dark:text-slate-300">map</span>
+<p class="text-navy-blue dark:text-slate-300 text-sm">Region:</p>
+<select class="rounded-md border-slate-300 text-sm text-deep-blue dark:bg-slate-800 dark:text-white dark:border-slate-700">
+<option>All Regions</option>
+<option>North West</option>
+<option>South East</option>
+</select>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-white dark:bg-background-dark text-navy-blue dark:text-slate-300 gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-4 border border-slate-300 dark:border-slate-700 hover:bg-light-gray dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-navy-blue dark:text-slate-300 text-base">download</span>
+<span class="truncate">Export</span>
+</button>
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-soft-green text-deep-blue gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-4 hover:opacity-90">
+<span class="material-symbols-outlined text-deep-blue text-base">tune</span>
+<span class="truncate">Apply Filters</span>
+</button>
+</div>
+</div>
+<!-- Stats -->
+<div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+<div class="flex flex-col gap-2 rounded-lg p-6 bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-800">
+<p class="text-navy-blue dark:text-slate-300 text-base font-medium leading-normal">Total Population</p>
+<p class="text-deep-blue dark:text-white tracking-light text-3xl font-bold leading-tight">213,401,323</p>
+</div>
+<div class="flex flex-col gap-2 rounded-lg p-6 bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-800">
+<p class="text-navy-blue dark:text-slate-300 text-base font-medium leading-normal">Average Population Density</p>
+<p class="text-deep-blue dark:text-white tracking-light text-3xl font-bold leading-tight">231/km²</p>
+</div>
+<div class="flex flex-col gap-2 rounded-lg p-6 bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-800">
+<p class="text-navy-blue dark:text-slate-300 text-base font-medium leading-normal">Highest Growth Region</p>
+<p class="text-deep-blue dark:text-white tracking-light text-3xl font-bold leading-tight">Kano (+4.2%)</p>
+</div>
+</div>
+<!-- Data Visualizations -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- Bar Chart Card -->
+<div class="flex flex-col gap-4 rounded-lg p-6 bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-800">
+<h3 class="text-navy-blue dark:text-slate-200 text-lg font-bold">Population Growth by Region</h3>
+<div class="flex flex-col gap-4">
+<!-- Chart Item -->
+<div class="flex items-center gap-3">
+<p class="w-24 text-sm text-navy-blue dark:text-slate-300">North West</p>
+<div class="flex-1 bg-light-gray dark:bg-slate-800 rounded-full h-6">
+<div class="bg-gradient-to-r from-sky-blue to-navy-blue h-6 rounded-full" style="width: 95%"></div>
+</div>
+<p class="w-16 text-sm font-semibold text-deep-blue dark:text-white text-right">4.2%</p>
+</div>
+<!-- Chart Item -->
+<div class="flex items-center gap-3">
+<p class="w-24 text-sm text-navy-blue dark:text-slate-300">South West</p>
+<div class="flex-1 bg-light-gray dark:bg-slate-800 rounded-full h-6">
+<div class="bg-gradient-to-r from-sky-blue to-navy-blue h-6 rounded-full" style="width: 80%"></div>
+</div>
+<p class="w-16 text-sm font-semibold text-deep-blue dark:text-white text-right">3.8%</p>
+</div>
+<!-- Chart Item -->
+<div class="flex items-center gap-3">
+<p class="w-24 text-sm text-navy-blue dark:text-slate-300">North Central</p>
+<div class="flex-1 bg-light-gray dark:bg-slate-800 rounded-full h-6">
+<div class="bg-gradient-to-r from-sky-blue to-navy-blue h-6 rounded-full" style="width: 72%"></div>
+</div>
+<p class="w-16 text-sm font-semibold text-deep-blue dark:text-white text-right">3.1%</p>
+</div>
+<!-- Chart Item -->
+<div class="flex items-center gap-3">
+<p class="w-24 text-sm text-navy-blue dark:text-slate-300">South South</p>
+<div class="flex-1 bg-light-gray dark:bg-slate-800 rounded-full h-6">
+<div class="bg-gradient-to-r from-sky-blue to-navy-blue h-6 rounded-full" style="width: 65%"></div>
+</div>
+<p class="w-16 text-sm font-semibold text-deep-blue dark:text-white text-right">2.8%</p>
+</div>
+<!-- Chart Item -->
+<div class="flex items-center gap-3">
+<p class="w-24 text-sm text-navy-blue dark:text-slate-300">North East</p>
+<div class="flex-1 bg-light-gray dark:bg-slate-800 rounded-full h-6">
+<div class="bg-gradient-to-r from-sky-blue to-navy-blue h-6 rounded-full" style="width: 50%"></div>
+</div>
+<p class="w-16 text-sm font-semibold text-deep-blue dark:text-white text-right">2.4%</p>
+</div>
+<!-- Chart Item -->
+<div class="flex items-center gap-3">
+<p class="w-24 text-sm text-navy-blue dark:text-slate-300">South East</p>
+<div class="flex-1 bg-light-gray dark:bg-slate-800 rounded-full h-6">
+<div class="bg-gradient-to-r from-sky-blue to-navy-blue h-6 rounded-full" style="width: 42%"></div>
+</div>
+<p class="w-16 text-sm font-semibold text-deep-blue dark:text-white text-right">2.1%</p>
+</div>
+</div>
+</div>
+<!-- Heatmap Card -->
+<div class="flex flex-col gap-4 rounded-lg p-6 bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-800">
+<h3 class="text-navy-blue dark:text-slate-200 text-lg font-bold">Population Density Heatmap</h3>
+<div class="flex-1 flex flex-col items-center justify-center gap-4">
+<div class="w-full max-w-sm" data-location="Nigeria" style="https://lh3.googleusercontent.com/aida-public/AB6AXuBJcochqZLtv6Q1n2YcuHhKeAMJ4r3N-QB5xHGw4Mu_z4lB-PA-fU5x2TwOu3SZTPh1tGo7bE5jRPsKrBFv8MsJVmVZIs0vq7Vriab22PHM7RDDqa6SB8_jSc9DEAPx6hMHgmTsQgxkA-eBt52oCOCaw0wMoyvltqkMsVWQrFc7DmzzdxrIJ6GouxvlHOOFb1ElbktC4gCb_kQXLrrQ_ntA_qk6sAaAs8HFq2PKcooQfp1rZ4qcpkGtrLl2YaSyTYCXuiTv_c3e0p0H">
+<img alt="A heatmap of Nigeria showing population density by state. Densely populated states like Lagos and Kano are in deep blue, while less dense states are in light gray." class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3CTqCtYLqisLewBsqA2KK2T3xSN1SOLEjx_1TCo9hW8axMLmiYrehqIf7PlGlPI72kPwcxRE0fTJL6RyiBilQJDLdLRKN6RhevhciAc4KrFrR7bcjR0OqS7SIYYyaT_A2NZIxV0aT6qelhWjen-DIr2KDn-iac_uDDT0iWbUa28dJ7lJQfYulPdrTsK0WT-geVbo0M2PosXHvL4SDfN0JwRbJov_ZgHbNLTr56R2g9K8gpdK-hSDUcWcdwncQI25iYg0qWXFEUca0"/>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-sm text-navy-blue dark:text-slate-300">Low Density</span>
+<div class="flex">
+<div class="w-8 h-4 bg-light-gray border border-slate-300 dark:border-slate-700"></div>
+<div class="w-8 h-4 bg-sky-blue/30"></div>
+<div class="w-8 h-4 bg-sky-blue"></div>
+<div class="w-8 h-4 bg-navy-blue"></div>
+<div class="w-8 h-4 bg-deep-blue"></div>
+</div>
+<span class="text-sm text-navy-blue dark:text-slate-300">High Density</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

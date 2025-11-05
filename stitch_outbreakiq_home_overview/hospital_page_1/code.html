@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>OutbreakIQ - Healthcare Capacity</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex min-h-screen w-full">
+<!-- SideNavBar -->
+<aside class="flex flex-col w-64 bg-[#0A2540] dark:bg-gray-900 text-white font-display shrink-0">
+<div class="flex flex-col gap-4 p-4">
+<div class="flex items-center gap-3 py-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="OutbreakIQ system logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAYjWkZVTwPtBkfLEmwyrz6YoglcdYPorcTSBja3j9AjERPUHVAli8hEu88pqCaqO3OjXDJ34EvExAKmuoy2sG7pB0gNJ3-IGUrhCZDY4TbCh2zSv4gALUc41FBa13oqvBaE3kaauamc_ybHW_V9Z9v6C8YmWUm6kI65rHjyKgaZ3U8V_XxmiojeIm2oGG2tNOQ-oX2KzutJoWl57GmDayFo4pu0Qg7c_drvrAjB5oQ9lDOrP30qAFWWisuGR48KAQR90DWwA6vHGY8");'></div>
+<div class="flex flex-col">
+<h1 class="text-white text-base font-medium leading-normal">OutbreakIQ</h1>
+<p class="text-gray-400 text-sm font-normal leading-normal">Disease Prediction System</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2 text-gray-300 hover:bg-sky-900/50 rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-medium leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-[#135bec] text-white" href="#">
+<span class="material-symbols-outlined">apartment</span>
+<p class="text-sm font-medium leading-normal">Healthcare Capacity</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-300 hover:bg-sky-900/50 rounded-lg" href="#">
+<span class="material-symbols-outlined">timeline</span>
+<p class="text-sm font-medium leading-normal">Disease Surveillance</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-300 hover:bg-sky-900/50 rounded-lg" href="#">
+<span class="material-symbols-outlined">model_training</span>
+<p class="text-sm font-medium leading-normal">Prediction Models</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-300 hover:bg-sky-900/50 rounded-lg" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<p class="text-sm font-medium leading-normal">Reports</p>
+</a>
+</nav>
+</div>
+<div class="mt-auto flex flex-col gap-1 p-4">
+<a class="flex items-center gap-3 px-3 py-2 text-gray-300 hover:bg-sky-900/50 rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-sm font-medium leading-normal">Settings</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-300 hover:bg-sky-900/50 rounded-lg" href="#">
+<span class="material-symbols-outlined">help</span>
+<p class="text-sm font-medium leading-normal">Help</p>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col overflow-y-auto">
+<div class="flex flex-col gap-6 p-6 lg:p-8">
+<!-- PageHeading & ToolBar -->
+<header class="flex flex-wrap items-center justify-between gap-4">
+<h1 class="text-3xl font-black leading-tight tracking-[-0.033em] text-gray-900 dark:text-white">Healthcare Capacity &amp; Facility Density</h1>
+<div class="flex items-center gap-2">
+<button class="p-2 text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined">calendar_today</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 bg-[#50C878] text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] px-4 hover:bg-green-600">
+<span class="material-symbols-outlined">filter_list</span>
+<span class="truncate">Apply Filters</span>
+</button>
+</div>
+</header>
+<!-- Stats -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+<p class="text-gray-600 dark:text-gray-300 text-base font-medium leading-normal">Total Facilities</p>
+<p class="text-gray-900 dark:text-white tracking-tight text-3xl font-bold leading-tight">12,450</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+<p class="text-gray-600 dark:text-gray-300 text-base font-medium leading-normal">Average Bed Capacity</p>
+<p class="text-gray-900 dark:text-white tracking-tight text-3xl font-bold leading-tight">82</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+<p class="text-gray-600 dark:text-gray-300 text-base font-medium leading-normal">Population per Facility</p>
+<p class="text-gray-900 dark:text-white tracking-tight text-3xl font-bold leading-tight">~16,500</p>
+</div>
+</section>
+<!-- Map and Filters Section -->
+<section class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+<!-- Filter Panel -->
+<aside class="lg:col-span-1 bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+<h2 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Filters</h2>
+<div class="space-y-6">
+<div>
+<label class="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-1" for="state">State</label>
+<select class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:border-primary focus:ring-primary" id="state">
+<option>All States</option>
+<option>Lagos</option>
+<option>Kano</option>
+<option>Abuja (FCT)</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-1" for="lga">LGA (Local Government Area)</label>
+<select class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:border-primary focus:ring-primary" id="lga">
+<option>All LGAs</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-1" for="facility-type">Facility Type</label>
+<select class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:border-primary focus:ring-primary" id="facility-type">
+<option>All Types</option>
+<option>General Hospital</option>
+<option>Primary Health Clinic</option>
+<option>Specialist Hospital</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-1" for="capacity-level">Capacity Level (Beds)</label>
+<input class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 [&amp;::-webkit-slider-thumb]:bg-primary" id="capacity-level" type="range"/>
+<div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
+<span>0</span>
+<span>500+</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Interactive Map -->
+<div class="lg:col-span-3 bg-white dark:bg-gray-800 p-4 rounded-xl border border-gray-200 dark:border-gray-700 relative">
+<div class="w-full h-[600px] bg-center bg-no-repeat bg-cover rounded-lg" data-alt="A map of Nigeria showing a heatmap of healthcare facility density, with various states color-coded." data-location="Nigeria" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCsHXO5467amBWeeHIgmYgrYcvFfSgDiRmGLyOaHyI_5l8IAmRtKlmgkMzYdVq-kSJJ8Y55y2GxrSLw1JlAEpqewLaQJKI10OlDDDBJwl4jEojjZ7SmKoA7eh1xb5sdG7l3CshG8cnwsJZs34iGfM1InWezU4nzBWskhqqaTXkOgc_TZs_X7MlzHVPbrIk8ZZsEhWgztosFRd2w7DVWSM4epPzfNHsIaNmix7yTJk4MLhhyfaOpN_1Lk-QxQKLNZwsOLhyB1I7moN9G");'></div>
+<div class="absolute bottom-4 right-4 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-3 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
+<h3 class="font-bold text-sm mb-2 text-gray-900 dark:text-white">Facility Density</h3>
+<div class="flex flex-col gap-2 text-xs text-gray-600 dark:text-gray-300">
+<div class="flex items-center gap-2"><div class="size-3 rounded-sm bg-[#A6D9F7]"></div><span>Low</span></div>
+<div class="flex items-center gap-2"><div class="size-3 rounded-sm bg-[#5EB5EF]"></div><span>Medium</span></div>
+<div class="flex items-center gap-2"><div class="size-3 rounded-sm bg-[#135BEC]"></div><span>High</span></div>
+<div class="flex items-center gap-2"><div class="size-3 rounded-sm bg-[#0A2540]"></div><span>Very High</span></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>

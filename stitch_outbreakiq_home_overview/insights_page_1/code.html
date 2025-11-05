@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>OutbreakIQ - Model Explanation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+      }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#36e270",
+              "background-light": "#f6f8f6",
+              "background-dark": "#112117","deep-blue": "#0A2463",
+              "navy-blue": "#1E3A8A",
+              "sky-blue": "#3B82F6",
+              "soft-green": "#34D399",
+              "light-gray": "#E5E7EB",
+            },
+            fontFamily: {
+              "display": ["Public Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-display">
+<div class="relative flex min-h-screen w-full flex-col bg-background-light group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-light-gray bg-white px-6 py-3 lg:px-10">
+<div class="flex items-center gap-4 text-deep-blue">
+<div class="size-8 text-sky-blue">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_543)">
+<path d="M42.1739 20.1739L27.8261 5.82609C29.1366 7.13663 28.3989 10.1876 26.2002 13.7654C24.8538 15.9564 22.9595 18.3449 20.6522 20.6522C18.3449 22.9595 15.9564 24.8538 13.7654 26.2002C10.1876 28.3989 7.13663 29.1366 5.82609 27.8261L20.1739 42.1739C21.4845 43.4845 24.5355 42.7467 28.1133 40.548C30.3042 39.2016 32.6927 37.3073 35 35C37.3073 32.6927 39.2016 30.3042 40.548 28.1133C42.7467 24.5355 43.4845 21.4845 42.1739 20.1739Z" fill="currentColor"></path>
+<path clip-rule="evenodd" d="M7.24189 26.4066C7.31369 26.4411 7.64204 26.5637 8.52504 26.3738C9.59462 26.1438 11.0343 25.5311 12.7183 24.4963C14.7583 23.2426 17.0256 21.4503 19.238 19.238C21.4503 17.0256 23.2426 14.7583 24.4963 12.7183C25.5311 11.0343 26.1438 9.59463 26.3738 8.52504C26.5637 7.64204 26.4411 7.31369 26.4066 7.24189C26.345 7.21246 26.143 7.14535 25.6664 7.1918C24.9745 7.25925 23.9954 7.5498 22.7699 8.14278C20.3369 9.32007 17.3369 11.4915 14.4142 14.4142C11.4915 17.3369 9.32007 20.3369 8.14278 22.7699C7.5498 23.9954 7.25925 24.9745 7.1918 25.6664C7.14534 26.143 7.21246 26.345 7.24189 26.4066ZM29.9001 10.7285C29.4519 12.0322 28.7617 13.4172 27.9042 14.8126C26.465 17.1544 24.4686 19.6641 22.0664 22.0664C19.6641 24.4686 17.1544 26.465 14.8126 27.9042C13.4172 28.7617 12.0322 29.4519 10.7285 29.9001L21.5754 40.747C21.6001 40.7606 21.8995 40.931 22.8729 40.7217C23.9424 40.4916 25.3821 39.879 27.0661 38.8441C29.1062 37.5904 31.3734 35.7982 33.5858 33.5858C35.7982 31.3734 37.5904 29.1062 38.8441 27.0661C39.879 25.3821 40.4916 23.9425 40.7216 22.8729C40.931 21.8995 40.7606 21.6001 40.747 21.5754L29.9001 10.7285ZM29.2403 4.41187L43.5881 18.7597C44.9757 20.1473 44.9743 22.1235 44.6322 23.7139C44.2714 25.3919 43.4158 27.2666 42.252 29.1604C40.8128 31.5022 38.8165 34.012 36.4142 36.4142C34.012 38.8165 31.5022 40.8128 29.1604 42.252C27.2666 43.4158 25.3919 44.2714 23.7139 44.6322C22.1235 44.9743 20.1473 44.9757 18.7597 43.5881L4.41187 29.2403C3.29027 28.1187 3.08209 26.5973 3.21067 25.2783C3.34099 23.9415 3.8369 22.4852 4.54214 21.0277C5.96129 18.0948 8.43335 14.7382 11.5858 11.5858C14.7382 8.43335 18.0948 5.9613 21.0277 4.54214C22.4852 3.8369 23.9415 3.34099 25.2783 3.21067C26.5973 3.08209 28.1187 3.29028 29.2403 4.41187Z" fill="currentColor" fill-rule="evenodd"></path>
+</g>
+<defs>
+<clipPath id="clip0_6_543">
+<rect fill="white" height="48" width="48"></rect>
+</clipPath>
+</defs>
+</svg>
+</div>
+<h2 class="text-deep-blue text-lg font-bold leading-tight tracking-[-0.015em]">OutbreakIQ</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden items-center gap-9 lg:flex">
+<a class="text-navy-blue text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-navy-blue text-sm font-medium leading-normal" href="#">Predictions</a>
+<a class="text-navy-blue text-sm font-medium leading-normal" href="#">Reports</a>
+<a class="text-sky-blue text-sm font-bold leading-normal relative py-1 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-sky-blue" href="#">Model Explanation</a>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-light-gray/50 text-navy-blue hover:bg-light-gray">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<button class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-light-gray/50 text-navy-blue hover:bg-light-gray">
+<span class="material-symbols-outlined text-xl">settings</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBwFtFuY1xn6xqW2IhkpB-miBsuORy01HfV_mBO37ACF7ieoDbGyMQvroqcGRhfTeUtywj7UHhCAcI0gIkfGG11mRU-CL-zCJOR_kNl5KTYAVDqDqJAcXk9jVhhr-7MYx_4BBTX6xXwWaM_6MKOr26UaFpNB3QcUaNLuLQdV3xnoxSiv50E2_TmdglRkMcKLWXmFbBKxfHAtxsMseihM6oYQy7qPe7tGQx10sChIsuLLEjG1GrVX0dSzwM3tZ8VOwcAT8BuQ478Q9gS");'></div>
+</div>
+</div>
+</header>
+<main class="flex flex-1 justify-center py-5 lg:py-10 px-4 sm:px-6 lg:px-8">
+<div class="layout-content-container flex w-full max-w-6xl flex-1 flex-col gap-8">
+<div class="flex flex-col gap-4">
+<h1 class="text-deep-blue text-4xl font-black leading-tight tracking-[-0.033em]">Model Insights &amp; Explanation</h1>
+<div class="rounded-xl overflow-hidden shadow-sm border border-light-gray">
+<div class="bg-deep-blue p-4">
+<h2 class="text-white text-lg font-bold">About Our AI Model</h2>
+</div>
+<div class="bg-light-gray/50 p-4">
+<p class="text-navy-blue/80 text-base font-normal leading-normal">Our AI model was trained using 10 years of outbreak data across 36 Nigerian states. This section provides transparency into its performance, reliability, and methodology.</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-6">
+<h2 class="text-deep-blue text-[22px] font-bold leading-tight tracking-[-0.015em]">Performance Metrics</h2>
+<div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+<div class="flex min-w-[158px] flex-1 flex-col gap-4 rounded-xl border border-light-gray bg-white p-6 shadow-md">
+<p class="text-navy-blue text-base font-medium leading-normal">Model Accuracy</p>
+<p class="text-sky-blue tracking-light text-5xl font-bold leading-tight">91%</p>
+<div class="h-2 w-full rounded-full bg-light-gray">
+<div class="h-2 rounded-full bg-soft-green" style="width: 91%;"></div>
+</div>
+</div>
+<div class="flex min-w-[158px] flex-1 flex-col gap-4 rounded-xl border border-light-gray bg-white p-6 shadow-md">
+<p class="text-navy-blue text-base font-medium leading-normal">Precision</p>
+<p class="text-sky-blue tracking-light text-5xl font-bold leading-tight">88%</p>
+<div class="h-2 w-full rounded-full bg-light-gray opacity-50"></div>
+</div>
+<div class="flex min-w-[158px] flex-1 flex-col gap-4 rounded-xl border border-light-gray bg-white p-6 shadow-md">
+<p class="text-navy-blue text-base font-medium leading-normal">Recall</p>
+<p class="text-sky-blue tracking-light text-5xl font-bold leading-tight">93%</p>
+<div class="h-2 w-full rounded-full bg-light-gray opacity-50"></div>
+</div>
+<div class="flex min-w-[158px] flex-1 flex-col gap-4 rounded-xl border border-light-gray bg-white p-6 shadow-md">
+<p class="text-navy-blue text-base font-medium leading-normal">F1-Score</p>
+<p class="text-sky-blue tracking-light text-5xl font-bold leading-tight">90%</p>
+<div class="h-2 w-full rounded-full bg-light-gray opacity-50"></div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+<div class="flex flex-col gap-6 lg:col-span-2">
+<h2 class="text-deep-blue text-[22px] font-bold leading-tight tracking-[-0.015em]">Performance Visualization</h2>
+<div class="rounded-xl border border-light-gray bg-white p-6">
+<div class="flex items-center justify-between">
+<h3 class="text-navy-blue font-bold">ROC Curve</h3>
+<span class="text-sm text-navy-blue/70">Area Under Curve (AUC): 0.94</span>
+</div>
+<div class="mt-4 aspect-[16/9] w-full flex items-center justify-center bg-light-gray/30 rounded-lg">
+<img class="w-full h-full object-contain p-4" data-alt="Placeholder for ROC curve chart showing model performance" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVtcea7-JqMAHEv2R3BFPA0ySDT578c80oxdlfcbe0vbkve3Muqv3pIasGmLn_ByRMxYBfcSZotDyVbBEIw64v1eiXJ8q2qGuuaiKH56m9B2RZ2CqthIg-b0l9g-p-ONY9zsE_F-EBdPs2IgWcVnpTskc19hl3umGwY1BNmanUFqipq9xGZSayMZSK3bozPIYWY8Cu36IsOip5Jyu7SRjKNips7xAyg0qYvZ0ZOuhspK0bHu_ljPjOxx-Ux21o9473apjbownDs7j8"/>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-6 lg:col-span-1">
+<h2 class="text-deep-blue text-[22px] font-bold leading-tight tracking-[-0.015em]">Model Details</h2>
+<div class="rounded-xl border border-light-gray bg-white p-6">
+<ul class="space-y-4 text-navy-blue">
+<li class="flex justify-between text-sm">
+<span class="font-medium">Model Version:</span>
+<span class="font-mono rounded bg-light-gray px-2 py-0.5 text-deep-blue">v2.3.1</span>
+</li>
+<li class="flex justify-between text-sm">
+<span class="font-medium">Last Retrained:</span>
+<span>Oct 15, 2023</span>
+</li>
+<li class="flex justify-between text-sm">
+<span class="font-medium">Data Source:</span>
+<span>NCDC Archives</span>
+</li>
+</ul>
+</div>
+<div class="flex flex-col rounded-xl border border-light-gray bg-white overflow-hidden">
+<div class="bg-navy-blue p-4">
+<h3 class="font-bold text-lg text-white">Impact &amp; Use Case</h3>
+</div>
+<div class="p-6 flex flex-col">
+<h4 class="font-bold text-base text-deep-blue">Empowering Proactive Response</h4>
+<p class="mt-2 text-sm text-navy-blue/90">OutbreakIQ could help WHO, NCDC, and NGOs act faster to prevent epidemics by providing early warnings and identifying high-risk zones.</p>
+<button class="mt-4 flex max-w-[480px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg bg-soft-green px-4 py-2 text-sm font-bold leading-normal text-white transition hover:opacity-90 self-start">
+<span>Download Report</span>
+<span class="material-symbols-outlined text-base">download</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-6">
+<h2 class="text-deep-blue text-[22px] font-bold leading-tight tracking-[-0.015em]">Feature Importance</h2>
+<div class="rounded-xl border border-light-gray bg-white p-6">
+<p class="text-sm text-navy-blue/80 mb-6">This chart ranks the most influential data points (features) the model uses for its predictions.</p>
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<p class="w-40 text-sm font-medium text-navy-blue text-right">Rainfall Patterns</p>
+<div class="h-6 flex-1 rounded bg-light-gray">
+<div class="h-full rounded bg-sky-blue" style="width: 92%;"></div>
+</div>
+<p class="w-12 text-left text-sm font-semibold text-deep-blue">92%</p>
+</div>
+<div class="flex items-center gap-4">
+<p class="w-40 text-sm font-medium text-navy-blue text-right">Population Density</p>
+<div class="h-6 flex-1 rounded bg-light-gray">
+<div class="h-full rounded bg-sky-blue" style="width: 85%;"></div>
+</div>
+<p class="w-12 text-left text-sm font-semibold text-deep-blue">85%</p>
+</div>
+<div class="flex items-center gap-4">
+<p class="w-40 text-sm font-medium text-navy-blue text-right">Healthcare Access</p>
+<div class="h-6 flex-1 rounded bg-light-gray">
+<div class="h-full rounded bg-sky-blue" style="width: 78%;"></div>
+</div>
+<p class="w-12 text-left text-sm font-semibold text-deep-blue">78%</p>
+</div>
+<div class="flex items-center gap-4">
+<p class="w-40 text-sm font-medium text-navy-blue text-right">Avg. Temperature</p>
+<div class="h-6 flex-1 rounded bg-light-gray">
+<div class="h-full rounded bg-sky-blue" style="width: 65%;"></div>
+</div>
+<p class="w-12 text-left text-sm font-semibold text-deep-blue">65%</p>
+</div>
+<div class="flex items-center gap-4">
+<p class="w-40 text-sm font-medium text-navy-blue text-right">Sanitation Index</p>
+<div class="h-6 flex-1 rounded bg-light-gray">
+<div class="h-full rounded bg-sky-blue" style="width: 59%;"></div>
+</div>
+<p class="w-12 text-left text-sm font-semibold text-deep-blue">59%</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>

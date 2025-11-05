@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>OutbreakIQ - Climate Trends</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111827] dark:text-gray-300">
+<div class="relative flex min-h-screen w-full">
+<!-- SideNavBar -->
+<aside class="flex flex-col w-64 bg-white dark:bg-black/20 border-r border-gray-200 dark:border-gray-800 p-4 shrink-0">
+<div class="flex flex-col gap-4 h-full">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="OutbreakIQ company logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCn0K4TVuAok7ITiEUOdyJTyz9xxT9e36ZhlmtVqOra0nTlaQJ3gF2oVWHIk8pJv_QSsxCTWou6YgaAT2HwH__SWJDfrltFujOyG_OX55p3olcsN30y-DZFeJOCmCH84q5JRlysRd-HWXlzyqEYsH3g0dG-xWkHKhG2VGhwvNc4CKEd2YZUIj2AjyuexiSynmv9wNT2-3k4FtWdFCGp-5Dxx7Rpm4EZ-STqfMAWwX5CFGzRS9nO4u51hfWPdC2MU-VCwZ1aOZHN3MRa");'></div>
+<div class="flex flex-col">
+<h1 class="text-[#111827] dark:text-white text-base font-medium leading-normal">OutbreakIQ</h1>
+<p class="text-[#6B7280] dark:text-gray-400 text-sm font-normal leading-normal">Nigeria</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-[#6B7280] dark:text-gray-400">dashboard</span>
+<p class="text-[#111827] dark:text-white text-sm font-medium leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-[#6B7280] dark:text-gray-400">trending_up</span>
+<p class="text-[#111827] dark:text-white text-sm font-medium leading-normal">Predictions</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-gray-100 dark:bg-gray-800" href="#">
+<span class="material-symbols-outlined fill text-[#111827] dark:text-white">cloud</span>
+<p class="text-[#111827] dark:text-white text-sm font-medium leading-normal">Climate Trends</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-[#6B7280] dark:text-gray-400">bar_chart</span>
+<p class="text-[#111827] dark:text-white text-sm font-medium leading-normal">Reports</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-[#6B7280] dark:text-gray-400">settings</span>
+<p class="text-[#111827] dark:text-white text-sm font-medium leading-normal">Settings</p>
+</a>
+</nav>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 p-6 lg:p-8 overflow-y-auto">
+<div class="max-w-7xl mx-auto">
+<!-- PageHeading & Chips -->
+<header class="flex flex-col sm:flex-row sm:flex-wrap sm:justify-between sm:items-center gap-4">
+<div class="flex min-w-72 flex-col gap-2">
+<h1 class="text-[#111827] dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">Climate Trends</h1>
+<p class="text-[#6B7280] dark:text-gray-400 text-base font-normal leading-normal">Monitor rainfall and temperature data across Nigeria.</p>
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-black/20 border border-gray-200 dark:border-gray-700 px-4">
+<p class="text-[#111827] dark:text-gray-300 text-sm font-medium leading-normal">Region: National</p>
+<span class="material-symbols-outlined text-[#6B7280] dark:text-gray-400 text-base">expand_more</span>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-black/20 border border-gray-200 dark:border-gray-700 px-4">
+<p class="text-[#111827] dark:text-gray-300 text-sm font-medium leading-normal">Timeframe: Last 6 Months</p>
+<span class="material-symbols-outlined text-[#6B7280] dark:text-gray-400 text-base">expand_more</span>
+</button>
+</div>
+</header>
+<!-- Charts -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
+<div class="flex flex-col gap-4 rounded-xl border border-gray-200 dark:border-gray-800 p-6 bg-white dark:bg-black/20 shadow-sm">
+<div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
+<div class="flex flex-col">
+<p class="text-[#111827] dark:text-white text-lg font-semibold leading-normal">Rainfall Trends</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-[#6B7280] dark:text-gray-400 text-base">water_drop</span>
+<p class="text-[#6B7280] dark:text-gray-400 text-sm font-normal">Avg. Monthly Rainfall: 120 mm</p>
+</div>
+</div>
+<div class="flex items-center gap-1 border border-gray-200 dark:border-gray-700 rounded-lg p-1">
+<button class="px-3 py-1 text-sm font-medium text-[#111827] dark:text-white bg-gray-100 dark:bg-gray-700 rounded-md">Line</button>
+<button class="px-3 py-1 text-sm font-medium text-[#6B7280] dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700/50 rounded-md">Area</button>
+</div>
+</div>
+<div class="flex min-h-[220px] flex-1 flex-col gap-8 pt-4">
+<svg fill="none" height="100%" preserveaspectratio="none" viewbox="0 0 472 150" width="100%" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25" stroke="#6B7280" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</div>
+<div class="flex justify-between -mt-4">
+<p class="text-[#6B7280] dark:text-gray-400 text-xs font-medium tracking-wide">Jan</p>
+<p class="text-[#6B7280] dark:text-gray-400 text-xs font-medium tracking-wide">Feb</p>
+<p class="text-[#6B7280] dark:text-gray-400 text-xs font-medium tracking-wide">Mar</p>
+<p class="text-[#6B7280] dark:text-gray-400 text-xs font-medium tracking-wide">Apr</p>
+<p class="text-[#6B7280] dark:text-gray-400 text-xs font-medium tracking-wide">May</p>
+<p class="text-[#6B7280] dark:text-gray-400 text-xs font-medium tracking-wide">Jun</p>
+</div>
+</div>
+<div class="flex flex-col gap-4 rounded-xl border border-gray-200 dark:border-gray-800 p-6 bg-white dark:bg-black/20 shadow-sm">
+<div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
+<div class="flex flex-col">
+<p class="text-[#111827] dark:text-white text-lg font-semibold leading-normal">Temperature Trends</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-[#6B7280] dark:text-gray-400 text-base">device_thermostat</span>
+<p class="text-[#6B7280] dark:text-gray-400 text-sm font-normal">Avg. Temperature: 28 °C</p>
+</div>
+</div>
+<div class="flex items-center gap-1 border border-gray-200 dark:border-gray-700 rounded-lg p-1">
+<button class="px-3 py-1 text-sm font-medium text-[#111827] dark:text-white bg-gray-100 dark:bg-gray-700 rounded-md">Line</button>
+<button class="px-3 py-1 text-sm font-medium text-[#6B7280] dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700/50 rounded-md">Area</button>
+</div>
+</div>
+<div class="flex min-h-[220px] flex-1 flex-col gap-8 pt-4">
+<svg fill="none" height="100%" preserveaspectratio="none" viewbox="0 0 472 150" width="100%" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 45C18.1538 45 18.1538 129 36.3077 129C54.4615 129 54.4615 109 72.6154 109C90.7692 109 90.7692 57 108.923 57C127.077 57 127.077 117 145.231 117C163.385 117 163.385 49 181.538 49C199.692 49 199.692 89 217.846 89C236 89 236 105 254.154 105C272.308 105 272.308 29 290.462 29C308.615 29 308.615 1 326.769 1C344.923 1 344.923 149 363.077 149C381.231 149 381.231 69 399.385 69C417.538 69 417.538 21 435.692 21C453.846 21 453.846 125 472 125" stroke="#6B7280" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</div>
+<div class="flex justify-between -mt-4">
+<p class="text-[#6B7280] dark:text-gray-400 text-xs font-medium tracking-wide">Jan</p>
+<p class="text-[#6B7280] dark:text-gray-400 text-xs font-medium tracking-wide">Feb</p>
+<p class="text-[#6B7280] dark:text-gray-400 text-xs font-medium tracking-wide">Mar</p>
+<p class="text-[#6B7280] dark:text-gray-400 text-xs font-medium tracking-wide">Apr</p>
+<p class="text-[#6B7280] dark:text-gray-400 text-xs font-medium tracking-wide">May</p>
+<p class="text-[#6B7280] dark:text-gray-400 text-xs font-medium tracking-wide">Jun</p>
+</div>
+</div>
+</section>
+<!-- Data Table -->
+<section class="mt-8">
+<h2 class="text-[#111827] dark:text-white text-xl font-bold leading-tight tracking-[-0.015em] mb-4">Raw Data</h2>
+<div class="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-black/20 shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-sm text-left">
+<thead class="bg-gray-50 dark:bg-gray-800/50 text-xs text-[#6B7280] dark:text-gray-400 uppercase tracking-wider">
+<tr>
+<th class="px-6 py-3 font-medium" scope="col">Date</th>
+<th class="px-6 py-3 font-medium" scope="col">Region</th>
+<th class="px-6 py-3 font-medium" scope="col">Rainfall (mm)</th>
+<th class="px-6 py-3 font-medium" scope="col">Temperature (°C)</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-200 dark:divide-gray-800">
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50">
+<td class="px-6 py-4 whitespace-nowrap font-medium text-[#111827] dark:text-white">2023-06-01</td>
+<td class="px-6 py-4 whitespace-nowrap">National</td>
+<td class="px-6 py-4 whitespace-nowrap">135</td>
+<td class="px-6 py-4 whitespace-nowrap">27</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50">
+<td class="px-6 py-4 whitespace-nowrap font-medium text-[#111827] dark:text-white">2023-05-01</td>
+<td class="px-6 py-4 whitespace-nowrap">National</td>
+<td class="px-6 py-4 whitespace-nowrap">142</td>
+<td class="px-6 py-4 whitespace-nowrap">29</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50">
+<td class="px-6 py-4 whitespace-nowrap font-medium text-[#111827] dark:text-white">2023-04-01</td>
+<td class="px-6 py-4 whitespace-nowrap">National</td>
+<td class="px-6 py-4 whitespace-nowrap">110</td>
+<td class="px-6 py-4 whitespace-nowrap">31</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50">
+<td class="px-6 py-4 whitespace-nowrap font-medium text-[#111827] dark:text-white">2023-03-01</td>
+<td class="px-6 py-4 whitespace-nowrap">National</td>
+<td class="px-6 py-4 whitespace-nowrap">95</td>
+<td class="px-6 py-4 whitespace-nowrap">30</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50">
+<td class="px-6 py-4 whitespace-nowrap font-medium text-[#111827] dark:text-white">2023-02-01</td>
+<td class="px-6 py-4 whitespace-nowrap">National</td>
+<td class="px-6 py-4 whitespace-nowrap">88</td>
+<td class="px-6 py-4 whitespace-nowrap">26</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="flex items-center justify-between p-4 border-t border-gray-200 dark:border-gray-800">
+<span class="text-sm text-[#6B7280] dark:text-gray-400">Showing 1 to 5 of 184 entries</span>
+<div class="inline-flex items-center gap-2">
+<button class="inline-flex justify-center items-center h-8 w-8 rounded border border-gray-200 dark:border-gray-700 text-[#6B7280] dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
+<span class="material-symbols-outlined text-base">chevron_left</span>
+</button>
+<button class="inline-flex justify-center items-center h-8 w-8 rounded border border-gray-200 dark:border-gray-700 text-[#6B7280] dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
+<span class="material-symbols-outlined text-base">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>OutbreakIQ Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#90EE90",
+              "deep-blue": "#0A192F",
+              "navy-blue": "#001F3F",
+              "sky-blue": "#87CEEB",
+              "light-gray": "#F0F2F5",
+              "dark-gray": "#333333",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {
+                "DEFAULT": "0.5rem", 
+                "lg": "0.75rem", 
+                "xl": "1rem", 
+                "full": "9999px"
+            },
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-display bg-light-gray">
+<div class="relative flex min-h-screen w-full flex-row">
+<!-- SideNavBar -->
+<aside class="flex h-screen w-64 flex-col bg-deep-blue text-white sticky top-0">
+<div class="flex h-full flex-col justify-between p-4">
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-3 px-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="OutbreakIQ Logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB8679WmpXZ-0pCotrb53VPiBHnrZoUViCuOvIV1XuOFoEhnelrVcCy-3c2pQaxp80AVobZ2Ze1UbcBA0Ulkh4sL5Bqer-pWaz6Rbew8kBfjamKNTxSSOKZdgQKztyEKczx4LmqZSoQBIXfoso34mU7teLRnVIykd7TGtrQ7gFXcteWe2D7Z7BWwlzwnG3hMoGVEP0PJeckMnJkw3JNCM9ynquLorch20Ovxh5Jdb6x8F7SpwdTqpR5Omdn1xNpJlllDve3HpQWsEk4");'></div>
+<h1 class="text-white text-lg font-bold">OutbreakIQ</h1>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-navy-blue transition-colors" href="#">
+<span class="material-symbols-outlined text-sky-blue/80">home</span>
+<p class="text-white/90 text-sm font-medium">Home</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-navy-blue ring-1 ring-sky-blue/30" href="#">
+<span class="material-symbols-outlined text-sky-blue" style="font-variation-settings: 'FILL' 1, 'wght' 500;">dashboard</span>
+<p class="text-white text-sm font-semibold">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-navy-blue transition-colors" href="#">
+<span class="material-symbols-outlined text-sky-blue/80">thermostat</span>
+<p class="text-white/90 text-sm font-medium">Climate</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-navy-blue transition-colors" href="#">
+<span class="material-symbols-outlined text-sky-blue/80">groups</span>
+<p class="text-white/90 text-sm font-medium">Population</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-navy-blue transition-colors" href="#">
+<span class="material-symbols-outlined text-sky-blue/80">local_hospital</span>
+<p class="text-white/90 text-sm font-medium">Hospital</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-navy-blue transition-colors" href="#">
+<span class="material-symbols-outlined text-sky-blue/80">coronavirus</span>
+<p class="text-white/90 text-sm font-medium">Disease</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-navy-blue transition-colors" href="#">
+<span class="material-symbols-outlined text-sky-blue/80">insights</span>
+<p class="text-white/90 text-sm font-medium">Insights</p>
+</a>
+</nav>
+</div>
+<div class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-navy-blue transition-colors" href="#">
+<span class="material-symbols-outlined text-sky-blue/80">admin_panel_settings</span>
+<p class="text-white/90 text-sm font-medium">Admin</p>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto">
+<div class="p-8">
+<!-- Header & Filters -->
+<header class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-8">
+<h1 class="text-3xl font-bold text-navy-blue">Dashboard</h1>
+<div class="flex gap-3">
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white pl-4 pr-3 border border-gray-200 shadow-sm hover:bg-gray-50">
+<p class="text-dark-gray text-sm font-medium">Disease: Cholera</p>
+<span class="material-symbols-outlined text-dark-gray/70 text-base">expand_more</span>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white pl-4 pr-3 border border-gray-200 shadow-sm hover:bg-gray-50">
+<p class="text-dark-gray text-sm font-medium">Region: All</p>
+<span class="material-symbols-outlined text-dark-gray/70 text-base">expand_more</span>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white pl-4 pr-3 border border-gray-200 shadow-sm hover:bg-gray-50">
+<p class="text-dark-gray text-sm font-medium">Year: 2024</p>
+<span class="material-symbols-outlined text-dark-gray/70 text-base">expand_more</span>
+</button>
+</div>
+</header>
+<!-- Stats -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white border border-gray-200 shadow-sm">
+<p class="text-dark-gray/80 text-base font-medium">Average Rainfall</p>
+<p class="text-navy-blue tracking-tight text-3xl font-bold">1200 mm</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white border border-gray-200 shadow-sm">
+<p class="text-dark-gray/80 text-base font-medium">Average Temperature</p>
+<p class="text-navy-blue tracking-tight text-3xl font-bold">28°C</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white border border-gray-200 shadow-sm">
+<p class="text-dark-gray/80 text-base font-medium">Population Density</p>
+<p class="text-navy-blue tracking-tight text-3xl font-bold">212/km²</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white border border-gray-200 shadow-sm">
+<p class="text-dark-gray/80 text-base font-medium">Hospital Capacity</p>
+<p class="text-navy-blue tracking-tight text-3xl font-bold">5 beds/10k</p>
+</div>
+</section>
+<!-- Main Visualization Area -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+<!-- Map and Summary -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+<h2 class="text-xl font-bold text-navy-blue mb-4">Nigeria Outbreak Risk Map</h2>
+<div class="w-full bg-center bg-no-repeat aspect-[16/10] bg-cover rounded-lg" data-alt="A heatmap of Nigeria showing different color-coded regions indicating varying levels of disease outbreak risk, from yellow (low) to red (high)." data-location="Nigeria" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB-bK4U08GYGYP8yhG3uTKlJlFo58kDr7hdLYngK_bxHs6gEAZX8StlgQuUcuWUdiSnNGNO9WuSDApAEdIANVCyxcBOipLY3g5epXceUp0qH2EoxhbeGxMUV0U0NTqHEj03ZIJtwo34SS9uNeuJ2AM7LnEu3sQ1uRVxbvTzUq_uURfTT-xcvD-qe5Bh6nwK4u97SxfauuIq0biAaA17pRJWceJllqizIFPbXb0rUBvDdFCUg49psjpMi7UkUU0UKMaoFQr9Dg8ThFyQ");'></div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+<h2 class="text-xl font-bold text-navy-blue mb-4">Insight Summary</h2>
+<p class="text-dark-gray/90 text-sm leading-relaxed">Based on current climate and population data, there is a moderately elevated risk of a Cholera outbreak in the North-Eastern regions over the next quarter. Increased rainfall and high population density are the primary contributing factors. Proactive measures in sanitation and public health awareness are recommended to mitigate potential spread.</p>
+</div>
+</div>
+<!-- Charts -->
+<div class="flex flex-col gap-6">
+<div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+<h2 class="text-xl font-bold text-navy-blue mb-4">Predicted vs Actual Cases</h2>
+<img alt="A line chart comparing predicted vs. actual disease cases over the last six months." class="w-full h-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjWOt2tBN6IvNuO2rc6HhqFp1L3UyLOUYEnW1JFjteqb8wtb3lDPpWNYGLEkNbXSeWeDO3cyLkIAQz5iK6iU832FlJfceHYh0eW8YrUTKQyk8Vc95R1VF-RrnNsT8fcYjqvUoq_TbPRM_vaYzL8i8oDnnq0WfWOHjZOQLUjy_QUKAKIYZ5FEwGiOwIl1SXNQzxKZESpuNBBpQmpXGy2Q6Zw9rrA7YKWXtPslFpbqQt_3-QrAONObrJ-2LtSo3a4CEt1aiGnCAZ5yLW"/>
+</div>
+<div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+<h2 class="text-xl font-bold text-navy-blue mb-4">Key Risk Factors</h2>
+<img alt="A bar chart showing the top 5 contributing risk factors for disease outbreaks, with sanitation and rainfall having the highest impact." class="w-full h-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAd0rboknHb1Z2sgos-cGUQgpcdZZNex7TCBqKvncCyyazzZKKPqE4VJfE_-3-RfiTylUbpQ8qGu26rXP6hiFSu0JqiWuKEbsmTGEDYSpUi0M7luVAQec1L0bszBFK_iq4uHklOP-VarVToH_sZ92ub8eR44draiyR_43TbcLwI3yxXyIfi7Rep7wQ5V0VNAheAeWA8tapru0wL93efj-aMjGcul3QBSwDvL_9TsNBNkpeoX5e280bMaAt5HEH0jUzdQ8Tcaks4fQfS"/>
+</div>
+</div>
+</section>
+<!-- Interactive Prediction -->
+<section class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+<div class="lg:col-span-3 bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+<h2 class="text-xl font-bold text-navy-blue mb-6">Run a New Prediction</h2>
+<form class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+<div>
+<label class="block text-sm font-medium text-dark-gray/80 mb-1" for="disease">Disease</label>
+<select class="w-full rounded-lg border-gray-300 shadow-sm focus:border-sky-blue focus:ring-sky-blue" id="disease">
+<option>Cholera</option>
+<option>Malaria</option>
+<option>Typhoid</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-dark-gray/80 mb-1" for="region">Region</label>
+<select class="w-full rounded-lg border-gray-300 shadow-sm focus:border-sky-blue focus:ring-sky-blue" id="region">
+<option>North-East</option>
+<option>South-West</option>
+<option>South-South</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-dark-gray/80 mb-1" for="rainfall">Avg. Rainfall (mm)</label>
+<input class="w-full rounded-lg border-gray-300 shadow-sm focus:border-sky-blue focus:ring-sky-blue" id="rainfall" type="number" value="1250"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-dark-gray/80 mb-1" for="temperature">Avg. Temperature (°C)</label>
+<input class="w-full rounded-lg border-gray-300 shadow-sm focus:border-sky-blue focus:ring-sky-blue" id="temperature" type="number" value="29"/>
+</div>
+<div class="md:col-span-2 mt-4">
+<button class="w-full text-center rounded-lg bg-primary py-3 px-6 text-base font-semibold text-navy-blue hover:opacity-90 transition-opacity shadow-md" type="button">Predict Risk</button>
+</div>
+</form>
+</div>
+<div class="lg:col-span-2 bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex flex-col">
+<h2 class="text-xl font-bold text-navy-blue mb-4">Prediction Result</h2>
+<div class="flex-grow flex flex-col justify-center items-center gap-4 bg-light-gray rounded-lg p-4">
+<p class="text-sm text-dark-gray/80 uppercase tracking-wider">Predicted Risk Level</p>
+<p class="text-4xl font-extrabold text-orange-500">High</p>
+<div class="w-full text-center">
+<p class="text-sm text-dark-gray/80">Confidence Score</p>
+<p class="text-lg font-bold text-navy-blue">88%</p>
+</div>
+</div>
+<div class="mt-4">
+<h3 class="font-semibold text-dark-gray mb-2">Preventive Recommendations:</h3>
+<ul class="list-disc list-inside text-sm text-dark-gray/90 space-y-1">
+<li>Deploy rapid response teams to high-risk areas.</li>
+<li>Increase public awareness campaigns on hygiene.</li>
+<li>Stockpile necessary medical supplies.</li>
+</ul>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>
