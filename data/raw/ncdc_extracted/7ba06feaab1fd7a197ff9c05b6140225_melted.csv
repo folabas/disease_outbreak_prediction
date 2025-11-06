@@ -1,0 +1,139 @@
+state,disease,year,week,cases,source_pdf,table_idx
+Federal Capital Territory (Abuja),499,,,107.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,31
+Federal Capital Territory (Abuja),79.3 (MDR)87.5% (cefotaxime),,,94.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,31
+Federal Capital Territory (Abuja),Chukwu et al.247,,,155.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,31
+Enugu,100,,,200.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,40
+Enugu,60.34% (cefpodoxime)1.72% (aztreonam)13.79% (cefotaxime)1.72% (ceftazidime)15.52%(meropenem)5.17% (cefoxitin)6.9% (oﬂoxacin)6.9% (ciproﬂoxacin)8.62% (norﬂoxacin)6.9% (levoﬂoxacin)50% (co-trimoxazole)10.34% (gentamicin)27.59% (amoxicillin),,,45.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,40
+Enugu,Ugwu et al.269,,,270.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,40
+Federal Capital Territory (Abuja),col_2,,,122.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,41
+Federal Capital Territory (Abuja),col_3,,,18.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,41
+Federal Capital Territory (Abuja),100% (chloramphenicol)74.29% (ciproﬂoxacin)7.14% (ertapenem)64.29% (gentamicin)1.43% (imipenem)4.29% (meropenem)38.57% (nitrofurantoin)62.86% (oﬂoxacin)34.29% (piperacillin/tazobactam100% (tetracycline),,,83.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,41
+Federal Capital Territory (Abuja),col_6,,,271.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,41
+Oyo,No. of samples,,,100.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,47
+Oyo,No. of samples,,,80.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,47
+Kwara,No. of samples,,,354.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,47
+Kwara,No. of samples,,,181.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,47
+Oyo,% of resistant isolates,,,89.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,47
+Oyo,% of resistant isolates,,,38.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,47
+Kwara,% of resistant isolates,,,10.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,47
+Kwara,% of resistant isolates,,,40.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,47
+Kwara,ARGs detected,,,1.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,47
+Kwara,ARGs detected,,,1.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,47
+Oyo,Reference,,,305.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,47
+Oyo,Reference,,,305.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,47
+Kwara,Reference,,,161.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,47
+Kwara,Reference,,,181.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,47
+Enugu,200,,,340.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,48
+Enugu,16%,,,10.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,48
+Enugu,Adebowale et al.38,,,306.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,48
+Enugu,col_1,,,388.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Kwara,col_1,,,1225.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Oyo,col_1,,,360.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Oyo,col_1,,,108.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Oyo,col_1,,,150.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Oyo,col_1,,,1000.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Ogun,col_1,,,100.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Nasarawa,col_1,,,900.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Enugu,col_4,,,157.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Kwara,col_4,,,157.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Oyo,col_4,,,157.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Oyo,col_4,,,157.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Oyo,col_4,,,26.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Oyo,col_4,,,157.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Enugu,col_5,,,13.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Kwara,col_5,,,48.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Oyo,col_5,,,9.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Oyo,col_5,,,2.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Oyo,col_5,,,13.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Oyo,col_5,,,2.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Ogun,col_5,,,22.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Nasarawa,col_5,,,10.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Enugu,col_7,,,310.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Kwara,col_7,,,311.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Oyo,col_7,,,312.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Oyo,col_7,,,313.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Oyo,col_7,,,314.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Oyo,col_7,,,315.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Ogun,col_7,,,316.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Nasarawa,col_7,,,317.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,49
+Kwara,340,,,900.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,50
+Delta And Edo,340,,,1440.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,50
+Sokoto,340,,,300.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,50
+Kwara,340,,,1500.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,50
+Kwara,2.5%,,,6.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,50
+Delta And Edo,2.5%,,,14.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,50
+Sokoto,2.5%,,,10.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,50
+Kwara,2.5%,,,6.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,50
+Delta And Edo,–,,,2.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,50
+Sokoto,–,,,1.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,50
+Kwara,–,,,19.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,50
+Kwara,Okorie-kanu et al.306,,,319.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,50
+Delta And Edo,Okorie-kanu et al.306,,,320.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,50
+Sokoto,Okorie-kanu et al.306,,,321.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,50
+Kwara,Okorie-kanu et al.306,,,322.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,50
+Lagos,col,,,306.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,51
+Enugu,col,,,400.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,51
+Lagos,col_4,,,23.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,51
+Enugu,col_4,,,6.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,51
+Lagos,col_7,,,178.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,51
+Enugu,col_7,,,324.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,51
+Osun,51,,,98.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,52
+Osun,51,,,40.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,52
+Ebonyi,51,,,50.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,52
+Osun,100%,,,100.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,52
+Osun,100%,,,80.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,52
+Ebonyi,100%,,,100.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,52
+Osun,Falodun et al.179,,,189.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,52
+Osun,Falodun et al.179,,,330.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,52
+Ebonyi,Falodun et al.179,,,331.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,52
+Borno,50,,,100.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,53
+Borno,50,,,100.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,53
+Oyo,50,,,18.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,53
+Enugu,50,,,291.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,53
+Enugu,50,,,1290.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,53
+Enugu,50,,,255.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,53
+Anambra,50,,,400.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,53
+Borno,100%,,,54.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,53
+Borno,100%,,,26.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,53
+Oyo,100%,,,100.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,53
+Enugu,100%,,,21.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,53
+Enugu,100%,,,4.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,53
+Enugu,100%,,,9.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,53
+Anambra,100%,,,75.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,53
+Borno,Onuoha et al.332,,,333.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,53
+Borno,Onuoha et al.332,,,253.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,53
+Oyo,Onuoha et al.332,,,334.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,53
+Enugu,Onuoha et al.332,,,335.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,53
+Enugu,Onuoha et al.332,,,336.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,53
+Enugu,Onuoha et al.332,,,337.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,53
+Anambra,Onuoha et al.332,,,339.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,53
+Oyo,col_1,,,168.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,54
+Lagos,col_1,,,238.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,54
+Oyo,col_1,,,1135.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,54
+Oyo,col_1,,,360.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,54
+Oyo,col_4,,,23.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,54
+Lagos,col_4,,,58.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,54
+Oyo,col_4,,,23.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,54
+Oyo,col_4,,,4.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,54
+Oyo,col_5,,,15.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,54
+Oyo,col_7,,,340.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,54
+Lagos,col_7,,,341.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,54
+Oyo,col_7,,,342.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,54
+Oyo,col_7,,,183.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,54
+Imo,S/N,,,1.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,58
+Ondo,S/N,,,2.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,58
+Rivers,S/N,,,4.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,58
+Imo,Reference,,,344.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,58
+Ondo,Reference,,,345.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,58
+Rivers,Reference,,,347.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,58
+Yobe,col,,,9.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,59
+Yobe,col_5,,,351.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,59
+Oyo,col,,,16.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,61
+Southwestern Nigeria (Lagos And Ogun),col,,,17.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,61
+Southwestern Nigeria (Lagos And Ogun),col_4,,,1.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,61
+Oyo,col_5,,,356.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,61
+Southwestern Nigeria (Lagos And Ogun),col_5,,,357.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,61
+South-South (Rivers),19,,,21.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,62
+Cross River,19,,,22.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,62
+South-South (Rivers),Edet et al.359,,,361.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,62
+Cross River,Edet et al.359,,,362.0,7ba06feaab1fd7a197ff9c05b6140225.pdf,62

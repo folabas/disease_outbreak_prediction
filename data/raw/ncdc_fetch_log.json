@@ -1,0 +1,49 @@
+{
+  "downloaded": [
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\635_1759147083.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\5dfdef6fa5927272669c362f2e8915a9.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\eb5fea65d576e0ad38628b45c0b87d1f.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\95725c529d2b065d18a022b473ec51cd.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\1ca6925aa6ccb406390f817714256c98.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\9d15957421b691607ac9039a36a870e9.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\3e194635af146e36f7c88a2f22636873.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\d0354bde4dc7a820b952c728cc5afd2d.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\18803aba62a09ada4ad84c8db76c22ea.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\07b45389d14275a12c916883fa65933c.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\7ba06feaab1fd7a197ff9c05b6140225.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\1f38432a65b71d397a2384dee3d87bd3.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\4cceba3d1fb7886b979f59c6e3e76d99.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\c4f13968a34083f10dea32a0d5800431.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\0ee30df42b787ee3bbced29b9930b27f.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\2063cf4d4ca297647d729ac6356bac34.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\5e88f9e22d2b4e4563b527005c8a0c43.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\700f5a65ba63075239c0d28128bf3a7f.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\fdaa94605dcb87478f9b12002ff7eeb7.pdf"
+  ],
+  "failed_downloads": [
+    "https://ncdc.gov.ng/themes/common/files/report_project/202171f5c3031957ccc7aa7e5b83a041.pdf"
+  ],
+  "extracted": [
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\07b45389d14275a12c916883fa65933c.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\18803aba62a09ada4ad84c8db76c22ea.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\1f38432a65b71d397a2384dee3d87bd3.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\5e88f9e22d2b4e4563b527005c8a0c43.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\7ba06feaab1fd7a197ff9c05b6140225.pdf"
+  ],
+  "failed_extract": [
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\0ee30df42b787ee3bbced29b9930b27f.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\1ca6925aa6ccb406390f817714256c98.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\2063cf4d4ca297647d729ac6356bac34.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\3e194635af146e36f7c88a2f22636873.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\4cceba3d1fb7886b979f59c6e3e76d99.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\5dfdef6fa5927272669c362f2e8915a9.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\635_1759147083.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\700f5a65ba63075239c0d28128bf3a7f.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\95725c529d2b065d18a022b473ec51cd.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\9d15957421b691607ac9039a36a870e9.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\c4f13968a34083f10dea32a0d5800431.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\d0354bde4dc7a820b952c728cc5afd2d.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\eb5fea65d576e0ad38628b45c0b87d1f.pdf",
+    "C:\\Users\\user\\Documents\\PersonalProject\\disease_outbreak_prediction\\data\\raw\\ncdc_reports\\fdaa94605dcb87478f9b12002ff7eeb7.pdf"
+  ]
+}

@@ -1,0 +1,2 @@
+disease,mae,model,overall_mae
+Covid-19,3.376830535546724,RandomForestRegressor,3.376830535546724
