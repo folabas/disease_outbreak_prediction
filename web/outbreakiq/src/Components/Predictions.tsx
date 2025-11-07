@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import {
@@ -12,7 +12,11 @@ import {
 } from "recharts";
 import Loader from "./Loader";
 import { motion } from "framer-motion";
+import Footer from "./Footer";
+import { outbreakAPI } from "../services/api";
+import type { OutbreakPrediction, DiseaseData } from "../services/types";
 
+// TODO: Replace with API call to predictionApi.getCurrentPredictions()
 const sampleData = [
   { name: "Jan", value: 40 },
   { name: "Feb", value: 50 },
@@ -24,10 +28,34 @@ const sampleData = [
 
 const Predictions: React.FC = () => {
   const [loading, setLoading] = useState(true);
+  const [predictions, setPredictions] = useState<OutbreakPrediction[]>([]);
+  const [historicalData, setHistoricalData] = useState<DiseaseData[]>([]);
 
   useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 3000);
-    return () => clearTimeout(t);
+    const fetchData = async () => {
+      try {
+        // TODO: Implement these API calls
+        // const predictionResponse = await outbreakAPI.predictions.getCurrent();
+        // setPredictions(predictionResponse.data);
+
+        // const historicalResponse = await outbreakAPI.disease.getHistorical({
+        //   disease: 'malaria',
+        //   region: 'all',
+        //   startDate: '2024-01-01',
+        //   endDate: '2024-12-31'
+        // });
+        // setHistoricalData(historicalResponse.data);
+
+        // For now, using setTimeout to simulate API call
+        const t = setTimeout(() => setLoading(false), 1500);
+        return () => clearTimeout(t);
+      } catch (error) {
+        console.error("Error fetching prediction data:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
 
   if (loading) return <Loader />;
@@ -48,6 +76,7 @@ const Predictions: React.FC = () => {
               center={[9.082, 8.6753]}
               zoom={6}
               className="h-80 rounded"
+              style={{ height: "400px" }}
             >
               <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -108,6 +137,7 @@ const Predictions: React.FC = () => {
           </div>
         </div>
       </aside>
+      <Footer />
     </motion.div>
   );
 };

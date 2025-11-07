@@ -68,7 +68,7 @@ const FAQ = () => {
                   {faq.question}
                 </span>
                 <span className="material-symbols-outlined text-[#6C757D]">
-                  {openIndex === index ? "remove" : "add"}
+                  {openIndex === index ? "-" : "+"}
                 </span>
               </button>
 

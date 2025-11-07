@@ -10,7 +10,7 @@
         "skipLibCheck": true,
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
-        "strict": false,
+        "strict": true,
         "forceConsistentCasingInFileNames": true,
         "module": "ESNext",
         "moduleResolution": "Node",
@@ -20,10 +20,22 @@
         "jsx": "react-jsx",
         "types": [
             "node",
-            "jest"
-        ]
+            "jest",
+            "vite/client"
+        ],
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [
+                "src/*"
+            ]
+        }
     },
     "include": [
         "src"
+    ],
+    "references": [
+        {
+            "path": "./tsconfig.node.json"
+        }
     ]
 }

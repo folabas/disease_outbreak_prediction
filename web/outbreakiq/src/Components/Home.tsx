@@ -1,15 +1,17 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import Loader from "./Loader";
 import { motion } from "framer-motion";
 import gsap from "gsap";
+import Footer from "./Footer";
+import FAQ from "./FAQ";
 
 const Home: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const titleRef = useRef<HTMLHeadingElement | null>(null);
 
   useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 3000);
+    const t = setTimeout(() => setLoading(false), 1500);
     return () => clearTimeout(t);
   }, []);
 
@@ -83,6 +85,8 @@ const Home: React.FC = () => {
           <p className="text-sm text-slate-500">across Nigeria</p>
         </div>
       </section>
+      <FAQ />
+      <Footer />
     </div>
   );
 };

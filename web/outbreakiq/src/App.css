@@ -1,39 +1,169 @@
-.App {
-  text-align: center;
+/* Tailwind CSS imports */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS Variables */
+:root {
+  --sidebar-width: 16rem;
+  --header-height: 4rem;
+  --transition-speed: 300ms;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Global styles */
+html {
+  @apply antialiased;
+  scroll-behavior: smooth;
 }
 
+body {
+  @apply bg-gray-50;
+}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* Layout utilities */
+.main-content {
+  min-height: calc(100vh - var(--header-height));
+}
+
+/* Responsive typography */
+@layer utilities {
+  .text-responsive {
+    @apply text-base sm:text-lg lg:text-xl;
+  }
+
+  .heading-responsive {
+    @apply text-2xl sm:text-3xl lg:text-4xl font-bold;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Transitions and animations */
+.fade-enter {
+  opacity: 0;
 }
 
-.App-link {
-  color: #61dafb;
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease-in-out;
 }
 
-@keyframes App-logo-spin {
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity var(--transition-speed) ease-in-out;
+}
+
+/* Slide animations for mobile menu */
+.slide-in {
+  animation: slideIn var(--transition-speed) ease-in-out forwards;
+}
+
+.slide-out {
+  animation: slideOut var(--transition-speed) ease-in-out forwards;
+}
+
+@keyframes slideIn {
   from {
-    transform: rotate(0deg);
+    transform: translateX(-100%);
   }
   to {
-    transform: rotate(360deg);
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* Card and container styles */
+.card {
+  @apply bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200;
+}
+
+.container-responsive {
+  @apply px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl;
+}
+
+/* Grid layouts */
+.grid-responsive {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+.grid-responsive-wide {
+  @apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8;
+}
+
+/* Charts and visualization containers */
+.chart-container {
+  @apply rounded-lg bg-white p-4 shadow-sm;
+  min-height: 300px;
+}
+
+/* Loading states */
+.loading-skeleton {
+  @apply animate-pulse bg-gray-200 rounded;
+}
+
+/* Focus styles */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+}
+
+/* Custom scrollbar */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: theme("colors.gray.300") theme("colors.gray.100");
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: theme("colors.gray.100");
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: theme("colors.gray.300");
+  border-radius: 3px;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .high-contrast-text {
+    @apply text-black bg-white border-2 border-black;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

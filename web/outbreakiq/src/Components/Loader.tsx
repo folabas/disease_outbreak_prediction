@@ -1,5 +1,3 @@
-import React from "react";
-
 const SkeletonCard: React.FC = () => (
   <div className="rounded-lg bg-white shadow p-4 animate-pulse">
     <div className="h-6 bg-slate-200 rounded w-3/4 mb-4" />

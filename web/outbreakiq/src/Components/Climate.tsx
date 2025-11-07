@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   LineChart,
   Line,
@@ -11,6 +11,7 @@ import {
 } from "recharts";
 import Loader from "./Loader";
 import { motion } from "framer-motion";
+import Footer from "./Footer";
 
 const tempData = [
   { name: "Day 1", temp: 32 },
@@ -28,11 +29,11 @@ const rainData = [
   { name: "Day 5", rain: 0 },
 ];
 
-const Climate: React.FC = () => {
+const Climate = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 3000);
+    const t = setTimeout(() => setLoading(false), 1500);
     return () => clearTimeout(t);
   }, []);
 
@@ -115,6 +116,7 @@ const Climate: React.FC = () => {
           </table>
         </div>
       </div>
+      <Footer />
     </motion.div>
   );
 };

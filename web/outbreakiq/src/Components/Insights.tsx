@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   BarChart,
   Bar,
@@ -9,6 +9,7 @@ import {
 } from "recharts";
 import Loader from "./Loader";
 import { motion } from "framer-motion";
+import Footer from "./Footer";
 
 const featureData = [
   { name: "Rainfall Patterns", value: 92 },
@@ -22,7 +23,7 @@ const Insights: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 3000);
+    const t = setTimeout(() => setLoading(false), 1500);
     return () => clearTimeout(t);
   }, []);
 
@@ -86,6 +87,7 @@ const Insights: React.FC = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </motion.div>
   );
 };

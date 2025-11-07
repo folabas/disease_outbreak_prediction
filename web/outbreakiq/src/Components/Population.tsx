@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   BarChart,
   Bar,
@@ -9,6 +9,7 @@ import {
 } from "recharts";
 import Loader from "./Loader";
 import { motion } from "framer-motion";
+import Footer from "./Footer";
 
 const growthData = [
   { region: "North West", value: 4.2 },
@@ -19,11 +20,11 @@ const growthData = [
   { region: "South East", value: 2.1 },
 ];
 
-const Population: React.FC = () => {
+const Population = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 3000);
+    const t = setTimeout(() => setLoading(false), 1500);
     return () => clearTimeout(t);
   }, []);
 
@@ -57,6 +58,7 @@ const Population: React.FC = () => {
           <div className="h-48 bg-slate-100 rounded" />
         </div>
       </div>
+      <Footer />
     </motion.div>
   );
 };
