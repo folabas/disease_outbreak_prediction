@@ -31,10 +31,9 @@ const Layout = () => {
       {isHomePage ? (
         <div className="flex flex-col min-h-screen">
           <Navbar />
-          <main className="flex-1">
+          <main>
             <Outlet />
           </main>
-          <Footer />
         </div>
       ) : (
         <div className="flex min-h-screen">
@@ -92,7 +91,6 @@ const Layout = () => {
             <main className="flex-1 px-4 py-8 md:px-6 lg:px-8">
               <Outlet />
             </main>
-            <Footer />
           </div>
         </div>
       )}

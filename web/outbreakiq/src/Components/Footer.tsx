@@ -2,18 +2,29 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="px-4 sm:px-10 md:px-20 lg:px-40 flex justify-center py-5 mt-10">
+    <div className="px-4 sm:px-10 md:px-20 lg:px-40 flex justify-center py-5 mt-10 bg-gray-300">
       <div className="layout-content-container flex flex-col w-full max-w-6xl flex-1">
-        <footer className="flex flex-col gap-6 px-5 py-10 text-center border-t border-gray-200">
+        <footer className="flex flex-col gap-6 px-5 py-10 text-center border-t-2 border-[#0d2544]">
+          <div className="flex items-center space-x-2 justify-center">
+            <img
+              src="/Clean logo.png"
+              alt="OutbreakIQ Logo"
+              className="h-10 w-auto"
+            />
+            <span className="text-[#0d2544] font-bold text-4xl ">
+              OutbreakIQ
+            </span>
+          </div>
+
           {/* Quick Links */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-8">
             <div>
-              <h3 className="text-[#212529] font-bold mb-4">About</h3>
+              <h3 className="text-[#0d2544] font-bold mb-4 text-xl">About</h3>
               <ul className="space-y-2">
                 <li>
                   <Link
                     to="/about"
-                    className="text-[#6C757D] hover:text-[#212529] text-sm"
+                    className="text-[#6C757D] hover:text-[#0d2544]] text-sm"
                   >
                     Our Mission
                   </Link>
@@ -21,7 +32,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/team"
-                    className="text-[#6C757D] hover:text-[#212529] text-sm"
+                    className="text-[#6C757D] hover:text-[#0d2544]] text-sm"
                   >
                     Team
                   </Link>
@@ -30,12 +41,14 @@ const Footer = () => {
             </div>
 
             <div>
-              <h3 className="text-[#212529] font-bold mb-4">Resources</h3>
+              <h3 className="text-[#0d2544]] font-bold mb-4 text-xl">
+                Resources
+              </h3>
               <ul className="space-y-2">
                 <li>
                   <Link
                     to="/documentation"
-                    className="text-[#6C757D] hover:text-[#212529] text-sm"
+                    className="text-[#6C757D] hover:text-[#0d2544]] text-sm"
                   >
                     Documentation
                   </Link>
@@ -43,7 +56,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/api"
-                    className="text-[#6C757D] hover:text-[#212529] text-sm"
+                    className="text-[#6C757D] hover:text-[#0d2544]] text-sm"
                   >
                     API
                   </Link>
@@ -52,12 +65,14 @@ const Footer = () => {
             </div>
 
             <div>
-              <h3 className="text-[#212529] font-bold mb-4">Support</h3>
+              <h3 className="text-[#0d2544]] font-bold mb-4 text-xl">
+                Support
+              </h3>
               <ul className="space-y-2">
                 <li>
                   <Link
                     to="/contact"
-                    className="text-[#6C757D] hover:text-[#212529] text-sm"
+                    className="text-[#6C757D] hover:text-[#0d2544]] text-sm"
                   >
                     Contact Us
                   </Link>
@@ -65,7 +80,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/faq"
-                    className="text-[#6C757D] hover:text-[#212529] text-sm"
+                    className="text-[#6C757D] hover:text-[#0d2544]] text-sm"
                   >
                     FAQ
                   </Link>
@@ -78,26 +93,26 @@ const Footer = () => {
           <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-6">
             <Link
               to="/privacy"
-              className="text-[#6C757D] hover:text-[#212529] text-sm font-normal leading-normal min-w-32"
+              className="text-[#6C757D] hover:text-[#0d2544]] text-sm font-normal leading-normal min-w-32"
             >
               Privacy Policy
             </Link>
             <Link
               to="/terms"
-              className="text-[#6C757D] hover:text-[#212529] text-sm font-normal leading-normal min-w-32"
+              className="text-[#6C757D] hover:text-[#0d2544]] text-sm font-normal leading-normal min-w-32"
             >
               Terms of Service
             </Link>
             <Link
               to="/contact"
-              className="text-[#6C757D] hover:text-[#212529] text-sm font-normal leading-normal min-w-32"
+              className="text-[#6C757D] hover:text-[#0d2544]] text-sm font-normal leading-normal min-w-32"
             >
               Contact
             </Link>
           </div>
 
           {/* Copyright */}
-          <p className="text-[#6C757D] text-sm font-normal leading-normal">
+          <p className="text-[#0d2544] text-sm font-normal leading-normal">
             © {new Date().getFullYear()} OutbreakIQ. All rights reserved.
           </p>
         </footer>

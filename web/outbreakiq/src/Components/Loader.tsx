@@ -16,6 +16,9 @@ const Loader: React.FC = () => {
         <SkeletonCard />
         <SkeletonCard />
         <SkeletonCard />
+        <SkeletonCard />
+        <SkeletonCard />
+        <SkeletonCard />
       </div>
     </div>
   );

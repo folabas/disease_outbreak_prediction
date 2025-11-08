@@ -58,7 +58,6 @@ const Population = () => {
           <div className="h-48 bg-slate-100 rounded" />
         </div>
       </div>
-      <Footer />
     </motion.div>
   );
 };

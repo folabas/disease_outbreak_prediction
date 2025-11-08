@@ -83,7 +83,6 @@ const Hospital: React.FC = () => {
           </div>
         </aside>
       </div>
-      <Footer />
     </motion.div>
   );
 };

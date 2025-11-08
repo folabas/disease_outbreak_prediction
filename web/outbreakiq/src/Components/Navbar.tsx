@@ -11,7 +11,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-white shadow-sm">
+    <nav className="bg-[#0D2544] shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -21,7 +21,7 @@ const Navbar = () => {
               alt="OutbreakIQ Logo"
               className="h-10 w-auto"
             />
-            <span className="ml-2 text-xl font-semibold text-gray-900">
+            <span className="text-xl font-bold tracking-tight text-white px-3">
               OutbreakIQ
             </span>
           </div>
@@ -34,10 +34,10 @@ const Navbar = () => {
                   key={item.name}
                   to={item.path}
                   className={({ isActive }) =>
-                    `inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2 ${
+                    `inline-flex items-center text-white px-1 pt-1 text-sm font-medium border-b-2 ${
                       isActive
-                        ? "border-blue-500 text-gray-900"
-                        : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                        ? "border-green-700 text-gray-900"
+                        : "border-transparent text-gray-500 hover:border-green-700 hover:text-green-700"
                     }`
                   }
                 >
