@@ -1,0 +1,11 @@
+fastapi==0.115.2
+uvicorn==0.30.6
+pydantic==2.9.2
+python-dotenv==1.0.1
+# Align with TensorFlow 2.15 compatible stack
+numpy==1.26.4
+pandas==2.2.2
+joblib==1.4.2
+h5py<3.11
+tensorflow-intel==2.15.0
+keras==2.15.0
