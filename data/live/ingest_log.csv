@@ -31,3 +31,4 @@ timestamp,source,new_rows,written_rows,target
 2025-11-05T15:12:24.429834+00:00,who_disease,150,150,C:\Users\user\Documents\PersonalProject\disease_outbreak_prediction\data\live\who_disease.csv
 2025-11-05T15:12:24.466930+00:00,worldbank_population,65,130,C:\Users\user\Documents\PersonalProject\disease_outbreak_prediction\data\live\worldbank_population.csv
 2025-11-05T15:12:24.556222+00:00,ncdc_outbreaks,165,596,C:\Users\user\Documents\PersonalProject\disease_outbreak_prediction\data\live\ncdc_outbreaks.csv
+2025-11-08T09:13:06.781661+00:00,ncdc_outbreaks,165,596,C:\Users\user\Documents\PersonalProject\disease_outbreak_prediction\data\live\ncdc_outbreaks.csv

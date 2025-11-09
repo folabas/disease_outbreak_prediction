@@ -29,6 +29,24 @@ for col in ["cases", "deaths", "cfr"]:
 
 ## Keep rows even if cases are missing; we filled missing numeric values with 0
 
+# Remove implausible COVID-19 rows (e.g., deaths exceed cases or deaths with zero cases)
+covid_mask = df["disease"].astype(str).str.contains("covid", case=False, na=False)
+before_count = covid_mask.sum()
+# Drop cases where deaths >= cases (only for cases > 0), and where cases <= 0 with deaths > 0
+implausible = covid_mask & (
+    ((df["deaths"] >= df["cases"]) & (df["cases"] > 0)) |
+    ((df["cases"] <= 0) & (df["deaths"] > 0))
+)
+removed_count = int(implausible.sum())
+if removed_count:
+    df = df.loc[~implausible]
+    print(
+        f"⚠️ Removed {removed_count} implausible COVID-19 rows (deaths ≥ cases with cases>0, or deaths with 0 cases)."
+    )
+    print(
+        f"   COVID rows before: {int(before_count)}, after: {int(df['disease'].str.contains('COVID', case=False, na=False).sum())}"
+    )
+
 # Save clean file
 df.to_csv("data/ncdc_outbreaks_clean.csv", index=False)
 print(f"✅ Cleaned data saved → data/ncdc_outbreaks_clean.csv ({len(df)} rows)")
