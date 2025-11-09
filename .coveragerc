@@ -1,0 +1,14 @@
+[run]
+source =
+    ml
+    live_data
+
+[report]
+omit =
+    ml/train_*.py
+    ml/drift.py
+    ml/exp_tracking.py
+    ml/models.py
+    live_data/run_live_cycle.py
+    live_data/fetchers/who_api.py
+    live_data/fetchers/worldbank_api.py
