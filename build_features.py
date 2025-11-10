@@ -92,6 +92,34 @@ def main():
 
     # Build training table: start from NCDC labels and enrich with features
     base = ncdc.copy()
+    # Augment base with WHO-only diseases absent from NCDC by creating national rows (state='All')
+    try:
+        ncdc_diseases = set(base["disease"].unique())
+        who_diseases = set(who_agg["disease"].unique())
+        missing = sorted(who_diseases - ncdc_diseases)
+        if missing:
+            sup = who_agg[who_agg["disease"].isin(missing)].copy()
+            sup = sup.rename(columns={"who_cases_national": "cases"})
+            sup["state"] = "All"
+            sup["deaths"] = 0
+            # Ensure column order consistency
+            sup = sup[["state", "disease", "year", "week", "cases", "deaths"]]
+            # Concatenate and drop potential duplicates
+            base = pd.concat([base, sup], ignore_index=True)
+            base = base.drop_duplicates(subset=["state", "disease", "year", "week"]).reset_index(drop=True)
+    except Exception as e:
+        print(f"[WARN] Could not augment WHO-only diseases: {e}")
+
+    # Ensure numeric cases and add per-disease scaling features
+    try:
+        import numpy as np
+        base["cases"] = pd.to_numeric(base["cases"], errors="coerce").fillna(0)
+        # Log-transform stabilizes large-magnitude diseases (e.g., Malaria)
+        base["cases_log"] = base.groupby("disease")["cases"].transform(lambda x: np.log1p(x))
+        # Z-score within each disease to normalize ranges; add small epsilon to avoid div-by-zero
+        base["cases_scaled"] = base.groupby("disease")["cases"].transform(lambda x: (x - x.mean()) / (x.std() + 1e-6))
+    except Exception as e:
+        print(f"[WARN] Could not compute per-disease scaling: {e}")
     # Merge weather by state/year/week
     feat = base.merge(weather, on=["state", "year", "week"], how="left")
     # Merge WHO national weekly by disease/week
@@ -141,3 +169,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+import numpy as np

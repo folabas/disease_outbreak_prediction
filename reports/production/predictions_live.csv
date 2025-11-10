@@ -1,69 +1,309 @@
 state,disease,pred_year,pred_week,pred_cases_next_week,pred_deaths_next_week
+Bayelsa,Cholera,,,258.0,15.0
+Benue,Cholera,,,602.0,12.0
+Delta,Cholera,,,583.0,32.0
+Gombe,Cholera,2021.0,21.0,190.0,1.0
+Kebbi,Cholera,,,35.0,1.0
+Kogi,Cholera,,,12.0,4.0
+Nasarawa,Cholera,,,411.0,17.0
+Sokoto,Cholera,2021.0,21.0,2141.0,86.0
 Abia,Covid-19,,,2.0,0.0
 Abuja,Covid-19,,,0.0,0.0
 Adamawa,Covid-19,,,1.0,0.0
-Akwa Ibom,Covid-19,2025.0,47.0,11.0,1.0
+Akwa Ibom,Covid-19,2021.0,21.0,11.0,1.0
 Anambra,Covid-19,,,1.0,0.0
 Bauchi,Covid-19,,,8.0,0.0
 Bayelsa,Covid-19,,,0.0,0.0
-Benue,Covid-19,,,1.0,0.0
+Benue,Covid-19,2021.0,21.0,1.0,0.0
 Borno,Covid-19,,,12.0,2.0
 Cross River,Covid-19,,,0.0,0.0
 Delta,Covid-19,,,6.0,1.0
-Ebonyi,Covid-19,,,0.0,0.0
+Ebonyi,Covid-19,2021.0,21.0,0.0,0.0
 Edo,Covid-19,,,0.0,0.0
 Ekiti,Covid-19,,,4.0,1.0
-Enugu,Covid-19,,,2.0,0.0
+Enugu,Covid-19,2021.0,21.0,0.0,0.0
 Gombe,Covid-19,,,9.0,0.0
 Imo,Covid-19,,,1.0,0.0
-Jigawa,Covid-19,,,2.0,0.0
+Jigawa,Covid-19,2021.0,21.0,0.0,0.0
 Kaduna,Covid-19,,,9.0,0.0
 Kano,Covid-19,,,0.0,0.0
 Katsina,Covid-19,,,21.0,1.0
-Kebbi,Covid-19,,,0.0,0.0
+Kebbi,Covid-19,2021.0,21.0,0.0,0.0
+Kogi,Covid-19,,,5.0,0.0
 Kwara,Covid-19,,,11.0,0.0
-Lagos,Covid-19,2025.0,49.0,0.0,0.0
+Lagos,Covid-19,,,0.0,0.0
 Nasarawa,Covid-19,,,0.0,0.0
-Niger,Covid-19,,,2.0,0.0
+Niger,Covid-19,,,1.0,0.0
 Ogun,Covid-19,,,0.0,0.0
-Ondo,Covid-19,,,3.0,0.0
+Ondo,Covid-19,,,1.0,0.0
 Osun,Covid-19,,,20.0,0.0
 Oyo,Covid-19,,,17.0,1.0
 Plateau,Covid-19,,,1.0,0.0
 Rivers,Covid-19,,,0.0,0.0
 Sokoto,Covid-19,,,1.0,0.0
+Taraba,Covid-19,2025.0,47.0,6.0,0.0
 Yobe,Covid-19,,,0.0,0.0
 Zamfara,Covid-19,,,2.0,0.0
-,,2025.0,47.0,,
-,,2025.0,47.0,,
-,,2025.0,47.0,,
-,,2025.0,47.0,,
+Abia,Diphtheria,,,25.0,0.0
+Abuja,Diphtheria,,,146.0,7.0
+Adamawa,Diphtheria,,,65.0,4.0
+Akwa Ibom,Diphtheria,,,1.0,0.0
+Anambra,Diphtheria,,,1.0,0.0
+Bauchi,Diphtheria,,,3066.0,104.0
+Bayelsa,Diphtheria,,,15.0,0.0
+Benue,Diphtheria,,,1.0,0.0
+Borno,Diphtheria,,,2902.0,67.0
+Cross River,Diphtheria,,,1.0,0.0
+Delta,Diphtheria,,,2.0,0.0
+Ebonyi,Diphtheria,,,1.0,0.0
+Edo,Diphtheria,,,20.0,2.0
+Ekiti,Diphtheria,,,36.0,1.0
+Enugu,Diphtheria,,,12.0,0.0
+Gombe,Diphtheria,,,216.0,1.0
+Imo,Diphtheria,,,10.0,0.0
+Jigawa,Diphtheria,,,364.0,7.0
+Kaduna,Diphtheria,,,777.0,11.0
+Kano,Diphtheria,,,23784.0,821.0
+Katsina,Diphtheria,,,3708.0,101.0
+Kebbi,Diphtheria,,,70.0,0.0
+Kogi,Diphtheria,,,40.0,0.0
+Kwara,Diphtheria,2025.0,49.0,1.0,0.0
+Lagos,Diphtheria,,,37.0,5.0
+Nasarawa,Diphtheria,,,104.0,1.0
+Niger,Diphtheria,,,11.0,0.0
+Ogun,Diphtheria,,,6.0,0.0
+Ondo,Diphtheria,,,2.0,0.0
+Osun,Diphtheria,,,16.0,1.0
+Oyo,Diphtheria,,,16.0,0.0
+Plateau,Diphtheria,,,66.0,15.0
+Rivers,Diphtheria,,,2.0,0.0
+Sokoto,Diphtheria,,,200.0,5.0
+Taraba,Diphtheria,,,90.0,0.0
+Yobe,Diphtheria,,,5330.0,109.0
+Zamfara,Diphtheria,,,219.0,0.0
+All,Leprosy,,,92.63165384615384,0.0
+All,Malaria,,,4870075.262884615,0.0
+Adamawa,Measles,,,16.0,0.0
+Akwa Ibom,Measles,,,18.0,0.0
+Anambra,Measles,,,48.0,0.0
+Borno,Measles,,,165.0,0.0
+Cross River,Measles,,,3.0,0.0
+Enugu,Measles,2025.0,47.0,22.0,0.0
+Gombe,Measles,,,17.0,0.0
+Imo,Measles,,,0.0,0.0
+Kaduna,Measles,,,52.0,0.0
+Kano,Measles,,,7.0,0.0
+Katsina,Measles,,,356.0,0.0
+Kebbi,Measles,,,64.0,3.0
+Kwara,Measles,,,2.0,0.0
+Plateau,Measles,,,3.0,0.0
+Sokoto,Measles,,,324.0,5.0
+Yobe,Measles,,,88.0,0.0
+All,Meningitis,,,22.596153846153847,0.0
+Abia,Monkeypox,,,1.0,2.0
+Abuja,Monkeypox,,,5.0,0.0
+Adamawa,Monkeypox,,,0.0,0.0
+Akwa Ibom,Monkeypox,,,6.0,0.0
+Anambra,Monkeypox,,,0.0,1.0
+Bauchi,Monkeypox,2025.0,47.0,0.0,0.0
+Bayelsa,Monkeypox,,,19.0,11.0
+Benue,Monkeypox,,,2.0,0.0
+Borno,Monkeypox,,,0.0,0.0
+Cross River,Monkeypox,,,9.0,3.0
+Delta,Monkeypox,,,3.0,6.0
+Ebonyi,Monkeypox,,,0.0,0.0
+Edo,Monkeypox,,,4.0,1.0
+Ekiti,Monkeypox,,,2.0,0.0
+Enugu,Monkeypox,,,1.0,2.0
+Gombe,Monkeypox,,,1.0,0.0
+Imo,Monkeypox,,,5.0,2.0
+Kaduna,Monkeypox,2025.0,21.0,0.0,0.0
+Kano,Monkeypox,,,0.0,0.0
+Katsina,Monkeypox,,,1.0,0.0
+Kebbi,Monkeypox,,,0.0,0.0
+Kogi,Monkeypox,,,0.0,0.0
+Kwara,Monkeypox,,,0.0,0.0
+Lagos,Monkeypox,,,4.0,1.0
+Nasarawa,Monkeypox,,,1.0,1.0
+Niger,Monkeypox,,,0.0,0.0
+Ogun,Monkeypox,,,0.0,0.0
+Ondo,Monkeypox,,,0.0,0.0
+Osun,Monkeypox,,,1.0,0.0
+Oyo,Monkeypox,,,1.0,3.0
+Plateau,Monkeypox,,,0.0,2.0
+Rivers,Monkeypox,,,25.0,14.0
+Taraba,Monkeypox,,,0.0,0.0
+All,Pertussis,,,151.8653846153846,0.0
+All,Polio,,,0.0,0.0
+All,Tuberculosis,,,18274.25,0.0
+Abia,Yellow Fever,,,1.0,0.9
+Abuja,Yellow Fever,,,1.0,0.9
+Anambra,Yellow Fever,,,3.0,2.7
+Bauchi,Yellow Fever,,,1.0,0.0
+Borno,Yellow Fever,,,6.0,5.4
+Delta,Yellow Fever,,,4.0,3.6
+Ebonyi,Yellow Fever,,,1.0,0.9
+Edo,Yellow Fever,,,4.0,3.6
+Enugu,Yellow Fever,,,1.0,0.9
+Imo,Yellow Fever,,,2.0,1.8
+Jigawa,Yellow Fever,2025.0,47.0,1.0,0.9
+Kano,Yellow Fever,,,1.0,0.9
+Katsina,Yellow Fever,,,2.0,1.8
+Kebbi,Yellow Fever,,,15.0,13.4
+Kogi,Yellow Fever,,,17.0,15.2
+Kwara,Yellow Fever,,,13.0,11.6
+Lagos,Yellow Fever,,,2.0,1.8
+Nasarawa,Yellow Fever,,,1.0,0.9
+Niger,Yellow Fever,,,2.0,1.8
+Ondo,Yellow Fever,,,2.0,1.8
+Oyo,Yellow Fever,,,1.0,0.9
+Plateau,Yellow Fever,,,5.0,4.5
+Rivers,Yellow Fever,,,2.0,1.8
+Zamfara,Yellow Fever,,,24.0,21.4
 ,,2025.0,45.0,,
-,,2025.0,47.0,,
+,,2025.0,46.0,,
 ,,2025.0,47.0,,
 ,,2025.0,45.0,,
 ,,2025.0,47.0,,
 ,,2025.0,45.0,,
 ,,2025.0,49.0,,
 ,,2025.0,47.0,,
+,,2025.0,46.0,,
 ,,2025.0,47.0,,
-,,2025.0,47.0,,
-,,2020.0,2.0,,
-,,2025.0,47.0,,
+,,2025.0,21.0,,
+,,2025.0,37.0,,
 ,,2025.0,47.0,,
 ,,2025.0,49.0,,
 ,,2025.0,47.0,,
 ,,2025.0,37.0,,
+,,2022.0,21.0,,
 ,,2025.0,47.0,,
 ,,2025.0,49.0,,
 ,,2025.0,45.0,,
+,,2025.0,21.0,,
+,,2025.0,49.0,,
+,,2025.0,46.0,,
+,,2025.0,46.0,,
+,,2025.0,47.0,,
 ,,2025.0,47.0,,
 ,,2025.0,49.0,,
 ,,2025.0,47.0,,
-,,2025.0,47.0,,
-,,2025.0,47.0,,
-,,2025.0,47.0,,
+,,2025.0,21.0,,
 ,,2025.0,49.0,,
-,,2025.0,47.0,,
-,,2025.0,49.0,,
-,,2020.0,2.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2024.0,53.0,,
+,,2023.0,53.0,,
+,,2019.0,1.0,,
+,,2019.0,1.0,,
+,,2018.0,3.0,,
+,,2019.0,1.0,,
+,,2019.0,1.0,,
+,,2018.0,3.0,,
+,,2018.0,5.0,,
+,,2018.0,5.0,,
+,,2019.0,1.0,,
+,,2019.0,1.0,,
+,,2019.0,1.0,,
+,,2018.0,5.0,,
+,,2018.0,2.0,,
+,,2018.0,3.0,,
+,,2019.0,6.0,,
+,,2019.0,1.0,,
+,,2014.0,53.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2022.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2022.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2024.0,2.0,,
+,,2025.0,21.0,,
+,,2022.0,21.0,,
+,,2022.0,21.0,,
+,,2024.0,2.0,,
+,,2022.0,21.0,,
+,,2022.0,21.0,,
+,,2022.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2022.0,21.0,,
+,,2024.0,2.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2025.0,21.0,,
+,,2022.0,21.0,,
+,,2018.0,53.0,,
+,,2023.0,53.0,,
+,,2023.0,53.0,,
+,,2018.0,21.0,,
+,,2018.0,21.0,,
+,,2018.0,21.0,,
+,,2020.0,21.0,,
+,,2018.0,21.0,,
+,,2018.0,21.0,,
+,,2018.0,21.0,,
+,,2018.0,21.0,,
+,,2018.0,21.0,,
+,,2018.0,21.0,,
+,,2018.0,21.0,,
+,,2018.0,21.0,,
+,,2018.0,21.0,,
+,,2018.0,21.0,,
+,,2018.0,21.0,,
+,,2018.0,21.0,,
+,,2018.0,21.0,,
+,,2018.0,21.0,,
+,,2018.0,21.0,,
+,,2018.0,21.0,,
+,,2018.0,21.0,,
+,,2018.0,21.0,,
+,,2018.0,21.0,,
+,,2018.0,21.0,,

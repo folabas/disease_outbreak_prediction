@@ -1,6 +1,5 @@
 {
-  "timestamp":1762427444,
+  "timestamp":1762682026,
   "status":"ok",
-  "alert_rows_used_for_eval":401,
-  "sklearn":true
+  "predictions":308
 }

@@ -25,18 +25,26 @@ def canonicalize_disease(label: str) -> str:
         return "Mpox"
     if "lassa" in text:
         return "Lassa Fever"
-    if any(k in text for k in ["yellow fever", "y f", "y.f"]):
+    # Yellow Fever: allow common abbreviations but avoid false positives like "anY First"
+    if ("yellow fever" in text) or re.search(r"\bY[ .-]?F\b", text, flags=re.IGNORECASE):
         return "Yellow Fever"
     if "cholera" in text:
         return "Cholera"
     if "measles" in text:
         return "Measles"
-    if any(k in text for k in ["meningitis", "cerebrospinal meningitis", "cs m", "csm"]):
+    if "rubella" in text:
+        return "Rubella"
+    if "mumps" in text:
+        return "Mumps"
+    # Meningitis abbreviations (CSM) safely matched
+    if ("meningitis" in text) or ("cerebrospinal meningitis" in text) or re.search(r"\bCS[ .-]?M\b", text, flags=re.IGNORECASE):
         return "Meningitis"
     if "diphtheria" in text:
         return "Diphtheria"
     if "malaria" in text:
         return "Malaria"
+    if any(k in text for k in ["japanese encephalitis", "encephalitis japanese"]):
+        return "Japanese Encephalitis"
     if any(k in text for k in ["polio", "acute flaccid paralysis", "afp"]):
         # Most AFP metrics relate to polio surveillance
         return "Polio"
@@ -44,7 +52,7 @@ def canonicalize_disease(label: str) -> str:
         return "Influenza"
     if "rabies" in text:
         return "Rabies"
-    if any(k in text for k in ["tuberculosis", "tb cases"]):
+    if any(k in text for k in ["tuberculosis", "tb cases", "mdr tb", "xdr tb", "rr tb", "tb "]):
         return "Tuberculosis"
     if "hepatitis" in text:
         return "Hepatitis"
@@ -56,8 +64,20 @@ def canonicalize_disease(label: str) -> str:
         return "Ebola"
     if "pertussis" in text or "whooping cough" in text:
         return "Pertussis"
+    if any(k in text for k in ["trypanosomiasis", "sleeping sickness", "gambiense", "rhodesiense"]):
+        return "Trypanosomiasis"
     if "rotavirus" in text:
         return "Rotavirus"
+    if "neonatal tetanus" in text or "tetanus" in text:
+        return "Tetanus"
+    if "leishmaniasis" in text or "leish" in text:
+        return "Leishmaniasis"
+    if "buruli" in text:
+        return "Buruli Ulcer"
+    if "yaws" in text:
+        return "Yaws"
+    if "leprosy" in text:
+        return "Leprosy"
 
     # No confident match
     return ""
@@ -100,6 +120,15 @@ def main():
     )
 
     pairs["canonical_disease"] = pairs["disease_label"].apply(canonicalize_disease)
+
+    # Fill remaining blanks using indicator_code heuristics
+    if "indicator_code" in pairs.columns:
+        # TB prefixed codes are tuberculosis
+        mask_tb = (pairs["canonical_disease"].astype(str).str.strip() == "") & pairs["indicator_code"].astype(str).str.upper().str.startswith("TB_")
+        pairs.loc[mask_tb, "canonical_disease"] = "Tuberculosis"
+        # NTD_4 is human African trypanosomiasis
+        mask_hat = (pairs["canonical_disease"].astype(str).str.strip() == "") & (pairs["indicator_code"].astype(str).str.upper() == "NTD_4")
+        pairs.loc[mask_hat, "canonical_disease"] = "Trypanosomiasis"
 
     # Sort for stable output
     pairs = pairs.sort_values(["canonical_disease", "disease_label", "indicator_code"], na_position="last")

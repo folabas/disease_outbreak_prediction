@@ -144,9 +144,11 @@ def derive_year_week(df: pd.DataFrame) -> pd.DataFrame:
 def ensure_numeric(df: pd.DataFrame) -> pd.DataFrame:
     for col in ["cases", "deaths"]:
         if col in df.columns:
-            # Drop rows where the value is not a pure integer string
-            df = df[df[col].astype(str).str.match(r"^\d+$", na=False)]
-            df[col] = pd.to_numeric(df[col], errors="coerce").astype(int)
+            # Coerce numeric values (including floats like '1.0'), drop non-numeric
+            df[col] = pd.to_numeric(df[col], errors="coerce")
+            df = df[~df[col].isna()]
+            # Store as integers (weekly counts should be integers)
+            df[col] = df[col].astype(int)
         else:
             df[col] = 0
     # Convert year/week to numeric where present

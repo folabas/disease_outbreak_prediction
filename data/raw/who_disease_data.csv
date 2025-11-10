@@ -1,113 +1,55 @@
 disease_label,indicator_code,year,cases
 Number of suspected meningitis cases reported,MENING_2,2012,1206.0
-Number of suspected meningitis cases reported,MENING_2,2009,56128.0
-Number of suspected meningitis cases reported,MENING_2,2011,1165.0
+Number of suspected meningitis cases reported,MENING_2,2013,871.0
 Number of suspected meningitis cases reported,MENING_2,2014,1175.0
 Number of suspected meningitis cases reported,MENING_2,2010,4983.0
-Number of suspected meningitis cases reported,MENING_2,2013,871.0
+Number of suspected meningitis cases reported,MENING_2,2011,1165.0
+Number of suspected meningitis cases reported,MENING_2,2009,56128.0
 Cholera case fatality rate,CHOLERA_0000000003,1989,5.66
 Cholera case fatality rate,CHOLERA_0000000003,1978,10.15
 Cholera case fatality rate,CHOLERA_0000000003,1981,16.82
+Cholera case fatality rate,CHOLERA_0000000003,1991,12.87
 Cholera case fatality rate,CHOLERA_0000000003,2002,2.84
 Cholera case fatality rate,CHOLERA_0000000003,2014,2.09746
 Cholera case fatality rate,CHOLERA_0000000003,1993,6.39
+Cholera case fatality rate,CHOLERA_0000000003,1996,9.64
+Cholera case fatality rate,CHOLERA_0000000003,1971,12.84
 Cholera case fatality rate,CHOLERA_0000000003,2006,6.26
+Cholera case fatality rate,CHOLERA_0000000003,2015,3.5
 Cholera case fatality rate,CHOLERA_0000000003,1995,8.22
 Cholera case fatality rate,CHOLERA_0000000003,1999,7.91
 Cholera case fatality rate,CHOLERA_0000000003,1970,26.67
 Cholera case fatality rate,CHOLERA_0000000003,1973,17.2
+Cholera case fatality rate,CHOLERA_0000000003,1988,7.3
 Cholera case fatality rate,CHOLERA_0000000003,1987,8.6
 Cholera case fatality rate,CHOLERA_0000000003,2009,3.15
-Cholera case fatality rate,CHOLERA_0000000003,2013,3.47
 Cholera case fatality rate,CHOLERA_0000000003,1992,7.9
-Cholera case fatality rate,CHOLERA_0000000003,2003,4.5
+Cholera case fatality rate,CHOLERA_0000000003,2001,5.15
 Cholera case fatality rate,CHOLERA_0000000003,2016,4.16667
 Cholera case fatality rate,CHOLERA_0000000003,1980,18.12
-Cholera case fatality rate,CHOLERA_0000000003,1998,5.4
 Cholera case fatality rate,CHOLERA_0000000003,2011,3.17
 Cholera case fatality rate,CHOLERA_0000000003,2010,3.85
 Cholera case fatality rate,CHOLERA_0000000003,1994,10.95
 Cholera case fatality rate,CHOLERA_0000000003,1982,7.26
 Cholera case fatality rate,CHOLERA_0000000003,2000,1.54
 Cholera case fatality rate,CHOLERA_0000000003,1977,2.66
-Cholera case fatality rate,CHOLERA_0000000003,2012,3.02
-Cholera case fatality rate,CHOLERA_0000000003,1984,11.1
+Cholera case fatality rate,CHOLERA_0000000003,1976,22.32
 Cholera case fatality rate,CHOLERA_0000000003,1997,10.14
+Cholera case fatality rate,CHOLERA_0000000003,1975,2.63
 Cholera case fatality rate,CHOLERA_0000000003,2005,3.89
+Cholera case fatality rate,CHOLERA_0000000003,2008,4.57
 Cholera case fatality rate,CHOLERA_0000000003,2004,5.81
+Cholera case fatality rate,CHOLERA_0000000003,1986,25.27
 Cholera case fatality rate,CHOLERA_0000000003,1972,7.04
 Cholera case fatality rate,CHOLERA_0000000003,1983,1.12
 Cholera case fatality rate,CHOLERA_0000000003,1985,0.0
 Cholera case fatality rate,CHOLERA_0000000003,1979,1.37
-Cholera case fatality rate,CHOLERA_0000000003,1991,12.87
-Cholera case fatality rate,CHOLERA_0000000003,1996,9.64
-Cholera case fatality rate,CHOLERA_0000000003,1971,12.84
-Cholera case fatality rate,CHOLERA_0000000003,2015,3.5
-Cholera case fatality rate,CHOLERA_0000000003,1988,7.3
-Cholera case fatality rate,CHOLERA_0000000003,2001,5.15
-Cholera case fatality rate,CHOLERA_0000000003,1976,22.32
-Cholera case fatality rate,CHOLERA_0000000003,1975,2.63
-Cholera case fatality rate,CHOLERA_0000000003,2008,4.57
-Cholera case fatality rate,CHOLERA_0000000003,1986,25.27
+Cholera case fatality rate,CHOLERA_0000000003,2013,3.47
+Cholera case fatality rate,CHOLERA_0000000003,2003,4.5
+Cholera case fatality rate,CHOLERA_0000000003,1998,5.4
+Cholera case fatality rate,CHOLERA_0000000003,2012,3.02
+Cholera case fatality rate,CHOLERA_0000000003,1984,11.1
 Cholera case fatality rate,CHOLERA_0000000003,2007,2.89
-Number of reported cases of cholera,CHOLERA_0000000001,2001,2312.0
-Number of reported cases of cholera,CHOLERA_0000000001,2005,4477.0
-Number of reported cases of cholera,CHOLERA_0000000001,2015,5290.0
-Number of reported cases of cholera,CHOLERA_0000000001,1986,91.0
-Number of reported cases of cholera,CHOLERA_0000000001,1987,1290.0
-Number of reported cases of cholera,CHOLERA_0000000001,2013,6600.0
-Number of reported cases of cholera,CHOLERA_0000000001,1991,59478.0
-Number of reported cases of cholera,CHOLERA_0000000001,2007,1661.0
-Number of reported cases of cholera,CHOLERA_0000000001,2016,768.0
-Number of reported cases of cholera,CHOLERA_0000000001,1970,15.0
-Number of reported cases of cholera,CHOLERA_0000000001,1973,157.0
-Number of reported cases of cholera,CHOLERA_0000000001,1983,178.0
-Number of reported cases of cholera,CHOLERA_0000000001,1989,1078.0
-Number of reported cases of cholera,CHOLERA_0000000001,1975,38.0
-Number of reported cases of cholera,CHOLERA_0000000001,2002,5429.0
-Number of reported cases of cholera,CHOLERA_0000000001,1978,197.0
-Number of reported cases of cholera,CHOLERA_0000000001,2009,13691.0
-Number of reported cases of cholera,CHOLERA_0000000001,1972,1363.0
-Number of reported cases of cholera,CHOLERA_0000000001,2012,597.0
-Number of reported cases of cholera,CHOLERA_0000000001,1994,2859.0
-Number of reported cases of cholera,CHOLERA_0000000001,1979,293.0
-Number of reported cases of cholera,CHOLERA_0000000001,1984,1667.0
-Number of reported cases of cholera,CHOLERA_0000000001,1988,137.0
-Number of reported cases of cholera,CHOLERA_0000000001,1971,22931.0
-Number of reported cases of cholera,CHOLERA_0000000001,2000,2799.0
-Number of reported cases of cholera,CHOLERA_0000000001,2008,5410.0
-Number of reported cases of cholera,CHOLERA_0000000001,1999,26358.0
-Number of reported cases of cholera,CHOLERA_0000000001,2006,2028.0
-Number of reported cases of cholera,CHOLERA_0000000001,1997,1322.0
-Number of reported cases of cholera,CHOLERA_0000000001,2004,3186.0
-Number of reported cases of cholera,CHOLERA_0000000001,2003,1933.0
-Number of reported cases of cholera,CHOLERA_0000000001,1980,138.0
-Number of reported cases of cholera,CHOLERA_0000000001,1977,376.0
-Number of reported cases of cholera,CHOLERA_0000000001,2011,23377.0
-Number of reported cases of cholera,CHOLERA_0000000001,1985,30.0
-Number of reported cases of cholera,CHOLERA_0000000001,2014,35996.0
-Number of reported cases of cholera,CHOLERA_0000000001,1998,3464.0
-Number of reported cases of cholera,CHOLERA_0000000001,1976,112.0
-Number of reported cases of cholera,CHOLERA_0000000001,2010,44456.0
-Number of reported cases of cholera,CHOLERA_0000000001,1992,8687.0
-Number of reported cases of cholera,CHOLERA_0000000001,1982,248.0
-Number of reported cases of cholera,CHOLERA_0000000001,1995,1059.0
-Number of reported cases of cholera,CHOLERA_0000000001,1981,107.0
-Number of reported cases of cholera,CHOLERA_0000000001,1996,12374.0
-Number of reported cases of cholera,CHOLERA_0000000001,1993,4160.0
-New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2014,16.71
-New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2017,12.819
-New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2016,7.323
-New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2022,10.95
-New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2024,7.607
-New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2015,15.872
-New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2021,11.237
-New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2013,19.497
-New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2023,10.835
-New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2018,10.696
-New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2012,22.537
-New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2020,6.874
-New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2019,12.062
 Number of new G2D leprosy cases,NTD_LEPR5,2017,361.0
 Number of new G2D leprosy cases,NTD_LEPR5,2013,447.0
 Number of new G2D leprosy cases,NTD_LEPR5,2021,270.0
@@ -117,9 +59,22 @@ Number of new G2D leprosy cases,NTD_LEPR5,2022,320.0
 Number of new G2D leprosy cases,NTD_LEPR5,2015,447.0
 Number of new G2D leprosy cases,NTD_LEPR5,2016,377.0
 Number of new G2D leprosy cases,NTD_LEPR5,2023,252.0
+Number of new G2D leprosy cases,NTD_LEPR5,2024,204.0
 Number of new G2D leprosy cases,NTD_LEPR5,2019,369.0
 Number of new G2D leprosy cases,NTD_LEPR5,2012,526.0
-Number of new G2D leprosy cases,NTD_LEPR5,2024,204.0
+New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2014,16.71
+New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2017,12.819
+New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2016,7.323
+New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2022,10.95
+New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2024,7.607
+New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2015,15.872
+New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2021,11.237
+New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2013,19.497
+New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2020,6.874
+New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2019,12.062
+New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2018,10.696
+New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2012,22.537
+New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,2023,10.835
 Leprosy - Number of new leprosy cases among children (less than 15 years of age),NTD_LEPR8,2016,174.0
 Leprosy - Number of new leprosy cases among children (less than 15 years of age),NTD_LEPR8,2024,130.0
 Leprosy - Number of new leprosy cases among children (less than 15 years of age),NTD_LEPR8,2021,212.0
@@ -142,18 +97,18 @@ Number of new leprosy cases with G2D among children (less than 15 years of age),
 Number of new leprosy cases with G2D among children (less than 15 years of age),NTD_LEPR9,2016,134.0
 Number of new leprosy cases with G2D among children (less than 15 years of age),NTD_LEPR9,2017,0.0
 Leprosy - Number of cases registered for treatment,NTD_LEPR3,2024,1942.0
-Leprosy - Number of cases registered for treatment,NTD_LEPR3,2019,3365.0
 Leprosy - Number of cases registered for treatment,NTD_LEPR3,2020,31.0
 Leprosy - Number of cases registered for treatment,NTD_LEPR3,2023,2527.0
 Leprosy - Number of cases registered for treatment,NTD_LEPR3,2013,3626.0
 Leprosy - Number of cases registered for treatment,NTD_LEPR3,2021,1037.0
-Leprosy - Number of cases registered for treatment,NTD_LEPR3,2018,2656.0
-Leprosy - Number of cases registered for treatment,NTD_LEPR3,2017,11230.0
-Leprosy - Number of cases registered for treatment,NTD_LEPR3,2022,2489.0
-Leprosy - Number of cases registered for treatment,NTD_LEPR3,2014,3147.0
 Leprosy - Number of cases registered for treatment,NTD_LEPR3,2016,2870.0
 Leprosy - Number of cases registered for treatment,NTD_LEPR3,2015,3234.0
+Leprosy - Number of cases registered for treatment,NTD_LEPR3,2017,11230.0
+Leprosy - Number of cases registered for treatment,NTD_LEPR3,2022,2489.0
 Leprosy - Number of cases registered for treatment,NTD_LEPR3,2012,3915.0
+Leprosy - Number of cases registered for treatment,NTD_LEPR3,2014,3147.0
+Leprosy - Number of cases registered for treatment,NTD_LEPR3,2019,3365.0
+Leprosy - Number of cases registered for treatment,NTD_LEPR3,2018,2656.0
 Leprosy - New leprosy cases with G2D rate per 1 000 000 population,NTD_LEPR7,2018,1.56222
 Leprosy - New leprosy cases with G2D rate per 1 000 000 population,NTD_LEPR7,2022,1.46
 Leprosy - New leprosy cases with G2D rate per 1 000 000 population,NTD_LEPR7,2019,1.65
@@ -166,95 +121,142 @@ Leprosy - New leprosy cases with G2D rate per 1 000 000 population,NTD_LEPR7,202
 Leprosy - New leprosy cases with G2D rate per 1 000 000 population,NTD_LEPR7,2012,3.1441
 Leprosy - New leprosy cases with G2D rate per 1 000 000 population,NTD_LEPR7,2014,2.32913
 Leprosy - New leprosy cases with G2D rate per 1 000 000 population,NTD_LEPR7,2013,2.60142
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2011,3.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,1997,0.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2008,0.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2002,26.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2007,0.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2023,0.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,1994,0.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2004,10.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2018,0.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2013,0.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2014,0.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,1990,24.0
+Number of reported cases of cholera,CHOLERA_0000000001,2005,4477.0
+Number of reported cases of cholera,CHOLERA_0000000001,2015,5290.0
+Number of reported cases of cholera,CHOLERA_0000000001,1986,91.0
+Number of reported cases of cholera,CHOLERA_0000000001,1987,1290.0
+Number of reported cases of cholera,CHOLERA_0000000001,2007,1661.0
+Number of reported cases of cholera,CHOLERA_0000000001,1992,8687.0
+Number of reported cases of cholera,CHOLERA_0000000001,2016,768.0
+Number of reported cases of cholera,CHOLERA_0000000001,1970,15.0
+Number of reported cases of cholera,CHOLERA_0000000001,1982,248.0
+Number of reported cases of cholera,CHOLERA_0000000001,1973,157.0
+Number of reported cases of cholera,CHOLERA_0000000001,1983,178.0
+Number of reported cases of cholera,CHOLERA_0000000001,1995,1059.0
+Number of reported cases of cholera,CHOLERA_0000000001,1975,38.0
+Number of reported cases of cholera,CHOLERA_0000000001,2002,5429.0
+Number of reported cases of cholera,CHOLERA_0000000001,1978,197.0
+Number of reported cases of cholera,CHOLERA_0000000001,1981,107.0
+Number of reported cases of cholera,CHOLERA_0000000001,2009,13691.0
+Number of reported cases of cholera,CHOLERA_0000000001,1984,1667.0
+Number of reported cases of cholera,CHOLERA_0000000001,1988,137.0
+Number of reported cases of cholera,CHOLERA_0000000001,1971,22931.0
+Number of reported cases of cholera,CHOLERA_0000000001,2008,5410.0
+Number of reported cases of cholera,CHOLERA_0000000001,1996,12374.0
+Number of reported cases of cholera,CHOLERA_0000000001,1999,26358.0
+Number of reported cases of cholera,CHOLERA_0000000001,2006,2028.0
+Number of reported cases of cholera,CHOLERA_0000000001,1997,1322.0
+Number of reported cases of cholera,CHOLERA_0000000001,2004,3186.0
+Number of reported cases of cholera,CHOLERA_0000000001,2003,1933.0
+Number of reported cases of cholera,CHOLERA_0000000001,1980,138.0
+Number of reported cases of cholera,CHOLERA_0000000001,2011,23377.0
+Number of reported cases of cholera,CHOLERA_0000000001,1993,4160.0
+Number of reported cases of cholera,CHOLERA_0000000001,1985,30.0
+Number of reported cases of cholera,CHOLERA_0000000001,2014,35996.0
+Number of reported cases of cholera,CHOLERA_0000000001,1998,3464.0
+Number of reported cases of cholera,CHOLERA_0000000001,1976,112.0
+Number of reported cases of cholera,CHOLERA_0000000001,2001,2312.0
+Number of reported cases of cholera,CHOLERA_0000000001,2010,44456.0
+Number of reported cases of cholera,CHOLERA_0000000001,2013,6600.0
+Number of reported cases of cholera,CHOLERA_0000000001,1991,59478.0
+Number of reported cases of cholera,CHOLERA_0000000001,1989,1078.0
+Number of reported cases of cholera,CHOLERA_0000000001,1972,1363.0
+Number of reported cases of cholera,CHOLERA_0000000001,2012,597.0
+Number of reported cases of cholera,CHOLERA_0000000001,1994,2859.0
+Number of reported cases of cholera,CHOLERA_0000000001,1979,293.0
+Number of reported cases of cholera,CHOLERA_0000000001,2000,2799.0
+Number of reported cases of cholera,CHOLERA_0000000001,1977,376.0
 Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2005,21.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,1998,0.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,1992,0.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2024,0.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2020,0.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2001,14.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2017,0.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,1999,27.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2022,0.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2010,2.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2021,0.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2015,0.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,1996,0.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2012,2.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2006,3.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,1991,0.0
 Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2003,31.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2000,14.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2024,0.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2015,0.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2004,10.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,1990,24.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2013,0.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,1993,0.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2008,0.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,1992,0.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,1998,0.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,1996,0.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2011,3.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2023,0.0
 Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2019,0.0
 Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2016,1.0
-Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,1993,0.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,1994,0.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,1991,0.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,1999,27.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2022,0.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2006,3.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2001,14.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2000,14.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2012,2.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2017,0.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2007,0.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2002,26.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2020,0.0
 Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2009,0.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,1997,0.0
 Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,1995,0.0
-Number of new reported cases of Buruli ulcer,NTD_1,2016,235.0
-Number of new reported cases of Buruli ulcer,NTD_1,2022,216.0
-Number of new reported cases of Buruli ulcer,NTD_1,2006,9.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2021,0.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2018,0.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2014,0.0
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,2010,2.0
 Number of new reported cases of Buruli ulcer,NTD_1,2012,40.0
-Number of new reported cases of Buruli ulcer,NTD_1,2019,943.0
 Number of new reported cases of Buruli ulcer,NTD_1,2020,150.0
-Number of new reported cases of Buruli ulcer,NTD_1,2011,4.0
+Number of new reported cases of Buruli ulcer,NTD_1,2018,424.0
+Number of new reported cases of Buruli ulcer,NTD_1,2010,7.0
 Number of new reported cases of Buruli ulcer,NTD_1,2021,203.0
 Number of new reported cases of Buruli ulcer,NTD_1,2017,259.0
+Number of new reported cases of Buruli ulcer,NTD_1,2019,943.0
 Number of new reported cases of Buruli ulcer,NTD_1,2013,23.0
-Number of new reported cases of Buruli ulcer,NTD_1,2015,114.0
-Number of new reported cases of Buruli ulcer,NTD_1,2010,7.0
-Number of new reported cases of Buruli ulcer,NTD_1,2018,424.0
 Number of new reported cases of Buruli ulcer,NTD_1,2014,65.0
+Number of new reported cases of Buruli ulcer,NTD_1,2016,235.0
+Number of new reported cases of Buruli ulcer,NTD_1,2006,9.0
+Number of new reported cases of Buruli ulcer,NTD_1,2022,216.0
 Number of new reported cases of Buruli ulcer,NTD_1,2009,24.0
-Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2022,0.0
-Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2020,1.0
-Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2018,3.0
-Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2012,0.0
-Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2021,1.0
-Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2005,8.0
-Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2019,5.0
-Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2023,0.0
-Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2008,7.0
-Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2017,55.0
-Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2006,4.0
-Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2013,0.0
-Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2007,6.0
-Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2015,0.0
-Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2024,0.0
-Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2014,5.0
-Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2011,95.0
+Number of new reported cases of Buruli ulcer,NTD_1,2011,4.0
+Number of new reported cases of Buruli ulcer,NTD_1,2015,114.0
+Number of female leprosy new cases,NTD_LEPR11,2014,1277.0
 Number of female leprosy new cases,NTD_LEPR11,2024,758.0
 Number of female leprosy new cases,NTD_LEPR11,2013,1392.0
 Number of female leprosy new cases,NTD_LEPR11,2018,869.0
 Number of female leprosy new cases,NTD_LEPR11,2016,1082.0
-Number of female leprosy new cases,NTD_LEPR11,2022,918.0
 Number of female leprosy new cases,NTD_LEPR11,2023,983.0
 Number of female leprosy new cases,NTD_LEPR11,2015,1191.0
 Number of female leprosy new cases,NTD_LEPR11,2021,902.0
-Number of female leprosy new cases,NTD_LEPR11,2014,1277.0
 Number of female leprosy new cases,NTD_LEPR11,2012,1604.0
+Number of female leprosy new cases,NTD_LEPR11,2022,918.0
 Number of female leprosy new cases,NTD_LEPR11,2017,1036.0
+Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2011,95.0
+Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2006,4.0
+Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2020,1.0
+Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2012,0.0
+Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2023,0.0
+Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2008,7.0
+Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2017,55.0
+Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2024,0.0
+Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2013,0.0
+Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2007,6.0
+Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2019,5.0
+Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2018,3.0
+Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2015,0.0
+Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2022,0.0
+Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2021,1.0
+Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2005,8.0
+Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,2014,5.0
+Smear-positive tuberculosis case-detection rate (%),MDG_0000000030,2008,24.0
+Smear-positive tuberculosis case-detection rate (%),MDG_0000000030,2000,12.0
 Number of imported cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM_IM,2024,0.0
-Number of imported cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM_IM,2023,0.0
+Number of imported cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM_IM,2014,0.0
 Number of imported cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM_IM,2021,0.0
+Number of imported cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM_IM,2023,0.0
 Number of imported cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM_IM,2015,0.0
 Number of imported cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM_IM,2018,0.0
-Number of imported cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM_IM,2017,0.0
 Number of imported cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM_IM,2022,0.0
 Number of imported cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM_IM,2013,0.0
 Number of imported cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM_IM,2020,0.0
 Number of imported cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM_IM,2019,0.0
-Number of imported cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM_IM,2014,0.0
+Number of imported cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM_IM,2017,0.0
 Number of cases of visceral leishmaniasis reported,NTD_LEISHVNUM,2017,0.0
 Number of cases of visceral leishmaniasis reported,NTD_LEISHVNUM,2023,0.0
 Number of cases of visceral leishmaniasis reported,NTD_LEISHVNUM,2024,0.0
@@ -281,105 +283,394 @@ Number of imported cases of visceral leishmaniasis reported,NTD_LEISHVNUM_IM,202
 Number of imported cases of visceral leishmaniasis reported,NTD_LEISHVNUM_IM,2014,0.0
 Number of imported cases of visceral leishmaniasis reported,NTD_LEISHVNUM_IM,2023,0.0
 Number of imported cases of visceral leishmaniasis reported,NTD_LEISHVNUM_IM,2019,0.0
-Japanese encephalitis - number of reported cases,WHS3_42,2011,0.0
-Number of new leprosy cases,WHS3_45,2017,2447.0
-Number of new leprosy cases,WHS3_45,2012,3805.0
-Number of new leprosy cases,WHS3_45,2007,4665.0
-Number of new leprosy cases,WHS3_45,2006,3544.0
-Number of new leprosy cases,WHS3_45,2018,2095.0
-Number of new leprosy cases,WHS3_45,2010,3913.0
-Number of new leprosy cases,WHS3_45,2013,3385.0
-Number of new leprosy cases,WHS3_45,2005,5024.0
-Number of new leprosy cases,WHS3_45,2023,2425.0
-Number of new leprosy cases,WHS3_45,2008,4899.0
-Number of new leprosy cases,WHS3_45,2014,2983.0
-Number of new leprosy cases,WHS3_45,2024,1770.0
-Number of new leprosy cases,WHS3_45,2022,2393.0
-Number of new leprosy cases,WHS3_45,2020,1417.0
-Number of new leprosy cases,WHS3_45,2021,2398.0
-Number of new leprosy cases,WHS3_45,2015,2892.0
-Number of new leprosy cases,WHS3_45,2016,2687.0
-Number of new leprosy cases,WHS3_45,2009,4219.0
-Number of new leprosy cases,WHS3_45,2019,2424.0
-Poliomyelitis - number of reported cases,WHS3_49,1983,392.0
-Poliomyelitis - number of reported cases,WHS3_49,2002,202.0
-Poliomyelitis - number of reported cases,WHS3_49,1997,383.0
-Poliomyelitis - number of reported cases,WHS3_49,2009,543.0
-Poliomyelitis - number of reported cases,WHS3_49,1999,981.0
-Poliomyelitis - number of reported cases,WHS3_49,2007,356.0
-Poliomyelitis - number of reported cases,WHS3_49,1985,959.0
-Poliomyelitis - number of reported cases,WHS3_49,1982,395.0
-Poliomyelitis - number of reported cases,WHS3_49,2014,36.0
-Poliomyelitis - number of reported cases,WHS3_49,1993,1083.0
-Poliomyelitis - number of reported cases,WHS3_49,1981,335.0
-Poliomyelitis - number of reported cases,WHS3_49,2000,638.0
-Poliomyelitis - number of reported cases,WHS3_49,2001,56.0
-Poliomyelitis - number of reported cases,WHS3_49,2015,1.0
-Poliomyelitis - number of reported cases,WHS3_49,1990,1873.0
-Poliomyelitis - number of reported cases,WHS3_49,1998,312.0
-Poliomyelitis - number of reported cases,WHS3_49,2013,57.0
-Poliomyelitis - number of reported cases,WHS3_49,1992,957.0
-Poliomyelitis - number of reported cases,WHS3_49,2006,1144.0
-Poliomyelitis - number of reported cases,WHS3_49,1984,625.0
-Poliomyelitis - number of reported cases,WHS3_49,1986,453.0
-Poliomyelitis - number of reported cases,WHS3_49,1987,606.0
-Poliomyelitis - number of reported cases,WHS3_49,2016,5.0
-Poliomyelitis - number of reported cases,WHS3_49,1991,842.0
-Poliomyelitis - number of reported cases,WHS3_49,2008,866.0
-Poliomyelitis - number of reported cases,WHS3_49,1980,816.0
-Poliomyelitis - number of reported cases,WHS3_49,2003,355.0
-Poliomyelitis - number of reported cases,WHS3_49,2005,833.0
-Poliomyelitis - number of reported cases,WHS3_49,1994,502.0
-Poliomyelitis - number of reported cases,WHS3_49,1995,439.0
-Poliomyelitis - number of reported cases,WHS3_49,2018,34.0
-Poliomyelitis - number of reported cases,WHS3_49,2011,96.0
-Poliomyelitis - number of reported cases,WHS3_49,2004,782.0
-Poliomyelitis - number of reported cases,WHS3_49,2012,130.0
-Poliomyelitis - number of reported cases,WHS3_49,1996,942.0
-Poliomyelitis - number of reported cases,WHS3_49,2017,0.0
-Poliomyelitis - number of reported cases,WHS3_49,1988,1460.0
-Poliomyelitis - number of reported cases,WHS3_49,1989,455.0
-Poliomyelitis - number of reported cases,WHS3_49,2010,48.0
-Mumps - number of reported cases,WHS3_53,2011,0.0
-Pertussis - number of reported cases,WHS3_43,1998,25057.0
+Total number of notified TB cases,TB_c_notified,2014,91354.0
+Total number of notified TB cases,TB_c_notified,2008,90311.0
+Total number of notified TB cases,TB_c_notified,2005,66848.0
+Total number of notified TB cases,TB_c_notified,2004,59493.0
+Total number of notified TB cases,TB_c_notified,2011,93050.0
+Total number of notified TB cases,TB_c_notified,2007,86241.0
+Total number of notified TB cases,TB_c_notified,2013,100401.0
+Total number of notified TB cases,TB_c_notified,2006,74225.0
+Total number of notified TB cases,TB_c_notified,2009,94114.0
+Total number of notified TB cases,TB_c_notified,2012,97853.0
+Total number of notified TB cases,TB_c_notified,2003,46596.0
+Total number of notified TB cases,TB_c_notified,2010,90447.0
+Treatment success rate: previously treated TB cases,TB_c_ret_tsr,1996,71.0
+Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2012,83.0
+Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2002,73.0
+Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2015,84.0
+Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2009,81.0
+Treatment success rate: previously treated TB cases,TB_c_ret_tsr,1999,74.0
+Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2004,73.0
+Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2006,77.0
+Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2018,89.0
+Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2013,83.0
+Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2008,76.0
+Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2011,82.0
+Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2000,71.0
+Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2022,79.0
+Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2019,78.0
+Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2005,66.0
+Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2016,83.0
+Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2021,78.0
+Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2017,82.0
+Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2007,67.0
+Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2010,82.0
+Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2001,71.0
+Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2014,83.0
+Treatment success rate: XDR-TB cases,TB_c_xdr_tsr,2014,0.0
+Treatment success rate: XDR-TB cases,TB_c_xdr_tsr,2019,67.0
+Treatment success rate: XDR-TB cases,TB_c_xdr_tsr,2013,0.0
+Treatment success rate: XDR-TB cases,TB_c_xdr_tsr,2020,88.0
+Confirmed cases of MDR-TB started treatment for MDR-TB (%),TB_conf_mdr_tx_pct,2011,40.0
+Confirmed cases of MDR-TB started treatment for MDR-TB (%),TB_conf_mdr_tx_pct,2012,100.0
+Confirmed cases of MDR-TB started treatment for MDR-TB (%),TB_conf_mdr_tx_pct,2010,110.0
+Confirmed cases of MDR-TB started treatment for MDR-TB (%),TB_conf_mdr_tx_pct,2009,0.0
+Confirmed cases of MDR-TB started treatment for MDR-TB (%),TB_conf_mdr_tx_pct,2008,0.0
+"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2013,87000.0
+"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2011,97000.0
+"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2017,61000.0
+"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2007,74000.0
+"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2023,25000.0
+"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2001,71000.0
+"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2016,67000.0
+"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2012,90000.0
+"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2003,62000.0
+"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2002,65000.0
+"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2009,91000.0
+"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2019,48000.0
+"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2022,28000.0
+"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2006,69000.0
+"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2005,64000.0
+"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2010,90000.0
+"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2020,35000.0
+"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2018,55000.0
+"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2004,61000.0
+"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2008,94000.0
+"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2000,79000.0
+"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2015,71000.0
+"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2021,28000.0
+"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2014,78000.0
+New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2007,0.1
+New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2010,0.1
+New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2009,0.1
+New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2021,76.0
+New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2020,67.0
+New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2018,65.0
+New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2022,82.0
+New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2008,0.37
+New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2019,79.0
+New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2015,64.0
+New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2023,84.0
+New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2017,55.0
+New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2016,55.0
+New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2011,0.1
+New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2012,0.1
+Treatment success rate: new TB cases,TB_c_new_tsr,2001,79.0
+Treatment success rate: new TB cases,TB_c_new_tsr,1995,49.0
+Treatment success rate: new TB cases,TB_c_new_tsr,2009,84.0
+Treatment success rate: new TB cases,TB_c_new_tsr,2017,86.0
+Treatment success rate: new TB cases,TB_c_new_tsr,2005,75.0
+Treatment success rate: new TB cases,TB_c_new_tsr,2014,87.0
+Treatment success rate: new TB cases,TB_c_new_tsr,2013,86.0
+Treatment success rate: new TB cases,TB_c_new_tsr,2008,78.0
+Treatment success rate: new TB cases,TB_c_new_tsr,2004,73.0
+Treatment success rate: new TB cases,TB_c_new_tsr,2018,87.0
+Treatment success rate: new TB cases,TB_c_new_tsr,1998,73.0
+Treatment success rate: new TB cases,TB_c_new_tsr,2022,93.0
+Treatment success rate: new TB cases,TB_c_new_tsr,1997,73.0
+Treatment success rate: new TB cases,TB_c_new_tsr,2016,86.0
+Treatment success rate: new TB cases,TB_c_new_tsr,2003,78.0
+Treatment success rate: new TB cases,TB_c_new_tsr,2019,88.0
+Treatment success rate: new TB cases,TB_c_new_tsr,2011,85.0
+Treatment success rate: new TB cases,TB_c_new_tsr,2020,90.0
+Treatment success rate: new TB cases,TB_c_new_tsr,2010,81.0
+Treatment success rate: new TB cases,TB_c_new_tsr,2007,82.0
+Treatment success rate: new TB cases,TB_c_new_tsr,2021,91.0
+Treatment success rate: new TB cases,TB_c_new_tsr,1996,32.0
+Treatment success rate: new TB cases,TB_c_new_tsr,2006,76.0
+Treatment success rate: new TB cases,TB_c_new_tsr,2002,79.0
+Treatment success rate: new TB cases,TB_c_new_tsr,2000,79.0
+Treatment success rate: new TB cases,TB_c_new_tsr,2015,84.0
+Treatment success rate: new TB cases,TB_c_new_tsr,2012,86.0
+Treatment success rate: new TB cases,TB_c_new_tsr,1999,75.0
+Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2020,82.0
+Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2022,81.0
+Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2011,73.0
+Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2015,76.0
+Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2009,80.0
+Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2018,76.0
+Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2016,77.0
+Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2013,80.0
+Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2019,81.0
+Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2021,80.0
+Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2017,76.0
+Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2012,79.0
+Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2014,79.0
+Number of incident tuberculosis cases in children aged 0 - 14,TB_e_inc_num_014,2023,59000.0
+Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2005,44.0
+Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2019,23.0
+Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2001,55.0
+Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2013,48.0
+Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2015,37.0
+Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2010,54.0
+Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2007,48.0
+Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2018,27.0
+Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2023,11.0
+Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2000,63.0
+Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2017,30.0
+Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2008,60.0
+Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2004,43.0
+Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2022,13.0
+Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2011,57.0
+Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2006,46.0
+Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2012,51.0
+Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2020,17.0
+Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2009,56.0
+Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2014,42.0
+Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2002,49.0
+Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2021,13.0
+Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2003,45.0
+Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2016,34.0
+Number of prevalent tuberculosis cases,TB_e_prev_num,2001,430000.0
+Number of prevalent tuberculosis cases,TB_e_prev_num,2004,450000.0
+Number of prevalent tuberculosis cases,TB_e_prev_num,2010,510000.0
+Number of prevalent tuberculosis cases,TB_e_prev_num,2011,530000.0
+Number of prevalent tuberculosis cases,TB_e_prev_num,2014,590000.0
+Number of prevalent tuberculosis cases,TB_e_prev_num,2012,540000.0
+Number of prevalent tuberculosis cases,TB_e_prev_num,2002,440000.0
+Number of prevalent tuberculosis cases,TB_e_prev_num,1999,400000.0
+Number of prevalent tuberculosis cases,TB_e_prev_num,2005,460000.0
+Number of prevalent tuberculosis cases,TB_e_prev_num,1992,330000.0
+Number of prevalent tuberculosis cases,TB_e_prev_num,1994,350000.0
+Number of prevalent tuberculosis cases,TB_e_prev_num,1996,370000.0
+Number of prevalent tuberculosis cases,TB_e_prev_num,1990,310000.0
+Number of prevalent tuberculosis cases,TB_e_prev_num,2008,490000.0
+Number of prevalent tuberculosis cases,TB_e_prev_num,2009,500000.0
+Number of prevalent tuberculosis cases,TB_e_prev_num,1997,380000.0
+Number of prevalent tuberculosis cases,TB_e_prev_num,1993,340000.0
+Number of prevalent tuberculosis cases,TB_e_prev_num,2013,560000.0
+Number of prevalent tuberculosis cases,TB_e_prev_num,1998,390000.0
+Number of prevalent tuberculosis cases,TB_e_prev_num,2007,480000.0
+Number of prevalent tuberculosis cases,TB_e_prev_num,1991,320000.0
+Number of prevalent tuberculosis cases,TB_e_prev_num,1995,360000.0
+Number of prevalent tuberculosis cases,TB_e_prev_num,2000,420000.0
+Number of prevalent tuberculosis cases,TB_e_prev_num,2006,470000.0
+Number of prevalent tuberculosis cases,TB_e_prev_num,2003,440000.0
+Retreatment cases: other,TB_ret_oth,2007,1686.0
+Retreatment cases: other,TB_ret_oth,2011,3966.0
+Retreatment cases: other,TB_ret_oth,2010,3928.0
+Retreatment cases: other,TB_ret_oth,2008,2213.0
+Retreatment cases: other,TB_ret_oth,2005,0.0
+Retreatment cases: other,TB_ret_oth,2001,1221.0
+Retreatment cases: other,TB_ret_oth,2012,3249.0
+Retreatment cases: other,TB_ret_oth,2000,820.0
+Retreatment cases: other,TB_ret_oth,2009,3123.0
+Retreatment cases: other,TB_ret_oth,1999,684.0
+Retreatment cases: other,TB_ret_oth,2006,1368.0
+Retreatment cases: other,TB_ret_oth,2002,1383.0
+Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,2004,1278.0
+Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,2009,1628.0
+Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,2011,1587.0
+Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,1999,0.0
+Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,2007,1303.0
+Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,2008,1499.0
+Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,2005,1802.0
+Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,2001,752.0
+Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,2006,1336.0
+Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,2003,1263.0
+Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,2012,1174.0
+Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,2000,564.0
+Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,2010,1650.0
+Confirmed cases of MDR-TB,TB_mdr,2007,45.0
+Confirmed cases of MDR-TB,TB_mdr,2011,95.0
+Confirmed cases of MDR-TB,TB_mdr,2012,107.0
+Confirmed cases of MDR-TB,TB_mdr,2008,23.0
+Confirmed cases of MDR-TB,TB_mdr,2010,21.0
+Confirmed cases of MDR-TB,TB_mdr,2009,28.0
+"New or unknown treatment history cases: Pulmonary, bacteriologically confirmed",TB_new_labconf,2013,52811.0
+"New or unknown treatment history cases: Pulmonary, bacteriologically confirmed",TB_new_labconf,2017,73660.0
+"New or unknown treatment history cases: Pulmonary, bacteriologically confirmed",TB_new_labconf,2018,74080.0
+"New or unknown treatment history cases: Pulmonary, bacteriologically confirmed",TB_new_labconf,2019,81717.0
+"New or unknown treatment history cases: Pulmonary, bacteriologically confirmed",TB_new_labconf,2020,98358.0
+"New or unknown treatment history cases: Pulmonary, bacteriologically confirmed",TB_new_labconf,2014,49825.0
+"New or unknown treatment history cases: Pulmonary, bacteriologically confirmed",TB_new_labconf,2015,54012.0
+"New or unknown treatment history cases: Pulmonary, bacteriologically confirmed",TB_new_labconf,2016,65154.0
+"New or unknown treatment history cases: Pulmonary, bacteriologically confirmed",TB_new_labconf,2022,222279.0
+"New or unknown treatment history cases: Pulmonary, bacteriologically confirmed",TB_new_labconf,2021,154698.0
+"New or unknown treatment history cases: Pulmonary, bacteriologically confirmed",TB_new_labconf,2023,296338.0
+New cases: pulmonary smear-negative,TB_new_sn,2007,32088.0
+New cases: pulmonary smear-negative,TB_new_sn,2005,22705.0
+New cases: pulmonary smear-negative,TB_new_sn,1995,3364.0
+New cases: pulmonary smear-negative,TB_new_sn,2010,32616.0
+New cases: pulmonary smear-negative,TB_new_sn,2000,6613.0
+New cases: pulmonary smear-negative,TB_new_sn,2008,34211.0
+New cases: pulmonary smear-negative,TB_new_sn,2009,37540.0
+New cases: pulmonary smear-negative,TB_new_sn,1998,5382.0
+New cases: pulmonary smear-negative,TB_new_sn,1997,4251.0
+New cases: pulmonary smear-negative,TB_new_sn,2003,13276.0
+New cases: pulmonary smear-negative,TB_new_sn,2011,33034.0
+New cases: pulmonary smear-negative,TB_new_sn,2006,25782.0
+New cases: pulmonary smear-negative,TB_new_sn,2004,20134.0
+New cases: pulmonary smear-negative,TB_new_sn,1999,5641.0
+New cases: pulmonary smear-negative,TB_new_sn,2002,14591.0
+New cases: pulmonary smear-negative,TB_new_sn,1996,7395.0
+New cases: pulmonary smear-negative,TB_new_sn,2012,32972.0
+New cases: pulmonary smear-negative,TB_new_sn,2001,20387.0
+Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,2008,925.0
+Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,2004,662.0
+Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,2009,774.0
+Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,1999,684.0
+Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,2007,835.0
+Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,2001,469.0
+Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,2000,256.0
+Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,2010,748.0
+Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,2003,888.0
+Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,2006,787.0
+Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,2005,1056.0
+Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,2012,612.0
+Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,2011,719.0
+Tuberculosis - new and relapse cases,TB_tot_newrel,1992,14802.0
+Tuberculosis - new and relapse cases,TB_tot_newrel,1996,15020.0
+Tuberculosis - new and relapse cases,TB_tot_newrel,2006,70734.0
+Tuberculosis - new and relapse cases,TB_tot_newrel,2003,44184.0
+Tuberculosis - new and relapse cases,TB_tot_newrel,2005,62598.0
+Tuberculosis - new and relapse cases,TB_tot_newrel,1999,24157.0
+Tuberculosis - new and relapse cases,TB_tot_newrel,1997,16660.0
+Tuberculosis - new and relapse cases,TB_tot_newrel,2008,85674.0
+Tuberculosis - new and relapse cases,TB_tot_newrel,1994,8449.0
+Tuberculosis - new and relapse cases,TB_tot_newrel,2001,45842.0
+Tuberculosis - new and relapse cases,TB_tot_newrel,2009,88589.0
+Tuberculosis - new and relapse cases,TB_tot_newrel,1993,11601.0
+Tuberculosis - new and relapse cases,TB_tot_newrel,1998,20249.0
+Tuberculosis - new and relapse cases,TB_tot_newrel,1990,20122.0
+Tuberculosis - new and relapse cases,TB_tot_newrel,2011,86778.0
+Tuberculosis - new and relapse cases,TB_tot_newrel,2007,82417.0
+Tuberculosis - new and relapse cases,TB_tot_newrel,1995,13423.0
+Tuberculosis - new and relapse cases,TB_tot_newrel,1991,19626.0
+Tuberculosis - new and relapse cases,TB_tot_newrel,2002,38628.0
+Tuberculosis - new and relapse cases,TB_tot_newrel,2000,25821.0
+Tuberculosis - new and relapse cases,TB_tot_newrel,2010,84121.0
+Tuberculosis - new and relapse cases,TB_tot_newrel,2004,57246.0
+Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2016,71.0
+Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2009,0.31
+Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2023,97.0
+Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2011,0.86
+Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2010,0.21
+Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2021,94.0
+Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2022,97.0
+Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2019,100.0
+Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2020,91.0
+Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2018,88.0
+Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2012,4.2
+Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2008,0.27
+Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2015,64.0
+Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2017,61.0
+Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2007,0.67
+Cases started on MDR-TB treatment,TB_c_mdr_tx,2019,1975.0
+Cases started on MDR-TB treatment,TB_c_mdr_tx,2010,23.0
+Cases started on MDR-TB treatment,TB_c_mdr_tx,2012,125.0
+Cases started on MDR-TB treatment,TB_c_mdr_tx,2020,1584.0
+Cases started on MDR-TB treatment,TB_c_mdr_tx,2018,1895.0
+Cases started on MDR-TB treatment,TB_c_mdr_tx,2011,38.0
+Cases started on MDR-TB treatment,TB_c_mdr_tx,2023,3047.0
+Cases started on MDR-TB treatment,TB_c_mdr_tx,2013,426.0
+Cases started on MDR-TB treatment,TB_c_mdr_tx,2014,423.0
+Cases started on MDR-TB treatment,TB_c_mdr_tx,2021,2197.0
+Cases started on MDR-TB treatment,TB_c_mdr_tx,2016,1251.0
+Cases started on MDR-TB treatment,TB_c_mdr_tx,2015,656.0
+Cases started on MDR-TB treatment,TB_c_mdr_tx,2022,3185.0
+Cases started on MDR-TB treatment,TB_c_mdr_tx,2008,0.0
+Cases started on MDR-TB treatment,TB_c_mdr_tx,2017,1786.0
+Cases started on MDR-TB treatment,TB_c_mdr_tx,2009,0.0
+Tuberculosis - new and relapse cases,TB_c_newinc,2020,135784.0
+Tuberculosis - new and relapse cases,TB_c_newinc,2004,57553.0
+Tuberculosis - new and relapse cases,TB_c_newinc,2000,25821.0
+Tuberculosis - new and relapse cases,TB_c_newinc,2017,102387.0
+Tuberculosis - new and relapse cases,TB_c_newinc,2014,86464.0
+Tuberculosis - new and relapse cases,TB_c_newinc,2003,44445.0
+Tuberculosis - new and relapse cases,TB_c_newinc,2013,94825.0
+Tuberculosis - new and relapse cases,TB_c_newinc,2006,70734.0
+Tuberculosis - new and relapse cases,TB_c_newinc,2016,97279.0
+Tuberculosis - new and relapse cases,TB_c_newinc,2015,87211.0
+Tuberculosis - new and relapse cases,TB_c_newinc,2008,85674.0
+Tuberculosis - new and relapse cases,TB_c_newinc,2022,282184.0
+Tuberculosis - new and relapse cases,TB_c_newinc,2021,204725.0
+Tuberculosis - new and relapse cases,TB_c_newinc,2009,88589.0
+Tuberculosis - new and relapse cases,TB_c_newinc,2005,63990.0
+Tuberculosis - new and relapse cases,TB_c_newinc,2012,92818.0
+Tuberculosis - new and relapse cases,TB_c_newinc,2010,84121.0
+Tuberculosis - new and relapse cases,TB_c_newinc,2002,38628.0
+Tuberculosis - new and relapse cases,TB_c_newinc,2001,45842.0
+Tuberculosis - new and relapse cases,TB_c_newinc,2007,82417.0
+Tuberculosis - new and relapse cases,TB_c_newinc,2018,103921.0
+Tuberculosis - new and relapse cases,TB_c_newinc,2023,367250.0
+Tuberculosis - new and relapse cases,TB_c_newinc,2011,86778.0
+Tuberculosis - new and relapse cases,TB_c_newinc,2019,117320.0
+Number of incident tuberculosis cases,TB_e_inc_num,2020,469000.0
+Number of incident tuberculosis cases,TB_e_inc_num,2021,479000.0
+Number of incident tuberculosis cases,TB_e_inc_num,2003,301000.0
+Number of incident tuberculosis cases,TB_e_inc_num,2014,407000.0
+Number of incident tuberculosis cases,TB_e_inc_num,2008,345000.0
+Number of incident tuberculosis cases,TB_e_inc_num,2009,355000.0
+Number of incident tuberculosis cases,TB_e_inc_num,2002,292000.0
+Number of incident tuberculosis cases,TB_e_inc_num,2000,277000.0
+Number of incident tuberculosis cases,TB_e_inc_num,2011,375000.0
+Number of incident tuberculosis cases,TB_e_inc_num,2007,336000.0
+Number of incident tuberculosis cases,TB_e_inc_num,2022,489000.0
+Number of incident tuberculosis cases,TB_e_inc_num,2010,365000.0
+Number of incident tuberculosis cases,TB_e_inc_num,2004,309000.0
+Number of incident tuberculosis cases,TB_e_inc_num,2016,428000.0
+Number of incident tuberculosis cases,TB_e_inc_num,2023,499000.0
+Number of incident tuberculosis cases,TB_e_inc_num,2012,386000.0
+Number of incident tuberculosis cases,TB_e_inc_num,2005,318000.0
+Number of incident tuberculosis cases,TB_e_inc_num,2017,439000.0
+Number of incident tuberculosis cases,TB_e_inc_num,2001,284000.0
+Number of incident tuberculosis cases,TB_e_inc_num,2018,449000.0
+Number of incident tuberculosis cases,TB_e_inc_num,2015,418000.0
+Number of incident tuberculosis cases,TB_e_inc_num,2006,327000.0
+Number of incident tuberculosis cases,TB_e_inc_num,2013,397000.0
+Number of incident tuberculosis cases,TB_e_inc_num,2019,459000.0
+Congenital Rubella Syndrome - number of reported cases,WHS3_55,2011,0.0
+Pertussis - number of reported cases,WHS3_43,1993,23800.0
+Pertussis - number of reported cases,WHS3_43,2002,11894.0
 Pertussis - number of reported cases,WHS3_43,1989,33555.0
 Pertussis - number of reported cases,WHS3_43,1980,48996.0
 Pertussis - number of reported cases,WHS3_43,2013,8530.0
 Pertussis - number of reported cases,WHS3_43,1986,42193.0
-Pertussis - number of reported cases,WHS3_43,2006,10997.0
+Pertussis - number of reported cases,WHS3_43,1985,92266.0
 Pertussis - number of reported cases,WHS3_43,1987,51316.0
 Pertussis - number of reported cases,WHS3_43,2004,10976.0
 Pertussis - number of reported cases,WHS3_43,2011,0.0
 Pertussis - number of reported cases,WHS3_43,1991,18685.0
 Pertussis - number of reported cases,WHS3_43,2015,6592.0
+Pertussis - number of reported cases,WHS3_43,1994,22275.0
 Pertussis - number of reported cases,WHS3_43,1982,77830.0
 Pertussis - number of reported cases,WHS3_43,2014,9559.0
 Pertussis - number of reported cases,WHS3_43,1977,42452.0
-Pertussis - number of reported cases,WHS3_43,1983,70024.0
 Pertussis - number of reported cases,WHS3_43,2005,15609.0
 Pertussis - number of reported cases,WHS3_43,2012,11628.0
-Pertussis - number of reported cases,WHS3_43,2018,7897.0
 Pertussis - number of reported cases,WHS3_43,1975,34362.0
+Pertussis - number of reported cases,WHS3_43,1976,37949.0
+Pertussis - number of reported cases,WHS3_43,1978,45440.0
 Pertussis - number of reported cases,WHS3_43,1984,62751.0
 Pertussis - number of reported cases,WHS3_43,1979,58719.0
 Pertussis - number of reported cases,WHS3_43,1990,42929.0
 Pertussis - number of reported cases,WHS3_43,1996,24766.0
 Pertussis - number of reported cases,WHS3_43,1988,34920.0
 Pertussis - number of reported cases,WHS3_43,2007,12573.0
-Pertussis - number of reported cases,WHS3_43,1974,31177.0
-Pertussis - number of reported cases,WHS3_43,1993,23800.0
-Pertussis - number of reported cases,WHS3_43,2002,11894.0
+Pertussis - number of reported cases,WHS3_43,1998,25057.0
 Pertussis - number of reported cases,WHS3_43,2017,4244.0
-Pertussis - number of reported cases,WHS3_43,1985,92266.0
+Pertussis - number of reported cases,WHS3_43,2006,10997.0
 Pertussis - number of reported cases,WHS3_43,2009,11281.0
-Pertussis - number of reported cases,WHS3_43,1994,22275.0
 Pertussis - number of reported cases,WHS3_43,2000,38910.0
 Pertussis - number of reported cases,WHS3_43,2008,13240.0
-Pertussis - number of reported cases,WHS3_43,1976,37949.0
+Pertussis - number of reported cases,WHS3_43,1983,70024.0
+Pertussis - number of reported cases,WHS3_43,2018,7897.0
 Pertussis - number of reported cases,WHS3_43,2001,34517.0
-Pertussis - number of reported cases,WHS3_43,1978,45440.0
 Pertussis - number of reported cases,WHS3_43,1981,56913.0
 Pertussis - number of reported cases,WHS3_43,1992,22164.0
+Pertussis - number of reported cases,WHS3_43,1974,31177.0
 Total tetanus - number of reported cases,WHS3_46,1984,2924.0
 Total tetanus - number of reported cases,WHS3_46,2000,1643.0
 Total tetanus - number of reported cases,WHS3_46,1985,2679.0
@@ -423,7 +714,101 @@ Total tetanus - number of reported cases,WHS3_46,1988,3883.0
 Total tetanus - number of reported cases,WHS3_46,1978,3223.0
 Total tetanus - number of reported cases,WHS3_46,1981,3035.0
 Total tetanus - number of reported cases,WHS3_46,1991,3392.0
-Congenital Rubella Syndrome - number of reported cases,WHS3_55,2011,0.0
+Japanese encephalitis - number of reported cases,WHS3_42,2011,0.0
+Number of new leprosy cases,WHS3_45,2017,2447.0
+Number of new leprosy cases,WHS3_45,2012,3805.0
+Number of new leprosy cases,WHS3_45,2007,4665.0
+Number of new leprosy cases,WHS3_45,2006,3544.0
+Number of new leprosy cases,WHS3_45,2018,2095.0
+Number of new leprosy cases,WHS3_45,2010,3913.0
+Number of new leprosy cases,WHS3_45,2013,3385.0
+Number of new leprosy cases,WHS3_45,2005,5024.0
+Number of new leprosy cases,WHS3_45,2023,2425.0
+Number of new leprosy cases,WHS3_45,2008,4899.0
+Number of new leprosy cases,WHS3_45,2014,2983.0
+Number of new leprosy cases,WHS3_45,2024,1770.0
+Number of new leprosy cases,WHS3_45,2022,2393.0
+Number of new leprosy cases,WHS3_45,2020,1417.0
+Number of new leprosy cases,WHS3_45,2021,2398.0
+Number of new leprosy cases,WHS3_45,2015,2892.0
+Number of new leprosy cases,WHS3_45,2016,2687.0
+Number of new leprosy cases,WHS3_45,2009,4219.0
+Number of new leprosy cases,WHS3_45,2019,2424.0
+Poliomyelitis - number of reported cases,WHS3_49,1983,392.0
+Poliomyelitis - number of reported cases,WHS3_49,2002,202.0
+Poliomyelitis - number of reported cases,WHS3_49,1997,383.0
+Poliomyelitis - number of reported cases,WHS3_49,2009,543.0
+Poliomyelitis - number of reported cases,WHS3_49,1985,959.0
+Poliomyelitis - number of reported cases,WHS3_49,1982,395.0
+Poliomyelitis - number of reported cases,WHS3_49,2014,36.0
+Poliomyelitis - number of reported cases,WHS3_49,1993,1083.0
+Poliomyelitis - number of reported cases,WHS3_49,1981,335.0
+Poliomyelitis - number of reported cases,WHS3_49,2000,638.0
+Poliomyelitis - number of reported cases,WHS3_49,2001,56.0
+Poliomyelitis - number of reported cases,WHS3_49,2012,130.0
+Poliomyelitis - number of reported cases,WHS3_49,1990,1873.0
+Poliomyelitis - number of reported cases,WHS3_49,1996,942.0
+Poliomyelitis - number of reported cases,WHS3_49,2013,57.0
+Poliomyelitis - number of reported cases,WHS3_49,2006,1144.0
+Poliomyelitis - number of reported cases,WHS3_49,2017,0.0
+Poliomyelitis - number of reported cases,WHS3_49,1984,625.0
+Poliomyelitis - number of reported cases,WHS3_49,1988,1460.0
+Poliomyelitis - number of reported cases,WHS3_49,1986,453.0
+Poliomyelitis - number of reported cases,WHS3_49,2016,5.0
+Poliomyelitis - number of reported cases,WHS3_49,1991,842.0
+Poliomyelitis - number of reported cases,WHS3_49,2008,866.0
+Poliomyelitis - number of reported cases,WHS3_49,1980,816.0
+Poliomyelitis - number of reported cases,WHS3_49,2003,355.0
+Poliomyelitis - number of reported cases,WHS3_49,2005,833.0
+Poliomyelitis - number of reported cases,WHS3_49,1994,502.0
+Poliomyelitis - number of reported cases,WHS3_49,1995,439.0
+Poliomyelitis - number of reported cases,WHS3_49,2018,34.0
+Poliomyelitis - number of reported cases,WHS3_49,2011,96.0
+Poliomyelitis - number of reported cases,WHS3_49,1999,981.0
+Poliomyelitis - number of reported cases,WHS3_49,2007,356.0
+Poliomyelitis - number of reported cases,WHS3_49,2004,782.0
+Poliomyelitis - number of reported cases,WHS3_49,2015,1.0
+Poliomyelitis - number of reported cases,WHS3_49,1998,312.0
+Poliomyelitis - number of reported cases,WHS3_49,1992,957.0
+Poliomyelitis - number of reported cases,WHS3_49,1987,606.0
+Poliomyelitis - number of reported cases,WHS3_49,1989,455.0
+Poliomyelitis - number of reported cases,WHS3_49,2010,48.0
+Mumps - number of reported cases,WHS3_53,2011,0.0
+New cases: other,TB_new_oth,2009,0.0
+New cases: other,TB_new_oth,2006,0.0
+New cases: other,TB_new_oth,2011,0.0
+New cases: other,TB_new_oth,2007,0.0
+New cases: other,TB_new_oth,2005,0.0
+New cases: other,TB_new_oth,2008,0.0
+New cases: other,TB_new_oth,2010,0.0
+New cases: pulmonary smear unknown/not done,TB_new_su,2006,0.0
+New cases: pulmonary smear unknown/not done,TB_new_su,2004,0.0
+New cases: pulmonary smear unknown/not done,TB_new_su,2010,0.0
+New cases: pulmonary smear unknown/not done,TB_new_su,2008,0.0
+New cases: pulmonary smear unknown/not done,TB_new_su,2011,0.0
+New cases: pulmonary smear unknown/not done,TB_new_su,2009,0.0
+New cases: pulmonary smear unknown/not done,TB_new_su,2007,0.0
+New cases: pulmonary smear unknown/not done,TB_new_su,2005,0.0
+New cases: pulmonary smear unknown/not done,TB_new_su,2001,0.0
+New cases: pulmonary smear unknown/not done,TB_new_su,2002,5.0
+New cases: pulmonary smear unknown/not done,TB_new_su,2003,0.0
+Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2007,45.0
+Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2008,23.0
+Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2014,798.0
+Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2022,3932.0
+Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2023,3642.0
+Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2016,1686.0
+Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2017,2286.0
+Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2010,26.0
+Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2015,1241.0
+Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2021,2975.0
+Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2011,183.0
+Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2012,439.0
+Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2013,554.0
+Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2009,47.0
+Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2018,2275.0
+Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2020,2061.0
+Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2019,2384.0
 Diphtheria - number of reported cases,WHS3_41,1988,1930.0
 Diphtheria - number of reported cases,WHS3_41,1991,2849.0
 Diphtheria - number of reported cases,WHS3_41,2024,10595.0
@@ -548,463 +933,80 @@ Rubella - number of reported cases,WHS3_57,2013,88.0
 Rubella - number of reported cases,WHS3_57,2009,234.0
 Rubella - number of reported cases,WHS3_57,2011,3691.0
 Rubella - number of reported cases,WHS3_57,2024,730.0
+Measles - number of reported cases,WHS3_62,1997,21385.0
+Measles - number of reported cases,WHS3_62,1980,162106.0
 Measles - number of reported cases,WHS3_62,2005,110927.0
-Measles - number of reported cases,WHS3_62,2016,17136.0
+Measles - number of reported cases,WHS3_62,1999,217151.0
 Measles - number of reported cases,WHS3_62,1983,136778.0
-Measles - number of reported cases,WHS3_62,1988,75908.0
+Measles - number of reported cases,WHS3_62,2019,28094.0
 Measles - number of reported cases,WHS3_62,2010,8491.0
+Measles - number of reported cases,WHS3_62,1977,282897.0
 Measles - number of reported cases,WHS3_62,1990,115682.0
+Measles - number of reported cases,WHS3_62,1998,143098.0
 Measles - number of reported cases,WHS3_62,2018,7063.0
-Measles - number of reported cases,WHS3_62,2020,8877.0
 Measles - number of reported cases,WHS3_62,2022,23983.0
 Measles - number of reported cases,WHS3_62,2014,6855.0
-Measles - number of reported cases,WHS3_62,2000,212183.0
-Measles - number of reported cases,WHS3_62,2012,6447.0
 Measles - number of reported cases,WHS3_62,1992,85965.0
 Measles - number of reported cases,WHS3_62,2024,14999.0
-Measles - number of reported cases,WHS3_62,1995,12393.0
-Measles - number of reported cases,WHS3_62,2003,141258.0
 Measles - number of reported cases,WHS3_62,2009,1272.0
 Measles - number of reported cases,WHS3_62,2004,31521.0
 Measles - number of reported cases,WHS3_62,1996,88675.0
 Measles - number of reported cases,WHS3_62,2013,52852.0
+Measles - number of reported cases,WHS3_62,1993,54734.0
 Measles - number of reported cases,WHS3_62,1981,129671.0
-Measles - number of reported cases,WHS3_62,1982,139785.0
 Measles - number of reported cases,WHS3_62,2006,704.0
-Measles - number of reported cases,WHS3_62,2011,18843.0
 Measles - number of reported cases,WHS3_62,2017,11190.0
+Measles - number of reported cases,WHS3_62,1974,115634.0
+Measles - number of reported cases,WHS3_62,1994,106081.0
 Measles - number of reported cases,WHS3_62,2007,2613.0
 Measles - number of reported cases,WHS3_62,2021,10649.0
 Measles - number of reported cases,WHS3_62,1975,134976.0
-Measles - number of reported cases,WHS3_62,2001,168107.0
-Measles - number of reported cases,WHS3_62,2008,9960.0
-Measles - number of reported cases,WHS3_62,1979,176468.0
-Measles - number of reported cases,WHS3_62,1984,182591.0
-Measles - number of reported cases,WHS3_62,1997,21385.0
-Measles - number of reported cases,WHS3_62,1980,162106.0
-Measles - number of reported cases,WHS3_62,1985,161768.0
-Measles - number of reported cases,WHS3_62,1999,217151.0
-Measles - number of reported cases,WHS3_62,2019,28094.0
-Measles - number of reported cases,WHS3_62,1986,115743.0
-Measles - number of reported cases,WHS3_62,2015,12423.0
-Measles - number of reported cases,WHS3_62,1977,282897.0
-Measles - number of reported cases,WHS3_62,1998,143098.0
-Measles - number of reported cases,WHS3_62,1993,54734.0
-Measles - number of reported cases,WHS3_62,1987,77566.0
-Measles - number of reported cases,WHS3_62,1974,115634.0
-Measles - number of reported cases,WHS3_62,1994,106081.0
-Measles - number of reported cases,WHS3_62,1991,44026.0
 Measles - number of reported cases,WHS3_62,2023,20143.0
 Measles - number of reported cases,WHS3_62,1989,33678.0
+Measles - number of reported cases,WHS3_62,1979,176468.0
 Measles - number of reported cases,WHS3_62,2002,42007.0
 Measles - number of reported cases,WHS3_62,1976,153560.0
+Measles - number of reported cases,WHS3_62,1984,182591.0
+Measles - number of reported cases,WHS3_62,1985,161768.0
+Measles - number of reported cases,WHS3_62,2016,17136.0
+Measles - number of reported cases,WHS3_62,1988,75908.0
+Measles - number of reported cases,WHS3_62,1986,115743.0
+Measles - number of reported cases,WHS3_62,2015,12423.0
+Measles - number of reported cases,WHS3_62,2020,8877.0
+Measles - number of reported cases,WHS3_62,2000,212183.0
+Measles - number of reported cases,WHS3_62,2012,6447.0
+Measles - number of reported cases,WHS3_62,1995,12393.0
+Measles - number of reported cases,WHS3_62,2003,141258.0
+Measles - number of reported cases,WHS3_62,1982,139785.0
+Measles - number of reported cases,WHS3_62,1987,77566.0
+Measles - number of reported cases,WHS3_62,2011,18843.0
+Measles - number of reported cases,WHS3_62,2001,168107.0
+Measles - number of reported cases,WHS3_62,2008,9960.0
+Measles - number of reported cases,WHS3_62,1991,44026.0
 Measles - number of reported cases,WHS3_62,1978,188727.0
-Total number of notified TB cases,TB_c_notified,2009,94114.0
-Total number of notified TB cases,TB_c_notified,2004,59493.0
-Total number of notified TB cases,TB_c_notified,2007,86241.0
-Total number of notified TB cases,TB_c_notified,2003,46596.0
-Total number of notified TB cases,TB_c_notified,2013,100401.0
-Total number of notified TB cases,TB_c_notified,2008,90311.0
-Total number of notified TB cases,TB_c_notified,2006,74225.0
-Total number of notified TB cases,TB_c_notified,2005,66848.0
-Total number of notified TB cases,TB_c_notified,2010,90447.0
-Total number of notified TB cases,TB_c_notified,2011,93050.0
-Total number of notified TB cases,TB_c_notified,2012,97853.0
-Total number of notified TB cases,TB_c_notified,2014,91354.0
-Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2008,76.0
-Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2015,84.0
-Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2019,78.0
-Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2000,71.0
-Treatment success rate: previously treated TB cases,TB_c_ret_tsr,1999,74.0
-Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2018,89.0
-Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2022,79.0
-Treatment success rate: previously treated TB cases,TB_c_ret_tsr,1996,71.0
-Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2021,78.0
-Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2005,66.0
-Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2002,73.0
-Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2013,83.0
-Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2010,82.0
-Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2001,71.0
-Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2007,67.0
-Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2006,77.0
-Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2016,83.0
-Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2004,73.0
-Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2011,82.0
-Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2012,83.0
-Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2017,82.0
-Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2009,81.0
-Treatment success rate: previously treated TB cases,TB_c_ret_tsr,2014,83.0
-Treatment success rate: XDR-TB cases,TB_c_xdr_tsr,2014,0.0
-Treatment success rate: XDR-TB cases,TB_c_xdr_tsr,2020,88.0
-Treatment success rate: XDR-TB cases,TB_c_xdr_tsr,2019,67.0
-Treatment success rate: XDR-TB cases,TB_c_xdr_tsr,2013,0.0
-Confirmed cases of MDR-TB started treatment for MDR-TB (%),TB_conf_mdr_tx_pct,2011,40.0
-Confirmed cases of MDR-TB started treatment for MDR-TB (%),TB_conf_mdr_tx_pct,2008,0.0
-Confirmed cases of MDR-TB started treatment for MDR-TB (%),TB_conf_mdr_tx_pct,2009,0.0
-Confirmed cases of MDR-TB started treatment for MDR-TB (%),TB_conf_mdr_tx_pct,2010,110.0
-Confirmed cases of MDR-TB started treatment for MDR-TB (%),TB_conf_mdr_tx_pct,2012,100.0
-"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2000,79000.0
-"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2013,87000.0
-"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2011,97000.0
-"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2017,61000.0
-"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2007,74000.0
-"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2023,25000.0
-"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2001,71000.0
-"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2021,28000.0
-"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2016,67000.0
-"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2014,78000.0
-"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2012,90000.0
-"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2002,65000.0
-"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2019,48000.0
-"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2022,28000.0
-"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2006,69000.0
-"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2005,64000.0
-"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2010,90000.0
-"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2008,94000.0
-"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2015,71000.0
-"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2003,62000.0
-"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2009,91000.0
-"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2020,35000.0
-"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2018,55000.0
-"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,2004,61000.0
-Retreatment cases: other,TB_ret_oth,2007,1686.0
-Retreatment cases: other,TB_ret_oth,2011,3966.0
-Retreatment cases: other,TB_ret_oth,2010,3928.0
-Retreatment cases: other,TB_ret_oth,2005,0.0
-Retreatment cases: other,TB_ret_oth,2001,1221.0
-Retreatment cases: other,TB_ret_oth,2012,3249.0
-Retreatment cases: other,TB_ret_oth,2000,820.0
-Retreatment cases: other,TB_ret_oth,2009,3123.0
-Retreatment cases: other,TB_ret_oth,2002,1383.0
-Retreatment cases: other,TB_ret_oth,1999,684.0
-Retreatment cases: other,TB_ret_oth,2006,1368.0
-Retreatment cases: other,TB_ret_oth,2008,2213.0
-Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,2004,1278.0
-Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,2009,1628.0
-Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,2011,1587.0
-Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,2006,1336.0
-Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,2008,1499.0
-Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,2003,1263.0
-Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,2010,1650.0
-Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,2005,1802.0
-Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,2001,752.0
-Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,1999,0.0
-Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,2007,1303.0
-Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,2012,1174.0
-Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,2000,564.0
-Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2007,0.67
-Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2016,71.0
-Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2009,0.31
-Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2023,97.0
-Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2011,0.86
-Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2010,0.21
-Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2021,94.0
-Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2022,97.0
-Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2019,100.0
-Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2020,91.0
-Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2018,88.0
-Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2012,4.2
-Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2008,0.27
-Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2015,64.0
-Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,2017,61.0
-Cases started on MDR-TB treatment,TB_c_mdr_tx,2019,1975.0
-Cases started on MDR-TB treatment,TB_c_mdr_tx,2022,3185.0
-Cases started on MDR-TB treatment,TB_c_mdr_tx,2012,125.0
-Cases started on MDR-TB treatment,TB_c_mdr_tx,2020,1584.0
-Cases started on MDR-TB treatment,TB_c_mdr_tx,2018,1895.0
-Cases started on MDR-TB treatment,TB_c_mdr_tx,2008,0.0
-Cases started on MDR-TB treatment,TB_c_mdr_tx,2011,38.0
-Cases started on MDR-TB treatment,TB_c_mdr_tx,2023,3047.0
-Cases started on MDR-TB treatment,TB_c_mdr_tx,2013,426.0
-Cases started on MDR-TB treatment,TB_c_mdr_tx,2017,1786.0
-Cases started on MDR-TB treatment,TB_c_mdr_tx,2014,423.0
-Cases started on MDR-TB treatment,TB_c_mdr_tx,2021,2197.0
-Cases started on MDR-TB treatment,TB_c_mdr_tx,2016,1251.0
-Cases started on MDR-TB treatment,TB_c_mdr_tx,2009,0.0
-Cases started on MDR-TB treatment,TB_c_mdr_tx,2015,656.0
-Cases started on MDR-TB treatment,TB_c_mdr_tx,2010,23.0
-Tuberculosis - new and relapse cases,TB_c_newinc,2015,87211.0
-Tuberculosis - new and relapse cases,TB_c_newinc,2005,63990.0
-Tuberculosis - new and relapse cases,TB_c_newinc,2003,44445.0
-Tuberculosis - new and relapse cases,TB_c_newinc,2006,70734.0
-Tuberculosis - new and relapse cases,TB_c_newinc,2004,57553.0
-Tuberculosis - new and relapse cases,TB_c_newinc,2018,103921.0
-Tuberculosis - new and relapse cases,TB_c_newinc,2010,84121.0
-Tuberculosis - new and relapse cases,TB_c_newinc,2016,97279.0
-Tuberculosis - new and relapse cases,TB_c_newinc,2000,25821.0
-Tuberculosis - new and relapse cases,TB_c_newinc,2002,38628.0
-Tuberculosis - new and relapse cases,TB_c_newinc,2023,367250.0
-Tuberculosis - new and relapse cases,TB_c_newinc,2020,135784.0
-Tuberculosis - new and relapse cases,TB_c_newinc,2013,94825.0
-Tuberculosis - new and relapse cases,TB_c_newinc,2008,85674.0
-Tuberculosis - new and relapse cases,TB_c_newinc,2017,102387.0
-Tuberculosis - new and relapse cases,TB_c_newinc,2022,282184.0
-Tuberculosis - new and relapse cases,TB_c_newinc,2021,204725.0
-Tuberculosis - new and relapse cases,TB_c_newinc,2009,88589.0
-Tuberculosis - new and relapse cases,TB_c_newinc,2012,92818.0
-Tuberculosis - new and relapse cases,TB_c_newinc,2014,86464.0
-Tuberculosis - new and relapse cases,TB_c_newinc,2001,45842.0
-Tuberculosis - new and relapse cases,TB_c_newinc,2007,82417.0
-Tuberculosis - new and relapse cases,TB_c_newinc,2011,86778.0
-Tuberculosis - new and relapse cases,TB_c_newinc,2019,117320.0
-Number of incident tuberculosis cases,TB_e_inc_num,2020,469000.0
-Number of incident tuberculosis cases,TB_e_inc_num,2021,479000.0
-Number of incident tuberculosis cases,TB_e_inc_num,2003,301000.0
-Number of incident tuberculosis cases,TB_e_inc_num,2014,407000.0
-Number of incident tuberculosis cases,TB_e_inc_num,2008,345000.0
-Number of incident tuberculosis cases,TB_e_inc_num,2009,355000.0
-Number of incident tuberculosis cases,TB_e_inc_num,2002,292000.0
-Number of incident tuberculosis cases,TB_e_inc_num,2000,277000.0
-Number of incident tuberculosis cases,TB_e_inc_num,2011,375000.0
-Number of incident tuberculosis cases,TB_e_inc_num,2007,336000.0
-Number of incident tuberculosis cases,TB_e_inc_num,2022,489000.0
-Number of incident tuberculosis cases,TB_e_inc_num,2010,365000.0
-Number of incident tuberculosis cases,TB_e_inc_num,2004,309000.0
-Number of incident tuberculosis cases,TB_e_inc_num,2016,428000.0
-Number of incident tuberculosis cases,TB_e_inc_num,2023,499000.0
-Number of incident tuberculosis cases,TB_e_inc_num,2012,386000.0
-Number of incident tuberculosis cases,TB_e_inc_num,2005,318000.0
-Number of incident tuberculosis cases,TB_e_inc_num,2017,439000.0
-Number of incident tuberculosis cases,TB_e_inc_num,2001,284000.0
-Number of incident tuberculosis cases,TB_e_inc_num,2018,449000.0
-Number of incident tuberculosis cases,TB_e_inc_num,2015,418000.0
-Number of incident tuberculosis cases,TB_e_inc_num,2006,327000.0
-Number of incident tuberculosis cases,TB_e_inc_num,2013,397000.0
-Number of incident tuberculosis cases,TB_e_inc_num,2019,459000.0
-New cases: other,TB_new_oth,2009,0.0
-New cases: other,TB_new_oth,2006,0.0
-New cases: other,TB_new_oth,2011,0.0
-New cases: other,TB_new_oth,2007,0.0
-New cases: other,TB_new_oth,2005,0.0
-New cases: other,TB_new_oth,2008,0.0
-New cases: other,TB_new_oth,2010,0.0
-New cases: pulmonary smear unknown/not done,TB_new_su,2006,0.0
-New cases: pulmonary smear unknown/not done,TB_new_su,2004,0.0
-New cases: pulmonary smear unknown/not done,TB_new_su,2010,0.0
-New cases: pulmonary smear unknown/not done,TB_new_su,2008,0.0
-New cases: pulmonary smear unknown/not done,TB_new_su,2011,0.0
-New cases: pulmonary smear unknown/not done,TB_new_su,2009,0.0
-New cases: pulmonary smear unknown/not done,TB_new_su,2007,0.0
-New cases: pulmonary smear unknown/not done,TB_new_su,2005,0.0
-New cases: pulmonary smear unknown/not done,TB_new_su,2001,0.0
-New cases: pulmonary smear unknown/not done,TB_new_su,2002,5.0
-New cases: pulmonary smear unknown/not done,TB_new_su,2003,0.0
-New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2016,55.0
-New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2007,0.1
-New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2010,0.1
-New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2009,0.1
-New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2012,0.1
-New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2021,76.0
-New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2020,67.0
-New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2022,82.0
-New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2008,0.37
-New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2019,79.0
-New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2015,64.0
-New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2023,84.0
-New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2017,55.0
-New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2011,0.1
-New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,2018,65.0
-Treatment success rate: new TB cases,TB_c_new_tsr,2001,79.0
-Treatment success rate: new TB cases,TB_c_new_tsr,1995,49.0
-Treatment success rate: new TB cases,TB_c_new_tsr,2009,84.0
-Treatment success rate: new TB cases,TB_c_new_tsr,2017,86.0
-Treatment success rate: new TB cases,TB_c_new_tsr,2005,75.0
-Treatment success rate: new TB cases,TB_c_new_tsr,2014,87.0
-Treatment success rate: new TB cases,TB_c_new_tsr,2013,86.0
-Treatment success rate: new TB cases,TB_c_new_tsr,2008,78.0
-Treatment success rate: new TB cases,TB_c_new_tsr,2004,73.0
-Treatment success rate: new TB cases,TB_c_new_tsr,2018,87.0
-Treatment success rate: new TB cases,TB_c_new_tsr,1998,73.0
-Treatment success rate: new TB cases,TB_c_new_tsr,2022,93.0
-Treatment success rate: new TB cases,TB_c_new_tsr,1997,73.0
-Treatment success rate: new TB cases,TB_c_new_tsr,2016,86.0
-Treatment success rate: new TB cases,TB_c_new_tsr,2003,78.0
-Treatment success rate: new TB cases,TB_c_new_tsr,2019,88.0
-Treatment success rate: new TB cases,TB_c_new_tsr,2011,85.0
-Treatment success rate: new TB cases,TB_c_new_tsr,2020,90.0
-Treatment success rate: new TB cases,TB_c_new_tsr,2010,81.0
-Treatment success rate: new TB cases,TB_c_new_tsr,2007,82.0
-Treatment success rate: new TB cases,TB_c_new_tsr,2021,91.0
-Treatment success rate: new TB cases,TB_c_new_tsr,1996,32.0
-Treatment success rate: new TB cases,TB_c_new_tsr,2006,76.0
-Treatment success rate: new TB cases,TB_c_new_tsr,2002,79.0
-Treatment success rate: new TB cases,TB_c_new_tsr,2000,79.0
-Treatment success rate: new TB cases,TB_c_new_tsr,2015,84.0
-Treatment success rate: new TB cases,TB_c_new_tsr,2012,86.0
-Treatment success rate: new TB cases,TB_c_new_tsr,1999,75.0
-Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2015,76.0
-Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2009,80.0
-Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2018,76.0
-Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2020,82.0
-Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2019,81.0
-Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2022,81.0
-Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2012,79.0
-Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2011,73.0
-Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2017,76.0
-Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2021,80.0
-Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2014,79.0
-Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2013,80.0
-Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,2016,77.0
-Number of incident tuberculosis cases in children aged 0 - 14,TB_e_inc_num_014,2023,59000.0
-Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2009,56.0
-Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2005,44.0
-Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2019,23.0
-Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2014,42.0
-Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2015,37.0
-Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2010,54.0
-Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2007,48.0
-Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2018,27.0
-Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2023,11.0
-Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2002,49.0
-Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2000,63.0
-Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2017,30.0
-Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2008,60.0
-Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2022,13.0
-Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2021,13.0
-Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2003,45.0
-Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2011,57.0
-Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2006,46.0
-Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2012,51.0
-Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2020,17.0
-Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2016,34.0
-Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2001,55.0
-Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2013,48.0
-Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,2004,43.0
-Number of prevalent tuberculosis cases,TB_e_prev_num,2001,430000.0
-Number of prevalent tuberculosis cases,TB_e_prev_num,2004,450000.0
-Number of prevalent tuberculosis cases,TB_e_prev_num,2010,510000.0
-Number of prevalent tuberculosis cases,TB_e_prev_num,2011,530000.0
-Number of prevalent tuberculosis cases,TB_e_prev_num,2014,590000.0
-Number of prevalent tuberculosis cases,TB_e_prev_num,2012,540000.0
-Number of prevalent tuberculosis cases,TB_e_prev_num,2002,440000.0
-Number of prevalent tuberculosis cases,TB_e_prev_num,1999,400000.0
-Number of prevalent tuberculosis cases,TB_e_prev_num,2005,460000.0
-Number of prevalent tuberculosis cases,TB_e_prev_num,1992,330000.0
-Number of prevalent tuberculosis cases,TB_e_prev_num,1994,350000.0
-Number of prevalent tuberculosis cases,TB_e_prev_num,1996,370000.0
-Number of prevalent tuberculosis cases,TB_e_prev_num,1990,310000.0
-Number of prevalent tuberculosis cases,TB_e_prev_num,2008,490000.0
-Number of prevalent tuberculosis cases,TB_e_prev_num,2009,500000.0
-Number of prevalent tuberculosis cases,TB_e_prev_num,1997,380000.0
-Number of prevalent tuberculosis cases,TB_e_prev_num,1993,340000.0
-Number of prevalent tuberculosis cases,TB_e_prev_num,2013,560000.0
-Number of prevalent tuberculosis cases,TB_e_prev_num,1998,390000.0
-Number of prevalent tuberculosis cases,TB_e_prev_num,2007,480000.0
-Number of prevalent tuberculosis cases,TB_e_prev_num,1991,320000.0
-Number of prevalent tuberculosis cases,TB_e_prev_num,1995,360000.0
-Number of prevalent tuberculosis cases,TB_e_prev_num,2000,420000.0
-Number of prevalent tuberculosis cases,TB_e_prev_num,2006,470000.0
-Number of prevalent tuberculosis cases,TB_e_prev_num,2003,440000.0
-Confirmed cases of MDR-TB,TB_mdr,2007,45.0
-Confirmed cases of MDR-TB,TB_mdr,2011,95.0
-Confirmed cases of MDR-TB,TB_mdr,2012,107.0
-Confirmed cases of MDR-TB,TB_mdr,2008,23.0
-Confirmed cases of MDR-TB,TB_mdr,2010,21.0
-Confirmed cases of MDR-TB,TB_mdr,2009,28.0
-"New or unknown treatment history cases: Pulmonary, bacteriologically confirmed",TB_new_labconf,2013,52811.0
-"New or unknown treatment history cases: Pulmonary, bacteriologically confirmed",TB_new_labconf,2017,73660.0
-"New or unknown treatment history cases: Pulmonary, bacteriologically confirmed",TB_new_labconf,2018,74080.0
-"New or unknown treatment history cases: Pulmonary, bacteriologically confirmed",TB_new_labconf,2020,98358.0
-"New or unknown treatment history cases: Pulmonary, bacteriologically confirmed",TB_new_labconf,2014,49825.0
-"New or unknown treatment history cases: Pulmonary, bacteriologically confirmed",TB_new_labconf,2016,65154.0
-"New or unknown treatment history cases: Pulmonary, bacteriologically confirmed",TB_new_labconf,2022,222279.0
-"New or unknown treatment history cases: Pulmonary, bacteriologically confirmed",TB_new_labconf,2021,154698.0
-"New or unknown treatment history cases: Pulmonary, bacteriologically confirmed",TB_new_labconf,2023,296338.0
-"New or unknown treatment history cases: Pulmonary, bacteriologically confirmed",TB_new_labconf,2019,81717.0
-"New or unknown treatment history cases: Pulmonary, bacteriologically confirmed",TB_new_labconf,2015,54012.0
-New cases: pulmonary smear-negative,TB_new_sn,2007,32088.0
-New cases: pulmonary smear-negative,TB_new_sn,1995,3364.0
-New cases: pulmonary smear-negative,TB_new_sn,2004,20134.0
-New cases: pulmonary smear-negative,TB_new_sn,2010,32616.0
-New cases: pulmonary smear-negative,TB_new_sn,1999,5641.0
-New cases: pulmonary smear-negative,TB_new_sn,2008,34211.0
-New cases: pulmonary smear-negative,TB_new_sn,2009,37540.0
-New cases: pulmonary smear-negative,TB_new_sn,2002,14591.0
-New cases: pulmonary smear-negative,TB_new_sn,1998,5382.0
-New cases: pulmonary smear-negative,TB_new_sn,1997,4251.0
-New cases: pulmonary smear-negative,TB_new_sn,1996,7395.0
-New cases: pulmonary smear-negative,TB_new_sn,2003,13276.0
-New cases: pulmonary smear-negative,TB_new_sn,2001,20387.0
-New cases: pulmonary smear-negative,TB_new_sn,2011,33034.0
-New cases: pulmonary smear-negative,TB_new_sn,2006,25782.0
-New cases: pulmonary smear-negative,TB_new_sn,2005,22705.0
-New cases: pulmonary smear-negative,TB_new_sn,2000,6613.0
-New cases: pulmonary smear-negative,TB_new_sn,2012,32972.0
-Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,2008,925.0
-Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,2006,787.0
-Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,2004,662.0
-Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,2009,774.0
-Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,1999,684.0
-Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,2007,835.0
-Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,2005,1056.0
-Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,2012,612.0
-Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,2001,469.0
-Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,2011,719.0
-Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,2000,256.0
-Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,2010,748.0
-Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,2003,888.0
-Tuberculosis - new and relapse cases,TB_tot_newrel,2009,88589.0
-Tuberculosis - new and relapse cases,TB_tot_newrel,1993,11601.0
-Tuberculosis - new and relapse cases,TB_tot_newrel,1998,20249.0
-Tuberculosis - new and relapse cases,TB_tot_newrel,2011,86778.0
-Tuberculosis - new and relapse cases,TB_tot_newrel,1995,13423.0
-Tuberculosis - new and relapse cases,TB_tot_newrel,1999,24157.0
-Tuberculosis - new and relapse cases,TB_tot_newrel,1994,8449.0
-Tuberculosis - new and relapse cases,TB_tot_newrel,2000,25821.0
-Tuberculosis - new and relapse cases,TB_tot_newrel,2001,45842.0
-Tuberculosis - new and relapse cases,TB_tot_newrel,1992,14802.0
-Tuberculosis - new and relapse cases,TB_tot_newrel,1990,20122.0
-Tuberculosis - new and relapse cases,TB_tot_newrel,1996,15020.0
-Tuberculosis - new and relapse cases,TB_tot_newrel,2006,70734.0
-Tuberculosis - new and relapse cases,TB_tot_newrel,2003,44184.0
-Tuberculosis - new and relapse cases,TB_tot_newrel,2005,62598.0
-Tuberculosis - new and relapse cases,TB_tot_newrel,2007,82417.0
-Tuberculosis - new and relapse cases,TB_tot_newrel,1997,16660.0
-Tuberculosis - new and relapse cases,TB_tot_newrel,2008,85674.0
-Tuberculosis - new and relapse cases,TB_tot_newrel,1991,19626.0
-Tuberculosis - new and relapse cases,TB_tot_newrel,2002,38628.0
-Tuberculosis - new and relapse cases,TB_tot_newrel,2010,84121.0
-Tuberculosis - new and relapse cases,TB_tot_newrel,2004,57246.0
-Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2008,23.0
-Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2011,183.0
-Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2012,439.0
-Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2013,554.0
-Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2023,3642.0
-Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2016,1686.0
-Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2018,2275.0
-Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2019,2384.0
-Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2017,2286.0
-Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2010,26.0
-Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2007,45.0
-Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2015,1241.0
-Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2021,2975.0
-Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2014,798.0
-Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2022,3932.0
-Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2009,47.0
-Confirmed cases of RR-/MDR-TB,TB_rr_mdr,2020,2061.0
-Estimated number of malaria cases,MALARIA_EST_CASES,2010,60551056.0
-Estimated number of malaria cases,MALARIA_EST_CASES,2017,57869533.0
-Estimated number of malaria cases,MALARIA_EST_CASES,2009,63192869.0
-Estimated number of malaria cases,MALARIA_EST_CASES,2012,55718235.0
-Estimated number of malaria cases,MALARIA_EST_CASES,2011,58184509.0
-Estimated number of malaria cases,MALARIA_EST_CASES,2020,65133759.0
-Estimated number of malaria cases,MALARIA_EST_CASES,2021,65399501.0
-Estimated number of malaria cases,MALARIA_EST_CASES,2013,53921321.0
-Estimated number of malaria cases,MALARIA_EST_CASES,2000,50779020.0
-Estimated number of malaria cases,MALARIA_EST_CASES,2003,52423482.0
-Estimated number of malaria cases,MALARIA_EST_CASES,2023,68136453.67
-Estimated number of malaria cases,MALARIA_EST_CASES,2019,61379283.0
-Estimated number of malaria cases,MALARIA_EST_CASES,2001,51229713.0
-Estimated number of malaria cases,MALARIA_EST_CASES,2007,61400329.0
-Estimated number of malaria cases,MALARIA_EST_CASES,2002,50952482.0
-Estimated number of malaria cases,MALARIA_EST_CASES,2022,66721582.22
-Estimated number of malaria cases,MALARIA_EST_CASES,2005,57411916.0
-Estimated number of malaria cases,MALARIA_EST_CASES,2014,53483458.0
-Estimated number of malaria cases,MALARIA_EST_CASES,2006,59418382.0
-Estimated number of malaria cases,MALARIA_EST_CASES,2016,55667334.0
-Estimated number of malaria cases,MALARIA_EST_CASES,2008,63355538.0
-Estimated number of malaria cases,MALARIA_EST_CASES,2015,54115123.0
 Estimated number of malaria cases,MALARIA_EST_CASES,2004,55028747.0
+Estimated number of malaria cases,MALARIA_EST_CASES,2001,51229713.0
+Estimated number of malaria cases,MALARIA_EST_CASES,2003,52423482.0
+Estimated number of malaria cases,MALARIA_EST_CASES,2015,54115123.0
+Estimated number of malaria cases,MALARIA_EST_CASES,2000,50779020.0
+Estimated number of malaria cases,MALARIA_EST_CASES,2019,61379283.0
+Estimated number of malaria cases,MALARIA_EST_CASES,2017,57869533.0
+Estimated number of malaria cases,MALARIA_EST_CASES,2012,55718235.0
+Estimated number of malaria cases,MALARIA_EST_CASES,2002,50952482.0
+Estimated number of malaria cases,MALARIA_EST_CASES,2009,63192869.0
+Estimated number of malaria cases,MALARIA_EST_CASES,2011,58184509.0
+Estimated number of malaria cases,MALARIA_EST_CASES,2008,63355538.0
+Estimated number of malaria cases,MALARIA_EST_CASES,2021,65399501.0
+Estimated number of malaria cases,MALARIA_EST_CASES,2016,55667334.0
+Estimated number of malaria cases,MALARIA_EST_CASES,2020,65133759.0
+Estimated number of malaria cases,MALARIA_EST_CASES,2013,53921321.0
+Estimated number of malaria cases,MALARIA_EST_CASES,2007,61400329.0
+Estimated number of malaria cases,MALARIA_EST_CASES,2006,59418382.0
+Estimated number of malaria cases,MALARIA_EST_CASES,2010,60551056.0
+Estimated number of malaria cases,MALARIA_EST_CASES,2022,66721582.22
+Estimated number of malaria cases,MALARIA_EST_CASES,2023,68136453.67
+Estimated number of malaria cases,MALARIA_EST_CASES,2014,53483458.0
+Estimated number of malaria cases,MALARIA_EST_CASES,2005,57411916.0
 Estimated number of malaria cases,MALARIA_EST_CASES,2018,59652248.0
 Estimated number of MDR/RR-TB incident cases,TB_e_inc_rr_num,2020,13000.0
 Estimated number of MDR/RR-TB incident cases,TB_e_inc_rr_num,2023,9400.0
@@ -1016,32 +1018,32 @@ Estimated number of MDR/RR-TB incident cases,TB_e_inc_rr_num,2015,22000.0
 Estimated number of MDR/RR-TB incident cases,TB_e_inc_rr_num,2016,20000.0
 Estimated number of MDR/RR-TB incident cases,TB_e_inc_rr_num,2017,18000.0
 Number of suspected malaria cases,MALARIA_SUSPECTS,2021,30202722.0
-Number of suspected malaria cases,MALARIA_SUSPECTS,2015,20243915.0
 Number of suspected malaria cases,MALARIA_SUSPECTS,2018,25381459.0
-Number of suspected malaria cases,MALARIA_SUSPECTS,2019,29489245.0
-Number of suspected malaria cases,MALARIA_SUSPECTS,2022,32983459.0
-Number of suspected malaria cases,MALARIA_SUSPECTS,2017,25106551.0
 Number of suspected malaria cases,MALARIA_SUSPECTS,2023,35179110.0
-Number of suspected malaria cases,MALARIA_SUSPECTS,2016,29113322.0
+Number of suspected malaria cases,MALARIA_SUSPECTS,2022,32983459.0
+Number of suspected malaria cases,MALARIA_SUSPECTS,2019,29489245.0
 Number of suspected malaria cases,MALARIA_SUSPECTS,2020,27370935.0
-Number of indigenous malaria cases,MALARIA_INDIG,2017,13087878.0
-Number of indigenous malaria cases,MALARIA_INDIG,2022,23050405.0
-Number of indigenous malaria cases,MALARIA_INDIG,2019,19806915.0
-Number of indigenous malaria cases,MALARIA_INDIG,2015,8068583.0
-Number of indigenous malaria cases,MALARIA_INDIG,2018,14548024.0
-Number of indigenous malaria cases,MALARIA_INDIG,2023,24098323.0
-Number of indigenous malaria cases,MALARIA_INDIG,2020,18325240.0
-Number of indigenous malaria cases,MALARIA_INDIG,2016,13598282.0
+Number of suspected malaria cases,MALARIA_SUSPECTS,2016,29113322.0
+Number of suspected malaria cases,MALARIA_SUSPECTS,2017,25106551.0
+Number of suspected malaria cases,MALARIA_SUSPECTS,2015,20243915.0
 Number of indigenous malaria cases,MALARIA_INDIG,2021,21325186.0
-Number of confirmed malaria cases,MALARIA_CONF_CASES,2017,13087878.0
-Number of confirmed malaria cases,MALARIA_CONF_CASES,2015,8068583.0
-Number of confirmed malaria cases,MALARIA_CONF_CASES,2020,18325240.0
+Number of indigenous malaria cases,MALARIA_INDIG,2015,8068583.0
+Number of indigenous malaria cases,MALARIA_INDIG,2016,13598282.0
+Number of indigenous malaria cases,MALARIA_INDIG,2019,19806915.0
+Number of indigenous malaria cases,MALARIA_INDIG,2022,23050405.0
+Number of indigenous malaria cases,MALARIA_INDIG,2017,13087878.0
+Number of indigenous malaria cases,MALARIA_INDIG,2018,14548024.0
+Number of indigenous malaria cases,MALARIA_INDIG,2020,18325240.0
+Number of indigenous malaria cases,MALARIA_INDIG,2023,24098323.0
 Number of confirmed malaria cases,MALARIA_CONF_CASES,2016,13598282.0
-Number of confirmed malaria cases,MALARIA_CONF_CASES,2018,14548024.0
-Number of confirmed malaria cases,MALARIA_CONF_CASES,2022,23050405.0
-Number of confirmed malaria cases,MALARIA_CONF_CASES,2023,24098323.0
-Number of confirmed malaria cases,MALARIA_CONF_CASES,2019,19806915.0
+Number of confirmed malaria cases,MALARIA_CONF_CASES,2015,8068583.0
 Number of confirmed malaria cases,MALARIA_CONF_CASES,2021,21325186.0
+Number of confirmed malaria cases,MALARIA_CONF_CASES,2022,23050405.0
+Number of confirmed malaria cases,MALARIA_CONF_CASES,2018,14548024.0
+Number of confirmed malaria cases,MALARIA_CONF_CASES,2020,18325240.0
+Number of confirmed malaria cases,MALARIA_CONF_CASES,2023,24098323.0
+Number of confirmed malaria cases,MALARIA_CONF_CASES,2017,13087878.0
+Number of confirmed malaria cases,MALARIA_CONF_CASES,2019,19806915.0
 The number of new and relapse cases of tuberculosis detected in a given year by age and sex,TB_Notification_agesex_num,2021,4432.0
 The number of new and relapse cases of tuberculosis detected in a given year by age and sex,TB_Notification_agesex_num,2021,17331.0
 The number of new and relapse cases of tuberculosis detected in a given year by age and sex,TB_Notification_agesex_num,2021,4592.0
@@ -1060,9 +1062,12 @@ The number of new and relapse cases of tuberculosis detected in a given year by 
 The number of new and relapse cases of tuberculosis detected in a given year by age and sex,TB_Notification_agesex_num,2021,12341.0
 The number of new and relapse cases of tuberculosis detected in a given year by age and sex,TB_Notification_agesex_num,2021,6607.0
 The number of new and relapse cases of tuberculosis detected in a given year by age and sex,TB_Notification_agesex_num,2021,21312.0
-Number of new cases of lip and oral cavity cancer,ORAL_HEALTH_CANCER_LIPORALCAVITY_NEWCASE_NUMBER,2020,1292.0
-Number of new cases of lip and oral cavity cancer,ORAL_HEALTH_CANCER_LIPORALCAVITY_NEWCASE_NUMBER,2020,749.0
 Number of new cases of lip and oral cavity cancer,ORAL_HEALTH_CANCER_LIPORALCAVITY_NEWCASE_NUMBER,2020,543.0
+Number of new cases of lip and oral cavity cancer,ORAL_HEALTH_CANCER_LIPORALCAVITY_NEWCASE_NUMBER,2020,749.0
+Number of new cases of lip and oral cavity cancer,ORAL_HEALTH_CANCER_LIPORALCAVITY_NEWCASE_NUMBER,2020,1292.0
+Number of malaria cases treated with artemisinin-based combination therapies (ACTs),MALARIA_ACT_TREATED,2022,23704759.0
+Number of malaria cases treated with artemisinin-based combination therapies (ACTs),MALARIA_ACT_TREATED,2023,24810663.0
+Number of malaria cases treated with artemisinin-based combination therapies (ACTs),MALARIA_ACT_TREATED,2021,22634148.0
 Number of reported cases of poliomyelitis by wild poliovirus (WPV),VACCINEPREVENTABLE_WILDPOLIO,2019,0.0
 Number of reported cases of poliomyelitis by wild poliovirus (WPV),VACCINEPREVENTABLE_WILDPOLIO,2020,0.0
 Number of reported cases of poliomyelitis by wild poliovirus (WPV),VACCINEPREVENTABLE_WILDPOLIO,2023,0.0
@@ -1071,91 +1076,86 @@ Number of reported cases of poliomyelitis by wild poliovirus (WPV),VACCINEPREVEN
 Number of reported cases of poliomyelitis by wild poliovirus (WPV),VACCINEPREVENTABLE_WILDPOLIO,2021,0.0
 Number of reported cases of poliomyelitis by wild poliovirus (WPV),VACCINEPREVENTABLE_WILDPOLIO,2022,0.0
 Number of reported cases of poliomyelitis by wild poliovirus (WPV),VACCINEPREVENTABLE_WILDPOLIO,2017,0.0
-Number of malaria cases treated with artemisinin-based combination therapies (ACTs),MALARIA_ACT_TREATED,2023,24810663.0
-Number of malaria cases treated with artemisinin-based combination therapies (ACTs),MALARIA_ACT_TREATED,2022,23704759.0
-Number of malaria cases treated with artemisinin-based combination therapies (ACTs),MALARIA_ACT_TREATED,2021,22634148.0
-Number of malaria positive cases by rapid diagnostic test (RDT),MALARIA_RDT_POS,2019,17330401.0
-Number of malaria positive cases by rapid diagnostic test (RDT),MALARIA_RDT_POS,2018,13524751.0
-Number of malaria positive cases by rapid diagnostic test (RDT),MALARIA_RDT_POS,2023,21649680.0
-Number of malaria positive cases by rapid diagnostic test (RDT),MALARIA_RDT_POS,2017,12338760.0
-Number of malaria positive cases by rapid diagnostic test (RDT),MALARIA_RDT_POS,2020,16013077.0
-Number of malaria positive cases by rapid diagnostic test (RDT),MALARIA_RDT_POS,2022,20672565.0
-Number of malaria positive cases by rapid diagnostic test (RDT),MALARIA_RDT_POS,2015,7511712.0
-Number of malaria positive cases by rapid diagnostic test (RDT),MALARIA_RDT_POS,2016,12979919.0
-Number of malaria positive cases by rapid diagnostic test (RDT),MALARIA_RDT_POS,2021,18765444.0
-Number of malaria cases treated with any first  line tx courses (including artemisinin-based combination therapies (ACTs)),MALARIA_1STLINE_TREATED,2021,22634148.0
-Number of malaria cases treated with any first  line tx courses (including artemisinin-based combination therapies (ACTs)),MALARIA_1STLINE_TREATED,2023,25283482.0
 Number of malaria cases treated with any first  line tx courses (including artemisinin-based combination therapies (ACTs)),MALARIA_1STLINE_TREATED,2022,23704759.0
+Number of malaria cases treated with any first  line tx courses (including artemisinin-based combination therapies (ACTs)),MALARIA_1STLINE_TREATED,2023,25283482.0
+Number of malaria cases treated with any first  line tx courses (including artemisinin-based combination therapies (ACTs)),MALARIA_1STLINE_TREATED,2021,22634148.0
+Number of malaria positive cases by microscopy,MALARIA_MICR_POS,2023,2448643.0
 Number of malaria positive cases by microscopy,MALARIA_MICR_POS,2015,556871.0
-Number of malaria positive cases by microscopy,MALARIA_MICR_POS,2019,2476514.0
-Number of malaria positive cases by microscopy,MALARIA_MICR_POS,2018,1023273.0
+Number of malaria positive cases by microscopy,MALARIA_MICR_POS,2021,2559742.0
 Number of malaria positive cases by microscopy,MALARIA_MICR_POS,2022,2377840.0
 Number of malaria positive cases by microscopy,MALARIA_MICR_POS,2017,749118.0
-Number of malaria positive cases by microscopy,MALARIA_MICR_POS,2020,2312163.0
+Number of malaria positive cases by microscopy,MALARIA_MICR_POS,2018,1023273.0
 Number of malaria positive cases by microscopy,MALARIA_MICR_POS,2016,618363.0
-Number of malaria positive cases by microscopy,MALARIA_MICR_POS,2021,2559742.0
-Number of malaria positive cases by microscopy,MALARIA_MICR_POS,2023,2448643.0
-Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2021,203.0
-Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2015,114.0
-Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2013,23.0
-Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2019,943.0
-Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2017,259.0
-Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2018,424.0
-Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2022,216.0
-Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2006,9.0
-Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2010,7.0
+Number of malaria positive cases by microscopy,MALARIA_MICR_POS,2020,2312163.0
+Number of malaria positive cases by microscopy,MALARIA_MICR_POS,2019,2476514.0
 Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2014,65.0
+Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2016,235.0
+Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2006,9.0
 Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2012,40.0
-Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2011,4.0
+Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2022,216.0
 Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2023,482.0
+Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2015,114.0
+Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2018,424.0
+Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2013,23.0
+Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2017,259.0
+Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2011,4.0
+Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2010,7.0
+Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2019,943.0
 Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2009,24.0
 Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2020,150.0
-Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2016,235.0
+Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,2021,203.0
+Number of malaria positive cases by rapid diagnostic test (RDT),MALARIA_RDT_POS,2017,12338760.0
+Number of malaria positive cases by rapid diagnostic test (RDT),MALARIA_RDT_POS,2023,21649680.0
+Number of malaria positive cases by rapid diagnostic test (RDT),MALARIA_RDT_POS,2015,7511712.0
+Number of malaria positive cases by rapid diagnostic test (RDT),MALARIA_RDT_POS,2018,13524751.0
+Number of malaria positive cases by rapid diagnostic test (RDT),MALARIA_RDT_POS,2022,20672565.0
+Number of malaria positive cases by rapid diagnostic test (RDT),MALARIA_RDT_POS,2020,16013077.0
+Number of malaria positive cases by rapid diagnostic test (RDT),MALARIA_RDT_POS,2019,17330401.0
+Number of malaria positive cases by rapid diagnostic test (RDT),MALARIA_RDT_POS,2016,12979919.0
+Number of malaria positive cases by rapid diagnostic test (RDT),MALARIA_RDT_POS,2021,18765444.0
 Number of suspected yaws cases reported,NTD_YAWSNUM_SUSP,2014,0.0
+Number of presumed malaria cases,MALARIA_PRES_CASES,2020,3254815.0
+Number of presumed malaria cases,MALARIA_PRES_CASES,2019,3569878.0
+Number of presumed malaria cases,MALARIA_PRES_CASES,2016,10358387.0
+Number of presumed malaria cases,MALARIA_PRES_CASES,2018,5934356.0
+Number of presumed malaria cases,MALARIA_PRES_CASES,2022,1918061.0
+Number of presumed malaria cases,MALARIA_PRES_CASES,2017,7131390.0
+Number of presumed malaria cases,MALARIA_PRES_CASES,2023,2313036.0
+Number of presumed malaria cases,MALARIA_PRES_CASES,2021,2283611.0
+Number of presumed malaria cases,MALARIA_PRES_CASES,2015,8633678.0
+Total number of  malaria cases (presumed + confirmed cases),MALARIA_TOTAL_CASES,2022,24968466.0
+Total number of  malaria cases (presumed + confirmed cases),MALARIA_TOTAL_CASES,2020,21580055.0
+Total number of  malaria cases (presumed + confirmed cases),MALARIA_TOTAL_CASES,2017,20219268.0
+Total number of  malaria cases (presumed + confirmed cases),MALARIA_TOTAL_CASES,2023,26411359.0
+Total number of  malaria cases (presumed + confirmed cases),MALARIA_TOTAL_CASES,2019,23376793.0
+Total number of  malaria cases (presumed + confirmed cases),MALARIA_TOTAL_CASES,2018,20482380.0
+Total number of  malaria cases (presumed + confirmed cases),MALARIA_TOTAL_CASES,2021,23608797.0
+Total number of  malaria cases (presumed + confirmed cases),MALARIA_TOTAL_CASES,2016,23956669.0
+Total number of  malaria cases (presumed + confirmed cases),MALARIA_TOTAL_CASES,2015,16702261.0
+New leprosy child case detection rate (less than 15 years of age) per 1 000 000 child population,NTD_LEPR13,2014,3.502
 New leprosy child case detection rate (less than 15 years of age) per 1 000 000 child population,NTD_LEPR13,2015,3.304
 New leprosy child case detection rate (less than 15 years of age) per 1 000 000 child population,NTD_LEPR13,2019,2.776
+New leprosy child case detection rate (less than 15 years of age) per 1 000 000 child population,NTD_LEPR13,2018,1.456
+New leprosy child case detection rate (less than 15 years of age) per 1 000 000 child population,NTD_LEPR13,2017,2.191
+New leprosy child case detection rate (less than 15 years of age) per 1 000 000 child population,NTD_LEPR13,2020,0.97
+New leprosy child case detection rate (less than 15 years of age) per 1 000 000 child population,NTD_LEPR13,2022,1.65
 New leprosy child case detection rate (less than 15 years of age) per 1 000 000 child population,NTD_LEPR13,2016,2.122
 New leprosy child case detection rate (less than 15 years of age) per 1 000 000 child population,NTD_LEPR13,2023,1.258
 New leprosy child case detection rate (less than 15 years of age) per 1 000 000 child population,NTD_LEPR13,2012,4.493
 New leprosy child case detection rate (less than 15 years of age) per 1 000 000 child population,NTD_LEPR13,2024,1.362
-New leprosy child case detection rate (less than 15 years of age) per 1 000 000 child population,NTD_LEPR13,2018,1.456
-New leprosy child case detection rate (less than 15 years of age) per 1 000 000 child population,NTD_LEPR13,2017,2.191
 New leprosy child case detection rate (less than 15 years of age) per 1 000 000 child population,NTD_LEPR13,2021,2.295
-New leprosy child case detection rate (less than 15 years of age) per 1 000 000 child population,NTD_LEPR13,2020,0.97
-New leprosy child case detection rate (less than 15 years of age) per 1 000 000 child population,NTD_LEPR13,2022,1.65
-New leprosy child case detection rate (less than 15 years of age) per 1 000 000 child population,NTD_LEPR13,2014,3.502
 New leprosy child case detection rate (less than 15 years of age) per 1 000 000 child population,NTD_LEPR13,2013,3.008
-Number of presumed malaria cases,MALARIA_PRES_CASES,2018,5934356.0
-Number of presumed malaria cases,MALARIA_PRES_CASES,2020,3254815.0
-Number of presumed malaria cases,MALARIA_PRES_CASES,2019,3569878.0
-Number of presumed malaria cases,MALARIA_PRES_CASES,2023,2313036.0
-Number of presumed malaria cases,MALARIA_PRES_CASES,2022,1918061.0
-Number of presumed malaria cases,MALARIA_PRES_CASES,2016,10358387.0
-Number of presumed malaria cases,MALARIA_PRES_CASES,2021,2283611.0
-Number of presumed malaria cases,MALARIA_PRES_CASES,2017,7131390.0
-Number of presumed malaria cases,MALARIA_PRES_CASES,2015,8633678.0
-Total number of  malaria cases (presumed + confirmed cases),MALARIA_TOTAL_CASES,2023,26411359.0
-Total number of  malaria cases (presumed + confirmed cases),MALARIA_TOTAL_CASES,2017,20219268.0
-Total number of  malaria cases (presumed + confirmed cases),MALARIA_TOTAL_CASES,2016,23956669.0
-Total number of  malaria cases (presumed + confirmed cases),MALARIA_TOTAL_CASES,2021,23608797.0
-Total number of  malaria cases (presumed + confirmed cases),MALARIA_TOTAL_CASES,2019,23376793.0
-Total number of  malaria cases (presumed + confirmed cases),MALARIA_TOTAL_CASES,2015,16702261.0
-Total number of  malaria cases (presumed + confirmed cases),MALARIA_TOTAL_CASES,2018,20482380.0
-Total number of  malaria cases (presumed + confirmed cases),MALARIA_TOTAL_CASES,2022,24968466.0
-Total number of  malaria cases (presumed + confirmed cases),MALARIA_TOTAL_CASES,2020,21580055.0
 Number of non-autochthonous leprosy cases,NTD_LEPR14,2020,4.0
 Number of non-autochthonous leprosy cases,NTD_LEPR14,2024,0.0
 Number of non-autochthonous leprosy cases,NTD_LEPR14,2016,0.0
 Number of non-autochthonous leprosy cases,NTD_LEPR14,2021,7.0
 Number of non-autochthonous leprosy cases,NTD_LEPR14,2022,9.0
-Smear-positive tuberculosis case-detection rate (%),MDG_0000000030,2008,24.0
-Smear-positive tuberculosis case-detection rate (%),MDG_0000000030,2000,12.0
-Number of indigenous P. falciparum malaria cases,MALARIA_PF_INDIG,2016,13598282.0
-Number of indigenous P. falciparum malaria cases,MALARIA_PF_INDIG,2017,13087878.0
 Number of indigenous P. falciparum malaria cases,MALARIA_PF_INDIG,2022,23050405.0
-Number of indigenous P. falciparum malaria cases,MALARIA_PF_INDIG,2020,18325240.0
-Number of indigenous P. falciparum malaria cases,MALARIA_PF_INDIG,2018,14548024.0
-Number of indigenous P. falciparum malaria cases,MALARIA_PF_INDIG,2015,8068583.0
+Number of indigenous P. falciparum malaria cases,MALARIA_PF_INDIG,2021,21325186.0
 Number of indigenous P. falciparum malaria cases,MALARIA_PF_INDIG,2023,24098323.0
 Number of indigenous P. falciparum malaria cases,MALARIA_PF_INDIG,2019,19806915.0
-Number of indigenous P. falciparum malaria cases,MALARIA_PF_INDIG,2021,21325186.0
+Number of indigenous P. falciparum malaria cases,MALARIA_PF_INDIG,2020,18325240.0
+Number of indigenous P. falciparum malaria cases,MALARIA_PF_INDIG,2015,8068583.0
+Number of indigenous P. falciparum malaria cases,MALARIA_PF_INDIG,2016,13598282.0
+Number of indigenous P. falciparum malaria cases,MALARIA_PF_INDIG,2018,14548024.0
+Number of indigenous P. falciparum malaria cases,MALARIA_PF_INDIG,2017,13087878.0

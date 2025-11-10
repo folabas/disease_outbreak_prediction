@@ -78,6 +78,20 @@ def predict_series(q: PredictionQuery) -> PredictionResponse:
     try:
         if _model is not None and os.path.exists(df_path):
             df = pd.read_csv(df_path)
+            # Filter by disease and region to ensure multi-disease behavior
+            try:
+                if "disease" in df.columns and q.disease:
+                    df = df[df["disease"].astype(str).str.lower() == q.disease.lower()]
+                if "state" in df.columns:
+                    if q.region and q.region != "All":
+                        df = df[df["state"].astype(str).str.lower() == q.region.lower()]
+                    else:
+                        # Prefer national rows when available
+                        if any(df["state"].astype(str).str.lower() == "all"):
+                            df = df[df["state"].astype(str).str.lower() == "all"]
+            except Exception:
+                pass
+
             # Sort to ensure chronological order if year/week exist
             sort_cols = [c for c in ["year", "week"] if c in df.columns]
             if sort_cols:
@@ -131,15 +145,32 @@ def predict_series(q: PredictionQuery) -> PredictionResponse:
                 # Fall back to baseline if data insufficient
                 raise RuntimeError("Missing features or insufficient rows for window")
         elif os.path.exists(df_path):
-            # Baseline from data when model unavailable
+            # Baseline from data when model unavailable; filter to requested disease/region
             df = pd.read_csv(df_path)
+            try:
+                if "disease" in df.columns and q.disease:
+                    df = df[df["disease"].astype(str).str.lower() == q.disease.lower()]
+                if "state" in df.columns:
+                    if q.region and q.region != "All":
+                        df = df[df["state"].astype(str).str.lower() == q.region.lower()]
+                    else:
+                        if any(df["state"].astype(str).str.lower() == "all"):
+                            df = df[df["state"].astype(str).str.lower() == "all"]
+            except Exception:
+                pass
+
             recent = df.tail(_WINDOW)
             avg_cases = float(np.nanmean(recent.get("cases", pd.Series([0]))))
             timeseries = [
                 TimePoint(date=datetime.utcnow().date().isoformat(), predicted=round(avg_cases * 1.05, 2), actual=None),
                 TimePoint(date=datetime.utcnow().date().isoformat(), predicted=round(avg_cases * 1.1, 2), actual=None),
             ]
-            score = min((avg_cases / 200.0), 1.0)
+            # Use per-disease scaling if available to make scores comparable
+            if "cases_scaled" in recent.columns:
+                z = float(np.nanmean(recent["cases_scaled"]))
+                score = float(1.0 / (1.0 + np.exp(-z)))  # logistic transform to [0,1]
+            else:
+                score = min((avg_cases / 200.0), 1.0)
             summary = RiskSummary(riskScore=round(score, 2), riskLevel=("high" if score > 0.75 else "medium" if score > 0.4 else "low"), confidence=0.75)
     except Exception:
         # Keep defaults
