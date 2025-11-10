@@ -1,197 +1,301 @@
 import { useState, useEffect } from "react";
-import { useDashboardStore } from "../store/useDashboardStore";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  CartesianGrid,
+} from "recharts";
+import { MapContainer, TileLayer } from "react-leaflet";
 import Loader from "../Components/Loader";
 
-const Predictions = () => {
-  const [selectedRegion, setSelectedRegion] = useState("All Regions");
-  const [timeRange, setTimeRange] = useState("7d");
+const Dashboard = () => {
+  const [disease, setDisease] = useState("Cholera");
+  const [region, setRegion] = useState("All");
+  const [year, setYear] = useState("2024");
+  const [rainfall, setRainfall] = useState(1250);
+  const [temperature, setTemperature] = useState(29);
   const [isLoading, setIsLoading] = useState(true);
+  const [riskResult, setRiskResult] = useState({
+    level: "High",
+    confidence: 88,
+  });
 
   useEffect(() => {
-    // Simulate data loading when region or time range changes
+    // Simulate loading time for dashboard
     setIsLoading(true);
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
+    const timer = setTimeout(() => setIsLoading(false), 1500);
     return () => clearTimeout(timer);
-  }, [selectedRegion, timeRange]);
+  }, []);
 
-  // Mock data - replace with actual data from your store
-  const stats = [
-    {
-      name: "Risk Level",
-      value: "High",
-      change: "+2.5%",
-      changeType: "increase",
-    },
-    {
-      name: "Affected Areas",
-      value: "12",
-      change: "+4",
-      changeType: "increase",
-    },
-    {
-      name: "Population at Risk",
-      value: "2.1M",
-      change: "+12%",
-      changeType: "increase",
-    },
-    {
-      name: "Prediction Confidence",
-      value: "89%",
-      change: "+1.2%",
-      changeType: "increase",
-    },
+  const sampleData = [
+    { name: "Jan", value: 40 },
+    { name: "Feb", value: 50 },
+    { name: "Mar", value: 60 },
+    { name: "Apr", value: 80 },
+    { name: "May", value: 120 },
+    { name: "Jun", value: 140 },
   ];
+
+  const predictRisk = () => {
+    setRiskResult({ level: "High", confidence: 88 });
+  };
 
   if (isLoading) {
     return <Loader />;
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow">
-        <div className="py-6 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-2xl font-semibold text-gray-900">
-            Outbreak Predictions Dashboard
-          </h1>
-        </div>
-      </div>
+    <div className="min-h-screen bg-gray-50 p-6">
+      {/* 🔹 Main Header */}
+      <header className="mb-8">
+        <h1 className="text-3xl font-bold text-[#0d2544]">
+          Prediction Dashboard
+        </h1>
+        <p className="text-gray-600 text-sm mt-1">
+          Monitor, analyze, and predict outbreak risks across Nigeria.
+        </p>
 
-      {/* Filters */}
-      <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
+        <div className="flex flex-wrap gap-3 mt-4">
           <select
-            title="selectedregion"
-            value={selectedRegion}
-            onChange={(e) => setSelectedRegion(e.target.value)}
-            className="form-select block w-full sm:w-48 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            title="disease"
+            value={disease}
+            onChange={(e) => setDisease(e.target.value)}
+            className="border rounded-md px-3 py-2 text-sm"
           >
-            <option>All Regions</option>
-            <option>North</option>
-            <option>South</option>
-            <option>East</option>
-            <option>West</option>
+            <option>Cholera</option>
+            <option>Malaria</option>
+            <option>Lassa Fever</option>
           </select>
-
-          <div className="inline-flex rounded-md shadow-sm">
-            {["24h", "7d", "30d", "90d"].map((range) => (
-              <button
-                key={range}
-                onClick={() => setTimeRange(range)}
-                className={`px-4 py-2 text-sm font-medium ${
-                  timeRange === range
-                    ? "bg-blue-600 text-white"
-                    : "bg-white text-gray-700 hover:bg-gray-50"
-                } ${
-                  range === "24h"
-                    ? "rounded-l-md"
-                    : range === "90d"
-                    ? "rounded-r-md"
-                    : ""
-                } border border-gray-300`}
-              >
-                {range}
-              </button>
-            ))}
-          </div>
+          <select
+            title="region"
+            value={region}
+            onChange={(e) => setRegion(e.target.value)}
+            className="border rounded-md px-3 py-2 text-sm"
+          >
+            <option>All</option>
+            <option>North-East</option>
+            <option>South-West</option>
+            <option>North-Central</option>
+          </select>
+          <select
+            title="year"
+            value={year}
+            onChange={(e) => setYear(e.target.value)}
+            className="border rounded-md px-3 py-2 text-sm"
+          >
+            <option>2023</option>
+            <option>2024</option>
+            <option>2025</option>
+          </select>
         </div>
+      </header>
+
+      {/* 🔹 Overview Section */}
+      <SectionHeader title="Overview Metrics" />
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <StatCard title="Average Rainfall" value="1200 mm" />
+        <StatCard title="Average Temperature" value="28°C" />
+        <StatCard title="Population Density" value="212/km²" />
+        <StatCard title="Hospital Capacity" value="5 beds/10k" />
       </div>
 
-      {/* Stats Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((stat) => (
-            <div
-              key={stat.name}
-              className="bg-white overflow-hidden shadow rounded-lg"
+      {/* 🔹 Map & Chart Section */}
+      <SectionHeader title="Outbreak Visualization" />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        {/* Map */}
+        <div className="lg:col-span-2 bg-white rounded-xl shadow p-4">
+          <h2 className="font-semibold mb-3 text-[#0d2544]">
+            Nigeria Outbreak Risk Map
+          </h2>
+          <div className="h-[320px] rounded-lg overflow-hidden">
+            <MapContainer
+              center={[9.082, 8.6753]}
+              zoom={6}
+              className="h-full w-full"
             >
-              <div className="p-5">
-                <div className="flex items-center">
-                  <div className="flex-1">
-                    <p className="text-sm font-medium text-gray-500 truncate">
-                      {stat.name}
-                    </p>
-                    <p className="mt-1 text-3xl font-semibold text-gray-900">
-                      {stat.value}
-                    </p>
-                  </div>
-                  <div
-                    className={`flex items-center ${
-                      stat.changeType === "increase"
-                        ? "text-green-600"
-                        : "text-red-600"
-                    }`}
-                  >
-                    {stat.changeType === "increase" ? (
-                      <svg
-                        className="w-5 h-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    ) : (
-                      <svg
-                        className="w-5 h-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M14.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 12.586V5a1 1 0 012 0v7.586l2.293-2.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    )}
-                    <span className="ml-1 text-sm font-medium">
-                      {stat.change}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
+              <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            </MapContainer>
+          </div>
         </div>
 
-        {/* Map and Charts Section */}
-        <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-2">
-          {/* Risk Map */}
-          <div className="bg-white rounded-lg shadow">
-            <div className="p-6">
-              <h3 className="text-lg font-medium text-gray-900">Risk Map</h3>
-              <div className="mt-4 aspect-w-16 aspect-h-9 bg-gray-100 rounded-lg">
-                {/* Add your map component here */}
-                <div className="flex items-center justify-center h-full text-gray-500">
-                  Map Placeholder
-                </div>
+        {/* Predicted vs Actual Chart */}
+        <div className="bg-white rounded-xl shadow p-4">
+          <h2 className="font-semibold mb-3 text-[#0d2544]">
+            Predicted vs Actual Cases
+          </h2>
+          <ResponsiveContainer width="100%" height={250}>
+            <LineChart data={sampleData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Line
+                type="monotone"
+                dataKey="value"
+                stroke="#2f855a"
+                strokeWidth={3}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* 🔹 Insights Section */}
+      <SectionHeader title="Outbreak Insights" />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        <div className="lg:col-span-2 bg-white rounded-xl shadow p-4">
+          <h2 className="font-semibold mb-3 text-[#0d2544]">Insight Summary</h2>
+          <p className="text-gray-700 text-sm leading-relaxed">
+            Based on current climate and population data, there is a moderately
+            elevated risk of a Cholera outbreak in the North-Eastern regions
+            over the next quarter. Increased rainfall and high population
+            density are the primary contributing factors. Proactive measures in
+            sanitation and public health awareness are recommended to mitigate
+            potential spread.
+          </p>
+        </div>
+
+        <div className="bg-white rounded-xl shadow p-4 flex flex-col items-center justify-center">
+          <h2 className="font-semibold mb-3 text-[#0d2544]">
+            Key Risk Factors
+          </h2>
+          <img
+            src="/Risk Factors.jpeg"
+            alt="Risk Factors Chart"
+            className="rounded-lg"
+          />
+        </div>
+      </div>
+
+      {/* 🔹 Prediction Section */}
+      <SectionHeader title="Run New Prediction" />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Prediction Form */}
+        <div className="bg-white rounded-xl shadow p-6">
+          <h2 className="font-semibold mb-4 text-[#0d2544]">
+            Run a New Prediction
+          </h2>
+          <div className="space-y-3">
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="text-sm text-gray-600">Disease</label>
+                <select
+                  title="disease"
+                  value={disease}
+                  onChange={(e) => setDisease(e.target.value)}
+                  className="w-full border rounded-md px-3 py-2 mt-1"
+                >
+                  <option>Cholera</option>
+                  <option>Malaria</option>
+                  <option>Lassa Fever</option>
+                </select>
+              </div>
+              <div>
+                <label className="text-sm text-gray-600">Region</label>
+                <select
+                  title="region"
+                  value={region}
+                  onChange={(e) => setRegion(e.target.value)}
+                  className="w-full border rounded-md px-3 py-2 mt-1"
+                >
+                  <option>North-East</option>
+                  <option>South-West</option>
+                  <option>North-Central</option>
+                </select>
               </div>
             </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="text-sm text-gray-600">
+                  Avg. Rainfall (mm)
+                </label>
+                <input
+                  placeholder="1250"
+                  type="number"
+                  value={rainfall}
+                  onChange={(e) => setRainfall(e.target.value)}
+                  className="w-full border rounded-md px-3 py-2 mt-1"
+                />
+              </div>
+              <div>
+                <label className="text-sm text-gray-600">
+                  Avg. Temperature (°C)
+                </label>
+                <input
+                  placeholder="25"
+                  type="number"
+                  value={temperature}
+                  onChange={(e) => setTemperature(e.target.value)}
+                  className="w-full border rounded-md px-3 py-2 mt-1"
+                />
+              </div>
+            </div>
+
+            <button
+              onClick={predictRisk}
+              className="w-full mt-4 bg-green-700 text-white font-semibold py-2 rounded-md hover:bg-green-600 transition"
+            >
+              Predict Risk
+            </button>
+          </div>
+        </div>
+
+        {/* Prediction Result */}
+        <div className="bg-white rounded-xl shadow p-6">
+          <h2 className="font-semibold mb-4 text-[#0d2544]">
+            Prediction Result
+          </h2>
+          <div className="text-center">
+            <p className="text-gray-500 text-sm mb-1">Predicted Risk Level</p>
+            <h3
+              className={`text-3xl font-bold ${
+                riskResult.level === "High" ? "text-red-600" : "text-yellow-500"
+              }`}
+            >
+              {riskResult.level}
+            </h3>
+            <p className="mt-2 text-gray-600 text-sm">
+              Confidence Score:{" "}
+              <span className="font-semibold">{riskResult.confidence}%</span>
+            </p>
           </div>
 
-          {/* Trend Chart */}
-          <div className="bg-white rounded-lg shadow">
-            <div className="p-6">
-              <h3 className="text-lg font-medium text-gray-900">
-                Outbreak Trend
-              </h3>
-              <div className="mt-4 aspect-w-16 aspect-h-9 bg-gray-100 rounded-lg">
-                {/* Add your chart component here */}
-                <div className="flex items-center justify-center h-full text-gray-500">
-                  Chart Placeholder
-                </div>
-              </div>
-            </div>
+          <div className="mt-5">
+            <h4 className="font-semibold text-gray-800 text-sm mb-2">
+              Preventive Recommendations:
+            </h4>
+            <ul className="list-disc list-inside text-gray-600 text-sm space-y-1">
+              <li>Deploy rapid response teams to high-risk areas.</li>
+              <li>Increase public awareness campaigns on hygiene.</li>
+              <li>Stockpile necessary medical supplies.</li>
+            </ul>
           </div>
         </div>
       </div>
+      {/* Footer */}
+      <footer className="pt-6 text-center text-gray-500 text-sm">
+        © 2025 OutbreakIQ. All rights reserved.
+      </footer>
     </div>
   );
 };
 
-export default Predictions;
+/* 🔸 Reusable Components */
+const StatCard = ({ title, value }) => (
+  <div className="bg-white rounded-xl shadow p-4">
+    <p className="text-sm text-gray-500">{title}</p>
+    <h3 className="text-2xl font-bold text-gray-800 mt-1">{value}</h3>
+  </div>
+);
+
+const SectionHeader = ({ title }) => (
+  <h2 className="text-lg font-semibold text-[#0d2544] mb-3 mt-6 border-l-4 border-green-600 pl-3">
+    {title}
+  </h2>
+);
+
+export default Dashboard;

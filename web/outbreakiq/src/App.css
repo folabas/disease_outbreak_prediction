@@ -7,7 +7,7 @@
 :root {
   --sidebar-width: 16rem;
   --header-height: 4rem;
-  --transition-speed: 300ms;
+  --transition-speed: 100ms;
 }
 
 /* Global styles */

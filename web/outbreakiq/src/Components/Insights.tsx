@@ -87,7 +87,6 @@ const Insights: React.FC = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </motion.div>
   );
 };
