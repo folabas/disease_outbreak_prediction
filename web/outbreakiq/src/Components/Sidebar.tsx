@@ -46,7 +46,7 @@ const Sidebar = ({ isOpen, isMobile, onClose }: SidebarProps) => {
         isMobile
           ? "fixed inset-y-0 left-0 z-40 w-64 transition-transform duration-300 ease-in-out"
           : "relative w-64 min-h-screen"
-      } bg-white shadow-lg flex-shrink-0`}
+      } bg-[#0d2544] shadow-lg flex-shrink-0`}
     >
       {/* Logo */}
       <div className="px-6 pt-8 pb-4 flex items-center justify-between">
@@ -56,31 +56,11 @@ const Sidebar = ({ isOpen, isMobile, onClose }: SidebarProps) => {
             alt="OutbreakIQ Logo"
             className="h-10 w-auto"
           />
-          <span className="ml-2 text-xl font-semibold text-gray-800">
+          <span className="ml-2 text-xl font-semibold text-gray-300">
             OutbreakIQ
           </span>
         </div>
-        {isMobile && (
-          <button
-            onClick={onClose}
-            className="p-2 rounded-md hover:bg-gray-100 focus:outline-none"
-            aria-label="Close menu"
-          >
-            <svg
-              className="w-6 h-6 text-gray-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-        )}
+        
       </div>
 
       {/* Navigation Links */}
@@ -94,8 +74,8 @@ const Sidebar = ({ isOpen, isMobile, onClose }: SidebarProps) => {
               className={({ isActive }) =>
                 `flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
                   isActive
-                    ? "bg-blue-50 text-blue-700"
-                    : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                    ? "bg-blue-50 text-green-700"
+                    : "text-gray-300 hover:bg-gray-50 hover:text-gray-900"
                 }`
               }
             >
