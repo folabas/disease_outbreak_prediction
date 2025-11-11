@@ -1,0 +1,10 @@
+state,disease,year,week,cases,source_pdf,table_idx
+"4Ncdc National Reference Laboratory Fct(Nrl), Gaduwa, Abuja",35,,,23.0,18803aba62a09ada4ad84c8db76c22ea.pdf,7
+"5Lagos University Teaching Hospital Lagos(Luth), Microbiology Laboratory, Idiaraba",35,,,34.0,18803aba62a09ada4ad84c8db76c22ea.pdf,7
+"7National Hospital, Abujafct",35,,,20.0,18803aba62a09ada4ad84c8db76c22ea.pdf,7
+"11Ladoke Akintola University Teaching Oyohospital, Ogbomosho",35,,,40.0,18803aba62a09ada4ad84c8db76c22ea.pdf,7
+"14Central Public Health Laboratory (Cphl), Lagosyaba",35,,,37.0,18803aba62a09ada4ad84c8db76c22ea.pdf,7
+"17Maitama District Hospital, Abujafct",35,,,21.0,18803aba62a09ada4ad84c8db76c22ea.pdf,7
+"21Infectious Disease Hospital, Kanokano",col_1,,,5.0,18803aba62a09ada4ad84c8db76c22ea.pdf,8
+"39Aminu Kano Teaching Hospital, Kano Kano(Sentinel Site)",col_1,,,6.0,18803aba62a09ada4ad84c8db76c22ea.pdf,8
+"40Asokoro District Hospital, Abuja (Sentinel Fctsite)",col_1,,,22.0,18803aba62a09ada4ad84c8db76c22ea.pdf,8

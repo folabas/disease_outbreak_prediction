@@ -1,0 +1,74 @@
+disease_label,indicator_code,canonical_disease
+Cases started on MDR-TB treatment,TB_c_mdr_tx,
+Confirmed cases of MDR-TB,TB_mdr,
+Confirmed cases of MDR-TB started treatment for MDR-TB (%),TB_conf_mdr_tx_pct,
+Confirmed cases of RR-/MDR-TB,TB_rr_mdr,
+Congenital Rubella Syndrome - number of reported cases,WHS3_55,
+Estimated number of MDR/RR-TB incident cases,TB_e_inc_rr_num,
+Japanese encephalitis - number of reported cases,WHS3_42,
+Leprosy - New leprosy cases with G2D rate per 1 000 000 population,NTD_LEPR7,
+Leprosy - Number of cases registered for treatment,NTD_LEPR3,
+Leprosy - Number of new leprosy cases among children (less than 15 years of age),NTD_LEPR8,
+Mumps - number of reported cases,WHS3_53,
+Neonatal tetanus - number of reported cases,WHS3_56,
+New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,
+New cases: other,TB_new_oth,
+New cases: pulmonary smear unknown/not done,TB_new_su,
+New cases: pulmonary smear-negative,TB_new_sn,
+New leprosy case detection rate per 1 000 000 population,NTD_LEPR2,
+New leprosy child case detection rate (less than 15 years of age) per 1 000 000 child population,NTD_LEPR13,
+"New or unknown treatment history cases: Pulmonary, bacteriologically confirmed",TB_new_labconf,
+Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,
+Number of cases of visceral leishmaniasis reported,NTD_LEISHVNUM,
+Number of female leprosy new cases,NTD_LEPR11,
+Number of imported cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM_IM,
+Number of imported cases of visceral leishmaniasis reported,NTD_LEISHVNUM_IM,
+Number of new G2D leprosy cases,NTD_LEPR5,
+Number of new cases of lip and oral cavity cancer,ORAL_HEALTH_CANCER_LIPORALCAVITY_NEWCASE_NUMBER,
+Number of new leprosy cases,WHS3_45,
+Number of new leprosy cases with G2D among children (less than 15 years of age),NTD_LEPR9,
+Number of new reported cases of Buruli ulcer,NTD_1,
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,
+Number of non-autochthonous leprosy cases,NTD_LEPR14,
+Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,
+Number of suspected yaws cases reported,NTD_YAWSNUM_SUSP,
+Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,
+Retreatment cases: other,TB_ret_oth,
+Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,
+Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,
+Rubella - number of reported cases,WHS3_57,
+Total tetanus - number of reported cases,WHS3_46,
+Cholera case fatality rate,CHOLERA_0000000003,Cholera
+Number of reported cases of cholera,CHOLERA_0000000001,Cholera
+Diphtheria - number of reported cases,WHS3_41,Diphtheria
+Estimated number of malaria cases,MALARIA_EST_CASES,Malaria
+Number of confirmed malaria cases,MALARIA_CONF_CASES,Malaria
+Number of indigenous P. falciparum malaria cases,MALARIA_PF_INDIG,Malaria
+Number of indigenous malaria cases,MALARIA_INDIG,Malaria
+Number of malaria cases treated with artemisinin-based combination therapies (ACTs),MALARIA_ACT_TREATED,Malaria
+Number of malaria positive cases by microscopy,MALARIA_MICR_POS,Malaria
+Number of malaria positive cases by rapid diagnostic test (RDT),MALARIA_RDT_POS,Malaria
+Number of presumed malaria cases,MALARIA_PRES_CASES,Malaria
+Number of suspected malaria cases,MALARIA_SUSPECTS,Malaria
+Total number of  malaria cases (presumed + confirmed cases),MALARIA_TOTAL_CASES,Malaria
+Measles - number of reported cases,WHS3_62,Measles
+Number of suspected meningitis cases reported,MENING_2,Meningitis
+Pertussis - number of reported cases,WHS3_43,Pertussis
+Number of reported cases of poliomyelitis by wild poliovirus (WPV),VACCINEPREVENTABLE_WILDPOLIO,Polio
+Poliomyelitis - number of reported cases,WHS3_49,Polio
+Incidence of tuberculosis (per 100 000 population) (HIV-positive cases),TB_e_inc_tbhiv_100k,Tuberculosis
+Number of incident tuberculosis cases,TB_e_inc_num,Tuberculosis
+Number of incident tuberculosis cases in children aged 0 - 14,TB_e_inc_num_014,Tuberculosis
+"Number of incident tuberculosis cases,  (HIV-positive cases)",TB_e_inc_tbhiv_num,Tuberculosis
+Number of prevalent tuberculosis cases,TB_e_prev_num,Tuberculosis
+Smear-positive tuberculosis case-detection rate (%),MDG_0000000030,Tuberculosis
+The number of new and relapse cases of tuberculosis detected in a given year by age and sex,TB_Notification_agesex_num,Tuberculosis
+Total number of notified TB cases,TB_c_notified,Tuberculosis
+Treatment success rate: HIV-positive TB cases,TB_c_tbhiv_tsr,Tuberculosis
+Treatment success rate: XDR-TB cases,TB_c_xdr_tsr,Tuberculosis
+Treatment success rate: new TB cases,TB_c_new_tsr,Tuberculosis
+Treatment success rate: previously treated TB cases,TB_c_ret_tsr,Tuberculosis
+Tuberculosis - new and relapse cases,TB_c_newinc,Tuberculosis
+Tuberculosis - new and relapse cases,TB_tot_newrel,Tuberculosis
+Number of malaria cases treated with any first  line tx courses (including artemisinin-based combination therapies (ACTs)),MALARIA_1STLINE_TREATED,Yellow Fever
+Yellow fever - number of reported cases,WHS3_50,Yellow Fever

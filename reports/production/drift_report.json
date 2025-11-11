@@ -1,0 +1,11 @@
+{
+  "drift_cases": 0.12644291748138226,
+  "drift_deaths": 0.30821228850971893,
+  "drift_temperature_2m_mean": 5.611595319508467,
+  "drift_relative_humidity_2m_mean": 2.3607014526701007,
+  "drift_precipitation_sum": 0.7491723488104693,
+  "drift_who_cases_national": 0.0,
+  "timestamp": 1762426400,
+  "status": "ok",
+  "rows": 401
+}

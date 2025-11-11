@@ -1,0 +1,5 @@
+state,disease,year,week,cases,source_pdf,table_idx
+"Lagos, Nigeria",1,,,5.0,07b45389d14275a12c916883fa65933c.pdf,6
+"Lagos, Nigeria",1,,,7.0,07b45389d14275a12c916883fa65933c.pdf,6
+"Lagos, Nigeria","Sept 27 – Dec 3, 2016",,,25.0,07b45389d14275a12c916883fa65933c.pdf,6
+"Lagos, Nigeria","Sept 27 – Dec 3, 2016",,,1.0,07b45389d14275a12c916883fa65933c.pdf,6

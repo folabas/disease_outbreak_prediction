@@ -1,0 +1,30 @@
+disease_label,indicator_code,rows,suggested
+Total tetanus - number of reported cases,WHS3_46,2236,<none>
+Number of new reported cases of human African trypanosomiasis (T.b. gambiense),NTD_4,1820,<none>
+Neonatal tetanus - number of reported cases,WHS3_56,1768,<none>
+Number of cases of visceral leishmaniasis reported,NTD_LEISHVNUM,988,<none>
+New cases: pulmonary smear-negative,TB_new_sn,936,<none>
+Rubella - number of reported cases,WHS3_57,936,<none>
+Number of cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM,884,<none>
+Confirmed cases of RR-/MDR-TB,TB_rr_mdr,884,<none>
+Number of suspected cases of Buruli ulcer reported,NTD_BU_SUSP,832,<none>
+Cases started on MDR-TB treatment,TB_c_mdr_tx,832,<none>
+Number of new reported cases of Buruli ulcer,NTD_1,780,<none>
+New cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_new_pct,780,<none>
+Previously treated cases tested for RR-/MDR-TB (%),TB_c_dst_rlt_ret_pct,780,<none>
+Retreatment cases: treatment after failure (pulmonary smear and/or culture positive),TB_ret_taf,676,<none>
+Retreatment cases: treatment after default (pulmonary smear and/or culture positive),TB_ret_tad,676,<none>
+Retreatment cases: other,TB_ret_oth,624,<none>
+New cases: pulmonary smear unknown/not done,TB_new_su,572,<none>
+"New or unknown treatment history cases: Pulmonary, bacteriologically confirmed",TB_new_labconf,572,<none>
+Number of imported cases of cutaneous leishmaniasis reported,NTD_LEISHCNUM_IM,572,<none>
+Estimated number of MDR/RR-TB incident cases,TB_e_inc_rr_num,468,<none>
+New cases: other,TB_new_oth,364,<none>
+Number of imported cases of visceral leishmaniasis reported,NTD_LEISHVNUM_IM,364,<none>
+Confirmed cases of MDR-TB,TB_mdr,312,<none>
+Confirmed cases of MDR-TB started treatment for MDR-TB (%),TB_conf_mdr_tx_pct,260,<none>
+Number of new cases of lip and oral cavity cancer,ORAL_HEALTH_CANCER_LIPORALCAVITY_NEWCASE_NUMBER,156,<none>
+Congenital Rubella Syndrome - number of reported cases,WHS3_55,52,<none>
+Mumps - number of reported cases,WHS3_53,52,<none>
+Japanese encephalitis - number of reported cases,WHS3_42,52,<none>
+Number of suspected yaws cases reported,NTD_YAWSNUM_SUSP,52,<none>
