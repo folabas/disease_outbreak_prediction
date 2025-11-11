@@ -12,7 +12,7 @@ const Footer = () => {
               className="h-10 w-auto"
             />
             <span className="text-[#0d2544] font-bold text-4xl ">
-              OutbreakIQ
+              Outbreak<span className="text-green-700">IQ</span>
             </span>
           </div>
 
@@ -113,7 +113,8 @@ const Footer = () => {
 
           {/* Copyright */}
           <p className="text-[#0d2544] text-sm font-normal leading-normal">
-            © {new Date().getFullYear()} OutbreakIQ. All rights reserved.
+            © {new Date().getFullYear()} Outbreak
+            <span className="text-green-700">IQ</span>. All rights reserved.
           </p>
         </footer>
       </div>

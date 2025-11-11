@@ -37,7 +37,7 @@ const Navbar = ({ isOpen, isMobile, onClose }: NavbarProps) => {
                 className="h-10 w-auto"
               />
               <span className="text-xl font-bold tracking-tight text-white px-3">
-                OutbreakIQ
+                Outbreak<span className="text-green-700">IQ</span>
               </span>
             </div>
 

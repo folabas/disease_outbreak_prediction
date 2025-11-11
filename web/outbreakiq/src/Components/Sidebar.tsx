@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 interface SidebarProps {
@@ -7,6 +8,14 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ isOpen, isMobile, onClose }: SidebarProps) => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate sidebar content loading
+    const timer = setTimeout(() => setLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
   const navigationItems = [
     {
       name: "Home",
@@ -50,52 +59,69 @@ const Sidebar = ({ isOpen, isMobile, onClose }: SidebarProps) => {
     >
       {/* Logo */}
       <div className="px-6 pt-8 pb-4 flex items-center justify-between">
-        <div className="flex items-center">
-          <img
-            src="/Clean logo.png"
-            alt="OutbreakIQ Logo"
-            className="h-10 w-auto"
-          />
-          <span className="ml-2 text-xl font-semibold text-gray-300">
-            OutbreakIQ
-          </span>
-        </div>
-        
+        {loading ? (
+          <div className="animate-pulse flex items-center gap-3 w-full">
+            <div className="h-10 w-10 bg-gray-600 rounded-lg"></div>
+            <div className="flex-1 h-4 bg-gray-600 rounded-md"></div>
+          </div>
+        ) : (
+          <div className="flex items-center">
+            <img
+              src="/Clean logo.png"
+              alt="OutbreakIQ Logo"
+              className="h-10 w-auto"
+            />
+            <span className="ml-2 text-xl font-semibold text-gray-300">
+              Outbreak<span className="text-green-700">IQ</span>
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Navigation Links */}
       <div className="px-4 py-2 h-full">
         <div className="space-y-1">
-          {navigationItems.map((item) => (
-            <NavLink
-              key={item.name}
-              to={item.path}
-              onClick={isMobile ? onClose : undefined}
-              className={({ isActive }) =>
-                `flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
-                  isActive
-                    ? "bg-blue-50 text-green-700"
-                    : "text-gray-300 hover:bg-gray-50 hover:text-gray-900"
-                }`
-              }
-            >
-              <svg
-                className="mr-3 h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
+          {loading ? (
+            <div className="space-y-3 mt-4 animate-pulse">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="h-10 bg-gray-600/60 rounded-lg w-full"
+                ></div>
+              ))}
+            </div>
+          ) : (
+            navigationItems.map((item) => (
+              <NavLink
+                key={item.name}
+                to={item.path}
+                onClick={isMobile ? onClose : undefined}
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
+                    isActive
+                      ? "bg-blue-50 text-green-700"
+                      : "text-gray-300 hover:bg-gray-50 hover:text-gray-900"
+                  }`
+                }
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d={item.icon}
-                />
-              </svg>
-              {item.name}
-            </NavLink>
-          ))}
+                <svg
+                  className="mr-3 h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d={item.icon}
+                  />
+                </svg>
+                {item.name}
+              </NavLink>
+            ))
+          )}
         </div>
       </div>
     </nav>

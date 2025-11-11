@@ -3,9 +3,9 @@ import Layout from "./Components/Layout";
 import Home from "./pages/Home";
 import Predictions from "./pages/Predictions";
 import Climate from "./pages/Climate";
-import Population from "./Components/Population";
-import Hospital from "./Components/Hospital";
-import Insights from "./Components/Insights";
+import Population from "./pages/Population";
+import Hospital from "./pages/Hospital";
+import Insights from "./pages/Insights";
 
 const App = () => {
   return (
