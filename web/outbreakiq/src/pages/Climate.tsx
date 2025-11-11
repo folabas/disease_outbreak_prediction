@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import DataPageTemplate from "../Components/DataPageTemplate";
 import Loader from "../Components/Loader";
+import { usePageAnimations } from "../hooks/usePageAnimations";
+
 import {
   LineChart,
   Line,

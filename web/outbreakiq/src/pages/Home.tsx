@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import FAQ from "../Components/FAQ";
 import Footer from "../Components/Footer";
+import { usePageAnimations } from "../hooks/usePageAnimations";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -14,7 +15,7 @@ const Home = () => {
   if (loading) return <HomeSkeleton />;
 
   return (
-    <div className="min-h-screen bg-[#0D2544]">
+    <div className="min-h-screen bg-[#0D2544] ">
       {/* Hero Section */}
       <div className="relative overflow-hidden bg-[#0D2544]">
         <div className="max-w-7xl mx-auto">

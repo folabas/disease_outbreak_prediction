@@ -10,6 +10,8 @@ import {
 } from "recharts";
 import { MapContainer, TileLayer } from "react-leaflet";
 import Loader from "../Components/Loader";
+import { usePageAnimations } from "../hooks/usePageAnimations";
+
 
 const Dashboard = () => {
   const [disease, setDisease] = useState("Cholera");

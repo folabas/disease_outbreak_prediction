@@ -15,6 +15,8 @@ import Loader from "../Components/Loader";
 import { MapContainer, TileLayer, GeoJSON, useMap } from "react-leaflet";
 import { motion } from "framer-motion";
 import "leaflet/dist/leaflet.css";
+import { usePageAnimations } from "../hooks/usePageAnimations";
+
 
 const regions = [
   "North West",
