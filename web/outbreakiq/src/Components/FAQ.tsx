@@ -43,10 +43,10 @@ const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <div className="px-4 sm:px-10 md:px-20 lg:px-40 flex justify-center py-10">
+    <div className="px-4 sm:px-10 md:px-20 lg:px-40 flex justify-center py-24 bg-[#0d2544]">
       <div className="layout-content-container flex flex-col w-full max-w-6xl flex-1">
         <div className="text-center mb-10">
-          <h2 className="text-[#212529] text-3xl font-bold leading-tight mb-4">
+          <h2 className="text-xl font-bold text-gray-300 sm:text-2xl">
             Frequently Asked Questions
           </h2>
           <p className="text-[#6C757D] text-lg">
@@ -64,11 +64,11 @@ const FAQ = () => {
                 className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
-                <span className="text-[#212529] font-medium">
+                <span className="text-green-700 font-medium">
                   {faq.question}
                 </span>
-                <span className="material-symbols-outlined text-[#6C757D]">
-                  {openIndex === index ? "remove" : "add"}
+                <span className="material-symbols-outlined text-[#6C757D] text-xl">
+                  {openIndex === index ? "-" : "+"}
                 </span>
               </button>
 
@@ -80,7 +80,7 @@ const FAQ = () => {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="px-6 py-4 text-[#6C757D] border-t border-gray-200">
+                    <div className="px-6 py-4 text-white bg-green-700 border-t">
                       {faq.answer}
                     </div>
                   </motion.div>
