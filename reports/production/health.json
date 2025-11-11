@@ -1,5 +1,6 @@
 {
-  "timestamp":1762682026,
+  "timestamp":1762902380,
   "status":"ok",
-  "predictions":308
+  "predictions":107,
+  "mode":"deep_lstm"
 }

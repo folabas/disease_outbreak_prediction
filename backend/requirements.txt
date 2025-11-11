@@ -9,3 +9,4 @@ joblib==1.4.2
 h5py<3.11
 tensorflow-intel==2.15.0
 keras==2.15.0
+requests==2.32.3
