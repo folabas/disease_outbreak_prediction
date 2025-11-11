@@ -3,6 +3,8 @@ import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import Loader from "../Components/Loader";
 import { motion } from "framer-motion";
+import { usePageAnimations } from "../hooks/usePageAnimations";
+
 import {
   ResponsiveContainer,
   BarChart,

@@ -14,6 +14,8 @@ import {
 import Loader from "../Components/Loader";
 import { motion, AnimatePresence } from "framer-motion";
 import Footer from "../Components/Footer";
+import { usePageAnimations } from "../hooks/usePageAnimations";
+
 
 /* ---------- Mock Data ---------- */
 const featureData = [
