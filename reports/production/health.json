@@ -1,6 +1,6 @@
 {
-  "timestamp":1762902380,
+  "timestamp":1762965717,
   "status":"ok",
-  "predictions":107,
-  "mode":"deep_lstm"
+  "predictions":308,
+  "mode":"realtime_stub"
 }

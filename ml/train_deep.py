@@ -26,7 +26,7 @@ try:
     # TensorFlow is heavy; import guarded
     from tensorflow.keras.models import Sequential, load_model
     from tensorflow.keras.layers import LSTM, Dense, Dropout, BatchNormalization
-    from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau
+    from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau, Callback
     from tensorflow.keras.regularizers import l2
     TENSORFLOW_AVAILABLE = True
 except Exception as e:
@@ -47,6 +47,7 @@ PATIENCE = 15
 LEARNING_RATE = 0.001
 DROPOUT_RATE = 0.3
 L2_REG = 0.01
+REAL_UNIT_THRESHOLD = float(os.getenv("REAL_UNIT_THRESHOLD", "100.0"))  # cases MAE threshold
 
 # Features to use for prediction
 FEATURES = [
@@ -221,13 +222,44 @@ def train_model():
     model = build_model((WINDOW_SIZE, len(FEATURES)))
     
     # Callbacks
+    # Custom callback: compute validation metrics in original units and stop on threshold
+    class StopOnRealUnitThreshold(Callback):
+        def __init__(self, X_val_scaled, y_val_scaled, target_scaler, threshold: float = REAL_UNIT_THRESHOLD, metric: str = 'mae'):
+            super().__init__()
+            self.X_val_scaled = X_val_scaled
+            self.y_val_scaled = y_val_scaled
+            self.target_scaler = target_scaler
+            self.threshold = threshold
+            self.metric = metric
+            self.best_metric = float('inf')
+
+        def on_epoch_end(self, epoch, logs=None):
+            logs = logs or {}
+            # Predict on validation set
+            y_pred_scaled = self.model.predict(self.X_val_scaled, verbose=0).flatten()
+            # Inverse transform to original case counts
+            y_pred = self.target_scaler.inverse_transform(y_pred_scaled.reshape(-1, 1)).flatten()
+            y_true = self.target_scaler.inverse_transform(self.y_val_scaled.reshape(-1, 1)).flatten()
+
+            # Compute MAE and RMSE in original units
+            mae = np.mean(np.abs(y_true - y_pred))
+            rmse = np.sqrt(np.mean((y_true - y_pred) ** 2))
+
+            # Log metrics for visibility
+            print(f"\n[RealUnits] val_mae_cases={mae:.2f}, val_rmse_cases={rmse:.2f} (threshold={self.threshold:.2f}, metric={self.metric})")
+
+            # Update best metric
+            metric_value = mae if self.metric == 'mae' else rmse
+            if metric_value < self.best_metric:
+                self.best_metric = metric_value
+
+            # Early stop condition in original units
+            if metric_value <= self.threshold:
+                print(f"=== Early stop: real-unit {self.metric} <= {self.threshold:.2f} at epoch {epoch+1} ===")
+                self.model.stop_training = True
+
     callbacks = [
-        EarlyStopping(
-            monitor='val_loss',
-            patience=PATIENCE,
-            restore_best_weights=True,
-            verbose=1
-        ),
+        # Keep LR scheduling to help converge
         ReduceLROnPlateau(
             monitor='val_loss',
             factor=0.5,
@@ -235,6 +267,15 @@ def train_model():
             min_lr=1e-6,
             verbose=1
         ),
+        # Stop when real-unit metric threshold is met
+        StopOnRealUnitThreshold(
+            X_val_scaled=X_val_scaled,
+            y_val_scaled=y_val_scaled,
+            target_scaler=target_scaler,
+            threshold=REAL_UNIT_THRESHOLD,
+            metric='mae'
+        ),
+        # Still save best weights throughout training
         ModelCheckpoint(
             str(MODEL_PATH),
             monitor='val_loss',
@@ -263,6 +304,14 @@ def train_model():
     
     print(f"Training Loss: {train_loss[0]:.4f}, MAE: {train_loss[1]:.4f}, MSE: {train_loss[2]:.4f}")
     print(f"Validation Loss: {val_loss[0]:.4f}, MAE: {val_loss[1]:.4f}, MSE: {val_loss[2]:.4f}")
+
+    # Also report validation metrics in original units
+    y_val_pred_scaled = model.predict(X_val_scaled, verbose=0).flatten()
+    y_val_pred = target_scaler.inverse_transform(y_val_pred_scaled.reshape(-1, 1)).flatten()
+    y_val_true = target_scaler.inverse_transform(y_val_scaled.reshape(-1, 1)).flatten()
+    val_mae_cases = np.mean(np.abs(y_val_true - y_val_pred))
+    val_rmse_cases = np.sqrt(np.mean((y_val_true - y_val_pred) ** 2))
+    print(f"Validation MAE (cases): {val_mae_cases:.2f}, RMSE (cases): {val_rmse_cases:.2f}")
     
     # Make some example predictions
     print("\n=== Example Predictions ===")

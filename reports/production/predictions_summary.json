@@ -1,0 +1,418 @@
+{
+  "row_count": 161,
+  "unique_diseases_count": 12,
+  "unique_diseases": [
+    "Cholera",
+    "Covid-19",
+    "Diphtheria",
+    "Leprosy",
+    "Malaria",
+    "Measles",
+    "Meningitis",
+    "Monkeypox",
+    "Pertussis",
+    "Polio",
+    "Tuberculosis",
+    "Yellow Fever"
+  ],
+  "totals_by_disease": {
+    "Malaria": {
+      "cases_sum": 4870075.262884615,
+      "deaths_sum": 0.0
+    },
+    "Diphtheria": {
+      "cases_sum": 41363.0,
+      "deaths_sum": 1262.0
+    },
+    "Tuberculosis": {
+      "cases_sum": 18274.25,
+      "deaths_sum": 0.0
+    },
+    "Cholera": {
+      "cases_sum": 4232.0,
+      "deaths_sum": 168.0
+    },
+    "Measles": {
+      "cases_sum": 1185.0,
+      "deaths_sum": 8.0
+    },
+    "Pertussis": {
+      "cases_sum": 151.8653846153846,
+      "deaths_sum": 0.0
+    },
+    "Covid-19": {
+      "cases_sum": 151.0,
+      "deaths_sum": 7.0
+    },
+    "Yellow Fever": {
+      "cases_sum": 112.0,
+      "deaths_sum": 99.4
+    },
+    "Leprosy": {
+      "cases_sum": 92.63165384615384,
+      "deaths_sum": 0.0
+    },
+    "Monkeypox": {
+      "cases_sum": 91.0,
+      "deaths_sum": 49.0
+    },
+    "Meningitis": {
+      "cases_sum": 22.596153846153847,
+      "deaths_sum": 0.0
+    },
+    "Polio": {
+      "cases_sum": 0.0,
+      "deaths_sum": 0.0
+    }
+  },
+  "global_top10_cases": [
+    {
+      "rank": 84,
+      "state": "All",
+      "disease": "Malaria",
+      "cases": 4870075.262884615,
+      "deaths": 0.0
+    },
+    {
+      "rank": 65,
+      "state": "Kano",
+      "disease": "Diphtheria",
+      "cases": 23784.0,
+      "deaths": 821.0
+    },
+    {
+      "rank": 137,
+      "state": "All",
+      "disease": "Tuberculosis",
+      "cases": 18274.25,
+      "deaths": 0.0
+    },
+    {
+      "rank": 81,
+      "state": "Yobe",
+      "disease": "Diphtheria",
+      "cases": 5330.0,
+      "deaths": 109.0
+    },
+    {
+      "rank": 66,
+      "state": "Katsina",
+      "disease": "Diphtheria",
+      "cases": 3708.0,
+      "deaths": 101.0
+    },
+    {
+      "rank": 51,
+      "state": "Bauchi",
+      "disease": "Diphtheria",
+      "cases": 3066.0,
+      "deaths": 104.0
+    },
+    {
+      "rank": 54,
+      "state": "Borno",
+      "disease": "Diphtheria",
+      "cases": 2902.0,
+      "deaths": 67.0
+    },
+    {
+      "rank": 8,
+      "state": "Sokoto",
+      "disease": "Cholera",
+      "cases": 2141.0,
+      "deaths": 86.0
+    },
+    {
+      "rank": 64,
+      "state": "Kaduna",
+      "disease": "Diphtheria",
+      "cases": 777.0,
+      "deaths": 11.0
+    },
+    {
+      "rank": 2,
+      "state": "Benue",
+      "disease": "Cholera",
+      "cases": 602.0,
+      "deaths": 12.0
+    }
+  ],
+  "global_top10_deaths": [
+    {
+      "rank": 65,
+      "state": "Kano",
+      "disease": "Diphtheria",
+      "cases": 23784.0,
+      "deaths": 821.0
+    },
+    {
+      "rank": 81,
+      "state": "Yobe",
+      "disease": "Diphtheria",
+      "cases": 5330.0,
+      "deaths": 109.0
+    },
+    {
+      "rank": 51,
+      "state": "Bauchi",
+      "disease": "Diphtheria",
+      "cases": 3066.0,
+      "deaths": 104.0
+    },
+    {
+      "rank": 66,
+      "state": "Katsina",
+      "disease": "Diphtheria",
+      "cases": 3708.0,
+      "deaths": 101.0
+    },
+    {
+      "rank": 8,
+      "state": "Sokoto",
+      "disease": "Cholera",
+      "cases": 2141.0,
+      "deaths": 86.0
+    },
+    {
+      "rank": 54,
+      "state": "Borno",
+      "disease": "Diphtheria",
+      "cases": 2902.0,
+      "deaths": 67.0
+    },
+    {
+      "rank": 3,
+      "state": "Delta",
+      "disease": "Cholera",
+      "cases": 583.0,
+      "deaths": 32.0
+    },
+    {
+      "rank": 161,
+      "state": "Zamfara",
+      "disease": "Yellow Fever",
+      "cases": 24.0,
+      "deaths": 21.4
+    },
+    {
+      "rank": 7,
+      "state": "Nasarawa",
+      "disease": "Cholera",
+      "cases": 411.0,
+      "deaths": 17.0
+    },
+    {
+      "rank": 152,
+      "state": "Kogi",
+      "disease": "Yellow Fever",
+      "cases": 17.0,
+      "deaths": 15.2
+    }
+  ],
+  "top_states_by_disease": {
+    "Cholera": [
+      {
+        "state": "Sokoto",
+        "cases_sum": 2141.0,
+        "deaths_sum": 86.0
+      },
+      {
+        "state": "Benue",
+        "cases_sum": 602.0,
+        "deaths_sum": 12.0
+      },
+      {
+        "state": "Delta",
+        "cases_sum": 583.0,
+        "deaths_sum": 32.0
+      },
+      {
+        "state": "Nasarawa",
+        "cases_sum": 411.0,
+        "deaths_sum": 17.0
+      },
+      {
+        "state": "Bayelsa",
+        "cases_sum": 258.0,
+        "deaths_sum": 15.0
+      }
+    ],
+    "Covid-19": [
+      {
+        "state": "Katsina",
+        "cases_sum": 21.0,
+        "deaths_sum": 1.0
+      },
+      {
+        "state": "Osun",
+        "cases_sum": 20.0,
+        "deaths_sum": 0.0
+      },
+      {
+        "state": "Oyo",
+        "cases_sum": 17.0,
+        "deaths_sum": 1.0
+      },
+      {
+        "state": "Borno",
+        "cases_sum": 12.0,
+        "deaths_sum": 2.0
+      },
+      {
+        "state": "Akwa Ibom",
+        "cases_sum": 11.0,
+        "deaths_sum": 1.0
+      }
+    ],
+    "Diphtheria": [
+      {
+        "state": "Kano",
+        "cases_sum": 23784.0,
+        "deaths_sum": 821.0
+      },
+      {
+        "state": "Yobe",
+        "cases_sum": 5330.0,
+        "deaths_sum": 109.0
+      },
+      {
+        "state": "Katsina",
+        "cases_sum": 3708.0,
+        "deaths_sum": 101.0
+      },
+      {
+        "state": "Bauchi",
+        "cases_sum": 3066.0,
+        "deaths_sum": 104.0
+      },
+      {
+        "state": "Borno",
+        "cases_sum": 2902.0,
+        "deaths_sum": 67.0
+      }
+    ],
+    "Leprosy": [
+      {
+        "state": "All",
+        "cases_sum": 92.63165384615384,
+        "deaths_sum": 0.0
+      }
+    ],
+    "Malaria": [
+      {
+        "state": "All",
+        "cases_sum": 4870075.262884615,
+        "deaths_sum": 0.0
+      }
+    ],
+    "Measles": [
+      {
+        "state": "Katsina",
+        "cases_sum": 356.0,
+        "deaths_sum": 0.0
+      },
+      {
+        "state": "Sokoto",
+        "cases_sum": 324.0,
+        "deaths_sum": 5.0
+      },
+      {
+        "state": "Borno",
+        "cases_sum": 165.0,
+        "deaths_sum": 0.0
+      },
+      {
+        "state": "Yobe",
+        "cases_sum": 88.0,
+        "deaths_sum": 0.0
+      },
+      {
+        "state": "Kebbi",
+        "cases_sum": 64.0,
+        "deaths_sum": 3.0
+      }
+    ],
+    "Meningitis": [
+      {
+        "state": "All",
+        "cases_sum": 22.596153846153847,
+        "deaths_sum": 0.0
+      }
+    ],
+    "Monkeypox": [
+      {
+        "state": "Rivers",
+        "cases_sum": 25.0,
+        "deaths_sum": 14.0
+      },
+      {
+        "state": "Bayelsa",
+        "cases_sum": 19.0,
+        "deaths_sum": 11.0
+      },
+      {
+        "state": "Cross River",
+        "cases_sum": 9.0,
+        "deaths_sum": 3.0
+      },
+      {
+        "state": "Akwa Ibom",
+        "cases_sum": 6.0,
+        "deaths_sum": 0.0
+      },
+      {
+        "state": "Imo",
+        "cases_sum": 5.0,
+        "deaths_sum": 2.0
+      }
+    ],
+    "Pertussis": [
+      {
+        "state": "All",
+        "cases_sum": 151.8653846153846,
+        "deaths_sum": 0.0
+      }
+    ],
+    "Polio": [
+      {
+        "state": "All",
+        "cases_sum": 0.0,
+        "deaths_sum": 0.0
+      }
+    ],
+    "Tuberculosis": [
+      {
+        "state": "All",
+        "cases_sum": 18274.25,
+        "deaths_sum": 0.0
+      }
+    ],
+    "Yellow Fever": [
+      {
+        "state": "Zamfara",
+        "cases_sum": 24.0,
+        "deaths_sum": 21.4
+      },
+      {
+        "state": "Kogi",
+        "cases_sum": 17.0,
+        "deaths_sum": 15.2
+      },
+      {
+        "state": "Kebbi",
+        "cases_sum": 15.0,
+        "deaths_sum": 13.4
+      },
+      {
+        "state": "Kwara",
+        "cases_sum": 13.0,
+        "deaths_sum": 11.6
+      },
+      {
+        "state": "Borno",
+        "cases_sum": 6.0,
+        "deaths_sum": 5.4
+      }
+    ]
+  }
+}
