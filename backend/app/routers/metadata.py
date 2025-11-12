@@ -188,3 +188,27 @@ def get_metadata_options(
     else:
         # When missing, still return a success with empty lists to keep contract stable
         return success(result_data, message="options missing; no source available")
+
+
+@router.get("/diseases")
+def get_diseases() -> Dict[str, Any]:
+    logging.info("/diseases GET")
+    df = _read_training_table()
+    diseases: List[str] = []
+    if df is not None and "disease" in df.columns:
+        diseases = _unique_sorted(df["disease"]) or sorted(ALLOWED_DISEASES)
+    elif not diseases:
+        diseases = sorted(ALLOWED_DISEASES)
+    return success(diseases)
+
+
+@router.get("/regions")
+def get_regions() -> Dict[str, Any]:
+    logging.info("/regions GET")
+    df = _read_training_table()
+    regions: List[str] = []
+    if df is not None:
+        region_col = "state" if "state" in df.columns else ("region" if "region" in df.columns else None)
+        if region_col:
+            regions = _unique_sorted(df[region_col])
+    return success(regions)

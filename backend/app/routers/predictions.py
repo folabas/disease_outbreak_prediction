@@ -112,3 +112,12 @@ def get_historical_predictions(
         # If anything fails, return the base response wrapped
         return success(base.dict())
     return success(base.dict())
+
+
+@router.post("/predict")
+def post_predict(payload: PredictionQuery):
+    logging.info("/predictions/predict POST region=%s disease=%s", payload.region, payload.disease)
+    payload.region = validate_region(payload.region) or payload.region
+    payload.disease = validate_disease(payload.disease) or payload.disease
+    result = predict_series(payload)
+    return success(result.dict())

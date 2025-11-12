@@ -8,7 +8,7 @@ type RiskSummary = { level: string; confidence: number };
 export function usePredictions(disease: Disease, region: string, trigger?: number) {
   const [series, setSeries] = useState<PredictionSeriesPoint[]>([]);
   const [risk, setRisk] = useState<RiskSummary | undefined>(undefined);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined>(undefined);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export function usePredictions(disease: Disease, region: string, trigger?: numbe
         setLoading(true);
         setError(undefined);
 
-        // Historical disease cases for chart
+        // Historical disease cases for chart (only on explicit trigger)
         const now = new Date();
         const endDate = now.toISOString();
         const start = new Date(now);
@@ -36,12 +36,13 @@ export function usePredictions(disease: Disease, region: string, trigger?: numbe
           value: d?.cases?.confirmed ?? 0,
         }));
 
-        // Regional prediction for risk
-        const predRes = await outbreakAPI.predictions.getByRegion(region);
-        const outbreak = (predRes?.data?.data ?? {}) as OutbreakPrediction;
-        const riskLevel = outbreak?.riskLevel;
-        const level = riskLevel ? riskLevel.charAt(0).toUpperCase() + riskLevel.slice(1) : "Unknown";
-        const confidence = Number(((outbreak?.confidence ?? 0) * 100).toFixed(1));
+        // Explicit prediction via POST (includes disease + region)
+        const predRes = await outbreakAPI.predictions.postPredict({ disease, region });
+        const payload: any = predRes?.data?.data ?? predRes?.data ?? {};
+        const summary = payload?.summary ?? {};
+        const rl: string | undefined = summary?.riskLevel;
+        const level = rl ? rl.charAt(0).toUpperCase() + rl.slice(1) : "Unknown";
+        const confidence = Number(((summary?.confidence ?? 0) * 100).toFixed(1));
 
         if (mounted) {
           setSeries(seriesPoints);
@@ -53,11 +54,13 @@ export function usePredictions(disease: Disease, region: string, trigger?: numbe
         if (mounted) setLoading(false);
       }
     }
-    void run();
+    if (trigger && trigger > 0) {
+      void run();
+    }
     return () => {
       mounted = false;
     };
-  }, [disease, region, trigger]);
+  }, [trigger]);
 
   const stats = useMemo(() => {
     const latest = series.length > 0 ? series[series.length - 1].value : 0;

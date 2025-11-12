@@ -22,6 +22,8 @@ export const outbreakAPI = {
   metadata: {
     getOptions: (params?: { source?: "auto" | "training" | "weather" | "predictions"; disease?: string }) =>
       api.get("/metadata/options", { params }),
+    getDiseases: () => api.get<string[]>("/diseases"),
+    getRegions: () => api.get<string[]>("/regions"),
   },
 
   // Recommendations
@@ -36,6 +38,8 @@ export const outbreakAPI = {
       api.get<ApiResponse<OutbreakPrediction[]>>("/predictions/current"),
     getByRegion: (region: Region) =>
       api.get<ApiResponse<OutbreakPrediction>>(`/predictions/region/${region}`),
+    postPredict: (payload: { disease: Disease; region: Region; lga?: string; asOf?: string; horizonDays?: number; granularity?: string }) =>
+      api.post(`/predictions/predict`, payload),
     getHistorical: (params: {
       startDate: DateString;
       endDate: DateString;

@@ -55,9 +55,7 @@ const Dashboard = () => {
     setReload((x) => x + 1);
   };
 
-  if (loading) {
-    return <Loader />;
-  }
+  const isPredicting = loading;
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
@@ -274,10 +272,14 @@ const Dashboard = () => {
 
             <button
               onClick={predictRisk}
-              className="w-full mt-4 bg-green-700 text-white font-semibold py-2 rounded-md hover:bg-green-600 transition"
+              disabled={isPredicting}
+              className={`w-full mt-4 ${isPredicting ? "bg-green-400" : "bg-green-700 hover:bg-green-600"} text-white font-semibold py-2 rounded-md transition disabled:opacity-70`}
             >
-              Predict Risk
+              {isPredicting ? "Calculating…" : "Predict Risk"}
             </button>
+            {error && (
+              <p className="mt-2 text-sm text-red-600">{error}</p>
+            )}
           </div>
         </div>
 
