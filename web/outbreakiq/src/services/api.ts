@@ -18,6 +18,18 @@ import type {
 
 // All data endpoints organized by domain
 export const outbreakAPI = {
+  // Metadata
+  metadata: {
+    getOptions: (params?: { source?: "auto" | "training" | "weather" | "predictions"; disease?: string }) =>
+      api.get("/metadata/options", { params }),
+  },
+
+  // Recommendations
+  recommendations: {
+    get: (params?: { disease?: string; region?: string; year?: number }) =>
+      api.get("/recommendations", { params }),
+  },
+
   // Predictions
   predictions: {
     getCurrent: () =>

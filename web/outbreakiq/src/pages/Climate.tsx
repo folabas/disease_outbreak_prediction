@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import DataPageTemplate from "../Components/DataPageTemplate";
 import Loader from "../Components/Loader";
 import { usePageAnimations } from "../hooks/usePageAnimations";
+import { useClimate } from "../hooks/useClimate";
 
 import {
   LineChart,
@@ -15,71 +16,57 @@ import {
   Area,
 } from "recharts";
 
-const generateMockData = (days, tempBase, rainBase) =>
-  Array.from({ length: days }, (_, i) => ({
-    name: `Day ${i + 1}`,
-    temp: Math.round(tempBase + Math.random() * 4 - 2),
-    rain: Math.round(rainBase * Math.random() * 2 * 10) / 10,
-  }));
+// Hook-driven page: charts expect keys `temp`/`rain`, so adapt from hook's `value`.
 
 const Climate = () => {
-  const [loading, setLoading] = useState(true);
+  // Region filter feeds the climate hook
   const [region, setRegion] = useState("All Nigeria");
   const [dateRange, setDateRange] = useState("Last 30 Days");
-  const [tempData, setTempData] = useState([]);
-  const [rainData, setRainData] = useState([]);
-  const [stats, setStats] = useState([]);
+  type TempPoint = { name: string; temp: number };
+  type RainPoint = { name: string; rain: number };
+  type StatItem = { name: string; value: string; change: string; positive: boolean };
+
+  const [tempData, setTempData] = useState<TempPoint[]>([]);
+  const [rainData, setRainData] = useState<RainPoint[]>([]);
+  const [stats, setStats] = useState<StatItem[]>([]);
+  const { tempData: tSeries, rainData: rSeries, stats: cStats, loading: cLoading, error } = useClimate(region);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1200);
-    return () => clearTimeout(timer);
-  }, []);
+    // Adapt hook series to chart shape
+    const tempAdapted: TempPoint[] = (tSeries || []).map((p) => ({ name: p.name, temp: p.value }));
+    const rainAdapted: RainPoint[] = (rSeries || []).map((p) => ({ name: p.name, rain: p.value }));
+    setTempData(tempAdapted);
+    setRainData(rainAdapted);
 
-  useEffect(() => {
-    const days =
-      dateRange === "Last 7 Days" ? 7 : dateRange === "Last 30 Days" ? 30 : 90;
-
-    const regionBaseline = {
-      "All Nigeria": { temp: 32, rain: 4 },
-      "North-East": { temp: 34, rain: 2 },
-      "South-West": { temp: 30, rain: 6 },
-      "North-Central": { temp: 31, rain: 5 },
-    };
-
-    const base = regionBaseline[region];
-    const tempMock = generateMockData(days, base.temp, base.rain);
-    const rainMock = generateMockData(days, base.temp, base.rain);
-
-    setTempData(tempMock);
-    setRainData(rainMock);
-
-    setStats([
+    const days = dateRange === "Last 7 Days" ? 7 : dateRange === "Last 30 Days" ? 30 : 90;
+    const nextStats: StatItem[] = [
       {
         name: `Average Temperature (${days}d)`,
-        value: `${base.temp.toFixed(1)}°C`,
-        change: "+1.2%",
+        value: `${(cStats?.avgTemp ?? 0).toFixed(1)}°C`,
+        change: "",
         positive: true,
       },
       {
         name: `Total Rainfall (${days}d)`,
-        value: `${(base.rain * days).toFixed(1)} mm`,
-        change: "-5.8%",
-        positive: false,
+        value: `${(cStats?.totalRain ?? 0).toFixed(1)} mm`,
+        change: "",
+        positive: true,
       },
       {
         name: "Highest Temp Peak",
-        value: `${(base.temp + 6).toFixed(1)}°C`,
-        change: "+0.5%",
+        value: `${(cStats?.highTemp ?? 0).toFixed(1)}°C`,
+        change: "",
         positive: true,
       },
       {
         name: "Heaviest Rainfall Day",
-        value: `${(base.rain * 4.5).toFixed(1)} mm`,
-        change: "+12.1%",
+        value: `${(cStats?.heavyRain ?? 0).toFixed(1)} mm`,
+        change: "",
         positive: true,
       },
-    ]);
-  }, [region, dateRange]);
+    ];
+    setStats(nextStats);
+  }, [tSeries, rSeries, cStats, dateRange]);
 
   const filters = (
     <div className="flex flex-wrap gap-3 items-center">
@@ -126,7 +113,7 @@ const Climate = () => {
     </div>
   );
 
-  if (loading) return <Loader />;
+  if (cLoading) return <Loader />;
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
@@ -265,7 +252,8 @@ const Climate = () => {
 };
 
 // 🔸 Reusable Section Header (same style as Prediction)
-const SectionHeader = ({ title }) => (
+type SectionHeaderProps = { title: string };
+const SectionHeader = ({ title }: SectionHeaderProps) => (
   <h2 className="text-lg font-semibold text-[#0d2544] mb-3 mt-6 border-l-4 border-green-600 pl-3">
     {title}
   </h2>

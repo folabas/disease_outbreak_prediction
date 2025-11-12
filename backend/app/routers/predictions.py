@@ -1,48 +1,63 @@
 from fastapi import APIRouter, Query
+import logging
 from app.models.predictions import PredictionQuery, PredictionResponse
 from app.services.ml import predict_series
+from app.core.response import success
+from app.core.validators import validate_region, validate_disease
 
 
 router = APIRouter(prefix="/predictions", tags=["predictions"])
 
 
-@router.get("/", response_model=PredictionResponse)
+@router.get("/")
 def get_predictions(
     region: str = Query("All"),
-    disease: str = Query("cholera"),
+    disease: str = Query("cholera", regex="^(cholera|malaria)$"),
     window: int = Query(14, ge=1, le=180),
 ):
+    logging.info("/predictions GET region=%s disease=%s window=%s", region, disease, window)
+    region = validate_region(region) or "All"
+    disease = validate_disease(disease) or disease
     q = PredictionQuery(region=region, disease=disease, window=window)
-    return predict_series(q)
+    return success(predict_series(q).dict())
 
 
-@router.get("/current", response_model=PredictionResponse)
+@router.get("/current")
 def get_current_predictions(
     region: str = Query("All"),
-    disease: str = Query("cholera"),
+    disease: str = Query("cholera", regex="^(cholera|malaria)$"),
     window: int = Query(14, ge=1, le=180),
 ):
+    logging.info("/predictions/current GET region=%s disease=%s window=%s", region, disease, window)
+    region = validate_region(region) or "All"
+    disease = validate_disease(disease) or disease
     q = PredictionQuery(region=region, disease=disease, window=window)
-    return predict_series(q)
+    return success(predict_series(q).dict())
 
 
-@router.get("/region/{region}", response_model=PredictionResponse)
+@router.get("/region/{region}")
 def get_predictions_by_region(
     region: str,
-    disease: str = Query("cholera"),
+    disease: str = Query("cholera", regex="^(cholera|malaria)$"),
     window: int = Query(14, ge=1, le=180),
 ):
+    logging.info("/predictions/region/%s GET disease=%s window=%s", region, disease, window)
+    region = validate_region(region) or region
+    disease = validate_disease(disease) or disease
     q = PredictionQuery(region=region, disease=disease, window=window)
-    return predict_series(q)
+    return success(predict_series(q).dict())
 
 
-@router.get("/historical", response_model=PredictionResponse)
+@router.get("/historical")
 def get_historical_predictions(
     region: str = Query("All"),
-    disease: str = Query("cholera"),
+    disease: str = Query("cholera", regex="^(cholera|malaria)$"),
     window: int = Query(30, ge=1, le=365),
 ):
     # Reuse predict_series to generate a summary, but extend timeseries with recent actuals
+    logging.info("/predictions/historical GET region=%s disease=%s window=%s", region, disease, window)
+    region = validate_region(region) or "All"
+    disease = validate_disease(disease) or disease
     q = PredictionQuery(region=region, disease=disease, window=window)
     base = predict_series(q)
     try:
@@ -94,6 +109,6 @@ def get_historical_predictions(
                     pass
             base.timeseries = historic + (base.timeseries or [])
     except Exception:
-        # If anything fails, return the base response
-        return base
-    return base
+        # If anything fails, return the base response wrapped
+        return success(base.dict())
+    return success(base.dict())

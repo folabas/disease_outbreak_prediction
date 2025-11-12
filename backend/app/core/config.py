@@ -21,6 +21,11 @@ ALLOWED_ORIGINS: List[str] = [
     "http://127.0.0.1:5173",
 ]
 
+# API prefixes and allowed values
+API_PREFIX = "/api"
+API_V1_PREFIX = "/api/v1"
+ALLOWED_DISEASES = {"cholera", "malaria"}
+
 
 def resolve_path(*parts: str) -> str:
     return os.path.join(project_root(), *parts)

@@ -3,13 +3,20 @@ export type Region = string; // e.g. 'lagos', 'kano', etc.
 export type Disease = "malaria" | "cholera";
 export type DateString = string; // ISO 8601 format
 
-// Generic API Response wrapper
-export interface ApiResponse<T> {
-  success: boolean;
-  data: T;
-  message?: string;
-  timestamp: string;
-}
+// Generic API Response wrapper (supports legacy and normalized envelopes)
+export type ApiResponse<T> =
+  | {
+      status: "success";
+      data: T;
+      message?: string;
+      timestamp: string;
+    }
+  | {
+      success: boolean;
+      data: T;
+      message?: string;
+      timestamp: string;
+    };
 
 // Prediction Types
 export interface OutbreakPrediction {

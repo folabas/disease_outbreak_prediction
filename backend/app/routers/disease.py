@@ -1,30 +1,42 @@
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query, HTTPException
+import logging
 from app.models.predictions import PredictionResponse, PredictionQuery
 from app.services.ml import predict_series, get_disease_alerts as svc_get_disease_alerts
 from datetime import datetime
 import os
 import pandas as pd
-from app.core.config import DATA_DIR
+from app.core.config import DATA_DIR, ALLOWED_DISEASES
+from app.core.response import success
+from app.core.validators import validate_region, validate_disease
 
 
 router = APIRouter(prefix="/disease", tags=["disease"])
 
 
-@router.get("/current/{disease}", response_model=PredictionResponse)
+@router.get("/current/{disease}")
 def get_disease_current(disease: str, region: str = Query("All")):
+    logging.info("/disease/current/%s GET region=%s", disease, region)
+    disease = validate_disease(disease) or disease
+    region = validate_region(region) or "All"
     q = PredictionQuery(region=region, disease=disease)
-    return predict_series(q)
+    return success(predict_series(q).dict())
 
 
-@router.get("/{disease}/region/{region}", response_model=PredictionResponse)
+@router.get("/{disease}/region/{region}")
 def get_disease_by_region(disease: str, region: str):
+    logging.info("/disease/%s/region/%s GET", disease, region)
+    disease = validate_disease(disease) or disease
+    region = validate_region(region) or region
     q = PredictionQuery(region=region, disease=disease)
-    return predict_series(q)
+    return success(predict_series(q).dict())
 
 
 @router.get("/historical")
-def get_disease_historical(disease: str = Query("cholera"), region: str = Query("All"), window: int = Query(30)):
+def get_disease_historical(disease: str = Query("cholera", regex="^(cholera|malaria)$"), region: str = Query("All"), window: int = Query(30)):
+    logging.info("/disease/historical GET disease=%s region=%s window=%s", disease, region, window)
     # Return recent historical cases for disease/region
+    disease = validate_disease(disease) or disease
+    region = validate_region(region) or "All"
     df_path = os.path.join(DATA_DIR, "outbreakiq_training_data_filled.csv")
     items = []
     if os.path.exists(df_path):
@@ -53,9 +65,12 @@ def get_disease_historical(disease: str = Query("cholera"), region: str = Query(
                 items.append({"date": date, "cases": float(row.get("cases", 0.0))})
         except Exception:
             pass
-    return {"region": region, "disease": disease, "history": items}
+    return success({"region": region, "disease": disease, "history": items})
 
 
 @router.get("/alerts")
 def get_disease_alerts(disease: str = Query("cholera"), region: str = Query("All"), threshold: float = Query(0.7)):
-    return svc_get_disease_alerts(disease=disease, region=region, threshold=threshold)
+    logging.info("/disease/alerts GET disease=%s region=%s threshold=%s", disease, region, threshold)
+    disease = validate_disease(disease) or disease
+    region = validate_region(region) or "All"
+    return success(svc_get_disease_alerts(disease=disease, region=region, threshold=threshold))

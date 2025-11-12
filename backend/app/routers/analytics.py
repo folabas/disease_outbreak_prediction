@@ -1,5 +1,7 @@
 from fastapi import APIRouter, Query
+import logging
 from app.models.insights import InsightsResponse
+from app.core.response import success
 from app.services.ml import get_insights
 import os
 import pandas as pd
@@ -10,12 +12,14 @@ router = APIRouter(prefix="/analytics", tags=["analytics"])
 
 
 @router.get("/insights", response_model=InsightsResponse)
-def get_analytics_insights(disease: str = Query("cholera"), region: str | None = Query(None)):
-    return get_insights(disease=disease, region=region)
+def get_analytics_insights(disease: str = Query("cholera", regex="^(cholera|malaria)$"), region: str | None = Query(None)):
+    logging.info("/analytics/insights GET disease=%s region=%s", disease, region)
+    return success(get_insights(disease=disease, region=region).dict())
 
 
 @router.get("/hotspots")
-def get_hotspots(disease: str = Query("cholera"), top_n: int = Query(5, ge=1, le=20)):
+def get_hotspots(disease: str = Query("cholera", regex="^(cholera|malaria)$"), top_n: int = Query(5, ge=1, le=20)):
+    logging.info("/analytics/hotspots GET disease=%s top_n=%s", disease, top_n)
     # Compute top regions by average recent cases from training data
     df_path = os.path.join(DATA_DIR, "outbreakiq_training_data_filled.csv")
     hotspots = []
@@ -38,4 +42,4 @@ def get_hotspots(disease: str = Query("cholera"), top_n: int = Query(5, ge=1, le
             {"region": "Kano", "score": 0.8},
             {"region": "Rivers", "score": 0.7},
         ]
-    return {"disease": disease, "hotspots": hotspots}
+    return success({"disease": disease, "hotspots": hotspots})

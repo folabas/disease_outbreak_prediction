@@ -4,6 +4,7 @@ import "leaflet/dist/leaflet.css";
 import Loader from "../Components/Loader";
 import { motion } from "framer-motion";
 import { usePageAnimations } from "../hooks/usePageAnimations";
+import { useHospitals } from "../hooks/useHospitals";
 
 import {
   ResponsiveContainer,
@@ -85,7 +86,7 @@ const trendData = [
   { year: 2026, facilities: 38000, beds: 99000 },
 ];
 
-const typeColors = {
+const typeColors: Record<string, string> = {
   "Teaching Hospital": "#1e3a8a",
   "General Hospital": "#2563eb",
   "Primary Health Clinic": "#3b82f6",
@@ -95,17 +96,14 @@ const typeColors = {
 
 /* ---------- Component ---------- */
 const Hospital = () => {
-  const [loading, setLoading] = useState(true);
   const [state, setState] = useState("All States");
   const [facilityType, setFacilityType] = useState("All Types");
   const [metric, setMetric] = useState("Number of Beds");
   const [filteredData, setFilteredData] = useState(allFacilities);
   const [insight, setInsight] = useState("");
+  const { totals, facilitiesGeo, capacityTrends, loading, error } = useHospitals(state === "All States" ? undefined : state);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 900);
-    return () => clearTimeout(timer);
-  }, []);
+  // Filter mock list as fallback when geo is not available
 
   useEffect(() => {
     let filtered = [...allFacilities];
@@ -226,12 +224,9 @@ const Hospital = () => {
       {/* Stats */}
       <SectionHeader title="Capacity Overview" />
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
-        <StatCard title="Total Healthcare Facilities" value="34,592" />
-        <StatCard title="Total Hospital Beds" value="87,104" />
-        <StatCard title="Avg. Facilities per 100k Pop." value="16.2" />
-        <StatCard title="Avg. Bed Capacity" value="82" />
-        <StatCard title="Staff-to-Bed Ratio" value="1.6:1" />
-        <StatCard title="Facility Occupancy Rate" value="74%" />
+        <StatCard title="Total Healthcare Facilities" value={totals ? String(totals.facilities) : "-"} />
+        <StatCard title="Avg. Bed Capacity" value={totals ? String(totals.avgBedCapacity) : "-"} />
+        <StatCard title="Beds per 10k" value={totals ? String(totals.bedsPer10k) : "-"} />
       </div>
 
       {/* Map + Charts */}
@@ -253,10 +248,40 @@ const Hospital = () => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution="&copy; OpenStreetMap contributors"
               />
-              {filteredData.map((h, i) => (
+              {(((facilitiesGeo as any)?.features) || []).map((f: any, i: number) => {
+                const coords = f?.geometry?.coordinates || [];
+                const [lon, lat] = Array.isArray(coords) && coords.length >= 2 ? [coords[0], coords[1]] : [0, 0];
+                const props = f?.properties || {};
+                const label = props?.name || props?.region || "Facility";
+                const ftype: string = props?.type || "Facility";
+                const beds = props?.capacity?.beds ?? props?.beds ?? "N/A";
+                const staff = props?.capacity?.staff ?? props?.staff ?? "N/A";
+                const color = typeColors[ftype] || "#2563eb";
+                return (
+                  <CircleMarker
+                    key={i}
+                    center={[lat, lon] as [number, number]}
+                    radius={8}
+                    fillOpacity={0.9}
+                    stroke={false}
+                    pathOptions={{ color, fillColor: color }}
+                  >
+                    <Popup className="text-sm">
+                      <b>{label}</b>
+                      <br />
+                      {ftype}
+                      <br />
+                      Beds: {beds}
+                      <br />
+                      Staff: {staff}
+                    </Popup>
+                  </CircleMarker>
+                );
+              })}
+              {!facilitiesGeo && filteredData.map((h, i) => (
                 <CircleMarker
                   key={i}
-                  center={h.coordinates}
+                  center={h.coordinates as [number, number]}
                   radius={8}
                   fillOpacity={0.9}
                   stroke={false}
@@ -314,28 +339,14 @@ const Hospital = () => {
       {/* Trend Chart */}
       <SectionHeader title="Healthcare Capacity Trends" />
       <div className="bg-white rounded-xl shadow p-6 mb-8">
-        <h3 className="font-semibold text-[#0d2544] mb-3">
-          Facility and Bed Growth (2020–2026)
-        </h3>
+        <h3 className="font-semibold text-[#0d2544] mb-3">Beds Available (Recent Weeks)</h3>
         <ResponsiveContainer height={300}>
-          <LineChart data={trendData}>
+          <LineChart data={capacityTrends}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="year" />
+            <XAxis dataKey="date" />
             <YAxis />
             <Tooltip />
-            <Line
-              type="monotone"
-              dataKey="facilities"
-              stroke="#2563eb"
-              strokeWidth={3}
-            />
-            <Line
-              type="monotone"
-              dataKey="beds"
-              stroke="#10b981"
-              strokeWidth={3}
-              strokeDasharray="5 5"
-            />
+            <Line type="monotone" dataKey="bedsAvailable" stroke="#2563eb" strokeWidth={3} />
           </LineChart>
         </ResponsiveContainer>
       </div>
@@ -378,14 +389,14 @@ const Hospital = () => {
 };
 
 /* ---------- Reusable Components ---------- */
-const StatCard = ({ title, value }) => (
+const StatCard = ({ title, value }: { title: string; value: string }) => (
   <div className="bg-white rounded-xl shadow p-4 flex flex-col justify-between hover:shadow-md transition">
     <p className="text-sm text-gray-500">{title}</p>
     <h3 className="text-2xl font-bold text-gray-800 mt-1">{value}</h3>
   </div>
 );
 
-const SectionHeader = ({ title }) => (
+const SectionHeader = ({ title }: { title: string }) => (
   <h2 className="text-lg font-semibold text-[#0d2544] mb-3 mt-6 border-l-4 border-green-600 pl-3">
     {title}
   </h2>

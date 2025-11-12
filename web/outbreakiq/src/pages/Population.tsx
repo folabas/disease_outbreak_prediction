@@ -13,114 +13,65 @@ import {
 } from "recharts";
 import Loader from "../Components/Loader";
 import { MapContainer, TileLayer, GeoJSON, useMap } from "react-leaflet";
+import L, { Map as LeafletMap, Layer } from "leaflet";
+import type { Feature, Geometry } from "geojson";
 import { motion } from "framer-motion";
 import "leaflet/dist/leaflet.css";
 import { usePageAnimations } from "../hooks/usePageAnimations";
+import { usePopulation } from "../hooks/usePopulation";
 
 
-const regions = [
-  "North West",
-  "South West",
-  "North Central",
-  "South South",
-  "North East",
-  "South East",
-];
-
-const regionalGrowth = {
-  "All Regions": [4.2, 3.8, 3.1, 2.8, 2.4, 2.1],
-  North: [4.5, 3.9, 3.2, 2.8, 2.6, 2.0],
-  South: [3.8, 3.6, 3.2, 3.0, 2.5, 2.3],
-  East: [2.5, 2.4, 2.3, 2.1, 2.0, 1.9],
-  West: [3.9, 3.5, 3.0, 2.9, 2.8, 2.6],
-};
-
-const trendData = [
-  { year: 2020, population: 200 },
-  { year: 2021, population: 206 },
-  { year: 2022, population: 210 },
-  { year: 2023, population: 213 },
-  { year: 2024, population: 218 },
-  { year: 2025, population: 223 },
-  { year: 2026, population: 229 }, // forecast
-];
+type GrowthEntry = { region: string; value: number };
 
 const Population = () => {
-  const [loading, setLoading] = useState(true);
+  // Filters
   const [region, setRegion] = useState("All Regions");
   const [dateRange, setDateRange] = useState("Last 12 Months");
-  const [growthData, setGrowthData] = useState([]);
-  const [geoData, setGeoData] = useState(null);
-  const [densityColors, setDensityColors] = useState({});
+  const [growthData, setGrowthData] = useState<GrowthEntry[]>([]);
+  const [geoData, setGeoData] = useState<any>(null);
+  const [densityColors, setDensityColors] = useState<Record<string, string>>({});
   const [stats, setStats] = useState({
-    total: "213,401,323",
-    density: "231/km²",
-    growthRegion: "Kano (+4.2%)",
+    total: "—",
+    density: "0/km²",
+    growthRegion: "",
   });
-  const mapRef = useRef();
+  const mapRef = useRef<LeafletMap | null>(null);
 
-  // Fetch GeoJSON map data
-  useEffect(() => {
-    fetch("/nigeria-level1.geojson")
-      .then((res) => res.json())
-      .then((data) => setGeoData(data))
-      .catch((err) => console.error("Error loading map:", err));
-  }, []);
+  // Hook: population aggregates and density map
+  const { growthData: gSeries, densityData: dSeries, densityMap, stats: pStats, loading, error } = usePopulation(region);
 
-  // Page loading simulation
+  // Set geo data from hook
   useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 1200);
-    return () => clearTimeout(t);
-  }, []);
+    if (densityMap) setGeoData(densityMap as any);
+  }, [densityMap]);
 
-  // Update stats and chart when filters change
+  // Update local series/colors/stats when hook data changes
   useEffect(() => {
-    const growthValues =
-      regionalGrowth[region] || regionalGrowth["All Regions"];
-    const updatedData = regions.map((r, i) => ({
-      region: r,
-      value: growthValues[i] + (Math.random() * 0.5 - 0.2),
+    // Growth series for bar chart
+    setGrowthData(gSeries || []);
+
+    // Stats from hook
+    setStats((prev) => ({
+      ...prev,
+      density: `${(pStats?.avgDensity ?? 0).toFixed(2)}/km²`,
+      growthRegion: pStats?.topGrowthRegion ? `${pStats.topGrowthRegion}` : prev.growthRegion,
     }));
 
-    const topRegion = updatedData.sort((a, b) => b.value - a.value)[0];
-    setGrowthData(updatedData);
-
-    // Update stats
-    setStats({
-      total:
-        dateRange === "Last 6 Months"
-          ? "210,500,000"
-          : dateRange === "Last 12 Months"
-          ? "213,401,323"
-          : "215,800,000",
-      density:
-        region === "North"
-          ? "189/km²"
-          : region === "South"
-          ? "298/km²"
-          : "231/km²",
-      growthRegion: `${topRegion.region} (+${topRegion.value.toFixed(1)}%)`,
-    });
-
-    // Dynamic color intensity by growth value
-    const densityLevels = regions.reduce((acc, reg, idx) => {
-      const val = growthValues[idx];
-      const shade =
-        val > 4
-          ? "#1e3a8a"
-          : val > 3.5
-          ? "#2563eb"
-          : val > 3
-          ? "#60a5fa"
-          : "#bfdbfe";
-      acc[reg.toLowerCase()] = shade;
+    // Build density color mapping from density series
+    const colors = (dSeries || []).reduce((acc: any, d) => {
+      const v = d.value || 0;
+      const shade = v > 400 ? "#1e3a8a" : v > 300 ? "#2563eb" : v > 200 ? "#60a5fa" : "#bfdbfe";
+      acc[(d.region || "").toLowerCase()] = shade;
       return acc;
-    }, {});
-    setDensityColors(densityLevels);
-  }, [region, dateRange]);
+    }, {} as Record<string, string>);
+    setDensityColors(colors);
+  }, [gSeries, dSeries, pStats]);
+
+  // Remove placeholder totals; await backend totals when available.
 
   // Map region focus
-  const MapZoomHandler = ({ region }) => {
+  type MapZoomProps = { region: string };
+  const MapZoomHandler = ({ region }: MapZoomProps) => {
     const map = useMap();
     useEffect(() => {
       if (!geoData) return;
@@ -129,9 +80,12 @@ const Population = () => {
         return;
       }
 
-      // Filter the region
-      const layer = L.geoJSON(geoData, {
-        filter: (f) => f.properties?.NAME_1?.toLowerCase().includes(region.toLowerCase()),
+      // Filter the region (try canonical `region` field; fallback to `NAME_1`)
+      const layer = L.geoJSON(geoData as any, {
+        filter: (f: any) => {
+          const r = (f.properties?.region || f.properties?.NAME_1 || "").toLowerCase();
+          return r.includes(region.toLowerCase());
+        },
       });
       const bounds = layer.getBounds();
       if (bounds.isValid()) map.fitBounds(bounds, { padding: [30, 30] });
@@ -150,17 +104,21 @@ const Population = () => {
     "#bfdbfe",
   ];
 
-  const onEachFeature = (feature, layer) => {
-    const name = feature.properties?.NAME_1?.toLowerCase();
-    const color = densityColors[name] || "#93c5fd";
-    layer.setStyle({
-      fillColor: color,
-      fillOpacity: 0.8,
-      color: "#fff",
-      weight: 1,
-    });
-    layer.bindTooltip(
-      `${feature.properties.NAME_1}<br/>Population Growth: ${(Math.random() * 5 + 2).toFixed(1)}%`,
+  const onEachFeature = (feature: Feature<Geometry, any>, layer: Layer) => {
+    const label = (feature.properties?.region || feature.properties?.NAME_1 || "").toLowerCase();
+    const color = densityColors[label] || "#93c5fd";
+    if ((layer as any)?.setStyle) {
+      (layer as any).setStyle({
+        fillColor: color,
+        fillOpacity: 0.8,
+        color: "#fff",
+        weight: 1,
+      });
+    }
+    (layer as any).bindTooltip(
+      `${feature.properties?.NAME_1 || feature.properties?.region}<br/>Density: ${
+        feature.properties?.density ?? "n/a"
+      }`,
       { direction: "center", sticky: true }
     );
   };
@@ -231,21 +189,13 @@ const Population = () => {
         </div>
       </header>
 
-      {/* AI Insight */}
-      <div className="bg-blue-50 border-l-4 border-green-600 p-4 rounded-md mb-8 text-sm text-gray-700 shadow-sm">
-        💡 <b>Insight:</b> Northern regions continue to record the highest growth (4.2%) with increasing urban migration, 
-        while southern regions show stabilized density due to improved infrastructure.
-      </div>
+      {/* Removed AI Insight to avoid hardcoded content */}
 
       {/* Stats Overview */}
       <SectionHeader title="Population Overview" />
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
-        <StatCard title="Total Population" value={stats.total} />
         <StatCard title="Average Density" value={stats.density} />
         <StatCard title="Highest Growth Region" value={stats.growthRegion} />
-        <StatCard title="Urban Population" value="52%" />
-        <StatCard title="Rural Population" value="48%" />
-        <StatCard title="Gender Ratio (M/F)" value="49% / 51%" />
       </div>
 
       {/* Charts */}
@@ -301,22 +251,7 @@ const Population = () => {
         </div>
       </div>
 
-      {/* Trend Chart */}
-      <SectionHeader title="Historical & Forecast Trends" />
-      <div className="bg-white rounded-xl shadow p-6 mb-8">
-        <h3 className="font-semibold text-[#0d2544] mb-3">
-          Total Population Over Time
-        </h3>
-        <ResponsiveContainer height={300}>
-          <LineChart data={trendData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="year" />
-            <YAxis />
-            <Tooltip />
-            <Line type="monotone" dataKey="population" stroke="#2563eb" strokeWidth={3} />
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
+      {/* Removed Historical & Forecast Trends chart to avoid dummy data */}
 
       {/* Footer */}
       <footer className="pt-6 text-center text-gray-500 text-sm">
@@ -327,14 +262,16 @@ const Population = () => {
 };
 
 /* 🔸 Reusable Components */
-const StatCard = ({ title, value }) => (
+type StatCardProps = { title: string; value: string };
+const StatCard = ({ title, value }: StatCardProps) => (
   <div className="bg-white rounded-xl shadow p-4 flex flex-col justify-between hover:shadow-md transition">
     <p className="text-sm text-gray-500">{title}</p>
     <h3 className="text-2xl font-bold text-gray-800 mt-1">{value}</h3>
   </div>
 );
 
-const SectionHeader = ({ title }) => (
+type SectionHeaderProps = { title: string };
+const SectionHeader = ({ title }: SectionHeaderProps) => (
   <h2 className="text-lg font-semibold text-[#0d2544] mb-3 mt-6 border-l-4 border-green-600 pl-3">
     {title}
   </h2>

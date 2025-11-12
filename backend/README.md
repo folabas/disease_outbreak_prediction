@@ -54,3 +54,17 @@ cd backend
 ```
 
 Visit http://localhost:8000/docs for Swagger UI.
+
+## API Versioning and Deprecation
+
+- Stable versioned routes are available under `api/v1`. The legacy prefix `api/` is kept temporarily for parity verification.
+- Success responses are normalized to the envelope: `{"status": "success", "data": {...}, "timestamp": ISO8601, "message"?}`. Error responses use `{"status": "error", "error": {"code": <int>, "message": <string>}}`.
+- Input validation is enforced for common parameters like `disease` (allowed: `cholera`, `malaria`), `region` (non-empty string), and `date` (ISO format or `YYYY-Wnn`).
+
+### Deprecation Timeline
+
+1. Parity verification: ensure `api/v1` covers all endpoints used by the frontend and tests.
+2. Announce deprecation: update client configs and documentation to point to `api/v1` exclusively.
+3. Remove legacy `api/` registration once parity is confirmed and tests pass.
+
+If you depend on legacy `api/` endpoints, migrate to `api/v1` and confirm envelopes match the normalized contract.

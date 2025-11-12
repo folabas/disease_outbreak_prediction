@@ -35,146 +35,127 @@ _WINDOW = 8
 
 
 def _try_load_model():
+    """Load the model and scaler, raising an exception if they can't be loaded."""
     global _model, _scaler, _model_version
     if _model is not None:
         return
+        
+    from tensorflow.keras.models import load_model
+    from joblib import load
+
+    model_path = os.path.join(MODELS_DIR, "lstm_forecaster.h5")
+    scaler_path = os.path.join(MODELS_DIR, "feature_scaler.joblib")
+
+    if not os.path.exists(model_path):
+        error_msg = f"Model file not found at {model_path}"
+        logging.error(error_msg)
+        raise FileNotFoundError(error_msg)
+        
+    if not os.path.exists(scaler_path):
+        error_msg = f"Scaler file not found at {scaler_path}"
+        logging.error(error_msg)
+        raise FileNotFoundError(error_msg)
+
     try:
-        # Lazy import to avoid hard dependency if not available
-        from tensorflow.keras.models import load_model  # type: ignore
-        from joblib import load  # type: ignore
-
-        model_path = os.path.join(MODELS_DIR, "lstm_forecaster.h5")
-        scaler_path = os.path.join(MODELS_DIR, "feature_scaler.joblib")
-
-        if os.path.exists(model_path):
-            _model = load_model(model_path)
-            _model_version = "lstm_forecaster"
-        if os.path.exists(scaler_path):
-            _scaler = load(scaler_path)
-    except Exception:
-        # If not available, keep as None; service will return mock
-        _model = None
-        _scaler = None
-        _model_version = "mock"
+        _model = load_model(model_path)
+        _scaler = load(scaler_path)
+        _model_version = "lstm_forecaster"
+    except Exception as e:
+        error_msg = f"Error loading model or scaler: {str(e)}"
+        logging.error(error_msg)
+        raise RuntimeError(error_msg) from e
 
 
 def predict_series(q: PredictionQuery) -> PredictionResponse:
-    _try_load_model()
+    """Generate predictions for the given query, raising exceptions for any issues."""
+    import logging
+    from datetime import datetime, timedelta
+    
+    _try_load_model()  # This will raise an exception if model/scaler can't be loaded
     generated_at = datetime.utcnow().isoformat()
-
-    # Default mock timeseries if model/data unavailable
-    timeseries: List[TimePoint] = [
-        TimePoint(date=datetime.utcnow().date().isoformat(), predicted=120.0, actual=95.0),
-        TimePoint(date=datetime.utcnow().date().isoformat(), predicted=130.0, actual=102.0),
-    ]
-    summary = RiskSummary(riskScore=0.82, riskLevel="high", confidence=0.88)
-    explanations: List[FeatureImportance] = [
-        FeatureImportance(feature="rainfall_7d_avg", importance=0.22),
-        FeatureImportance(feature="population_density", importance=0.19),
-    ]
-
-    # If a trained model is available, use it; otherwise compute baseline
+    
+    # Validate input data path
     df_path = os.path.join(DATA_DIR, "outbreakiq_training_data_filled.csv")
+    if not os.path.exists(df_path):
+        error_msg = f"Data file not found at {df_path}"
+        logging.error(error_msg)
+        raise FileNotFoundError(error_msg)
+    
     try:
-        if _model is not None and os.path.exists(df_path):
-            df = pd.read_csv(df_path)
-            # Filter by disease and region to ensure multi-disease behavior
-            try:
-                if "disease" in df.columns and q.disease:
-                    df = df[df["disease"].astype(str).str.lower() == q.disease.lower()]
-                if "state" in df.columns:
-                    if q.region and q.region != "All":
-                        df = df[df["state"].astype(str).str.lower() == q.region.lower()]
-                    else:
-                        # Prefer national rows when available
-                        if any(df["state"].astype(str).str.lower() == "all"):
-                            df = df[df["state"].astype(str).str.lower() == "all"]
-            except Exception:
-                pass
-
-            # Sort to ensure chronological order if year/week exist
-            sort_cols = [c for c in ["year", "week"] if c in df.columns]
-            if sort_cols:
-                df = df.sort_values(sort_cols).reset_index(drop=True)
-
-            # Ensure required features exist
-            missing = [c for c in _FEATURES if c not in df.columns]
-            if not missing and len(df) >= _WINDOW:
-                latest = df[_FEATURES].tail(_WINDOW).fillna(0).values
-                latest = np.expand_dims(latest, axis=0)  # (1, WINDOW, len(FEATURES))
-
-                # Predict next-step (scaled)
-                try:
-                    y_scaled = float(_model.predict(latest, verbose=0)[0][0])
-                except Exception:
-                    y_scaled = float(np.clip(np.nanmean(latest[:, :, 0]) / 200.0, 0.0, 1.0))
-
-                # Clamp to [0,1]
-                y_scaled = float(min(max(y_scaled, 0.0), 1.0))
-
-                # Inverse-transform to real units if scaler available
-                if _scaler is not None:
-                    try:
-                        inv = float(_scaler.inverse_transform([[y_scaled, 0, 0, 0]])[0][0])
-                        pred_val = round(inv, 2)
-                        score = min(inv / 200.0, 1.0)
-                        conf = 0.9
-                    except Exception:
-                        pred_val = round(y_scaled, 4)
-                        score = y_scaled
-                        conf = 0.85
-                else:
-                    pred_val = round(y_scaled, 4)
-                    score = y_scaled
-                    conf = 0.85
-
-                timeseries = [
-                    TimePoint(date=datetime.utcnow().date().isoformat(), predicted=pred_val, actual=None),
-                ]
-                # Simple horizon extension using a small drift
-                drift = 0.03
-                timeseries.append(
-                    TimePoint(date=datetime.utcnow().date().isoformat(), predicted=round(pred_val * (1.0 + drift), 4), actual=None)
-                )
-                summary = RiskSummary(
-                    riskScore=round(score, 2),
-                    riskLevel=("high" if score > 0.75 else "medium" if score > 0.4 else "low"),
-                    confidence=conf,
-                )
-            else:
-                # Fall back to baseline if data insufficient
-                raise RuntimeError("Missing features or insufficient rows for window")
-        elif os.path.exists(df_path):
-            # Baseline from data when model unavailable; filter to requested disease/region
-            df = pd.read_csv(df_path)
-            try:
-                if "disease" in df.columns and q.disease:
-                    df = df[df["disease"].astype(str).str.lower() == q.disease.lower()]
-                if "state" in df.columns:
-                    if q.region and q.region != "All":
-                        df = df[df["state"].astype(str).str.lower() == q.region.lower()]
-                    else:
-                        if any(df["state"].astype(str).str.lower() == "all"):
-                            df = df[df["state"].astype(str).str.lower() == "all"]
-            except Exception:
-                pass
-
-            recent = df.tail(_WINDOW)
-            avg_cases = float(np.nanmean(recent.get("cases", pd.Series([0]))))
-            timeseries = [
-                TimePoint(date=datetime.utcnow().date().isoformat(), predicted=round(avg_cases * 1.05, 2), actual=None),
-                TimePoint(date=datetime.utcnow().date().isoformat(), predicted=round(avg_cases * 1.1, 2), actual=None),
-            ]
-            # Use per-disease scaling if available to make scores comparable
-            if "cases_scaled" in recent.columns:
-                z = float(np.nanmean(recent["cases_scaled"]))
-                score = float(1.0 / (1.0 + np.exp(-z)))  # logistic transform to [0,1]
-            else:
-                score = min((avg_cases / 200.0), 1.0)
-            summary = RiskSummary(riskScore=round(score, 2), riskLevel=("high" if score > 0.75 else "medium" if score > 0.4 else "low"), confidence=0.75)
-    except Exception:
-        # Keep defaults
-        pass
+        df = pd.read_csv(df_path)
+    except Exception as e:
+        error_msg = f"Error reading data file: {str(e)}"
+        logging.error(error_msg)
+        raise RuntimeError(error_msg) from e
+    
+    # Filter by disease and region
+    try:
+        if "disease" in df.columns and q.disease:
+            df = df[df["disease"].astype(str).str.lower() == q.disease.lower()]
+        if "state" in df.columns and q.region and q.region != "All":
+            df = df[df["state"].astype(str).str.lower() == q.region.lower()]
+    except Exception as e:
+        error_msg = f"Error filtering data: {str(e)}"
+        logging.error(error_msg)
+        raise ValueError(error_msg) from e
+    
+    # Sort data chronologically
+    sort_cols = [c for c in ["year", "week"] if c in df.columns]
+    if sort_cols:
+        df = df.sort_values(sort_cols).reset_index(drop=True)
+    
+    # Validate we have enough data
+    missing = [c for c in _FEATURES if c not in df.columns]
+    if missing:
+        error_msg = f"Missing required features: {', '.join(missing)}"
+        logging.error(error_msg)
+        raise ValueError(error_msg)
+        
+    if len(df) < _WINDOW:
+        error_msg = f"Insufficient data points. Need at least {_WINDOW}, got {len(df)}"
+        logging.error(error_msg)
+        raise ValueError(error_msg)
+    
+    # Prepare data for prediction
+    try:
+        latest = df[_FEATURES].tail(_WINDOW).fillna(0).values
+        latest = np.expand_dims(latest, axis=0)  # (1, WINDOW, len(FEATURES))
+        
+        # Make prediction
+        y_scaled = float(_model.predict(latest, verbose=0)[0][0])
+        y_scaled = float(np.clip(y_scaled, 0.0, 1.0))  # Ensure in [0,1] range
+        
+        # Inverse transform using scaler
+        inv = float(_scaler.inverse_transform([[y_scaled, 0, 0, 0]])[0][0])
+        pred_val = round(inv, 2)
+        score = min(inv / 200.0, 1.0)
+        
+        # Generate predictions for next two weeks
+        today = datetime.utcnow().date()
+        next_week = today + timedelta(weeks=1)
+        two_weeks = today + timedelta(weeks=2)
+        
+        timeseries = [
+            TimePoint(date=next_week.isoformat(), predicted=pred_val, actual=None),
+            TimePoint(date=two_weeks.isoformat(), predicted=round(pred_val * 1.03, 2), actual=None)
+        ]
+        
+        summary = RiskSummary(
+            riskScore=round(score, 2),
+            riskLevel=("high" if score > 0.75 else "medium" if score > 0.4 else "low"),
+            confidence=0.9,
+        )
+        
+        # Generate feature importance (placeholder - should be from model if available)
+        explanations = [
+            FeatureImportance(feature=feat, importance=0.0)  # Replace with actual importance
+            for feat in _FEATURES
+        ]
+        
+    except Exception as e:
+        error_msg = f"Error during prediction: {str(e)}"
+        logging.error(error_msg)
+        raise RuntimeError(error_msg) from e
 
     return PredictionResponse(
         region=q.region,

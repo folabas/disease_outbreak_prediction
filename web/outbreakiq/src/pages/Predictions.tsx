@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   LineChart,
   Line,
@@ -8,44 +8,54 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
-import { MapContainer, TileLayer } from "react-leaflet";
+import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
 import Loader from "../Components/Loader";
-import { usePageAnimations } from "../hooks/usePageAnimations";
+import { usePredictions } from "../hooks/usePredictions";
+import { useInsights } from "../hooks/useInsights";
+import { useOptions } from "../hooks/useOptions";
+import { useRecommendations } from "../hooks/useRecommendations";
+import { usePredictedActual } from "../hooks/usePredictedActual";
+import { useHeatmap } from "../hooks/useHeatmap";
+import { useHotspots } from "../hooks/useHotspots";
+import type { Disease } from "../services/types";
 
 
 const Dashboard = () => {
   const [disease, setDisease] = useState("Cholera");
   const [region, setRegion] = useState("All");
   const [year, setYear] = useState("2024");
-  const [rainfall, setRainfall] = useState(1250);
-  const [temperature, setTemperature] = useState(29);
-  const [isLoading, setIsLoading] = useState(true);
-  const [riskResult, setRiskResult] = useState({
-    level: "High",
-    confidence: 88,
-  });
+  const [rainfall, setRainfall] = useState<number>(1250);
+  const [temperature, setTemperature] = useState<number>(29);
 
-  useEffect(() => {
-    // Simulate loading time for dashboard
-    setIsLoading(true);
-    const timer = setTimeout(() => setIsLoading(false), 1500);
-    return () => clearTimeout(timer);
-  }, []);
+  // Normalize UI disease label to API union type (fallback to "cholera")
+  const dl = disease.toLowerCase();
+  const diseaseApi: Disease = dl === "cholera" || dl === "malaria" ? (dl as Disease) : "cholera";
 
-  const sampleData = [
-    { name: "Jan", value: 40 },
-    { name: "Feb", value: 50 },
-    { name: "Mar", value: 60 },
-    { name: "Apr", value: 80 },
-    { name: "May", value: 120 },
-    { name: "Jun", value: 140 },
-  ];
+  // Hook: predictions (series, risk, stats)
+  const [reload, setReload] = useState(0);
+  const { series: predSeries, risk, stats, loading, error } = usePredictions(diseaseApi, region, reload);
+  // Hook: insights (notes for summary)
+  const { notes: insightNotes, loading: insightsLoading, error: insightsError } = useInsights(diseaseApi, region);
+  // Hook: dynamic options for selects
+  const { options: metaOptions, loading: optionsLoading, error: optionsError } = useOptions({ source: "auto" });
+  // Hook: recommendations list
+  const { recommendations, loading: recsLoading, error: recsError } = useRecommendations({ disease: dl, region, year: Number(year) });
+  // Hook: merged predicted vs actual series
+  const { series, liveOnly, loading: paLoading, error: paError } = usePredictedActual({ disease: dl, region });
+  // Hooks: map overlays
+  const { geojson: heatmap, loading: heatLoading } = useHeatmap(region, dl);
+  const { features: hotspots, loading: hotLoading } = useHotspots(diseaseApi, Number(year));
+  const [showHeatmap, setShowHeatmap] = useState(true);
+  const [showHotspots, setShowHotspots] = useState(true);
+
+  // Remove simulated loading; rely on hook's loading state.
 
   const predictRisk = () => {
-    setRiskResult({ level: "High", confidence: 88 });
+    // Manually trigger refetch without changing selection
+    setReload((x) => x + 1);
   };
 
-  if (isLoading) {
+  if (loading) {
     return <Loader />;
   }
 
@@ -67,9 +77,9 @@ const Dashboard = () => {
             onChange={(e) => setDisease(e.target.value)}
             className="border rounded-md px-3 py-2 text-sm"
           >
-            <option>Cholera</option>
-            <option>Malaria</option>
-            <option>Lassa Fever</option>
+            {(metaOptions.diseases?.length ? metaOptions.diseases : ["cholera", "malaria"]).map((d) => (
+              <option key={d}>{d.charAt(0).toUpperCase() + d.slice(1)}</option>
+            ))}
           </select>
           <select
             title="region"
@@ -77,10 +87,9 @@ const Dashboard = () => {
             onChange={(e) => setRegion(e.target.value)}
             className="border rounded-md px-3 py-2 text-sm"
           >
-            <option>All</option>
-            <option>North-East</option>
-            <option>South-West</option>
-            <option>North-Central</option>
+            {(metaOptions.regions?.length ? metaOptions.regions : ["All", "North-East", "South-West", "North-Central"]).map((r) => (
+              <option key={r}>{r}</option>
+            ))}
           </select>
           <select
             title="year"
@@ -88,9 +97,15 @@ const Dashboard = () => {
             onChange={(e) => setYear(e.target.value)}
             className="border rounded-md px-3 py-2 text-sm"
           >
-            <option>2023</option>
-            <option>2024</option>
-            <option>2025</option>
+            {(metaOptions.years?.length
+              ? metaOptions.years
+              : [2023, 2024, 2025]
+            ).map((y) => {
+              const ys = typeof y === "number" ? String(Math.trunc(y)) : String(y);
+              return (
+                <option key={ys}>{ys}</option>
+              );
+            })}
           </select>
         </div>
       </header>
@@ -98,10 +113,8 @@ const Dashboard = () => {
       {/* 🔹 Overview Section */}
       <SectionHeader title="Overview Metrics" />
       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <StatCard title="Average Rainfall" value="1200 mm" />
-        <StatCard title="Average Temperature" value="28°C" />
-        <StatCard title="Population Density" value="212/km²" />
-        <StatCard title="Hospital Capacity" value="5 beds/10k" />
+        <StatCard title="Latest Confirmed Cases" value={String(stats.latest ?? 0)} />
+        <StatCard title="Average Weekly Cases" value={String(stats.average ?? 0)} />
       </div>
 
       {/* 🔹 Map & Chart Section */}
@@ -119,7 +132,23 @@ const Dashboard = () => {
               className="h-full w-full"
             >
               <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+              {showHeatmap && heatmap && (
+                <GeoJSON data={heatmap as any} />
+              )}
+              {showHotspots && Array.isArray(hotspots) && hotspots.length > 0 && (
+                <GeoJSON data={{ type: "FeatureCollection", features: hotspots } as any} />
+              )}
             </MapContainer>
+            <div className="mt-2 flex gap-3 text-xs text-gray-600">
+              <label className="flex items-center gap-1">
+                <input type="checkbox" checked={showHeatmap} onChange={(e) => setShowHeatmap(e.target.checked)} />
+                Heatmap
+              </label>
+              <label className="flex items-center gap-1">
+                <input type="checkbox" checked={showHotspots} onChange={(e) => setShowHotspots(e.target.checked)} />
+                Hotspots
+              </label>
+            </div>
           </div>
         </div>
 
@@ -128,18 +157,21 @@ const Dashboard = () => {
           <h2 className="font-semibold mb-3 text-[#0d2544]">
             Predicted vs Actual Cases
           </h2>
+          <div className="flex items-center gap-3 mb-2">
+            {liveOnly && (
+              <span className="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded">Live only</span>
+            )}
+            {paLoading && <span className="text-xs text-gray-500">Loading chart…</span>}
+            {paError && <span className="text-xs text-red-600">{paError}</span>}
+          </div>
           <ResponsiveContainer width="100%" height={250}>
-            <LineChart data={sampleData}>
+            <LineChart data={series}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
+              <XAxis dataKey="date" />
               <YAxis />
               <Tooltip />
-              <Line
-                type="monotone"
-                dataKey="value"
-                stroke="#2f855a"
-                strokeWidth={3}
-              />
+              <Line type="monotone" dataKey="actual" stroke="#e53e3e" strokeWidth={3} name="Actual" />
+              <Line type="monotone" dataKey="predicted" stroke="#2f855a" strokeWidth={3} name="Predicted" />
             </LineChart>
           </ResponsiveContainer>
         </div>
@@ -150,25 +182,28 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
         <div className="lg:col-span-2 bg-white rounded-xl shadow p-4">
           <h2 className="font-semibold mb-3 text-[#0d2544]">Insight Summary</h2>
-          <p className="text-gray-700 text-sm leading-relaxed">
-            Based on current climate and population data, there is a moderately
-            elevated risk of a Cholera outbreak in the North-Eastern regions
-            over the next quarter. Increased rainfall and high population
-            density are the primary contributing factors. Proactive measures in
-            sanitation and public health awareness are recommended to mitigate
-            potential spread.
-          </p>
+          {insightsLoading ? (
+            <p className="text-gray-500 text-sm">Loading insights…</p>
+          ) : insightsError ? (
+            <p className="text-red-600 text-sm">Failed to load insights: {insightsError}</p>
+          ) : Array.isArray(insightNotes) && insightNotes.length > 0 ? (
+            <ul className="list-disc list-inside text-gray-700 text-sm space-y-1">
+              {insightNotes.map((n, i) => (
+                <li key={i}>{n}</li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-gray-600 text-sm">No insights available for the current selection.</p>
+          )}
         </div>
 
         <div className="bg-white rounded-xl shadow p-4 flex flex-col items-center justify-center">
-          <h2 className="font-semibold mb-3 text-[#0d2544]">
-            Key Risk Factors
-          </h2>
-          <img
-            src="/Risk Factors.jpeg"
-            alt="Risk Factors Chart"
-            className="rounded-lg"
-          />
+          <h2 className="font-semibold mb-3 text-[#0d2544]">Risk Summary</h2>
+          <p className="text-sm text-gray-600">Predicted Risk Level</p>
+          <h3 className={`text-2xl font-bold ${
+            (risk?.level || "Unknown") === "High" ? "text-red-600" : "text-yellow-500"
+          }`}>{risk?.level || "Unknown"}</h3>
+          <p className="mt-2 text-gray-600 text-sm">Confidence: <span className="font-semibold">{risk ? risk.confidence : 0}%</span></p>
         </div>
       </div>
 
@@ -190,9 +225,9 @@ const Dashboard = () => {
                   onChange={(e) => setDisease(e.target.value)}
                   className="w-full border rounded-md px-3 py-2 mt-1"
                 >
-                  <option>Cholera</option>
-                  <option>Malaria</option>
-                  <option>Lassa Fever</option>
+                  {(metaOptions.diseases?.length ? metaOptions.diseases : ["cholera", "malaria"]).map((d) => (
+                    <option key={d}>{d.charAt(0).toUpperCase() + d.slice(1)}</option>
+                  ))}
                 </select>
               </div>
               <div>
@@ -203,9 +238,9 @@ const Dashboard = () => {
                   onChange={(e) => setRegion(e.target.value)}
                   className="w-full border rounded-md px-3 py-2 mt-1"
                 >
-                  <option>North-East</option>
-                  <option>South-West</option>
-                  <option>North-Central</option>
+                  {(metaOptions.regions?.length ? metaOptions.regions : ["All", "North-East", "South-West", "North-Central"]).map((r) => (
+                    <option key={r}>{r}</option>
+                  ))}
                 </select>
               </div>
             </div>
@@ -219,7 +254,7 @@ const Dashboard = () => {
                   placeholder="1250"
                   type="number"
                   value={rainfall}
-                  onChange={(e) => setRainfall(e.target.value)}
+                  onChange={(e) => setRainfall(Number(e.target.value))}
                   className="w-full border rounded-md px-3 py-2 mt-1"
                 />
               </div>
@@ -231,7 +266,7 @@ const Dashboard = () => {
                   placeholder="25"
                   type="number"
                   value={temperature}
-                  onChange={(e) => setTemperature(e.target.value)}
+                  onChange={(e) => setTemperature(Number(e.target.value))}
                   className="w-full border rounded-md px-3 py-2 mt-1"
                 />
               </div>
@@ -255,14 +290,14 @@ const Dashboard = () => {
             <p className="text-gray-500 text-sm mb-1">Predicted Risk Level</p>
             <h3
               className={`text-3xl font-bold ${
-                riskResult.level === "High" ? "text-red-600" : "text-yellow-500"
+                (risk?.level || "Unknown") === "High" ? "text-red-600" : "text-yellow-500"
               }`}
             >
-              {riskResult.level}
+              {risk?.level || "Unknown"}
             </h3>
             <p className="mt-2 text-gray-600 text-sm">
               Confidence Score:{" "}
-              <span className="font-semibold">{riskResult.confidence}%</span>
+              <span className="font-semibold">{risk ? risk.confidence : 0}%</span>
             </p>
           </div>
 
@@ -270,11 +305,19 @@ const Dashboard = () => {
             <h4 className="font-semibold text-gray-800 text-sm mb-2">
               Preventive Recommendations:
             </h4>
-            <ul className="list-disc list-inside text-gray-600 text-sm space-y-1">
-              <li>Deploy rapid response teams to high-risk areas.</li>
-              <li>Increase public awareness campaigns on hygiene.</li>
-              <li>Stockpile necessary medical supplies.</li>
-            </ul>
+            {recsLoading ? (
+              <p className="text-gray-500 text-sm">Loading recommendations…</p>
+            ) : recsError ? (
+              <p className="text-red-600 text-sm">Failed to load: {recsError}</p>
+            ) : recommendations.length ? (
+              <ul className="list-disc list-inside text-gray-600 text-sm space-y-1">
+                {recommendations.map((rec, i) => (
+                  <li key={i}>{rec}</li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-gray-600 text-sm">No recommendations available for current selection.</p>
+            )}
           </div>
         </div>
       </div>
@@ -287,14 +330,17 @@ const Dashboard = () => {
 };
 
 /* 🔸 Reusable Components */
-const StatCard = ({ title, value }) => (
+
+type StatCardProps = { title: string; value: string };
+const StatCard = ({ title, value }: StatCardProps) => (
   <div className="bg-white rounded-xl shadow p-4">
     <p className="text-sm text-gray-500">{title}</p>
     <h3 className="text-2xl font-bold text-gray-800 mt-1">{value}</h3>
   </div>
 );
 
-const SectionHeader = ({ title }) => (
+type SectionHeaderProps = { title: string };
+const SectionHeader = ({ title }: SectionHeaderProps) => (
   <h2 className="text-lg font-semibold text-[#0d2544] mb-3 mt-6 border-l-4 border-green-600 pl-3">
     {title}
   </h2>
