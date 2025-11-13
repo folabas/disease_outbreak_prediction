@@ -10,21 +10,33 @@ router = APIRouter(prefix="/climate", tags=["climate"])
 def get_climate_series(
     region: str = Query("All"),
     disease: str = Query("cholera", regex="^(cholera|malaria)$"),
+    startDate: str | None = Query(default=None),
+    endDate: str | None = Query(default=None),
 ):
-    q = ClimateQuery(region=region, disease=disease)
+    q = ClimateQuery(region=region, disease=disease, startDate=startDate, endDate=endDate)
     return get_climate(q)
 
 
 @router.get("/current/{region}", response_model=ClimateResponse)
-def get_current_climate(region: str, disease: str = Query("cholera", regex="^(cholera|malaria)$")):
-    q = ClimateQuery(region=region, disease=disease)
+def get_current_climate(
+    region: str,
+    disease: str = Query("cholera", regex="^(cholera|malaria)$"),
+    startDate: str | None = Query(default=None),
+    endDate: str | None = Query(default=None),
+):
+    q = ClimateQuery(region=region, disease=disease, startDate=startDate, endDate=endDate)
     return get_climate(q)
 
 
 # Alias to support /climate/region/{region}
 @router.get("/region/{region}", response_model=ClimateResponse)
-def get_climate_by_region(region: str, disease: str = Query("cholera", regex="^(cholera|malaria)$")):
-    q = ClimateQuery(region=region, disease=disease)
+def get_climate_by_region(
+    region: str,
+    disease: str = Query("cholera", regex="^(cholera|malaria)$"),
+    startDate: str | None = Query(default=None),
+    endDate: str | None = Query(default=None),
+):
+    q = ClimateQuery(region=region, disease=disease, startDate=startDate, endDate=endDate)
     return get_climate(q)
 
 
@@ -32,12 +44,19 @@ def get_climate_by_region(region: str, disease: str = Query("cholera", regex="^(
 def get_climate_historical(
     region: str = Query("All"),
     disease: str = Query("cholera", regex="^(cholera|malaria)$"),
+    startDate: str | None = Query(default=None),
+    endDate: str | None = Query(default=None),
 ):
-    # For now, reuse get_climate which returns recent series; can be extended to longer history
-    q = ClimateQuery(region=region, disease=disease)
+    q = ClimateQuery(region=region, disease=disease, startDate=startDate, endDate=endDate)
     return get_climate(q)
 
 
 @router.get("/forecast/{region}", response_model=ClimateResponse)
-def get_climate_forecast(region: str, disease: str = Query("cholera", regex="^(cholera|malaria)$")):
-    return svc_get_climate_forecast(region=region, disease=disease)
+def get_climate_forecast(
+    region: str,
+    disease: str = Query("cholera", regex="^(cholera|malaria)$"),
+    startDate: str | None = Query(default=None),
+    endDate: str | None = Query(default=None),
+    days: int = Query(7, ge=1, le=30),
+):
+    return svc_get_climate_forecast(region=region, disease=disease, startDate=startDate, endDate=endDate, days=days)

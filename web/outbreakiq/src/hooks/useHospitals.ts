@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { outbreakAPI } from "../services/api";
-import type { HospitalData, GeoData } from "../services/types";
+import type { GeoData } from "../services/types";
 
 type FacilityTotals = {
   facilities: number;
@@ -24,34 +24,15 @@ export function useHospitals(region?: string) {
         setLoading(true);
         setError(undefined);
 
-        // Facilities list (aggregate to totals)
-        const hospRes = await outbreakAPI.healthcare.getFacilities();
-        const list = (hospRes?.data?.data ?? []) as HospitalData[];
-        const facilities = list.reduce(
-          (sum, d) => sum + (d?.facilities?.total ?? 0),
-          0
-        );
-        const avgBedCapacity =
-          list.length > 0
-            ? Number(
-                (
-                  list.reduce((s, d) => s + (d?.capacity?.beds ?? 0), 0) /
-                  list.length
-                ).toFixed(2)
-              )
-            : 0;
+        const hospRes = region ? await outbreakAPI.healthcare.getByRegion(region as string) : await outbreakAPI.healthcare.getFacilities();
+        const hospPayload = (hospRes?.data ?? {}) as any;
+        const hospData = (hospPayload?.data ?? hospPayload ?? {}) as any;
         const totalsAgg: FacilityTotals = {
-          facilities,
-          avgBedCapacity: isFinite(avgBedCapacity) ? avgBedCapacity : 0,
-          bedsPer10k: 0, // Not available from current schema
+          facilities: Number(hospData?.totals?.facilities ?? 0),
+          avgBedCapacity: Number(hospData?.totals?.avgBedCapacity ?? 0),
+          bedsPer10k: Number(hospData?.totals?.bedsPer10k ?? 0),
         };
-
-        // Facilities heatmap (GeoData)
-        const heatmapRes = await outbreakAPI.geo.getHeatmap({
-          dataType: "facilities",
-          region: region || undefined,
-        });
-        const heatmap = (heatmapRes?.data?.data ?? {}) as GeoData;
+        const heatmap = (hospData?.facilitiesGeo ?? {}) as GeoData;
 
         // Capacity trends require params
         const now = new Date();
@@ -64,10 +45,11 @@ export function useHospitals(region?: string) {
           startDate,
           endDate,
         });
-        const rawTrends = (trendsRes?.data?.data ?? []) as HospitalData[];
-        const trends: CapacityPoint[] = rawTrends.map((d) => ({
-          date: d?.lastUpdated ?? endDate,
-          bedsAvailable: d?.capacity?.beds ?? 0,
+        const tPayload = (trendsRes?.data ?? {}) as any;
+        const rawTrends = ((tPayload?.data ?? tPayload ?? {}) as any)?.trends ?? [];
+        const trends: CapacityPoint[] = (Array.isArray(rawTrends) ? rawTrends : []).map((d: any) => ({
+          date: String(d?.date ?? endDate),
+          bedsAvailable: Number(d?.bedOccupancy ?? 0),
         }));
 
         if (mounted) {

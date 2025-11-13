@@ -30,11 +30,24 @@ export function usePredictions(disease: Disease, region: string, trigger?: numbe
           startDate,
           endDate,
         });
-        const histData = (histRes?.data?.data ?? []) as DiseaseData[];
-        const seriesPoints: PredictionSeriesPoint[] = histData.map((d) => ({
-          name: d?.period?.end || d?.period?.start,
-          value: d?.cases?.confirmed ?? 0,
+        const payloadAny: any = histRes?.data?.data ?? {};
+        const items: any[] = Array.isArray(payloadAny)
+          ? payloadAny
+          : Array.isArray(payloadAny?.history)
+          ? payloadAny.history
+          : [];
+        const rawPoints: PredictionSeriesPoint[] = items.map((d: any) => ({
+          name: d?.period?.end || d?.period?.start || d?.date,
+          value: d?.cases?.confirmed ?? d?.cases ?? 0,
         }));
+        const totals: Record<string, number> = {};
+        const order: string[] = [];
+        for (const p of rawPoints) {
+          const k = String(p.name || "");
+          if (!totals.hasOwnProperty(k)) order.push(k);
+          totals[k] = (totals[k] || 0) + (Number(p.value) || 0);
+        }
+        const seriesPoints: PredictionSeriesPoint[] = order.map((k) => ({ name: k, value: totals[k] }))
 
         // Explicit prediction via POST (includes disease + region)
         const predRes = await outbreakAPI.predictions.postPredict({ disease, region });

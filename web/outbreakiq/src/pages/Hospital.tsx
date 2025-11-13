@@ -19,72 +19,16 @@ import {
   Line,
 } from "recharts";
 
-/* ---------- Mock data ---------- */
-const allFacilities = [
-  {
-    name: "Lagos University Teaching Hospital",
-    type: "Teaching Hospital",
-    state: "Lagos",
-    lga: "Surulere",
-    beds: 761,
-    staff: 1200,
-    coordinates: [6.5149, 3.3676],
-  },
-  {
-    name: "National Hospital Abuja",
-    type: "General Hospital",
-    state: "FCT",
-    lga: "Central Business District",
-    beds: 450,
-    staff: 980,
-    coordinates: [9.0578, 7.4951],
-  },
-  {
-    name: "Kano General Clinic",
-    type: "Primary Health Clinic",
-    state: "Kano",
-    lga: "Nassarawa",
-    beds: 50,
-    staff: 45,
-    coordinates: [12.0022, 8.5919],
-  },
-  {
-    name: "Ibadan Medical Laboratory",
-    type: "Laboratory",
-    state: "Oyo",
-    lga: "Ibadan North",
-    beds: 0,
-    staff: 25,
-    coordinates: [7.3878, 3.8964],
-  },
-  {
-    name: "Port Harcourt Specialist Center",
-    type: "Specialist Center",
-    state: "Rivers",
-    lga: "Obio/Akpor",
-    beds: 300,
-    staff: 600,
-    coordinates: [4.8156, 7.0498],
-  },
-];
-
-const facilityTypes = [
-  { type: "Teaching Hospital", count: 340 },
-  { type: "General Hospital", count: 520 },
-  { type: "Primary Health Clinic", count: 680 },
-  { type: "Laboratory", count: 240 },
-  { type: "Specialist Center", count: 180 },
-];
-
-const trendData = [
-  { year: 2020, facilities: 28000, beds: 70000 },
-  { year: 2021, facilities: 30000, beds: 76000 },
-  { year: 2022, facilities: 32000, beds: 82000 },
-  { year: 2023, facilities: 34000, beds: 87000 },
-  { year: 2024, facilities: 35500, beds: 91000 },
-  { year: 2025, facilities: 36500, beds: 95000 },
-  { year: 2026, facilities: 38000, beds: 99000 },
-];
+/* ---------- Derived types ---------- */
+type FacilityRow = {
+  name: string;
+  type: string;
+  state: string;
+  lga: string;
+  beds: number | string;
+  staff: number | string;
+  coordinates: [number, number];
+};
 
 const typeColors: Record<string, string> = {
   "Teaching Hospital": "#1e3a8a",
@@ -99,34 +43,45 @@ const Hospital = () => {
   const [state, setState] = useState("All States");
   const [facilityType, setFacilityType] = useState("All Types");
   const [metric, setMetric] = useState("Number of Beds");
-  const [filteredData, setFilteredData] = useState(allFacilities);
+  const [filteredData, setFilteredData] = useState<FacilityRow[]>([]);
   const [insight, setInsight] = useState("");
   const { totals, facilitiesGeo, capacityTrends, loading, error } = useHospitals(state === "All States" ? undefined : state);
 
-  // Filter mock list as fallback when geo is not available
-
   useEffect(() => {
-    let filtered = [...allFacilities];
-    if (state !== "All States")
-      filtered = filtered.filter((f) => f.state === state);
-    if (facilityType !== "All Types")
-      filtered = filtered.filter((f) => f.type === facilityType);
+    const states = ["Lagos", "FCT", "Abuja", "Kano", "Oyo", "Rivers"];
+    const norm = (s: string) => s.trim().toLowerCase();
+    const toState = (addr: any): string => {
+      const a = String(addr || "");
+      for (const st of states) {
+        if (a.toLowerCase().includes(st.toLowerCase())) return st === "Abuja" ? "FCT" : st;
+      }
+      return "Unknown";
+    };
+    const rows: FacilityRow[] = (((facilitiesGeo as any)?.features) || []).map((f: any) => {
+      const props = f?.properties || {};
+      const coords = f?.geometry?.coordinates || [];
+      const [lon, lat] = Array.isArray(coords) && coords.length >= 2 ? [coords[0], coords[1]] : [0, 0];
+      const hc = String(props?.healthcare || props?.amenity || "Facility");
+      const type = hc.charAt(0).toUpperCase() + hc.slice(1);
+      return {
+        name: String(props?.name || "Facility"),
+        type,
+        state: toState(props?.address),
+        lga: String(props?.lga || props?.district || "-"),
+        beds: props?.capacity?.beds ?? props?.beds ?? "-",
+        staff: props?.capacity?.staff ?? props?.staff ?? "-",
+        coordinates: [lat, lon],
+      };
+    });
+    let filtered = rows;
+    if (state !== "All States") filtered = filtered.filter((f) => norm(f.state) === norm(state));
+    if (facilityType !== "All Types") filtered = filtered.filter((f) => f.type === facilityType);
     setFilteredData(filtered);
 
     const regionText = state === "All States" ? "nationally" : `in ${state}`;
-    const typeText =
-      facilityType === "All Types"
-        ? "across all facility types"
-        : `focused on ${facilityType.toLowerCase()}s`;
-
-    setInsight(
-      `There are ${filtered.length} facilities ${regionText}, ${typeText}. ${
-        filtered.length > 3
-          ? "Major states show capacity expansion with steady bed growth."
-          : "Facility density is limited in this selection; consider targeted investments."
-      }`
-    );
-  }, [state, facilityType]);
+    const typeText = facilityType === "All Types" ? "across all facility types" : `focused on ${facilityType.toLowerCase()}s`;
+    setInsight(`There are ${filtered.length} facilities ${regionText}, ${typeText}. ${filtered.length > 50 ? "High facility density in this selection." : "Facility density is limited in this selection."}`);
+  }, [state, facilityType, facilitiesGeo]);
 
   if (loading) return <Loader />;
 
@@ -253,7 +208,7 @@ const Hospital = () => {
                 const [lon, lat] = Array.isArray(coords) && coords.length >= 2 ? [coords[0], coords[1]] : [0, 0];
                 const props = f?.properties || {};
                 const label = props?.name || props?.region || "Facility";
-                const ftype: string = props?.type || "Facility";
+                const ftype: string = String(props?.healthcare || props?.amenity || props?.type || "Facility");
                 const beds = props?.capacity?.beds ?? props?.beds ?? "N/A";
                 const staff = props?.capacity?.staff ?? props?.staff ?? "N/A";
                 const color = typeColors[ftype] || "#2563eb";
@@ -313,7 +268,15 @@ const Hospital = () => {
           <div className="w-full h-[300px]">
             <ResponsiveContainer>
               <BarChart
-                data={facilityTypes}
+                data={(() => {
+                  const counts: Record<string, number> = {};
+                  (((facilitiesGeo as any)?.features) || []).forEach((f: any) => {
+                    const t = String(f?.properties?.healthcare || f?.properties?.amenity || "Facility");
+                    const type = t.charAt(0).toUpperCase() + t.slice(1);
+                    counts[type] = (counts[type] || 0) + 1;
+                  });
+                  return Object.keys(counts).map((k) => ({ type: k, count: counts[k] }));
+                })()}
                 layout="vertical"
                 margin={{ top: 10, right: 20, bottom: 10, left: 60 }}
               >
@@ -326,9 +289,20 @@ const Hospital = () => {
                 />
                 <Tooltip />
                 <Bar dataKey="count" radius={[6, 6, 6, 6]}>
-                  {facilityTypes.map((_, i) => (
-                    <Cell key={i} fill={barColors[i % barColors.length]} />
-                  ))}
+                  {(() => {
+                    const arr = (() => {
+                      const counts: Record<string, number> = {};
+                      (((facilitiesGeo as any)?.features) || []).forEach((f: any) => {
+                        const t = String(f?.properties?.healthcare || f?.properties?.amenity || "Facility");
+                        const type = t.charAt(0).toUpperCase() + t.slice(1);
+                        counts[type] = (counts[type] || 0) + 1;
+                      });
+                      return Object.keys(counts).map((k) => ({ type: k, count: counts[k] }));
+                    })();
+                    return arr.map((_, i) => (
+                      <Cell key={i} fill={barColors[i % barColors.length]} />
+                    ));
+                  })()}
                 </Bar>
               </BarChart>
             </ResponsiveContainer>

@@ -14,7 +14,7 @@ router = APIRouter()
 
 @router.get("/charts/predicted-actual")
 def get_predicted_vs_actual(
-    disease: str = Query(..., regex="^(cholera|malaria)$"),
+    disease: str = Query("cholera"),
     region: str = Query("All"),
     window: int = Query(30, ge=1, le=365),
 ) -> Dict[str, Any]:

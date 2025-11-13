@@ -5,9 +5,10 @@ import requests
 from fastapi import APIRouter, Query, HTTPException
 import logging
 
-from app.core.config import ALLOWED_DISEASES
+from app.core.config import ALLOWED_DISEASES, OLLAMA_URL, OLLAMA_MODEL
 from app.core.response import success
 from app.services.ml import get_insights
+from app.services.llm import generate_recommendations_ollama
 
 
 router = APIRouter()
@@ -45,7 +46,7 @@ def _rule_based_recommendations(disease: str, region: Optional[str], insights: D
 
 @router.get("/recommendations")
 def get_recommendations(
-    disease: str = Query(..., regex="^(cholera|malaria)$"),
+    disease: str = Query("cholera"),
     region: Optional[str] = Query(default=None),
     year: Optional[int] = Query(default=None),
 ) -> Dict[str, Any]:
@@ -57,6 +58,22 @@ def get_recommendations(
         raise HTTPException(status_code=400, detail=f"Unsupported disease: {disease}")
 
     insights = get_insights(disease=disease, region=region)
+
+    # Prefer local Ollama when available
+    try:
+        if OLLAMA_URL and OLLAMA_MODEL:
+            recs = generate_recommendations_ollama(disease=disease, region=region, year=year, insights=insights.dict() if hasattr(insights, "dict") else insights)
+            if recs:
+                return success({
+                    "source": "ollama",
+                    "recommendations": recs,
+                    "region": region,
+                    "disease": disease,
+                    "year": year,
+                })
+    except Exception:
+        # Fall through
+        pass
 
     api_key = os.getenv("GEMINI_API_KEY")
     if api_key:
@@ -97,5 +114,5 @@ def get_recommendations(
             # Fall through to rule-based if API fails
             pass
 
-    rb = _rule_based_recommendations(disease, region, insights)
+    rb = _rule_based_recommendations(disease, region, insights.dict() if hasattr(insights, "dict") else insights)
     return success({"source": rb["source"], **rb})

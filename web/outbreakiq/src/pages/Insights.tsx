@@ -21,7 +21,8 @@ const COLORS = ["#15803d", "#2563eb", "#60a5fa", "#93c5fd", "#e5e7eb"];
 
 /* ---------- Component ---------- */
 const Insights = () => {
-  const { metrics, featureImportance, notes, loading, error } = useInsights("cholera");
+  // UI insights focus on COVID-19 for MVP; backend provides metrics per disease.
+  const { metrics, featureImportance, notes, loading, error } = useInsights("covid-19");
   const [exportOpen, setExportOpen] = useState(false);
 
   const formatPercent = (n?: number) => {
@@ -100,11 +101,18 @@ const Insights = () => {
             <h3 className="font-semibold text-[#0d2544] mb-2">
               ROC Curve
               <span className="float-right text-sm text-gray-500">
-                AUC: {typeof metrics?.auc === "number" ? metrics.auc.toFixed(2) : "0.94"}
+                AUC: {typeof metrics?.auc === "number" ? metrics.auc.toFixed(2) : "-"}
               </span>
             </h3>
-            <div className="h-[260px] flex items-center justify-center bg-black rounded-lg">
-              <p className="text-white text-sm opacity-70">ROC Visualization</p>
+            <div className="h-[260px] flex items-center justify-center rounded-lg overflow-hidden bg-gray-50">
+              <img
+                src={`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8000/api/v1"}/analytics/roc?disease=covid-19`}
+                alt="ROC Curve"
+                className="w-full h-full object-contain"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).style.display = "none";
+                }}
+              />
             </div>
           </div>
           <div className="bg-white rounded-xl shadow p-6 relative">

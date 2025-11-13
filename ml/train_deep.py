@@ -34,7 +34,7 @@ except Exception as e:
     TENSORFLOW_AVAILABLE = False
 
 # Configuration
-DATA_PATH = Path("data/outbreakiq_training_data_filled.csv")
+DATA_PATH = Path("data/evaluation_merged_clean.csv")
 MODEL_PATH = Path("models/lstm_forecaster.h5")
 SCALER_PATH = Path("models/target_scaler.joblib")  # Save target scaler separately
 FEATURE_SCALER_PATH = Path("models/feature_scaler.joblib")
@@ -47,7 +47,7 @@ PATIENCE = 15
 LEARNING_RATE = 0.001
 DROPOUT_RATE = 0.3
 L2_REG = 0.01
-REAL_UNIT_THRESHOLD = float(os.getenv("REAL_UNIT_THRESHOLD", "100.0"))  # cases MAE threshold
+REAL_UNIT_THRESHOLD = float(os.getenv("REAL_UNIT_THRESHOLD", "10.0"))  # cases MAE threshold
 
 # Features to use for prediction
 FEATURES = [

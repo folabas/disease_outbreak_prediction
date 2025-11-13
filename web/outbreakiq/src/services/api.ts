@@ -22,8 +22,8 @@ export const outbreakAPI = {
   metadata: {
     getOptions: (params?: { source?: "auto" | "training" | "weather" | "predictions"; disease?: string }) =>
       api.get("/metadata/options", { params }),
-    getDiseases: () => api.get<string[]>("/diseases"),
-    getRegions: () => api.get<string[]>("/regions"),
+    getDiseases: () => api.get<ApiResponse<string[]>>("/diseases"),
+    getRegions: () => api.get<ApiResponse<string[]>>("/regions"),
   },
 
   // Recommendations
@@ -55,26 +55,26 @@ export const outbreakAPI = {
   // Climate Data
   climate: {
     getCurrent: () => api.get<ApiResponse<ClimateData[]>>("/climate/current"),
-    getByRegion: (region: Region) =>
-      api.get<ApiResponse<ClimateData>>(`/climate/region/${region}`),
+    getByRegion: (region: Region, params?: { startDate?: DateString; endDate?: DateString }) =>
+      api.get<ApiResponse<ClimateData>>(`/climate/region/${region}`, { params }),
     getHistorical: (params: {
       region: Region;
       startDate: DateString;
       endDate: DateString;
     }) =>
       api.get<ApiResponse<ClimateData[]>>("/climate/historical", { params }),
-    getForecast: (region: Region, days: number = 7) =>
+    getForecast: (region: Region, days: number = 7, params?: { startDate?: DateString; endDate?: DateString }) =>
       api.get<ApiResponse<WeatherForecast[]>>(`/climate/forecast/${region}`, {
-        params: { days },
+        params: { days, ...(params || {}) },
       }),
   },
 
   // Population Data
   population: {
-    getCurrent: () =>
-      api.get<ApiResponse<PopulationData[]>>("/population/current"),
-    getByRegion: (region: Region) =>
-      api.get<ApiResponse<PopulationData>>(`/population/region/${region}`),
+    getCurrent: (params?: { startDate?: DateString; endDate?: DateString }) =>
+      api.get<ApiResponse<PopulationData[]>>("/population/current", { params }),
+    getByRegion: (region: Region, params?: { startDate?: DateString; endDate?: DateString }) =>
+      api.get<ApiResponse<PopulationData>>(`/population/region/${region}`, { params }),
     getDensityMap: () =>
       api.get<ApiResponse<GeoData>>("/population/density-map"),
     getDemographics: (region: Region) =>

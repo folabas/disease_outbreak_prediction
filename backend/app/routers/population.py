@@ -11,25 +11,41 @@ router = APIRouter(prefix="/population", tags=["population"])
 
 
 @router.get("/", response_model=PopulationResponse)
-def get_population_stats(region: str = Query("All")):
-    return get_population(region)
+def get_population_stats(
+    region: str = Query("All"),
+    startDate: str | None = Query(default=None),
+    endDate: str | None = Query(default=None),
+):
+    return get_population(region=region, startDate=startDate, endDate=endDate)
 
 
 # Alias to support /population/current
 @router.get("/current", response_model=PopulationResponse)
-def get_population_current(region: str = Query("All")):
-    return get_population(region)
+def get_population_current(
+    region: str = Query("All"),
+    startDate: str | None = Query(default=None),
+    endDate: str | None = Query(default=None),
+):
+    return get_population(region=region, startDate=startDate, endDate=endDate)
 
 
 @router.get("/stats/{region}", response_model=PopulationResponse)
-def get_population_stats_by_region(region: str):
-    return get_population(region)
+def get_population_stats_by_region(
+    region: str,
+    startDate: str | None = Query(default=None),
+    endDate: str | None = Query(default=None),
+):
+    return get_population(region=region, startDate=startDate, endDate=endDate)
 
 
 # Alias to support /population/region/{region}
 @router.get("/region/{region}", response_model=PopulationResponse)
-def get_population_by_region(region: str):
-    return get_population(region)
+def get_population_by_region(
+    region: str,
+    startDate: str | None = Query(default=None),
+    endDate: str | None = Query(default=None),
+):
+    return get_population(region=region, startDate=startDate, endDate=endDate)
 
 
 @router.get("/demographics/{region}")

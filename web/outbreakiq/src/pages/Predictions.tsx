@@ -21,30 +21,31 @@ import type { Disease } from "../services/types";
 
 
 const Dashboard = () => {
-  const [disease, setDisease] = useState("Cholera");
+  // UI focuses exclusively on COVID-19 for MVP; backend remains flexible for future diseases.
+  const [disease, setDisease] = useState("COVID-19");
   const [region, setRegion] = useState("All");
   const [year, setYear] = useState("2024");
   const [rainfall, setRainfall] = useState<number>(1250);
   const [temperature, setTemperature] = useState<number>(29);
 
   // Normalize UI disease label to API union type (fallback to "cholera")
-  const dl = disease.toLowerCase();
-  const diseaseApi: Disease = dl === "cholera" || dl === "malaria" ? (dl as Disease) : "cholera";
+  const dl = "covid-19";
+  const diseaseApi: Disease = "covid-19";
 
   // Hook: predictions (series, risk, stats)
   const [reload, setReload] = useState(0);
   const { series: predSeries, risk, stats, loading, error } = usePredictions(diseaseApi, region, reload);
   // Hook: insights (notes for summary)
-  const { notes: insightNotes, loading: insightsLoading, error: insightsError } = useInsights(diseaseApi, region);
+  const { notes: insightNotes, loading: insightsLoading, error: insightsError } = useInsights(diseaseApi, region, reload);
   // Hook: dynamic options for selects
   const { options: metaOptions, loading: optionsLoading, error: optionsError } = useOptions({ source: "auto" });
   // Hook: recommendations list
-  const { recommendations, loading: recsLoading, error: recsError } = useRecommendations({ disease: dl, region, year: Number(year) });
+  const { recommendations, loading: recsLoading, error: recsError } = useRecommendations({ disease: dl, region, year: Number(year) }, reload);
   // Hook: merged predicted vs actual series
-  const { series, liveOnly, loading: paLoading, error: paError } = usePredictedActual({ disease: dl, region });
+  const { series, liveOnly, loading: paLoading, error: paError } = usePredictedActual({ disease: dl, region }, reload);
   // Hooks: map overlays
-  const { geojson: heatmap, loading: heatLoading } = useHeatmap(region, dl);
-  const { features: hotspots, loading: hotLoading } = useHotspots(diseaseApi, Number(year));
+  const { geojson: heatmap, loading: heatLoading } = useHeatmap(region, dl, reload);
+  const { features: hotspots, loading: hotLoading } = useHotspots(diseaseApi, Number(year), reload);
   const [showHeatmap, setShowHeatmap] = useState(true);
   const [showHotspots, setShowHotspots] = useState(true);
 
@@ -56,66 +57,34 @@ const Dashboard = () => {
   };
 
   const isPredicting = loading;
+  const hasPrediction = reload > 0;
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       {/* 🔹 Main Header */}
       <header className="mb-8">
         <h1 className="text-3xl font-bold text-[#0d2544]">
-          Prediction Dashboard
+          COVID-19 Outbreak Prediction System
         </h1>
         <p className="text-gray-600 text-sm mt-1">
           Monitor, analyze, and predict outbreak risks across Nigeria.
         </p>
 
-        <div className="flex flex-wrap gap-3 mt-4">
-          <select
-            title="disease"
-            value={disease}
-            onChange={(e) => setDisease(e.target.value)}
-            className="border rounded-md px-3 py-2 text-sm"
-          >
-            {(metaOptions.diseases?.length ? metaOptions.diseases : ["cholera", "malaria"]).map((d) => (
-              <option key={d}>{d.charAt(0).toUpperCase() + d.slice(1)}</option>
-            ))}
-          </select>
-          <select
-            title="region"
-            value={region}
-            onChange={(e) => setRegion(e.target.value)}
-            className="border rounded-md px-3 py-2 text-sm"
-          >
-            {(metaOptions.regions?.length ? metaOptions.regions : ["All", "North-East", "South-West", "North-Central"]).map((r) => (
-              <option key={r}>{r}</option>
-            ))}
-          </select>
-          <select
-            title="year"
-            value={year}
-            onChange={(e) => setYear(e.target.value)}
-            className="border rounded-md px-3 py-2 text-sm"
-          >
-            {(metaOptions.years?.length
-              ? metaOptions.years
-              : [2023, 2024, 2025]
-            ).map((y) => {
-              const ys = typeof y === "number" ? String(Math.trunc(y)) : String(y);
-              return (
-                <option key={ys}>{ys}</option>
-              );
-            })}
-          </select>
-        </div>
+        
       </header>
 
-      {/* 🔹 Overview Section */}
-      <SectionHeader title="Overview Metrics" />
-      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <StatCard title="Latest Confirmed Cases" value={String(stats.latest ?? 0)} />
-        <StatCard title="Average Weekly Cases" value={String(stats.average ?? 0)} />
-      </div>
+      {hasPrediction && (
+        <>
+          <SectionHeader title="Overview Metrics" />
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <StatCard title="Latest Confirmed Cases" value={String(stats.latest ?? 0)} />
+            <StatCard title="Average Weekly Cases" value={String(stats.average ?? 0)} />
+          </div>
+        </>
+      )}
 
-      {/* 🔹 Map & Chart Section */}
+      {hasPrediction && (
+        <>
       <SectionHeader title="Outbreak Visualization" />
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
         {/* Map */}
@@ -174,8 +143,11 @@ const Dashboard = () => {
           </ResponsiveContainer>
         </div>
       </div>
+        </>
+      )}
 
-      {/* 🔹 Insights Section */}
+      {hasPrediction && (
+        <>
       <SectionHeader title="Outbreak Insights" />
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
         <div className="lg:col-span-2 bg-white rounded-xl shadow p-4">
@@ -204,6 +176,8 @@ const Dashboard = () => {
           <p className="mt-2 text-gray-600 text-sm">Confidence: <span className="font-semibold">{risk ? risk.confidence : 0}%</span></p>
         </div>
       </div>
+        </>
+      )}
 
       {/* 🔹 Prediction Section */}
       <SectionHeader title="Run New Prediction" />
@@ -220,12 +194,11 @@ const Dashboard = () => {
                 <select
                   title="disease"
                   value={disease}
-                  onChange={(e) => setDisease(e.target.value)}
-                  className="w-full border rounded-md px-3 py-2 mt-1"
+                  onChange={() => {}}
+                  disabled
+                  className="w-full border rounded-md px-3 py-2 mt-1 bg-gray-100 text-gray-600"
                 >
-                  {(metaOptions.diseases?.length ? metaOptions.diseases : ["cholera", "malaria"]).map((d) => (
-                    <option key={d}>{d.charAt(0).toUpperCase() + d.slice(1)}</option>
-                  ))}
+                  <option>COVID-19</option>
                 </select>
               </div>
               <div>
@@ -236,9 +209,10 @@ const Dashboard = () => {
                   onChange={(e) => setRegion(e.target.value)}
                   className="w-full border rounded-md px-3 py-2 mt-1"
                 >
-                  {(metaOptions.regions?.length ? metaOptions.regions : ["All", "North-East", "South-West", "North-Central"]).map((r) => (
+                  {(metaOptions.regions?.length ? metaOptions.regions : ["All","Lagos","Kano","Rivers"]).map((r) => (
                     <option key={r}>{r}</option>
                   ))}
+                  {!metaOptions.regions?.length && <option disabled>Loading…</option>}
                 </select>
               </div>
             </div>
@@ -284,6 +258,7 @@ const Dashboard = () => {
         </div>
 
         {/* Prediction Result */}
+        {hasPrediction && (
         <div className="bg-white rounded-xl shadow p-6">
           <h2 className="font-semibold mb-4 text-[#0d2544]">
             Prediction Result
@@ -322,6 +297,7 @@ const Dashboard = () => {
             )}
           </div>
         </div>
+        )}
       </div>
       {/* Footer */}
       <footer className="pt-6 text-center text-gray-500 text-sm">

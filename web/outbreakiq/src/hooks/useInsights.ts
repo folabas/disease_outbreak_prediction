@@ -7,11 +7,11 @@ type BackendInsights = {
   notes?: string | string[];
 };
 
-export function useInsights(disease: string, region?: string) {
+export function useInsights(disease: string, region?: string, trigger?: number) {
   const [metrics, setMetrics] = useState<BackendInsights["metrics"] | undefined>(undefined);
   const [featureImportance, setFeatureImportance] = useState<BackendInsights["featureImportance"]>([]);
   const [notes, setNotes] = useState<string[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined>(undefined);
 
   useEffect(() => {
@@ -40,11 +40,13 @@ export function useInsights(disease: string, region?: string) {
         if (mounted) setLoading(false);
       }
     }
-    void run();
+    if (trigger === undefined || trigger > 0) {
+      void run();
+    }
     return () => {
       mounted = false;
     };
-  }, [disease, region]);
+  }, [disease, region, trigger]);
 
   return { metrics, featureImportance, notes, loading, error } as const;
 }

@@ -2,14 +2,11 @@ import axios from "axios";
 
 // API Base URL - Change this to your actual API endpoint
 export const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:8001/api/v1";
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:8000/api/v1";
 
 // Create axios instance with default config
 export const api = axios.create({
   baseURL: API_BASE_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
 });
 
 // Add request interceptor for auth tokens if needed
@@ -24,6 +21,16 @@ api.interceptors.request.use(
       // mark start time
       (config as any).meta = { startTime: Date.now() };
       console.log("[API]", method, url, { params, data });
+    } catch {}
+    // Avoid setting Content-Type for GET to prevent CORS preflight
+    try {
+      const m = (config.method || "get").toLowerCase();
+      (config.headers as any) = config.headers || {};
+      if (m === "get") {
+        try { delete (config.headers as any)["Content-Type"]; } catch {}
+      } else {
+        (config.headers as any)["Content-Type"] = (config.headers as any)["Content-Type"] || "application/json";
+      }
     } catch {}
     const token = localStorage.getItem("token");
     if (token) {

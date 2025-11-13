@@ -8,6 +8,8 @@ from app.routers import predictions, climate, population, hospital, insights
 from app.routers import risk_factors, hospitals, disease, geo, analytics, metadata, recommendations, aggregates
 from app.core.errors import http_exception_handler, unhandled_exception_handler, init_logging
 from app.core.response import success
+from app.models.predictions import PredictionQuery
+from app.services.ml import predict_series
 
 
 app = FastAPI(title="OutbreakIQ API", version="1.0")
@@ -16,6 +18,7 @@ init_logging()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=ALLOWED_ORIGINS,
+    allow_origin_regex=r"http://(localhost|127\.0\.0\.1):\d+",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -81,3 +84,16 @@ async def log_requests(request: Request, call_next):
     except Exception:
         pass
     return response
+
+
+# Explicit POST alias for predict at root for best REST ergonomics
+@app.post(f"{API_PREFIX}/predict")
+def post_predict_root(payload: PredictionQuery):
+    result = predict_series(payload)
+    return success(result.dict())
+
+
+@app.post(f"{API_V1_PREFIX}/predict")
+def post_predict_root_v1(payload: PredictionQuery):
+    result = predict_series(payload)
+    return success(result.dict())

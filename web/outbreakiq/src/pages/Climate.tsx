@@ -3,6 +3,8 @@ import DataPageTemplate from "../Components/DataPageTemplate";
 import Loader from "../Components/Loader";
 import { usePageAnimations } from "../hooks/usePageAnimations";
 import { useClimate } from "../hooks/useClimate";
+import { useForecast } from "../hooks/useForecast";
+import { useOptions } from "../hooks/useOptions";
 
 import {
   LineChart,
@@ -22,6 +24,7 @@ const Climate = () => {
   // Region filter feeds the climate hook
   const [region, setRegion] = useState("All Nigeria");
   const [dateRange, setDateRange] = useState("Last 30 Days");
+  const { options } = useOptions({ source: "auto" });
   type TempPoint = { name: string; temp: number };
   type RainPoint = { name: string; rain: number };
   type StatItem = { name: string; value: string; change: string; positive: boolean };
@@ -29,7 +32,24 @@ const Climate = () => {
   const [tempData, setTempData] = useState<TempPoint[]>([]);
   const [rainData, setRainData] = useState<RainPoint[]>([]);
   const [stats, setStats] = useState<StatItem[]>([]);
-  const { tempData: tSeries, rainData: rSeries, stats: cStats, loading: cLoading, error } = useClimate(region);
+  function toWeekString(d: Date): string {
+    const dt = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+    const dayNum = dt.getUTCDay() || 7;
+    dt.setUTCDate(dt.getUTCDate() + 4 - dayNum);
+    const yearStart = new Date(Date.UTC(dt.getUTCFullYear(), 0, 1));
+    const weekNo = Math.ceil(((dt.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
+    const y = dt.getUTCFullYear();
+    return `${y}-W${String(weekNo).padStart(2, "0")}`;
+  }
+  const days = dateRange === "Last 7 Days" ? 7 : dateRange === "Last 30 Days" ? 30 : 90;
+  const now = new Date();
+  const start = new Date(now);
+  start.setDate(start.getDate() - days);
+  const startWeek = toWeekString(start);
+  const endWeek = toWeekString(now);
+
+  const { tempData: tSeries, rainData: rSeries, stats: cStats, loading: cLoading, error } = useClimate(region, { startDate: startWeek, endDate: endWeek });
+  const { tempData: fTemp, rainData: fRain, loading: fLoading, error: fError } = useForecast(region, Math.min(days, 30));
 
   useEffect(() => {
     // Adapt hook series to chart shape
@@ -77,9 +97,9 @@ const Climate = () => {
         className="border rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
       >
         <option>All Nigeria</option>
-        <option>North-East</option>
-        <option>South-West</option>
-        <option>North-Central</option>
+        {(options?.regions || []).map((r) => (
+          <option key={r}>{r}</option>
+        ))}
       </select>
 
       <select
@@ -213,6 +233,38 @@ const Climate = () => {
         </div>
       </div>
 
+      <SectionHeader title="Forecast" />
+      <div className="grid md:grid-cols-2 gap-6 mb-8">
+        <div className="bg-white rounded-xl shadow p-6">
+          <h3 className="font-semibold text-[#0d2544] mb-2">Forecast Temperature (°C)</h3>
+          <div className="w-full h-[240px]">
+            <ResponsiveContainer>
+              <LineChart data={fTemp.map((p) => ({ name: p.name, temp: p.value }))}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Line type="monotone" dataKey="temp" stroke="#ef4444" strokeWidth={3} />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+        <div className="bg-white rounded-xl shadow p-6">
+          <h3 className="font-semibold text-[#0d2544] mb-2">Forecast Rainfall (mm)</h3>
+          <div className="w-full h-[240px]">
+            <ResponsiveContainer>
+              <AreaChart data={fRain.map((p) => ({ name: p.name, rain: p.value }))}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Area type="monotone" dataKey="rain" stroke="#f59e0b" fill="#fde68a" />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      </div>
+
       {/* Table Section */}
       <SectionHeader title="Detailed Weather Data" />
       <div className="bg-white rounded-xl shadow p-6 overflow-auto">
@@ -221,23 +273,31 @@ const Climate = () => {
             <tr>
               <th className="py-2">Date</th>
               <th className="py-2">Location</th>
+              <th className="py-2">Type</th>
+              <th className="py-2">Source</th>
               <th className="py-2">Temperature (°C)</th>
               <th className="py-2">Rainfall (mm)</th>
             </tr>
           </thead>
           <tbody>
             {tempData.slice(0, 5).map((d, i) => (
-              <tr key={i} className="border-b hover:bg-gray-50">
-                <td className="py-2">
-                  {new Date(Date.now() - i * 86400000)
-                    .toISOString()
-                    .slice(0, 10)}
-                </td>
-                <td className="py-2">
-                  {["Lagos", "Abuja", "Kano", "Port Harcourt", "Ibadan"][i]}
-                </td>
+              <tr key={`act-${i}`} className="border-b hover:bg-gray-50">
+                <td className="py-2">{d.name}</td>
+                <td className="py-2">{region}</td>
+                <td className="py-2">Actual</td>
+                <td className="py-2">Weekly CSV</td>
                 <td className="py-2">{d.temp}</td>
                 <td className="py-2">{rainData[i]?.rain}</td>
+              </tr>
+            ))}
+            {fTemp.slice(0, 5).map((d, i) => (
+              <tr key={`fc-${i}`} className="border-b hover:bg-gray-50">
+                <td className="py-2">{d.name}</td>
+                <td className="py-2">{region}</td>
+                <td className="py-2">Forecast</td>
+                <td className="py-2">Open‑Meteo</td>
+                <td className="py-2">{d.value}</td>
+                <td className="py-2">{fRain[i]?.value}</td>
               </tr>
             ))}
           </tbody>

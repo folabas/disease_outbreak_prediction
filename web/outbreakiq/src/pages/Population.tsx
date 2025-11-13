@@ -19,13 +19,14 @@ import { motion } from "framer-motion";
 import "leaflet/dist/leaflet.css";
 import { usePageAnimations } from "../hooks/usePageAnimations";
 import { usePopulation } from "../hooks/usePopulation";
+import { useOptions } from "../hooks/useOptions";
 
 
 type GrowthEntry = { region: string; value: number };
 
 const Population = () => {
   // Filters
-  const [region, setRegion] = useState("All Regions");
+  const [region, setRegion] = useState("All Nigeria");
   const [dateRange, setDateRange] = useState("Last 12 Months");
   const [growthData, setGrowthData] = useState<GrowthEntry[]>([]);
   const [geoData, setGeoData] = useState<any>(null);
@@ -38,7 +39,24 @@ const Population = () => {
   const mapRef = useRef<LeafletMap | null>(null);
 
   // Hook: population aggregates and density map
-  const { growthData: gSeries, densityData: dSeries, densityMap, stats: pStats, loading, error } = usePopulation(region);
+  function toWeekString(d: Date): string {
+    const dt = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+    const dayNum = dt.getUTCDay() || 7;
+    dt.setUTCDate(dt.getUTCDate() + 4 - dayNum);
+    const yearStart = new Date(Date.UTC(dt.getUTCFullYear(), 0, 1));
+    const weekNo = Math.ceil(((dt.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
+    const y = dt.getUTCFullYear();
+    return `${y}-W${String(weekNo).padStart(2, "0")}`;
+  }
+  const months = dateRange === "Last 6 Months" ? 6 : dateRange === "Last 12 Months" ? 12 : 24;
+  const now = new Date();
+  const start = new Date(now);
+  start.setMonth(start.getMonth() - months);
+  const startStr = toWeekString(start);
+  const endStr = toWeekString(now);
+
+  const { growthData: gSeries, densityData: dSeries, densityMap, stats: pStats, loading, error } = usePopulation(region, { startDate: startStr, endDate: endStr });
+  const { options } = useOptions({ source: "auto" });
 
   // Set geo data from hook
   useEffect(() => {
@@ -75,7 +93,7 @@ const Population = () => {
     const map = useMap();
     useEffect(() => {
       if (!geoData) return;
-      if (region === "All Regions") {
+      if (["All Regions", "All Nigeria"].includes(region)) {
         map.setView([9.082, 8.6753], 6);
         return;
       }
@@ -162,11 +180,10 @@ const Population = () => {
                 onChange={(e) => setRegion(e.target.value)}
                 className="border rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               >
-                <option>All Regions</option>
-                <option>North</option>
-                <option>South</option>
-                <option>East</option>
-                <option>West</option>
+                <option>All Nigeria</option>
+                {(options?.regions || []).map((r) => (
+                  <option key={r}>{r}</option>
+                ))}
               </select>
             </div>
           </div>

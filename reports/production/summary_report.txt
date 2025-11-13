@@ -1,0 +1,6 @@
+Cholera: n=0, pos=0, neg=0, acc=NA%, f1_w=NA%, auc=NA
+Covid-19: n=131, pos=20, neg=111, acc=87.79%, f1_w=86.01%, auc=0.572
+Diphtheria: n=0, pos=0, neg=0, acc=NA%, f1_w=NA%, auc=NA
+Measles: n=0, pos=0, neg=0, acc=NA%, f1_w=NA%, auc=NA
+Monkeypox: n=80, pos=17, neg=63, acc=42.50%, f1_w=42.50%, auc=1.000
+Yellow Fever: n=0, pos=0, neg=0, acc=NA%, f1_w=NA%, auc=NA

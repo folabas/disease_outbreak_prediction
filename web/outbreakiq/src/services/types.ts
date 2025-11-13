@@ -1,6 +1,6 @@
 // Basic Types
 export type Region = string; // e.g. 'lagos', 'kano', etc.
-export type Disease = "malaria" | "cholera";
+export type Disease = "malaria" | "cholera" | "covid-19";
 export type DateString = string; // ISO 8601 format
 
 // Generic API Response wrapper (supports legacy and normalized envelopes)

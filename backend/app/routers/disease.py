@@ -32,7 +32,7 @@ def get_disease_by_region(disease: str, region: str):
 
 
 @router.get("/historical")
-def get_disease_historical(disease: str = Query("cholera", regex="^(cholera|malaria)$"), region: str = Query("All"), window: int = Query(30)):
+def get_disease_historical(disease: str = Query("cholera"), region: str = Query("All"), window: int = Query(30)):
     logging.info("/disease/historical GET disease=%s region=%s window=%s", disease, region, window)
     # Return recent historical cases for disease/region
     disease = validate_disease(disease) or disease
@@ -50,11 +50,15 @@ def get_disease_historical(disease: str = Query("cholera", regex="^(cholera|mala
                 else:
                     if any(df["state"].astype(str).str.lower() == "all"):
                         df = df[df["state"].astype(str).str.lower() == "all"]
-
+            # Aggregate by week across states to represent region-level confirmed cases
+            agg_cols = [c for c in ["year", "week", "cases"] if c in df.columns]
+            if all(c in agg_cols for c in ["year", "week", "cases"]):
+                df = df.groupby(["year", "week"], as_index=False)["cases"].sum()
             sort_cols = [c for c in ["year", "week"] if c in df.columns]
             if sort_cols:
                 df = df.sort_values(sort_cols).reset_index(drop=True)
-            for _, row in df.tail(min(window, 50)).iterrows():
+            tail_n = min(window, 50)
+            for _, row in df.tail(tail_n).iterrows():
                 date = None
                 if "date" in df.columns:
                     date = str(row.get("date"))

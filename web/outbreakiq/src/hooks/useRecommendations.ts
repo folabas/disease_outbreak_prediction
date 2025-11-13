@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { outbreakAPI } from "../services/api";
 
-export function useRecommendations(params?: { disease?: string; region?: string; year?: number }) {
+export function useRecommendations(params?: { disease?: string; region?: string; year?: number }, trigger?: number) {
   const [recommendations, setRecommendations] = useState<string[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined>(undefined);
 
   useEffect(() => {
@@ -13,7 +13,8 @@ export function useRecommendations(params?: { disease?: string; region?: string;
         setLoading(true);
         setError(undefined);
         const res = await outbreakAPI.recommendations.get({ disease: params?.disease, region: params?.region, year: params?.year });
-        const data = res?.data?.data || {};
+        const body = res?.data || {} as any;
+        const data = body?.data || body;
         const recs = Array.isArray(data?.recommendations) ? data.recommendations : [];
         if (mounted) setRecommendations(recs);
       } catch (e: any) {
@@ -22,11 +23,13 @@ export function useRecommendations(params?: { disease?: string; region?: string;
         if (mounted) setLoading(false);
       }
     }
-    void run();
+    if (trigger === undefined || trigger > 0) {
+      void run();
+    }
     return () => {
       mounted = false;
     };
-  }, [params?.disease, params?.region, params?.year]);
+  }, [params?.disease, params?.region, params?.year, trigger]);
 
   return { recommendations, loading, error } as const;
 }

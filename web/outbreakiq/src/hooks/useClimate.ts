@@ -16,7 +16,7 @@ type ClimateStats = {
   heavyRain: number;
 };
 
-export function useClimate(region: string) {
+export function useClimate(region: string, params?: { startDate?: string; endDate?: string }) {
   const [tempData, setTempData] = useState<ClimatePoint[]>([]);
   const [rainData, setRainData] = useState<ClimatePoint[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -28,7 +28,7 @@ export function useClimate(region: string) {
       try {
         setLoading(true);
         setError(undefined);
-        const res = await outbreakAPI.climate.getByRegion(region);
+        const res = await outbreakAPI.climate.getByRegion(region, { startDate: params?.startDate, endDate: params?.endDate });
         const payload = (res?.data?.data || res?.data) as unknown as BackendClimateResponse;
         const t = payload?.temperature || [];
         const r = payload?.rainfall || [];
@@ -46,7 +46,7 @@ export function useClimate(region: string) {
     return () => {
       mounted = false;
     };
-  }, [region]);
+  }, [region, params?.startDate, params?.endDate]);
 
   const stats: ClimateStats = useMemo(() => {
     const avgTemp =

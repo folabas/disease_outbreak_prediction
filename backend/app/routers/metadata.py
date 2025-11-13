@@ -56,6 +56,16 @@ def _read_live_predictions() -> Optional[pd.DataFrame]:
         return None
 
 
+def _read_evaluation_table() -> Optional[pd.DataFrame]:
+    path = os.path.join(DATA_DIR, "evaluation_merged_clean.csv")
+    if not os.path.exists(path):
+        return None
+    try:
+        return pd.read_csv(path)
+    except Exception:
+        return None
+
+
 def _unique_sorted(series: pd.Series) -> List[Any]:
     try:
         values = sorted(set(v for v in series.dropna().tolist()))
@@ -71,6 +81,7 @@ def get_metadata_options(
     ),
     disease: Optional[str] = Query(default=None, description="Optional disease filter"),
 ) -> Dict[str, Any]:
+    global _CACHE, _CACHE_TS
     logging.info("/metadata/options GET source=%s disease=%s", source, disease)
     """
     Return available diseases, years, and regions from real project data.
@@ -193,10 +204,21 @@ def get_metadata_options(
 @router.get("/diseases")
 def get_diseases() -> Dict[str, Any]:
     logging.info("/diseases GET")
-    df = _read_training_table()
+    df = _read_evaluation_table()
+    if df is None:
+        df = _read_training_table()
     diseases: List[str] = []
     if df is not None and "disease" in df.columns:
-        diseases = _unique_sorted(df["disease"]) or sorted(ALLOWED_DISEASES)
+        try:
+            cnt = df.groupby("disease").size()
+            allowed_lower = {d.lower() for d in ALLOWED_DISEASES}
+            filtered = [str(d) for d in cnt.index.tolist() if str(d).lower() in allowed_lower and int(cnt[d]) >= 20]
+            if filtered:
+                diseases = sorted(set(filtered))
+            else:
+                diseases = _unique_sorted(df["disease"]) or sorted(ALLOWED_DISEASES)
+        except Exception:
+            diseases = _unique_sorted(df["disease"]) or sorted(ALLOWED_DISEASES)
     elif not diseases:
         diseases = sorted(ALLOWED_DISEASES)
     return success(diseases)

@@ -3,10 +3,10 @@ import { api } from "../services/api.config";
 
 type SeriesItem = { date: string; actual?: number | null; predicted?: number | null };
 
-export function usePredictedActual(params: { disease: string; region: string; window?: number }) {
+export function usePredictedActual(params: { disease: string; region: string; window?: number }, trigger?: number) {
   const [series, setSeries] = useState<SeriesItem[]>([]);
   const [liveOnly, setLiveOnly] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined>(undefined);
 
   useEffect(() => {
@@ -30,11 +30,13 @@ export function usePredictedActual(params: { disease: string; region: string; wi
         if (mounted) setLoading(false);
       }
     }
-    void run();
+    if (trigger && trigger > 0) {
+      void run();
+    }
     return () => {
       mounted = false;
     };
-  }, [params.disease, params.region, params.window]);
+  }, [params.disease, params.region, params.window, trigger]);
 
   return { series, liveOnly, loading, error } as const;
 }
