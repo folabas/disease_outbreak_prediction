@@ -65,6 +65,7 @@ const allFacilities = [
     staff: 600,
     coordinates: [4.8156, 7.0498],
   },
+  
 ];
 
 const facilityTypes = [

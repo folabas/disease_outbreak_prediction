@@ -26,9 +26,9 @@ const Climate = () => {
   const [loading, setLoading] = useState(true);
   const [region, setRegion] = useState("All Nigeria");
   const [dateRange, setDateRange] = useState("Last 30 Days");
-  const [tempData, setTempData] = useState([]);
-  const [rainData, setRainData] = useState([]);
-  const [stats, setStats] = useState([]);
+  const [tempData, setTempData] = useState<any[]>([]);
+  const [rainData, setRainData] = useState<any[]>([]);
+  const [stats, setStats] = useState<any[]>([]);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1200);

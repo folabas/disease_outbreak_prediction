@@ -17,7 +17,6 @@ import { motion } from "framer-motion";
 import "leaflet/dist/leaflet.css";
 import { usePageAnimations } from "../hooks/usePageAnimations";
 
-
 const regions = [
   "North West",
   "South West",
@@ -49,8 +48,8 @@ const Population = () => {
   const [loading, setLoading] = useState(true);
   const [region, setRegion] = useState("All Regions");
   const [dateRange, setDateRange] = useState("Last 12 Months");
-  const [growthData, setGrowthData] = useState([]);
-  const [geoData, setGeoData] = useState(null);
+  const [growthData, setGrowthData] = useState<any[]>([]);
+  const [geoData, setGeoData] = useState<any>(null);
   const [densityColors, setDensityColors] = useState({});
   const [stats, setStats] = useState({
     total: "213,401,323",
@@ -131,7 +130,8 @@ const Population = () => {
 
       // Filter the region
       const layer = L.geoJSON(geoData, {
-        filter: (f) => f.properties?.NAME_1?.toLowerCase().includes(region.toLowerCase()),
+        filter: (f) =>
+          f.properties?.NAME_1?.toLowerCase().includes(region.toLowerCase()),
       });
       const bounds = layer.getBounds();
       if (bounds.isValid()) map.fitBounds(bounds, { padding: [30, 30] });
@@ -160,7 +160,10 @@ const Population = () => {
       weight: 1,
     });
     layer.bindTooltip(
-      `${feature.properties.NAME_1}<br/>Population Growth: ${(Math.random() * 5 + 2).toFixed(1)}%`,
+      `${feature.properties.NAME_1}<br/>Population Growth: ${(
+        Math.random() * 5 +
+        2
+      ).toFixed(1)}%`,
       { direction: "center", sticky: true }
     );
   };
@@ -178,7 +181,8 @@ const Population = () => {
           Population Analytics
         </h1>
         <p className="text-gray-600 text-sm mt-1">
-          Analyze population growth, density, and demographic patterns across Nigeria.
+          Analyze population growth, density, and demographic patterns across
+          Nigeria.
         </p>
 
         {/* Filters */}
@@ -215,15 +219,37 @@ const Population = () => {
 
           <div className="flex gap-2 w-full sm:w-auto justify-end">
             <button className="bg-white border text-gray-700 px-4 py-2 rounded-md text-sm font-semibold hover:bg-gray-100 flex items-center gap-2 transition">
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M12 4v16m8-8H4"
+                />
               </svg>
               Export
             </button>
 
             <button className="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-green-700 flex items-center gap-2 transition">
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v3H3V4zm0 5h18v11a1 1 0 01-1 1H4a1 1 0 01-1-1V9z" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M3 4a1 1 0 011-1h16a1 1 0 011 1v3H3V4zm0 5h18v11a1 1 0 01-1 1H4a1 1 0 01-1-1V9z"
+                />
               </svg>
               Apply Filters
             </button>
@@ -233,8 +259,9 @@ const Population = () => {
 
       {/* AI Insight */}
       <div className="bg-blue-50 border-l-4 border-green-600 p-4 rounded-md mb-8 text-sm text-gray-700 shadow-sm">
-        💡 <b>Insight:</b> Northern regions continue to record the highest growth (4.2%) with increasing urban migration, 
-        while southern regions show stabilized density due to improved infrastructure.
+        💡 <b>Insight:</b> Northern regions continue to record the highest
+        growth (4.2%) with increasing urban migration, while southern regions
+        show stabilized density due to improved infrastructure.
       </div>
 
       {/* Stats Overview */}
@@ -253,7 +280,9 @@ const Population = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         {/* Heatmap — larger */}
         <div className="md:col-span-2 bg-white rounded-xl shadow p-6 flex flex-col">
-          <h3 className="font-semibold text-[#0d2544] mb-3">Population Density Heatmap</h3>
+          <h3 className="font-semibold text-[#0d2544] mb-3">
+            Population Density Heatmap
+          </h3>
           <div className="flex-1 rounded-lg overflow-hidden">
             <MapContainer
               center={[9.082, 8.6753]}
@@ -262,11 +291,10 @@ const Population = () => {
               className="h-[300px] w-full rounded"
               ref={mapRef}
             >
-              <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                
-              />
-              {geoData && <GeoJSON data={geoData} onEachFeature={onEachFeature} />}
+              <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+              {geoData && (
+                <GeoJSON data={geoData} onEachFeature={onEachFeature} />
+              )}
               <MapZoomHandler region={region} />
             </MapContainer>
           </div>
@@ -279,7 +307,9 @@ const Population = () => {
 
         {/* Bar Chart */}
         <div className="bg-white rounded-xl shadow p-6">
-          <h3 className="font-semibold text-[#0d2544] mb-3">Population Growth by Region</h3>
+          <h3 className="font-semibold text-[#0d2544] mb-3">
+            Population Growth by Region
+          </h3>
           <div className="w-full h-[300px]">
             <ResponsiveContainer>
               <BarChart
@@ -288,7 +318,12 @@ const Population = () => {
                 margin={{ top: 10, right: 20, bottom: 10, left: 60 }}
               >
                 <XAxis type="number" hide />
-                <YAxis dataKey="region" type="category" tick={{ fill: "#334155", fontSize: 13 }} width={100} />
+                <YAxis
+                  dataKey="region"
+                  type="category"
+                  tick={{ fill: "#334155", fontSize: 13 }}
+                  width={100}
+                />
                 <Tooltip />
                 <Bar dataKey="value" radius={[6, 6, 6, 6]}>
                   {growthData.map((_, i) => (
@@ -313,7 +348,12 @@ const Population = () => {
             <XAxis dataKey="year" />
             <YAxis />
             <Tooltip />
-            <Line type="monotone" dataKey="population" stroke="#2563eb" strokeWidth={3} />
+            <Line
+              type="monotone"
+              dataKey="population"
+              stroke="#2563eb"
+              strokeWidth={3}
+            />
           </LineChart>
         </ResponsiveContainer>
       </div>
