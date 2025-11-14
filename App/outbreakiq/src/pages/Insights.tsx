@@ -16,7 +16,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import Footer from "../Components/Footer";
 import { usePageAnimations } from "../hooks/usePageAnimations";
 
-
 /* ---------- Mock Data ---------- */
 const featureData = [
   { name: "Rainfall Patterns", value: 92 },
@@ -72,7 +71,7 @@ const Insights = () => {
   const [loading, setLoading] = useState(true);
   const [exportOpen, setExportOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedLog, setSelectedLog] = useState(null); // for nested modal
+  const [selectedLog, setSelectedLog] = useState<any>(null); // for nested modal
 
   useEffect(() => {
     const t = setTimeout(() => setLoading(false), 1200);
@@ -144,7 +143,8 @@ const Insights = () => {
                 <b className="text-[#0d2544]">Last Retrained:</b> Nov 11, 2025
               </p>
               <p>
-                <b className="text-[#0d2544]">Data Source:</b> NCDC & WHO Archives
+                <b className="text-[#0d2544]">Data Source:</b> NCDC & WHO
+                Archives
               </p>
             </div>
 
