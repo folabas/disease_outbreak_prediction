@@ -17,8 +17,8 @@ const Dashboard = () => {
   const [disease, setDisease] = useState("");
   const [region, setRegion] = useState("");
   const [year, setYear] = useState("");
-  const [rainfall, setRainfall] = useState();
-  const [temperature, setTemperature] = useState();
+  const [rainfall, setRainfall] = useState(1200);
+  const [temperature, setTemperature] = useState(28);
   const [isLoading, setIsLoading] = useState(true);
   const [riskResult, setRiskResult] = useState({
     level: " ",
