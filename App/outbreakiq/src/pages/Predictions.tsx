@@ -14,15 +14,15 @@ import { usePageAnimations } from "../hooks/usePageAnimations";
 
 
 const Dashboard = () => {
-  const [disease, setDisease] = useState("Cholera");
-  const [region, setRegion] = useState("All");
-  const [year, setYear] = useState("2024");
-  const [rainfall, setRainfall] = useState(1250);
-  const [temperature, setTemperature] = useState(29);
+  const [disease, setDisease] = useState("");
+  const [region, setRegion] = useState("");
+  const [year, setYear] = useState("");
+  const [rainfall, setRainfall] = useState();
+  const [temperature, setTemperature] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [riskResult, setRiskResult] = useState({
-    level: "High",
-    confidence: 88,
+    level: " ",
+    confidence: 0,
   });
 
   useEffect(() => {
@@ -42,7 +42,20 @@ const Dashboard = () => {
   ];
 
   const predictRisk = () => {
-    setRiskResult({ level: "High", confidence: 88 });
+    const RainNorm = Math.min(Math.max(rainfall / 2000, 0), 1);
+    const TempNorm = Math.min(Math.max((temperature - 10)/30, 0), 1);
+    
+    const Result = ( (0.6 * RainNorm) + (0.4 * TempNorm ));  
+    if (Result <= 20){
+      setRiskResult({ level: "High", confidence: 35.5 });
+    }
+    else if (Result >20 && Result <= 50){
+      setRiskResult({ level: "Mid", confidence: 65.5 });
+    }
+    else{
+      setRiskResult({ level: "Low" , confidence: 86 });
+    }
+    console.log("Prediction Successful")
   };
 
   if (isLoading) {
@@ -70,6 +83,8 @@ const Dashboard = () => {
             <option>Cholera</option>
             <option>Malaria</option>
             <option>Lassa Fever</option>
+            <option>Ebola</option>
+            <option>Covid 19</option>
           </select>
           <select
             title="region"
@@ -79,8 +94,11 @@ const Dashboard = () => {
           >
             <option>All</option>
             <option>North-East</option>
-            <option>South-West</option>
+            <option>North-West</option>
             <option>North-Central</option>
+            <option>South-East</option>
+            <option>South-West</option>
+            <option>South-South</option>
           </select>
           <select
             title="year"
@@ -193,6 +211,8 @@ const Dashboard = () => {
                   <option>Cholera</option>
                   <option>Malaria</option>
                   <option>Lassa Fever</option>
+                  <option>Ebola</option>
+                  <option>Covid 19</option>
                 </select>
               </div>
               <div>
@@ -203,9 +223,13 @@ const Dashboard = () => {
                   onChange={(e) => setRegion(e.target.value)}
                   className="w-full border rounded-md px-3 py-2 mt-1"
                 >
+                  <option>All</option>
                   <option>North-East</option>
-                  <option>South-West</option>
+                  <option>North-West</option>
                   <option>North-Central</option>
+                  <option>South-East</option>
+                  <option>South-West</option>
+                  <option>South-South</option>
                 </select>
               </div>
             </div>
@@ -216,7 +240,7 @@ const Dashboard = () => {
                   Avg. Rainfall (mm)
                 </label>
                 <input
-                  placeholder="1250"
+                  placeholder="1200"
                   type="number"
                   value={rainfall}
                   onChange={(e) => setRainfall(e.target.value)}
@@ -228,7 +252,7 @@ const Dashboard = () => {
                   Avg. Temperature (°C)
                 </label>
                 <input
-                  placeholder="25"
+                  placeholder="28"
                   type="number"
                   value={temperature}
                   onChange={(e) => setTemperature(e.target.value)}
@@ -255,7 +279,13 @@ const Dashboard = () => {
             <p className="text-gray-500 text-sm mb-1">Predicted Risk Level</p>
             <h3
               className={`text-3xl font-bold ${
-                riskResult.level === "High" ? "text-red-600" : "text-yellow-500"
+                riskResult.level === "High" 
+                ? "text-red-600" 
+                : riskResult.level === "Mid" 
+                ? "text-yellow-300" 
+                : riskResult.level === "Low" 
+                ? "text-green-700"
+                : " "
               }`}
             >
               {riskResult.level}
