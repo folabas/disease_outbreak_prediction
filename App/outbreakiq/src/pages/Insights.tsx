@@ -13,8 +13,8 @@ import {
 } from "recharts";
 import Loader from "../Components/Loader";
 import { motion, AnimatePresence } from "framer-motion";
-import Footer from "../Components/Footer";
-import { usePageAnimations } from "../hooks/usePageAnimations";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 /* ---------- Mock Data ---------- */
 const featureData = [
@@ -71,13 +71,86 @@ const Insights = () => {
   const [loading, setLoading] = useState(true);
   const [exportOpen, setExportOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedLog, setSelectedLog] = useState<any>(null); // for nested modal
+  const [selectedLog, setSelectedLog] = useState(null);
 
   useEffect(() => {
     const t = setTimeout(() => setLoading(false), 1200);
     return () => clearTimeout(t);
   }, []);
 
+  /* ---------------------------------------------------
+     EXPORT FUNCTIONS
+  ---------------------------------------------------- */
+  const exportPDF = async () => {
+    const element = document.querySelector(".export-area");
+    if (!element) return alert("Export area not found!");
+
+    const canvas = await html2canvas(element, { scale: 2 });
+    const imgData = canvas.toDataURL("image/png");
+
+    const pdf = new jsPDF("p", "mm", "a4");
+    const width = pdf.internal.pageSize.getWidth();
+    const height = (canvas.height * width) / canvas.width;
+
+    pdf.addImage(imgData, "PNG", 0, 0, width, height);
+    pdf.save("OutbreakIQ_Report.pdf");
+  };
+
+  const exportCSV = () => {
+    const header = [
+      "Metric,Value",
+      "Model Accuracy,91%",
+      "Precision,88%",
+      "Recall,93%",
+      "F1 Score,90%",
+      "",
+      "Feature,Importance Score",
+    ];
+
+    const features = featureData.map((f) => `${f.name},${f.value}`);
+    const confidence = [
+      "",
+      "Disease,Confidence %",
+      ...confidenceData.map((c) => `${c.name},${c.value}`),
+    ];
+
+    const logs = [
+      "",
+      "Date,Event,Details",
+      ...retrainingLogs.map(
+        (log) => `${log.date},"${log.event}","${log.details}"`
+      ),
+    ];
+
+    const csvContent = [...header, ...features, ...confidence, ...logs].join(
+      "\n"
+    );
+
+    const blob = new Blob([csvContent], {
+      type: "text/csv;charset=utf-8;",
+    });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "OutbreakIQ_Report.csv";
+    link.click();
+  };
+
+  const exportPNG = async () => {
+    const element = document.querySelector(".export-area");
+    if (!element) return alert("Export area not found!");
+
+    const canvas = await html2canvas(element, { scale: 2 });
+    const url = canvas.toDataURL("image/png");
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "OutbreakIQ_Report.png";
+    link.click();
+  };
+
+  /* ---------------------------------------------------
+     RENDER
+  ---------------------------------------------------- */
   if (loading) return <Loader />;
 
   return (
@@ -86,7 +159,7 @@ const Insights = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className="min-h-screen bg-gray-50 p-6"
+        className="min-h-screen bg-gray-50 p-6 export-area"
       >
         {/* Header */}
         <header className="mb-6">
@@ -135,6 +208,7 @@ const Insights = () => {
 
           <div className="bg-white rounded-xl shadow p-6 relative">
             <h3 className="font-semibold text-[#0d2544] mb-3">Model Details</h3>
+
             <div className="text-sm text-gray-700 space-y-2 mb-5">
               <p>
                 <b className="text-[#0d2544]">Model Version:</b> v1.0.1
@@ -153,8 +227,8 @@ const Insights = () => {
                 Impact & Use Case
               </h4>
               <p className="text-xs text-gray-600">
-                OutbreakIQ helps WHO, NCDC, and NGOs act faster to prevent
-                epidemics by providing early warnings.
+                OutbreakIQ helps WHO, NCDC, and NGOs act faster by providing
+                early warnings.
               </p>
             </div>
 
@@ -165,16 +239,26 @@ const Insights = () => {
               >
                 Export Report
               </button>
+
               {exportOpen && (
                 <div className="absolute right-0 mt-2 w-40 bg-white border rounded-md shadow-lg z-10">
                   <ul className="text-sm text-gray-700">
-                    <li className="px-3 py-2 hover:bg-gray-100 cursor-pointer">
+                    <li
+                      onClick={exportPDF}
+                      className="px-3 py-2 hover:bg-gray-100 cursor-pointer"
+                    >
                       Download as PDF
                     </li>
-                    <li className="px-3 py-2 hover:bg-gray-100 cursor-pointer">
+                    <li
+                      onClick={exportCSV}
+                      className="px-3 py-2 hover:bg-gray-100 cursor-pointer"
+                    >
                       Export CSV
                     </li>
-                    <li className="px-3 py-2 hover:bg-gray-100 cursor-pointer">
+                    <li
+                      onClick={exportPNG}
+                      className="px-3 py-2 hover:bg-gray-100 cursor-pointer"
+                    >
                       Save as PNG
                     </li>
                   </ul>
