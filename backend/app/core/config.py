@@ -33,9 +33,11 @@ API_V1_PREFIX = "/api/v1"
 ALLOWED_DISEASES = {
     "cholera",
     "malaria",
+    "ebola",
+    "covid",
+    "covid-19",
     "yellow fever",
     "monkeypox",
-    "covid-19",
     "lassa fever",
     "measles",
     "meningitis",

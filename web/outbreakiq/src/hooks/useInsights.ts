@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react";
-import { api } from "../services/api.config";
-
-type BackendInsights = {
-  metrics?: { accuracy?: number; f1?: number; precision?: number; recall?: number; auc?: number };
-  featureImportance?: Array<{ feature?: string; importance?: number; name?: string; value?: number }>;
-  notes?: string | string[];
-};
+import { outbreakAPI } from "../services/api";
+import type { FeatureImportanceEntry, InsightMetricsSummary, InsightsAnalyticsResponse } from "../services/types";
 
 export function useInsights(disease: string, region?: string, trigger?: number) {
-  const [metrics, setMetrics] = useState<BackendInsights["metrics"] | undefined>(undefined);
-  const [featureImportance, setFeatureImportance] = useState<BackendInsights["featureImportance"]>([]);
+  const [metrics, setMetrics] = useState<InsightMetricsSummary | undefined>(undefined);
+  const [featureImportance, setFeatureImportance] = useState<FeatureImportanceEntry[]>([]);
   const [notes, setNotes] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined>(undefined);
@@ -20,11 +15,12 @@ export function useInsights(disease: string, region?: string, trigger?: number) 
       try {
         setLoading(true);
         setError(undefined);
-        const res = await api.get("/analytics/insights", { params: { disease, region } });
-        const payload = (res?.data?.data ?? {}) as BackendInsights;
+        const res = await outbreakAPI.analytics.getInsights({ disease, region });
+        const payload = (res?.data?.data ?? {}) as InsightsAnalyticsResponse;
         if (mounted) {
           setMetrics(payload?.metrics);
           setFeatureImportance(payload?.featureImportance || []);
+
           const incomingNotes = payload?.notes;
           if (Array.isArray(incomingNotes)) {
             setNotes(incomingNotes);
@@ -34,8 +30,9 @@ export function useInsights(disease: string, region?: string, trigger?: number) 
             setNotes([]);
           }
         }
-      } catch (e: any) {
-        if (mounted) setError(e?.message || "Failed to load insights");
+      } catch (e: unknown) {
+        const errorMessage = e instanceof Error ? e.message : "Failed to load insights";
+        if (mounted) setError(errorMessage);
       } finally {
         if (mounted) setLoading(false);
       }

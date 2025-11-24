@@ -1,0 +1,13 @@
+{
+  "timestamp":1763562107,
+  "status":"ok",
+  "rows_used_for_eval":51379,
+  "overall_mae":3.2068019692,
+  "diseases":[
+    "cholera",
+    "covid",
+    "ebola",
+    "malaria"
+  ],
+  "sklearn":true
+}

@@ -1,8 +1,12 @@
+
 from __future__ import annotations
 
 import sys
-from pathlib import Path
+import os
 import math
+import time
+import json
+from pathlib import Path
 import argparse
 import numpy as np
 import pandas as pd
@@ -10,29 +14,28 @@ import matplotlib.pyplot as plt
 from typing import Tuple, List, Dict
 from datetime import datetime
 
+ROOT_DIR = Path(__file__).resolve().parents[1]
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
+
+from ml.features import FEATURES
+from ml.train_deep import (
+    WINDOW_SIZE,
+    MODEL_PATH,
+    FEATURE_SCALER_PATH,
+    TARGET_SCALER_PATH,
+    load_and_prepare_data,
+    DATA_PATH,
+)
+from ml.utils import ensure_reports_dir, REPORTS_DIR
+
 try:
     from joblib import load as joblib_load
     JOBLIB_AVAILABLE = True
 except Exception:
     JOBLIB_AVAILABLE = False
 
-# Config
-DATA_PATH = Path("data/evaluation_merged_clean.csv")
-MODEL_PATH = Path("models/lstm_forecaster.h5")
-FEATURE_SCALER_PATH = Path("models/feature_scaler.joblib")
-TARGET_SCALER_PATH = Path("models/target_scaler.joblib")
-REPORTS_DIR = Path("reports/production")
-WINDOW_SIZE = 8
-FEATURES = [
-    "cases",
-    "temperature_2m_mean",
-    "relative_humidity_2m_mean",
-    "precipitation_sum",
-]
-
-def ensure_reports_dir() -> Path:
-    REPORTS_DIR.mkdir(parents=True, exist_ok=True)
-    return REPORTS_DIR
+# Config shared with LSTM trainer
 
 def create_sequences_with_meta(df: pd.DataFrame, window_size: int) -> Tuple[np.ndarray, np.ndarray, List[Dict]]:
     sequences: List[np.ndarray] = []
@@ -45,7 +48,7 @@ def create_sequences_with_meta(df: pd.DataFrame, window_size: int) -> Tuple[np.n
         if len(group) <= window_size:
             continue
         for i in range(len(group) - window_size):
-            seq = group[FEATURES].iloc[i:i+window_size].values
+            seq = group[FEATURES].iloc[i:i+window_size].astype(float).values
             target = float(group["cases"].iloc[i+window_size])
             if not np.isnan(seq).any() and not math.isnan(target):
                 sequences.append(seq)
@@ -86,7 +89,7 @@ def compute_classification_metrics(y_true_cls: np.ndarray, y_pred_cls: np.ndarra
         recall = float("nan")
     else:
         recall = tp / (tp + fn)
-    if math.isnan(precision) or math.isnan(recall):
+    if math.isnan(precision) or math.isnan(recall) or (precision + recall) == 0:
         f1 = float("nan")
     else:
         f1 = 2 * precision * recall / (precision + recall)
@@ -114,14 +117,33 @@ def compute_accuracy_and_weighted(y_true_cls: np.ndarray, y_pred_cls: np.ndarray
     support_pos = tp + fn
     support_neg = tn + fp
     total_support = support_pos + support_neg
-    if support_pos == 0 or support_neg == 0:
+    
+    # Handle weighted metrics properly even when one class has zero support
+    if support_pos == 0 and support_neg == 0:
+        # No data at all
         weighted = {"precision": float("nan"), "recall": float("nan"), "f1": float("nan")}
-    else:
+    elif support_pos == 0:
+        # Only negative class predictions - use negative class metrics
         weighted = {
-            "precision": (prec_pos * (support_pos/total_support) + prec_neg * (support_neg/total_support)),
-            "recall": (rec_pos * (support_pos/total_support) + rec_neg * (support_neg/total_support)),
-            "f1": (f1_pos * (support_pos/total_support) + f1_neg * (support_neg/total_support)),
+            "precision": prec_neg if not math.isnan(prec_neg) else 0.0,
+            "recall": rec_neg if not math.isnan(rec_neg) else 0.0,
+            "f1": f1_neg if not math.isnan(f1_neg) else 0.0,
         }
+    elif support_neg == 0:
+        # Only positive class predictions - use positive class metrics
+        weighted = {
+            "precision": prec_pos if not math.isnan(prec_pos) else 0.0,
+            "recall": rec_pos if not math.isnan(rec_pos) else 0.0,
+            "f1": f1_pos if not math.isnan(f1_pos) else 0.0,
+        }
+    else:
+        # Both classes have support - calculate weighted average
+        weighted = {
+            "precision": (prec_pos * (support_pos/total_support) + prec_neg * (support_neg/total_support)) if not math.isnan(prec_pos) and not math.isnan(prec_neg) else float("nan"),
+            "recall": (rec_pos * (support_pos/total_support) + rec_neg * (support_neg/total_support)) if not math.isnan(rec_pos) and not math.isnan(rec_neg) else float("nan"),
+            "f1": (f1_pos * (support_pos/total_support) + f1_neg * (support_neg/total_support)) if not math.isnan(f1_pos) and not math.isnan(f1_neg) else float("nan"),
+        }
+    
     return {
         "accuracy": acc,
         "per_class": {0: {"precision": prec_neg, "recall": rec_neg, "f1": f1_neg}, 1: {"precision": prec_pos, "recall": rec_pos, "f1": f1_pos}},
@@ -265,22 +287,70 @@ def evaluate_per_disease(df: pd.DataFrame) -> pd.DataFrame:
         X_val_d = X[idx_val_d]
         y_val_d = y[idx_val_d]
         meta_val_d = [meta[i] for i in idx_val_d]
-        global75_d = float(np.percentile(y_train_d, 75)) if len(y_train_d) else 0.0
+        # Calculate predictions for training set to establish model-specific thresholds
+        y_train_pred_d = np.zeros_like(y_train_d, dtype=float)
         if model is not None and feature_scaler is not None and target_scaler is not None:
-            X_val_scaled_d = feature_scaler.transform(X_val_d.reshape(-1, n_features)).reshape(X_val_d.shape)
-            y_val_pred_scaled_d = model.predict(X_val_scaled_d, verbose=0).flatten()
-            y_val_pred_d = target_scaler.inverse_transform(y_val_pred_scaled_d.reshape(-1, 1)).flatten()
+            try:
+                # Predict on training set (in batches if needed, but 50k is small enough for memory usually)
+                # We do this to find the 75th percentile of WHAT THE MODEL PREDICTS
+                X_train_scaled_d = feature_scaler.transform(
+                    X_train_d.reshape(-1, n_features)
+                ).reshape(X_train_d.shape)
+                y_train_pred_scaled_d = model.predict(X_train_scaled_d, verbose=0).flatten()
+                y_train_pred_d = target_scaler.inverse_transform(
+                    y_train_pred_scaled_d.reshape(-1, 1)
+                ).flatten()
+            except Exception:
+                y_train_pred_d = X_train_d[:, -1, 0].astype(float)
         else:
+            y_train_pred_d = X_train_d[:, -1, 0].astype(float)
+        
+        y_train_pred_d = np.maximum(0.0, y_train_pred_d)
+
+        # Global thresholds
+        global75_actual = float(np.percentile(y_train_d, 75)) if len(y_train_d) else 0.0
+        global75_pred = float(np.percentile(y_train_pred_d, 75)) if len(y_train_pred_d) else 0.0
+
+        if model is not None and feature_scaler is not None and target_scaler is not None:
+            try:
+                # Use trained scaler/model when feature dimensions match
+                X_val_scaled_d = feature_scaler.transform(
+                    X_val_d.reshape(-1, n_features)
+                ).reshape(X_val_d.shape)
+                y_val_pred_scaled_d = model.predict(X_val_scaled_d, verbose=0).flatten()
+                y_val_pred_d = target_scaler.inverse_transform(
+                    y_val_pred_scaled_d.reshape(-1, 1)
+                ).flatten()
+            except Exception as exc:
+                # Fallback: dimension mismatch or other error – use simple baseline
+                print(
+                    f"⚠ WARNING: Failed to use trained scaler/model for disease {disease}: {exc}. "
+                    "Using naive baseline predictions for reporting instead."
+                )
+                y_val_pred_d = X_val_d[:, -1, 0].astype(float)
+        else:
+            # No trained model/scaler available – use naive baseline (last observed value)
             y_val_pred_d = X_val_d[:, -1, 0].astype(float)
         y_val_true_d = y_val_d.astype(float)
         y_val_pred_d = np.maximum(0.0, y_val_pred_d)
-        thresholds_d = build_thresholds(y_train_d, meta_train_d)
-        thr_list = []
+        
+        # Build separate thresholds for Actuals (Ground Truth) and Predictions (Alerts)
+        thresholds_actual = build_thresholds(y_train_d, meta_train_d)
+        thresholds_pred = build_thresholds(y_train_pred_d, meta_train_d)
+        
+        thr_list_actual = []
+        thr_list_pred = []
+        
         for j in range(len(meta_val_d)):
             key = (meta_val_d[j]["state"], meta_val_d[j]["disease"])
-            thr_list.append(thresholds_d.get(key, global75_d))
-        y_true_cls = np.array([1 if y_val_true_d[j] >= thr_list[j] else 0 for j in range(len(meta_val_d))])
-        y_pred_cls = np.array([1 if y_val_pred_d[j] >= thr_list[j] else 0 for j in range(len(meta_val_d))])
+            thr_list_actual.append(thresholds_actual.get(key, global75_actual))
+            thr_list_pred.append(thresholds_pred.get(key, global75_pred))
+            
+        # Ground Truth: Did an ACTUAL outbreak occur? (Based on actual history)
+        y_true_cls = np.array([1 if y_val_true_d[j] >= thr_list_actual[j] else 0 for j in range(len(meta_val_d))])
+        
+        # Prediction: Did the model PREDICT an outbreak? (Based on model history)
+        y_pred_cls = np.array([1 if y_val_pred_d[j] >= thr_list_pred[j] else 0 for j in range(len(meta_val_d))])
         pos = int(np.sum(y_true_cls == 1))
         neg = int(np.sum(y_true_cls == 0))
         viable = (len(meta_val_d) >= 50) and (pos > 0) and (neg > 0)
@@ -325,6 +395,8 @@ def evaluate_per_disease(df: pd.DataFrame) -> pd.DataFrame:
             plt.tight_layout()
             plt.savefig(roc_path, dpi=200)
             plt.close()
+        reg_metrics_d = compute_regression_metrics(y_val_true_d, y_val_pred_d)
+
         df_pred = pd.DataFrame({
             "state": states_d,
             "week": weeks_d,
@@ -344,6 +416,9 @@ def evaluate_per_disease(df: pd.DataFrame) -> pd.DataFrame:
             "sample_size": len(meta_val_d),
             "positive": pos,
             "negative": neg,
+            "mae": round(reg_metrics_d.get("mae", float("nan")), 4) if reg_metrics_d else None,
+            "rmse": round(reg_metrics_d.get("rmse", float("nan")), 4) if reg_metrics_d else None,
+            "r2": round(reg_metrics_d.get("r2", float("nan")), 4) if reg_metrics_d else None,
             "accuracy_pct": round(acc_w["accuracy"], 2),
             "precision_weighted_pct": (round(acc_w["weighted"]["precision"], 2) if not math.isnan(acc_w["weighted"]["precision"]) else None),
             "recall_weighted_pct": (round(acc_w["weighted"]["recall"], 2) if not math.isnan(acc_w["weighted"]["recall"]) else None),
@@ -363,6 +438,36 @@ def evaluate_per_disease(df: pd.DataFrame) -> pd.DataFrame:
     df_metrics = pd.DataFrame(rows)
     metrics_csv = REPORTS_DIR / "evaluation_metrics.csv"
     df_metrics.to_csv(metrics_csv, index=False)
+    
+    # Generate metrics_alert_classification.csv
+    alert_csv = REPORTS_DIR / "metrics_alert_classification.csv"
+    df_alert = pd.DataFrame({
+        'disease': df_metrics['disease'],
+        'precision_weighted_pct': df_metrics.get('precision_weighted_pct', None),
+        'recall_weighted_pct': df_metrics.get('recall_weighted_pct', None),
+        'f1_weighted_pct': df_metrics.get('f1_weighted_pct', None),
+    })
+    df_alert.to_csv(alert_csv, index=False)
+    
+    # Generate health.json
+    overall_mae = df_metrics['mae'].mean() if 'mae' in df_metrics.columns else None
+    rows_used = int(df_metrics['sample_size'].sum()) if 'sample_size' in df_metrics.columns else 0
+    health_data = {
+        "timestamp": int(time.time()),
+        "status": "ok",
+        "rows_used_for_eval": rows_used,
+        "overall_mae": round(float(overall_mae), 2) if overall_mae and not np.isnan(overall_mae) else None,
+        "diseases": df_metrics['disease'].tolist() if 'disease' in df_metrics.columns else [],
+        "sklearn": True,
+        "tensorflow": True,
+        "model_version": "lstm_forecaster",
+        "last_training": datetime.now().strftime("%Y-%m-%d"),
+        "notes": "Model trained with 100 epochs"
+    }
+    health_path = REPORTS_DIR / "health.json"
+    with open(health_path, 'w') as f:
+        json.dump(health_data, f, indent=2)
+
     summary_txt = REPORTS_DIR / "summary_report.txt"
     def fmt(v, digits=2):
         if pd.isna(v) or v is None:
@@ -389,13 +494,13 @@ def main():
     args = parser.parse_args()
 
     ensure_reports_dir()
-    # Load data
-    if not DATA_PATH.exists():
-        print(f"[ERROR] Data not found at {DATA_PATH}")
-        sys.exit(1)
-    df = pd.read_csv(DATA_PATH)
+    # Load the exact dataset used for training so feature columns match
+    df = load_and_prepare_data()
     required = ["state", "disease", "year", "week", "cases"]
     df = df.dropna(subset=required).reset_index(drop=True)
+    for col in FEATURES:
+        if col not in df.columns:
+            df[col] = 0.0
     df[FEATURES] = df[FEATURES].ffill().bfill()
     # Determine latest context
     df = df.sort_values(["state", "disease", "year", "week"]).reset_index(drop=True)

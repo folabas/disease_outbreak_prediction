@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
 
 class PopulationEntry(BaseModel):
@@ -8,5 +8,7 @@ class PopulationEntry(BaseModel):
 
 
 class PopulationResponse(BaseModel):
+    region: Optional[str] = None
+    totalPopulation: Optional[int] = None
     growthRates: List[PopulationEntry]
     density: List[PopulationEntry]

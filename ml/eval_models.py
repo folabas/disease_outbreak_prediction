@@ -7,6 +7,11 @@ import pandas as pd
 
 from .utils import load_training, ensure_reports_dir, write_json
 
+try:
+    from .features import FEATURES
+except ImportError:
+    from features import FEATURES  # type: ignore
+
 
 def compute_simple_drift(df: pd.DataFrame) -> dict:
     # Compares recent 26 weeks vs historical for key features
@@ -28,7 +33,7 @@ def compute_simple_drift(df: pd.DataFrame) -> dict:
         sd_h = hist[col].std() or 1.0
         return abs(mu_r - mu_h) / sd_h
 
-    features = [
+    drift_features = [
         "cases",
         "deaths",
         "temperature_2m_mean",
@@ -36,7 +41,8 @@ def compute_simple_drift(df: pd.DataFrame) -> dict:
         "precipitation_sum",
         "who_cases_national",
     ]
-    drift = {f"drift_{c}": drift_score(c) for c in features}
+    drift_features = [c for c in drift_features if c in FEATURES and c in df.columns]
+    drift = {f"drift_{c}": drift_score(c) for c in drift_features}
     drift.update({
         "timestamp": int(time.time()),
         "status": "ok",

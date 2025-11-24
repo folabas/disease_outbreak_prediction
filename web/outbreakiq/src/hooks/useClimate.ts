@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { outbreakAPI } from "../services/api";
+import type { Disease } from "../services/types";
 
 type BackendSeriesPoint = { date: string; value: number };
 type BackendClimateResponse = {
@@ -16,7 +17,7 @@ type ClimateStats = {
   heavyRain: number;
 };
 
-export function useClimate(region: string, params?: { startDate?: string; endDate?: string }) {
+export function useClimate(region: string, params?: { disease?: Disease; startDate?: string; endDate?: string }) {
   const [tempData, setTempData] = useState<ClimatePoint[]>([]);
   const [rainData, setRainData] = useState<ClimatePoint[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -28,7 +29,11 @@ export function useClimate(region: string, params?: { startDate?: string; endDat
       try {
         setLoading(true);
         setError(undefined);
-        const res = await outbreakAPI.climate.getByRegion(region, { startDate: params?.startDate, endDate: params?.endDate });
+        const res = await outbreakAPI.climate.getByRegion(region, { 
+          disease: params?.disease,
+          startDate: params?.startDate, 
+          endDate: params?.endDate 
+        });
         const payload = (res?.data?.data || res?.data) as unknown as BackendClimateResponse;
         const t = payload?.temperature || [];
         const r = payload?.rainfall || [];
@@ -36,8 +41,9 @@ export function useClimate(region: string, params?: { startDate?: string; endDat
           setTempData(t.map((p) => ({ name: p.date, value: p.value })));
           setRainData(r.map((p) => ({ name: p.date, value: p.value })));
         }
-      } catch (e: any) {
-        if (mounted) setError(e?.message || "Failed to load climate data");
+      } catch (e: unknown) {
+        const errorMessage = e instanceof Error ? e.message : "Failed to load climate data";
+        if (mounted) setError(errorMessage);
       } finally {
         if (mounted) setLoading(false);
       }
@@ -46,7 +52,7 @@ export function useClimate(region: string, params?: { startDate?: string; endDat
     return () => {
       mounted = false;
     };
-  }, [region, params?.startDate, params?.endDate]);
+  }, [region, params?.disease, params?.startDate, params?.endDate]);
 
   const stats: ClimateStats = useMemo(() => {
     const avgTemp =

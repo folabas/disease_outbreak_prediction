@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { outbreakAPI } from "../services/api";
+import type { Disease } from "../services/types";
 
 type BackendSeriesPoint = { date: string; value: number };
 type BackendClimateResponse = {
@@ -10,7 +11,7 @@ type BackendClimateResponse = {
 
 type ClimatePoint = { name: string; value: number };
 
-export function useForecast(region: string, days: number) {
+export function useForecast(region: string, days: number, disease?: Disease) {
   const [tempData, setTempData] = useState<ClimatePoint[]>([]);
   const [rainData, setRainData] = useState<ClimatePoint[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -22,7 +23,7 @@ export function useForecast(region: string, days: number) {
       try {
         setLoading(true);
         setError(undefined);
-        const res = await outbreakAPI.climate.getForecast(region, days);
+        const res = await outbreakAPI.climate.getForecast(region, days, { disease });
         const payload = (res?.data?.data || res?.data) as unknown as BackendClimateResponse;
         const t = payload?.temperature || [];
         const r = payload?.rainfall || [];
@@ -30,8 +31,9 @@ export function useForecast(region: string, days: number) {
           setTempData(t.map((p) => ({ name: p.date, value: p.value })));
           setRainData(r.map((p) => ({ name: p.date, value: p.value })));
         }
-      } catch (e: any) {
-        if (mounted) setError(e?.message || "Failed to load forecast");
+      } catch (e: unknown) {
+        const errorMessage = e instanceof Error ? e.message : "Failed to load forecast";
+        if (mounted) setError(errorMessage);
       } finally {
         if (mounted) setLoading(false);
       }
@@ -40,7 +42,7 @@ export function useForecast(region: string, days: number) {
     return () => {
       mounted = false;
     };
-  }, [region, days]);
+  }, [region, days, disease]);
 
   return { tempData, rainData, loading, error } as const;
 }

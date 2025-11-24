@@ -58,12 +58,29 @@ api.interceptors.response.use(
       // Handle unauthorized
       localStorage.removeItem("token");
     }
+    
+    // Normalize error structure
     try {
       const cfg = error.config || {};
       const url = `${cfg.baseURL || ""}${cfg.url || ""}`;
       const status = error.response?.status;
-      console.warn("[API] ERR", status, url, error.message);
-    } catch {}
-    return Promise.reject(error);
+      
+      // Create normalized error with consistent structure
+      const normalizedError = new Error(
+        error.response?.data?.detail || 
+        error.response?.data?.error || 
+        error.response?.data?.message || 
+        error.message || 
+        "Request failed"
+      );
+      (normalizedError as any).status = status;
+      (normalizedError as any).url = url;
+      (normalizedError as any).response = error.response;
+      
+      console.warn("[API] ERR", status, url, normalizedError.message);
+      return Promise.reject(normalizedError);
+    } catch {
+      return Promise.reject(error);
+    }
   }
 );

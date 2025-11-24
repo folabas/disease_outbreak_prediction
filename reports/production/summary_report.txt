@@ -1,6 +1,4 @@
-Cholera: n=0, pos=0, neg=0, acc=NA%, f1_w=NA%, auc=NA
-Covid-19: n=131, pos=20, neg=111, acc=87.79%, f1_w=86.01%, auc=0.572
-Diphtheria: n=0, pos=0, neg=0, acc=NA%, f1_w=NA%, auc=NA
-Measles: n=0, pos=0, neg=0, acc=NA%, f1_w=NA%, auc=NA
-Monkeypox: n=80, pos=17, neg=63, acc=42.50%, f1_w=42.50%, auc=1.000
-Yellow Fever: n=0, pos=0, neg=0, acc=NA%, f1_w=NA%, auc=NA
+cholera: n=2550, pos=649, neg=1901, acc=68.94%, f1_w=68.88%, auc=0.595
+covid: n=2496, pos=677, neg=1819, acc=68.79%, f1_w=68.48%, auc=0.602
+ebola: n=2474, pos=660, neg=1814, acc=62.69%, f1_w=61.97%, auc=0.508
+malaria: n=2550, pos=667, neg=1883, acc=69.41%, f1_w=69.31%, auc=0.626

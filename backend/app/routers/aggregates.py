@@ -33,7 +33,7 @@ def get_predicted_vs_actual(
     pred = predict_series(q)
 
     # Try to load historical actuals
-    df_path = os.path.join(DATA_DIR, "outbreakiq_training_data_filled.csv")
+    df_path = os.path.join(DATA_DIR, "outbreak_dataset.csv")
     actuals: List[Dict[str, Any]] = []
     live_only = False
     try:

@@ -5,6 +5,10 @@ import { usePageAnimations } from "../hooks/usePageAnimations";
 import { useClimate } from "../hooks/useClimate";
 import { useForecast } from "../hooks/useForecast";
 import { useOptions } from "../hooks/useOptions";
+import { useDashboardStore } from "../store/useDashboardStore";
+import { validateRegion } from "../utils/validation";
+import { exportToCSV, formatDateForFilename } from "../utils/exportUtils";
+import type { Disease } from "../services/types";
 
 import {
   LineChart,
@@ -21,10 +25,26 @@ import {
 // Hook-driven page: charts expect keys `temp`/`rain`, so adapt from hook's `value`.
 
 const Climate = () => {
+  const { region: globalRegion, disease: globalDisease, setRegion: setGlobalRegion, setDisease: setGlobalDisease } = useDashboardStore();
   // Region filter feeds the climate hook
-  const [region, setRegion] = useState("All Nigeria");
-  const [dateRange, setDateRange] = useState("Last 30 Days");
+  const [region, setRegion] = useState(globalRegion === "All" ? "All Nigeria" : globalRegion);
+  const [dateRange, setDateRange] = useState("All Time");
+  const [disease, setDisease] = useState<Disease>(globalDisease || "cholera");
   const { options } = useOptions({ source: "auto" });
+
+  // Sync with global state
+  useEffect(() => {
+    const normalized = region === "All Nigeria" ? "All" : region;
+    if (normalized !== globalRegion) {
+      setGlobalRegion(normalized);
+    }
+  }, [region, globalRegion, setGlobalRegion]);
+
+  useEffect(() => {
+    if (disease !== globalDisease) {
+      setGlobalDisease(disease);
+    }
+  }, [disease, globalDisease, setGlobalDisease]);
   type TempPoint = { name: string; temp: number };
   type RainPoint = { name: string; rain: number };
   type StatItem = { name: string; value: string; change: string; positive: boolean };
@@ -41,33 +61,45 @@ const Climate = () => {
     const y = dt.getUTCFullYear();
     return `${y}-W${String(weekNo).padStart(2, "0")}`;
   }
-  const days = dateRange === "Last 7 Days" ? 7 : dateRange === "Last 30 Days" ? 30 : 90;
+  const days = 0; // Always 0 for All Time, effectively undefined for hook
   const now = new Date();
   const start = new Date(now);
   start.setDate(start.getDate() - days);
-  const startWeek = toWeekString(start);
-  const endWeek = toWeekString(now);
 
-  const { tempData: tSeries, rainData: rSeries, stats: cStats, loading: cLoading, error } = useClimate(region, { startDate: startWeek, endDate: endWeek });
-  const { tempData: fTemp, rainData: fRain, loading: fLoading, error: fError } = useForecast(region, Math.min(days, 30));
+  // If "All Time", pass undefined to fetch all available data
+  const startWeek = dateRange === "All Time" ? undefined : toWeekString(start);
+  const endWeek = dateRange === "All Time" ? undefined : toWeekString(now);
+
+  const { tempData: tSeries, rainData: rSeries, stats: cStats, loading: cLoading, error } = useClimate(region, { disease, startDate: startWeek, endDate: endWeek });
+  const { tempData: fTemp, rainData: fRain, loading: fLoading, error: fError } = useForecast(region, Math.min(days || 30, 30), disease);
 
   useEffect(() => {
-    // Adapt hook series to chart shape
-    const tempAdapted: TempPoint[] = (tSeries || []).map((p) => ({ name: p.name, temp: p.value }));
-    const rainAdapted: RainPoint[] = (rSeries || []).map((p) => ({ name: p.name, rain: p.value }));
+    // Adapt hook series to chart shape with proper validation
+    const tempAdapted: TempPoint[] = (tSeries || [])
+      .map((p) => ({
+        name: p.name || "",
+        temp: typeof p.value === "number" ? p.value : 0
+      }))
+      .filter((p) => p.name); // Filter out invalid entries
+    const rainAdapted: RainPoint[] = (rSeries || [])
+      .map((p) => ({
+        name: p.name || "",
+        rain: typeof p.value === "number" ? p.value : 0
+      }))
+      .filter((p) => p.name); // Filter out invalid entries
     setTempData(tempAdapted);
     setRainData(rainAdapted);
 
-    const days = dateRange === "Last 7 Days" ? 7 : dateRange === "Last 30 Days" ? 30 : 90;
+    const daysLabel = dateRange === "All Time" ? "All Time" : `${days}d`;
     const nextStats: StatItem[] = [
       {
-        name: `Average Temperature (${days}d)`,
+        name: `Average Temperature (${daysLabel})`,
         value: `${(cStats?.avgTemp ?? 0).toFixed(1)}°C`,
         change: "",
         positive: true,
       },
       {
-        name: `Total Rainfall (${days}d)`,
+        name: `Total Rainfall (${daysLabel})`,
         value: `${(cStats?.totalRain ?? 0).toFixed(1)} mm`,
         change: "",
         positive: true,
@@ -93,11 +125,15 @@ const Climate = () => {
       <select
         title="region"
         value={region}
-        onChange={(e) => setRegion(e.target.value)}
+        onChange={(e) => {
+          const val = e.target.value;
+          const normalized = validateRegion(val);
+          setRegion(normalized === "All" ? "All Nigeria" : normalized);
+        }}
         className="border rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
       >
         <option>All Nigeria</option>
-        {(options?.regions || []).map((r) => (
+        {(options?.regions || []).filter((r) => r !== "All").map((r) => (
           <option key={r}>{r}</option>
         ))}
       </select>
@@ -108,12 +144,22 @@ const Climate = () => {
         onChange={(e) => setDateRange(e.target.value)}
         className="border rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
       >
-        <option>Last 7 Days</option>
-        <option>Last 30 Days</option>
-        <option>Last 90 Days</option>
+        <option>All Time</option>
       </select>
+      <span className="text-xs text-gray-500 italic">
+        (Date range affects display only)
+      </span>
 
-      <button className="ml-auto bg-green-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-green-700 flex items-center gap-2 transition">
+      <button
+        onClick={() => {
+          const exportData = [
+            ...tempData.map((d) => ({ date: d.name, type: "Temperature", value: d.temp, unit: "°C" })),
+            ...rainData.map((d) => ({ date: d.name, type: "Rainfall", value: d.rain, unit: "mm" })),
+          ];
+          exportToCSV(exportData, `climate_${region}_${formatDateForFilename()}.csv`);
+        }}
+        className="ml-auto bg-green-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-green-700 flex items-center gap-2 transition"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="w-4 h-4"
@@ -141,9 +187,24 @@ const Climate = () => {
       <header className="mb-8">
         <h1 className="text-3xl font-bold text-[#0d2544]">Climate Trends</h1>
         <p className="text-gray-600 text-sm mt-1">
-          Analyze regional temperature and rainfall patterns across Nigeria.
+          Analyze regional temperature and rainfall patterns across Nigeria. Forecasting is state-level only.
         </p>
-        <div className="mt-4">{filters}</div>
+        <div className="mt-4 flex flex-wrap gap-3 items-center">
+          <div>
+            <label className="text-sm text-gray-600 mr-2">Disease:</label>
+            <select
+              value={disease}
+              onChange={(e) => setDisease(e.target.value as Disease)}
+              className="border rounded-md px-3 py-2 text-sm"
+            >
+              <option value="cholera">Cholera</option>
+              <option value="malaria">Malaria</option>
+              <option value="ebola">Ebola</option>
+              <option value="covid">COVID</option>
+            </select>
+          </div>
+          {filters}
+        </div>
       </header>
 
       {/* Climate Overview */}
@@ -159,9 +220,8 @@ const Climate = () => {
               {stat.value}
             </h3>
             <p
-              className={`text-sm font-medium ${
-                stat.positive ? "text-green-600" : "text-red-600"
-              }`}
+              className={`text-sm font-medium ${stat.positive ? "text-green-600" : "text-red-600"
+                }`}
             >
               {stat.change}
             </p>
@@ -233,7 +293,10 @@ const Climate = () => {
         </div>
       </div>
 
-      <SectionHeader title="Forecast" />
+      <SectionHeader title="Weather Forecast (Next 7-30 Days)" />
+      <div className="mb-4 text-sm text-gray-600">
+        <p>Note: This shows weather forecast data, not disease outbreak predictions. Weather forecasts are used as inputs for outbreak prediction models.</p>
+      </div>
       <div className="grid md:grid-cols-2 gap-6 mb-8">
         <div className="bg-white rounded-xl shadow p-6">
           <h3 className="font-semibold text-[#0d2544] mb-2">Forecast Temperature (°C)</h3>

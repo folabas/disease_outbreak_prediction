@@ -20,14 +20,24 @@ import "leaflet/dist/leaflet.css";
 import { usePageAnimations } from "../hooks/usePageAnimations";
 import { usePopulation } from "../hooks/usePopulation";
 import { useOptions } from "../hooks/useOptions";
-
+import { useDashboardStore } from "../store/useDashboardStore";
+import { exportToCSV, formatDateForFilename } from "../utils/exportUtils";
 
 type GrowthEntry = { region: string; value: number };
 
 const Population = () => {
+  const { region: globalRegion, setRegion: setGlobalRegion } = useDashboardStore();
   // Filters
-  const [region, setRegion] = useState("All Nigeria");
+  const [region, setRegion] = useState(globalRegion === "All" ? "All Nigeria" : globalRegion);
   const [dateRange, setDateRange] = useState("Last 12 Months");
+  
+  // Sync with global state
+  useEffect(() => {
+    const normalized = region === "All Nigeria" ? "All" : region;
+    if (normalized !== globalRegion) {
+      setGlobalRegion(normalized);
+    }
+  }, [region, globalRegion, setGlobalRegion]);
   const [growthData, setGrowthData] = useState<GrowthEntry[]>([]);
   const [geoData, setGeoData] = useState<any>(null);
   const [densityColors, setDensityColors] = useState<Record<string, string>>({});
@@ -55,7 +65,7 @@ const Population = () => {
   const startStr = toWeekString(start);
   const endStr = toWeekString(now);
 
-  const { growthData: gSeries, densityData: dSeries, densityMap, stats: pStats, loading, error } = usePopulation(region, { startDate: startStr, endDate: endStr });
+  const { growthData: gSeries, densityData: dSeries, densityMap, stats: pStats, totalPopulation: popTotal, loading, error } = usePopulation(region, { startDate: startStr, endDate: endStr });
   const { options } = useOptions({ source: "auto" });
 
   // Set geo data from hook
@@ -65,25 +75,35 @@ const Population = () => {
 
   // Update local series/colors/stats when hook data changes
   useEffect(() => {
-    // Growth series for bar chart
-    setGrowthData(gSeries || []);
+    // Growth series for bar chart - validate data structure
+    const validatedGrowth = (gSeries || [])
+      .map((item: any) => ({
+        region: String(item?.region || item?.name || ""),
+        value: typeof item?.value === "number" ? item.value : 0,
+      }))
+      .filter((item) => item.region); // Filter out invalid entries
+    setGrowthData(validatedGrowth);
 
     // Stats from hook
     setStats((prev) => ({
       ...prev,
+      total: popTotal !== null && popTotal > 0 ? popTotal.toLocaleString() : "—",
       density: `${(pStats?.avgDensity ?? 0).toFixed(2)}/km²`,
       growthRegion: pStats?.topGrowthRegion ? `${pStats.topGrowthRegion}` : prev.growthRegion,
     }));
 
     // Build density color mapping from density series
-    const colors = (dSeries || []).reduce((acc: any, d) => {
-      const v = d.value || 0;
+    const colors = (dSeries || []).reduce((acc: Record<string, string>, d: any) => {
+      const region = String(d?.region || d?.name || "").toLowerCase();
+      const v = typeof d?.value === "number" ? d.value : 0;
       const shade = v > 400 ? "#1e3a8a" : v > 300 ? "#2563eb" : v > 200 ? "#60a5fa" : "#bfdbfe";
-      acc[(d.region || "").toLowerCase()] = shade;
+      if (region) {
+        acc[region] = shade;
+      }
       return acc;
     }, {} as Record<string, string>);
     setDensityColors(colors);
-  }, [gSeries, dSeries, pStats]);
+  }, [gSeries, dSeries, pStats, popTotal]);
 
   // Remove placeholder totals; await backend totals when available.
 
@@ -181,26 +201,29 @@ const Population = () => {
                 className="border rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               >
                 <option>All Nigeria</option>
-                {(options?.regions || []).map((r) => (
-                  <option key={r}>{r}</option>
-                ))}
+                {(options?.regions || []).map((r) => {
+                  if (r === "All") return null;
+                  return <option key={r}>{r}</option>;
+                })}
               </select>
             </div>
           </div>
 
           <div className="flex gap-2 w-full sm:w-auto justify-end">
-            <button className="bg-white border text-gray-700 px-4 py-2 rounded-md text-sm font-semibold hover:bg-gray-100 flex items-center gap-2 transition">
+            <button 
+              onClick={() => {
+                const exportData = [
+                  ...growthData.map((d: GrowthEntry) => ({ region: d.region, metric: "Growth Rate", value: d.value })),
+                  ...dSeries.map((d: GrowthEntry) => ({ region: d.region, metric: "Density", value: d.value })),
+                ];
+                exportToCSV(exportData, `population_${region}_${formatDateForFilename()}.csv`);
+              }}
+              className="bg-white border text-gray-700 px-4 py-2 rounded-md text-sm font-semibold hover:bg-gray-100 flex items-center gap-2 transition"
+            >
               <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
               </svg>
               Export
-            </button>
-
-            <button className="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-green-700 flex items-center gap-2 transition">
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v3H3V4zm0 5h18v11a1 1 0 01-1 1H4a1 1 0 01-1-1V9z" />
-              </svg>
-              Apply Filters
             </button>
           </div>
         </div>
@@ -211,6 +234,7 @@ const Population = () => {
       {/* Stats Overview */}
       <SectionHeader title="Population Overview" />
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
+        <StatCard title="Total Population" value={stats.total} />
         <StatCard title="Average Density" value={stats.density} />
         <StatCard title="Highest Growth Region" value={stats.growthRegion} />
       </div>
@@ -268,7 +292,28 @@ const Population = () => {
         </div>
       </div>
 
-      {/* Removed Historical & Forecast Trends chart to avoid dummy data */}
+      {/* Density Map Legend */}
+      <SectionHeader title="Population Density Legend" />
+      <div className="bg-white rounded-xl shadow p-6 mb-8">
+        <div className="flex items-center gap-4 text-sm">
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-[#bfdbfe] border border-gray-300"></div>
+            <span>&lt; 200/km²</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-[#60a5fa] border border-gray-300"></div>
+            <span>200-300/km²</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-[#2563eb] border border-gray-300"></div>
+            <span>300-400/km²</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-[#1e3a8a] border border-gray-300"></div>
+            <span>&gt; 400/km²</span>
+          </div>
+        </div>
+      </div>
 
       {/* Footer */}
       <footer className="pt-6 text-center text-gray-500 text-sm">

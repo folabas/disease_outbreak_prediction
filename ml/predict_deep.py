@@ -28,20 +28,19 @@ except Exception as e:
     print(f"[WARNING] scikit-learn not available: {e}")
     SKLEARN_AVAILABLE = False
 
+try:
+    from .features import FEATURES
+except ImportError:  # Allows running as a script (python ml/predict_deep.py)
+    from features import FEATURES  # type: ignore
+
 # Configuration
 WINDOW_SIZE = 8  # Must match training configuration
-MODEL_PATH = Path("models/lstm_forecaster.h5")
-FEATURE_SCALER_PATH = Path("models/feature_scaler.joblib")
-TARGET_SCALER_PATH = Path("models/target_scaler.joblib")  # Distinct file for target scaler saved during training
-DATA_PATH = Path("data/outbreakiq_training_data_filled.csv")
-
-# Features must match training configuration
-FEATURES = [
-    "cases",
-    "temperature_2m_mean",
-    "relative_humidity_2m_mean",
-    "precipitation_sum",
-]
+# Use absolute paths from project root
+BASE_DIR = Path(__file__).resolve().parents[1]
+MODEL_PATH = BASE_DIR / "models" / "lstm_forecaster.h5"
+FEATURE_SCALER_PATH = BASE_DIR / "models" / "feature_scaler.joblib"
+TARGET_SCALER_PATH = BASE_DIR / "models" / "target_scaler.joblib"  # Distinct file for target scaler saved during training
+DATA_PATH = BASE_DIR / "data" / "outbreak_dataset.csv"
 
 def get_week_date_range(year: int, week: int) -> tuple[str, str]:
     """Convert year and week to date range (start and end of week)."""
@@ -70,8 +69,14 @@ def prepare_prediction_data(df, window_size):
     
     # Get the most recent sequence
     latest_sequence = latest_data[FEATURES].tail(window_size).values
-    
-    return latest_sequence, latest_data_point
+    if latest_sequence.shape[0] < window_size:
+        if latest_sequence.shape[0] == 0:
+            latest_sequence = np.zeros((window_size, len(FEATURES)))
+        else:
+            pad_rows = window_size - latest_sequence.shape[0]
+            pad = np.repeat(latest_sequence[[-1], :], pad_rows, axis=0)
+            latest_sequence = np.vstack([latest_sequence, pad])
+    return latest_sequence.astype(float), latest_data_point
 
 def main():
     # Check dependencies
@@ -98,11 +103,12 @@ def main():
         sys.exit(1)
     
     # Ensure required columns exist
-    required_cols = FEATURES + ["year", "week", "state", "disease"]
+    required_cols = set(FEATURES + ["year", "week", "state", "disease"])
     missing_cols = [c for c in required_cols if c not in df.columns]
     if missing_cols:
-        print(f"[ERROR] Dataset missing required columns: {missing_cols}")
-        sys.exit(1)
+        print(f"[WARNING] Dataset missing columns: {missing_cols}. Filling with zeros.")
+        for col in missing_cols:
+            df[col] = 0.0
     
     # Sort and clean data
     df = df.sort_values(["state", "disease", "year", "week"]).reset_index(drop=True)

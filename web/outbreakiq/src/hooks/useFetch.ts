@@ -32,14 +32,17 @@ export function useFetch<T>(
       setLoading(true);
       setError(undefined);
       const res = await fetcher();
-      // ApiResponse<T> expected
-      const body = res?.data as ApiResponse<T>;
+      // Normalize API response structure
+      const { normalizeApiResponse } = await import("../utils/apiUtils");
+      const normalized = normalizeApiResponse<T>(res);
       if (mounted.current) {
-        setData(body?.data ?? (undefined as unknown as T));
+        setData(normalized);
       }
-    } catch (e: any) {
+    } catch (e: unknown) {
       if (mounted.current) {
-        setError(e?.message || "Request failed");
+        const { extractErrorMessage } = await import("../utils/apiUtils");
+        const errorMessage = extractErrorMessage(e);
+        setError(errorMessage);
       }
     } finally {
       if (mounted.current) {

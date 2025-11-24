@@ -5,6 +5,8 @@ import Loader from "../Components/Loader";
 import { motion } from "framer-motion";
 import { usePageAnimations } from "../hooks/usePageAnimations";
 import { useHospitals } from "../hooks/useHospitals";
+import { useDashboardStore } from "../store/useDashboardStore";
+import { useOptions } from "../hooks/useOptions";
 
 import {
   ResponsiveContainer,
@@ -40,45 +42,48 @@ const typeColors: Record<string, string> = {
 
 /* ---------- Component ---------- */
 const Hospital = () => {
-  const [state, setState] = useState("All States");
+  const { region: globalRegion, setRegion: setGlobalRegion } = useDashboardStore();
+  const [state, setState] = useState(globalRegion === "All" ? "All States" : globalRegion);
   const [facilityType, setFacilityType] = useState("All Types");
   const [metric, setMetric] = useState("Number of Beds");
   const [filteredData, setFilteredData] = useState<FacilityRow[]>([]);
   const [insight, setInsight] = useState("");
-  const { totals, facilitiesGeo, capacityTrends, loading, error } = useHospitals(state === "All States" ? undefined : state);
+  const { totals, facilitiesGeo, capacityTrends, loading, error } = useHospitals(state === "All States" || state === "All" ? undefined : state);
+  const { options } = useOptions({ source: "auto" });
+
+  // Sync with global state
+  useEffect(() => {
+    const normalized = state === "All States" ? "All" : state;
+    if (normalized !== globalRegion) {
+      setGlobalRegion(normalized);
+    }
+  }, [state, globalRegion, setGlobalRegion]);
 
   useEffect(() => {
-    const states = ["Lagos", "FCT", "Abuja", "Kano", "Oyo", "Rivers"];
-    const norm = (s: string) => s.trim().toLowerCase();
-    const toState = (addr: any): string => {
-      const a = String(addr || "");
-      for (const st of states) {
-        if (a.toLowerCase().includes(st.toLowerCase())) return st === "Abuja" ? "FCT" : st;
-      }
-      return "Unknown";
-    };
     const rows: FacilityRow[] = (((facilitiesGeo as any)?.features) || []).map((f: any) => {
       const props = f?.properties || {};
       const coords = f?.geometry?.coordinates || [];
       const [lon, lat] = Array.isArray(coords) && coords.length >= 2 ? [coords[0], coords[1]] : [0, 0];
-      const hc = String(props?.healthcare || props?.amenity || "Facility");
+      const hc = String(props?.healthcare || props?.amenity || "Hospital");
       const type = hc.charAt(0).toUpperCase() + hc.slice(1);
       return {
         name: String(props?.name || "Facility"),
         type,
-        state: toState(props?.address),
+        state: String(props?.region || "Unknown"),
         lga: String(props?.lga || props?.district || "-"),
-        beds: props?.capacity?.beds ?? props?.beds ?? "-",
-        staff: props?.capacity?.staff ?? props?.staff ?? "-",
+        beds: props?.beds ?? "-",
+        staff: props?.staff ?? "-",
         coordinates: [lat, lon],
       };
     });
+
+    const norm = (s: string) => s.trim().toLowerCase();
     let filtered = rows;
-    if (state !== "All States") filtered = filtered.filter((f) => norm(f.state) === norm(state));
+    if (state !== "All States" && state !== "All") filtered = filtered.filter((f) => norm(f.state) === norm(state));
     if (facilityType !== "All Types") filtered = filtered.filter((f) => f.type === facilityType);
     setFilteredData(filtered);
 
-    const regionText = state === "All States" ? "nationally" : `in ${state}`;
+    const regionText = state === "All States" || state === "All" ? "nationally" : `in ${state}`;
     const typeText = facilityType === "All Types" ? "across all facility types" : `focused on ${facilityType.toLowerCase()}s`;
     setInsight(`There are ${filtered.length} facilities ${regionText}, ${typeText}. ${filtered.length > 50 ? "High facility density in this selection." : "Facility density is limited in this selection."}`);
   }, [state, facilityType, facilitiesGeo]);
@@ -114,11 +119,9 @@ const Hospital = () => {
                 className="border rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               >
                 <option>All States</option>
-                <option>Lagos</option>
-                <option>FCT</option>
-                <option>Kano</option>
-                <option>Oyo</option>
-                <option>Rivers</option>
+                {(options?.regions || ["Lagos", "FCT", "Kano", "Oyo", "Rivers"]).filter((r) => r !== "All").map((r) => (
+                  <option key={r}>{r}</option>
+                ))}
               </select>
             </div>
 
@@ -314,15 +317,21 @@ const Hospital = () => {
       <SectionHeader title="Healthcare Capacity Trends" />
       <div className="bg-white rounded-xl shadow p-6 mb-8">
         <h3 className="font-semibold text-[#0d2544] mb-3">Beds Available (Recent Weeks)</h3>
-        <ResponsiveContainer height={300}>
-          <LineChart data={capacityTrends}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" />
-            <YAxis />
-            <Tooltip />
-            <Line type="monotone" dataKey="bedsAvailable" stroke="#2563eb" strokeWidth={3} />
-          </LineChart>
-        </ResponsiveContainer>
+        {capacityTrends && capacityTrends.length > 0 ? (
+          <ResponsiveContainer height={300}>
+            <LineChart data={capacityTrends}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="date" />
+              <YAxis />
+              <Tooltip />
+              <Line type="monotone" dataKey="bedsAvailable" stroke="#2563eb" strokeWidth={3} />
+            </LineChart>
+          </ResponsiveContainer>
+        ) : (
+          <div className="h-[300px] flex items-center justify-center text-gray-500 text-sm">
+            No capacity trend data available for this region.
+          </div>
+        )}
       </div>
 
       {/* Facility Table */}

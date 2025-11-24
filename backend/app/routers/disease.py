@@ -37,7 +37,7 @@ def get_disease_historical(disease: str = Query("cholera"), region: str = Query(
     # Return recent historical cases for disease/region
     disease = validate_disease(disease) or disease
     region = validate_region(region) or "All"
-    df_path = os.path.join(DATA_DIR, "outbreakiq_training_data_filled.csv")
+    df_path = os.path.join(DATA_DIR, "outbreak_dataset.csv")
     items = []
     if os.path.exists(df_path):
         try:

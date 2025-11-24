@@ -19,7 +19,7 @@ _CACHE_TTL_SECONDS: int = 600  # 10 minutes
 
 
 def _read_training_table() -> Optional[pd.DataFrame]:
-    path = os.path.join(DATA_DIR, "outbreakiq_training_data_filled.csv")
+    path = os.path.join(DATA_DIR, "outbreak_dataset.csv")
     if not os.path.exists(path):
         return None
     try:
@@ -83,10 +83,27 @@ def get_metadata_options(
 ) -> Dict[str, Any]:
     global _CACHE, _CACHE_TS
     logging.info("/metadata/options GET source=%s disease=%s", source, disease)
+    
+    # Get data freshness information
+    freshness_info = {}
+    try:
+        from pathlib import Path as _Path
+        from ml.data_versioning import get_data_freshness
+        
+        freshness = get_data_freshness("outbreak_dataset")
+        if freshness:
+            freshness_info = {
+                "last_modified": freshness.get("last_modified"),
+                "age_days": freshness.get("age_days"),
+                "is_fresh": freshness.get("is_fresh"),
+                "version": freshness.get("version"),
+            }
+    except Exception:
+        pass
     """
     Return available diseases, years, and regions from real project data.
 
-    - training: data/outbreakiq_training_data_filled.csv
+    - training: data/outbreak_dataset.csv
     - live: data/live/weather_weekly_by_state.csv or reports/production/predictions_live.csv
     - auto: prefer training, else live, else empty with status
     """
@@ -188,6 +205,7 @@ def get_metadata_options(
         "diseases": diseases,
         "years": years,
         "regions": regions,
+        "freshness": freshness_info if freshness_info else None,
     }
 
     # Update cache for auto resolution

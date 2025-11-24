@@ -17,7 +17,7 @@ def get_geo_boundaries(region: str = Query("All")):
 
 
 @router.get("/heatmap")
-def get_geo_heatmap(region: str = Query("All"), disease: str = Query("cholera", regex="^(cholera|malaria)$")):
+def get_geo_heatmap(region: str = Query("All"), disease: str = Query("cholera")):
     logging.info("/geo/heatmap GET region=%s disease=%s", region, disease)
     region = validate_region(region) or "All"
     disease = validate_disease(disease) or disease

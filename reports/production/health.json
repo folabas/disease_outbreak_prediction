@@ -1,6 +1,17 @@
 {
-  "timestamp":1762965717,
-  "status":"ok",
-  "predictions":308,
-  "mode":"realtime_stub"
+  "timestamp": 1763719001,
+  "status": "ok",
+  "rows_used_for_eval": 10070,
+  "overall_mae": 8.64,
+  "diseases": [
+    "cholera",
+    "covid",
+    "ebola",
+    "malaria"
+  ],
+  "sklearn": true,
+  "tensorflow": true,
+  "model_version": "lstm_forecaster",
+  "last_training": "2025-11-21",
+  "notes": "Model trained with 100 epochs"
 }

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { outbreakAPI } from "../services/api";
+import type { Disease, GeoData } from "../services/types";
 
-export function useHeatmap(region: string, disease: string, trigger?: number) {
-  const [geojson, setGeojson] = useState<any | undefined>(undefined);
+export function useHeatmap(region: string, disease: Disease, trigger?: number) {
+  const [geojson, setGeojson] = useState<GeoData | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined>(undefined);
 
@@ -12,11 +13,12 @@ export function useHeatmap(region: string, disease: string, trigger?: number) {
       try {
         setLoading(true);
         setError(undefined);
-        const res = await outbreakAPI.geo.getHeatmap({ dataType: "risk", region });
-        const data = res?.data?.data;
+        const res = await outbreakAPI.geo.getHeatmap({ dataType: "risk", region, disease });
+        const data = (res?.data?.data || res?.data) as GeoData | undefined;
         if (mounted) setGeojson(data);
-      } catch (e: any) {
-        if (mounted) setError(e?.message || "Failed to load heatmap");
+      } catch (e: unknown) {
+        const errorMessage = e instanceof Error ? e.message : "Failed to load heatmap";
+        if (mounted) setError(errorMessage);
       } finally {
         if (mounted) setLoading(false);
       }

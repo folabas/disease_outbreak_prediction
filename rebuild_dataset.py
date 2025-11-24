@@ -123,9 +123,8 @@ def get_json(url: str, params: Optional[dict] = None, timeout: int = 30, retries
 # ---------- NCDC ----------
 def load_ncdc_local(path: Optional[Path] = None) -> Optional[pd.DataFrame]:
     files = [path] if path else [
-        ROOT / "data" / "ncdc_outbreaks_clean.csv",
-        ROOT / "data" / "ncdc_outbreaks.csv",
-        RAW_DIR / "ncdc_outbreaks_clean.csv",
+        ROOT / "data" / "outbreak_dataset.csv",
+        ROOT / "data" / "final_merged_datasets.csv",
     ]
     for p in files:
         if p and p.exists():
