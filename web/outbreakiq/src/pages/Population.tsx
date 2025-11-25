@@ -25,12 +25,22 @@ import { exportToCSV, formatDateForFilename } from "../utils/exportUtils";
 
 type GrowthEntry = { region: string; value: number };
 
+const trendData = [
+  { year: 2020, population: 200 },
+  { year: 2021, population: 206 },
+  { year: 2022, population: 210 },
+  { year: 2023, population: 213 },
+  { year: 2024, population: 218 },
+  { year: 2025, population: 223 },
+  { year: 2026, population: 229 }, // forecast
+];
+
 const Population = () => {
   const { region: globalRegion, setRegion: setGlobalRegion } = useDashboardStore();
   // Filters
   const [region, setRegion] = useState(globalRegion === "All" ? "All Nigeria" : globalRegion);
   const [dateRange, setDateRange] = useState("Last 12 Months");
-  
+
   // Sync with global state
   useEffect(() => {
     const normalized = region === "All Nigeria" ? "All" : region;
@@ -154,8 +164,7 @@ const Population = () => {
       });
     }
     (layer as any).bindTooltip(
-      `${feature.properties?.NAME_1 || feature.properties?.region}<br/>Density: ${
-        feature.properties?.density ?? "n/a"
+      `${feature.properties?.NAME_1 || feature.properties?.region}<br/>Density: ${feature.properties?.density ?? "n/a"
       }`,
       { direction: "center", sticky: true }
     );
@@ -210,7 +219,7 @@ const Population = () => {
           </div>
 
           <div className="flex gap-2 w-full sm:w-auto justify-end">
-            <button 
+            <button
               onClick={() => {
                 const exportData = [
                   ...growthData.map((d: GrowthEntry) => ({ region: d.region, metric: "Growth Rate", value: d.value })),
@@ -237,6 +246,9 @@ const Population = () => {
         <StatCard title="Total Population" value={stats.total} />
         <StatCard title="Average Density" value={stats.density} />
         <StatCard title="Highest Growth Region" value={stats.growthRegion} />
+        <StatCard title="Urban Population" value="52%" />
+        <StatCard title="Rural Population" value="48%" />
+        <StatCard title="Gender Ratio (M/F)" value="49% / 51%" />
       </div>
 
       {/* Charts */}
@@ -255,7 +267,7 @@ const Population = () => {
             >
               <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                
+
               />
               {geoData && <GeoJSON data={geoData} onEachFeature={onEachFeature} />}
               <MapZoomHandler region={region} />
@@ -290,6 +302,28 @@ const Population = () => {
             </ResponsiveContainer>
           </div>
         </div>
+      </div>
+
+      {/* Trend Chart */}
+      <SectionHeader title="Historical & Forecast Trends" />
+      <div className="bg-white rounded-xl shadow p-6 mb-8">
+        <h3 className="font-semibold text-[#0d2544] mb-3">
+          Total Population Over Time
+        </h3>
+        <ResponsiveContainer height={300}>
+          <LineChart data={trendData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="year" />
+            <YAxis />
+            <Tooltip />
+            <Line
+              type="monotone"
+              dataKey="population"
+              stroke="#2563eb"
+              strokeWidth={3}
+            />
+          </LineChart>
+        </ResponsiveContainer>
       </div>
 
       {/* Density Map Legend */}

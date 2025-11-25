@@ -25,10 +25,51 @@ import type { Disease } from "../services/types";
 
 const COLORS = ["#15803d", "#2563eb", "#60a5fa", "#93c5fd", "#e5e7eb"];
 
+const confidenceData = [
+  { name: "Cholera", value: 30 },
+  { name: "Malaria", value: 25 },
+  { name: "Lassa Fever", value: 20 },
+  { name: "COVID-19", value: 15 },
+  { name: "Others", value: 10 },
+];
+
+const retrainingLogs = [
+  {
+    date: "Oct 28, 2025",
+    event: "Model retrained with 2023 outbreak data from NCDC",
+    details: "Added Lassa Fever 2023 data and recalibrated rainfall index.",
+  },
+  {
+    date: "Oct 25, 2025",
+    event: "Parameter optimization completed",
+    details:
+      "Adjusted learning rate and neural attention weights for regional balance.",
+  },
+  {
+    date: "Oct 20, 2025",
+    event: "Feature expansion",
+    details:
+      "Included healthcare accessibility index and sanitation data from WHO.",
+  },
+  {
+    date: "Nov 13, 2025",
+    event: "Model deployed to OutbreakIQ dashboard",
+    details: "Enabled public prediction and API integration.",
+  },
+  {
+    date: "Oct 10, 2025",
+    event: "Data cleaning and preprocessing",
+    details:
+      "Removed incomplete datasets and normalized features for stability.",
+  },
+];
+
 /* ---------- Component ---------- */
 const Insights = () => {
   const { disease: globalDisease, setDisease: setGlobalDisease } = useDashboardStore();
   const [disease, setDisease] = useState<Disease>(globalDisease || "cholera");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedLog, setSelectedLog] = useState<any>(null);
   const { metrics, featureImportance, notes, loading, error } = useInsights(disease);
   const { data: metricsData, loading: metricsLoading } = useModelMetrics({ disease });
   const { artifacts, loading: reportsLoading } = useReports(1);
@@ -295,21 +336,28 @@ const Insights = () => {
             </div>
           </div>
           <div className="bg-white rounded-xl shadow p-6 flex flex-col">
-            <h3 className="font-semibold text-[#0d2544] mb-3">Feature Importance Distribution</h3>
+            <h3 className="font-semibold text-[#0d2544] mb-3">
+              Model Confidence Breakdown
+            </h3>
             <div className="flex-1 flex justify-center">
               <ResponsiveContainer width="100%" height={280}>
                 <PieChart>
                   <Pie
-                    data={featurePieData}
+                    data={confidenceData}
                     cx="50%"
                     cy="50%"
                     innerRadius={70}
                     outerRadius={100}
                     dataKey="value"
-                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                    label={({ name, percent }) =>
+                      `${name} ${(percent * 100).toFixed(0)}%`
+                    }
                   >
-                    {(featurePieData || []).map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    {confidenceData.map((entry, index) => (
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={COLORS[index % COLORS.length]}
+                      />
                     ))}
                   </Pie>
                   <Legend />
@@ -614,7 +662,103 @@ const Insights = () => {
         </footer>
       </motion.div>
 
-      {/* Removed modal-based logs in favor of backend-driven notes */}
+      {/* Explanation Logs */}
+      <SectionHeader title="Explanation Logs" />
+      <div className="bg-white rounded-xl shadow p-6 mb-8">
+        <p className="text-sm text-gray-600 mb-4">
+          Historical retraining updates and parameter optimizations for
+          transparency.
+        </p>
+
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="bg-green-700 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-green-800 transition"
+        >
+          View Full Explanation Logs
+        </button>
+      </div>
+
+      {/* ---------- Modal: All Logs ---------- */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 px-4"
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="bg-white rounded-xl shadow-2xl w-full max-w-2xl p-6 relative max-h-[80vh] overflow-y-auto"
+            >
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="absolute top-3 right-3 text-gray-400 hover:text-gray-600"
+              >
+                ✕
+              </button>
+
+              <h2 className="text-xl font-semibold text-[#0d2544] mb-4">
+                Explanation Logs
+              </h2>
+
+              <div className="divide-y">
+                {retrainingLogs.map((log, index) => (
+                  <div
+                    key={index}
+                    onClick={() => setSelectedLog(log)}
+                    className="py-3 cursor-pointer hover:bg-gray-50 px-2 rounded-md"
+                  >
+                    <p className="font-semibold text-[#0d2544] text-sm">
+                      {log.date} — {log.event}
+                    </p>
+                    <p className="text-xs text-gray-600 mt-1">{log.details}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ---------- Nested Modal: Individual Log ---------- */}
+      <AnimatePresence>
+        {selectedLog && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] flex items-center justify-center bg-black bg-opacity-50 px-4"
+          >
+            <motion.div
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
+              transition={{ duration: 0.25 }}
+              className="bg-white rounded-xl shadow-2xl w-full max-w-md p-6 relative"
+            >
+              <button
+                onClick={() => setSelectedLog(null)}
+                className="absolute top-3 right-3 text-gray-400 hover:text-gray-600"
+              >
+                ✕
+              </button>
+              <h3 className="text-lg font-semibold text-[#0d2544] mb-2">
+                {selectedLog.event}
+              </h3>
+              <p className="text-sm text-gray-500 mb-1">
+                <b>Date:</b> {selectedLog.date}
+              </p>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                {selectedLog.details}
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
