@@ -997,7 +997,7 @@ def get_population_density_map(region: str = "All") -> Dict[str, Any]:
     """Get population density as GeoJSON map."""
     try:
         # Try to load state boundaries GeoJSON
-        geojson_path = resolve_path("web", "outbreakiq", "public", "nigeria-level1.geojson")
+        geojson_path = resolve_path("App", "outbreakiq", "public", "nigeria-level1.geojson")
         if not os.path.exists(geojson_path):
             # Fallback: try alternative paths
             alt_paths = [
@@ -1078,7 +1078,7 @@ def get_geo_boundaries(region: str = "All") -> Dict[str, Any]:
     """Get geographic boundaries (GeoJSON) for a region."""
     try:
         # Try to load GeoJSON file
-        geojson_path = resolve_path("web", "outbreakiq", "public", "nigeria-level1.geojson")
+        geojson_path = resolve_path("App", "outbreakiq", "public", "nigeria-level1.geojson")
         if not os.path.exists(geojson_path):
             # Fallback: try alternative paths
             alt_paths = [
