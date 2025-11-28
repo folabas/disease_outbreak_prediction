@@ -120,7 +120,7 @@ def predict_series(q: PredictionQuery) -> PredictionResponse:
         summary = {"riskScore": 0.82, "riskLevel": "high", "confidence": 0.88}
     else:
         # Real prediction path (demo)
-        df = pd.read_csv("data/outbreakiq_training_data_filled.csv")
+        df = pd.read_csv("data/outbreak_dataset.csv")
         features = ["cases", "temperature_2m_mean", "relative_humidity_2m_mean", "precipitation_sum"]
         X_latest = df[features].tail(8).values
         X_scaled = scaler.transform(X_latest)

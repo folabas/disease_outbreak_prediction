@@ -13,10 +13,17 @@ import {
 } from "recharts";
 import Loader from "../Components/Loader";
 import { MapContainer, TileLayer, GeoJSON, useMap } from "react-leaflet";
+import L, { Map as LeafletMap, Layer } from "leaflet";
+import type { Feature, Geometry } from "geojson";
 import { motion } from "framer-motion";
 import "leaflet/dist/leaflet.css";
 import { usePageAnimations } from "../hooks/usePageAnimations";
+import { usePopulation } from "../hooks/usePopulation";
+import { useOptions } from "../hooks/useOptions";
+import { useDashboardStore } from "../store/useDashboardStore";
+import { exportToCSV, formatDateForFilename } from "../utils/exportUtils";
 
+<<<<<<< HEAD:App/outbreakiq/src/pages/Population.tsx
 const regions = [
   "North West",
   "South West",
@@ -33,6 +40,9 @@ const regionalGrowth = {
   East: [2.5, 2.4, 2.3, 2.1, 2.0, 1.9],
   West: [3.9, 3.5, 3.0, 2.9, 2.8, 2.6],
 };
+=======
+type GrowthEntry = { region: string; value: number };
+>>>>>>> linking-api-and-cleaning:web/outbreakiq/src/pages/Population.tsx
 
 const trendData = [
   { year: 2020, population: 200 },
@@ -45,93 +55,117 @@ const trendData = [
 ];
 
 const Population = () => {
-  const [loading, setLoading] = useState(true);
-  const [region, setRegion] = useState("All Regions");
+  const { region: globalRegion, setRegion: setGlobalRegion } = useDashboardStore();
+  // Filters
+  const [region, setRegion] = useState(globalRegion === "All" ? "All Nigeria" : globalRegion);
   const [dateRange, setDateRange] = useState("Last 12 Months");
+<<<<<<< HEAD:App/outbreakiq/src/pages/Population.tsx
   const [growthData, setGrowthData] = useState<any[]>([]);
   const [geoData, setGeoData] = useState<any>(null);
   const [densityColors, setDensityColors] = useState({});
+=======
+
+  // Sync with global state
+  useEffect(() => {
+    const normalized = region === "All Nigeria" ? "All" : region;
+    if (normalized !== globalRegion) {
+      setGlobalRegion(normalized);
+    }
+  }, [region, globalRegion, setGlobalRegion]);
+  const [growthData, setGrowthData] = useState<GrowthEntry[]>([]);
+  const [geoData, setGeoData] = useState<any>(null);
+  const [densityColors, setDensityColors] = useState<Record<string, string>>({});
+>>>>>>> linking-api-and-cleaning:web/outbreakiq/src/pages/Population.tsx
   const [stats, setStats] = useState({
-    total: "213,401,323",
-    density: "231/km²",
-    growthRegion: "Kano (+4.2%)",
+    total: "—",
+    density: "0/km²",
+    growthRegion: "",
   });
-  const mapRef = useRef();
+  const mapRef = useRef<LeafletMap | null>(null);
 
-  // Fetch GeoJSON map data
-  useEffect(() => {
-    fetch("/nigeria-level1.geojson")
-      .then((res) => res.json())
-      .then((data) => setGeoData(data))
-      .catch((err) => console.error("Error loading map:", err));
-  }, []);
+  // Hook: population aggregates and density map
+  function toWeekString(d: Date): string {
+    const dt = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+    const dayNum = dt.getUTCDay() || 7;
+    dt.setUTCDate(dt.getUTCDate() + 4 - dayNum);
+    const yearStart = new Date(Date.UTC(dt.getUTCFullYear(), 0, 1));
+    const weekNo = Math.ceil(((dt.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
+    const y = dt.getUTCFullYear();
+    return `${y}-W${String(weekNo).padStart(2, "0")}`;
+  }
+  const months = dateRange === "Last 6 Months" ? 6 : dateRange === "Last 12 Months" ? 12 : 24;
+  const now = new Date();
+  const start = new Date(now);
+  start.setMonth(start.getMonth() - months);
+  const startStr = toWeekString(start);
+  const endStr = toWeekString(now);
 
-  // Page loading simulation
-  useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 1200);
-    return () => clearTimeout(t);
-  }, []);
+  const { growthData: gSeries, densityData: dSeries, densityMap, stats: pStats, totalPopulation: popTotal, loading, error } = usePopulation(region, { startDate: startStr, endDate: endStr });
+  const { options } = useOptions({ source: "auto" });
 
-  // Update stats and chart when filters change
+  // Set geo data from hook
   useEffect(() => {
-    const growthValues =
-      regionalGrowth[region] || regionalGrowth["All Regions"];
-    const updatedData = regions.map((r, i) => ({
-      region: r,
-      value: growthValues[i] + (Math.random() * 0.5 - 0.2),
+    if (densityMap) setGeoData(densityMap as any);
+  }, [densityMap]);
+
+  // Update local series/colors/stats when hook data changes
+  useEffect(() => {
+    // Growth series for bar chart - validate data structure
+    const validatedGrowth = (gSeries || [])
+      .map((item: any) => ({
+        region: String(item?.region || item?.name || ""),
+        value: typeof item?.value === "number" ? item.value : 0,
+      }))
+      .filter((item) => item.region); // Filter out invalid entries
+    setGrowthData(validatedGrowth);
+
+    // Stats from hook
+    setStats((prev) => ({
+      ...prev,
+      total: popTotal !== null && popTotal > 0 ? popTotal.toLocaleString() : "—",
+      density: `${(pStats?.avgDensity ?? 0).toFixed(2)}/km²`,
+      growthRegion: pStats?.topGrowthRegion ? `${pStats.topGrowthRegion}` : prev.growthRegion,
     }));
 
-    const topRegion = updatedData.sort((a, b) => b.value - a.value)[0];
-    setGrowthData(updatedData);
-
-    // Update stats
-    setStats({
-      total:
-        dateRange === "Last 6 Months"
-          ? "210,500,000"
-          : dateRange === "Last 12 Months"
-          ? "213,401,323"
-          : "215,800,000",
-      density:
-        region === "North"
-          ? "189/km²"
-          : region === "South"
-          ? "298/km²"
-          : "231/km²",
-      growthRegion: `${topRegion.region} (+${topRegion.value.toFixed(1)}%)`,
-    });
-
-    // Dynamic color intensity by growth value
-    const densityLevels = regions.reduce((acc, reg, idx) => {
-      const val = growthValues[idx];
-      const shade =
-        val > 4
-          ? "#1e3a8a"
-          : val > 3.5
-          ? "#2563eb"
-          : val > 3
-          ? "#60a5fa"
-          : "#bfdbfe";
-      acc[reg.toLowerCase()] = shade;
+    // Build density color mapping from density series
+    const colors = (dSeries || []).reduce((acc: Record<string, string>, d: any) => {
+      const region = String(d?.region || d?.name || "").toLowerCase();
+      const v = typeof d?.value === "number" ? d.value : 0;
+      const shade = v > 400 ? "#1e3a8a" : v > 300 ? "#2563eb" : v > 200 ? "#60a5fa" : "#bfdbfe";
+      if (region) {
+        acc[region] = shade;
+      }
       return acc;
-    }, {});
-    setDensityColors(densityLevels);
-  }, [region, dateRange]);
+    }, {} as Record<string, string>);
+    setDensityColors(colors);
+  }, [gSeries, dSeries, pStats, popTotal]);
+
+  // Remove placeholder totals; await backend totals when available.
 
   // Map region focus
-  const MapZoomHandler = ({ region }) => {
+  type MapZoomProps = { region: string };
+  const MapZoomHandler = ({ region }: MapZoomProps) => {
     const map = useMap();
     useEffect(() => {
       if (!geoData) return;
-      if (region === "All Regions") {
+      if (["All Regions", "All Nigeria"].includes(region)) {
         map.setView([9.082, 8.6753], 6);
         return;
       }
 
+<<<<<<< HEAD:App/outbreakiq/src/pages/Population.tsx
       // Filter the region
       const layer = L.geoJSON(geoData, {
         filter: (f) =>
           f.properties?.NAME_1?.toLowerCase().includes(region.toLowerCase()),
+=======
+      // Filter the region (try canonical `region` field; fallback to `NAME_1`)
+      const layer = L.geoJSON(geoData as any, {
+        filter: (f: any) => {
+          const r = (f.properties?.region || f.properties?.NAME_1 || "").toLowerCase();
+          return r.includes(region.toLowerCase());
+        },
+>>>>>>> linking-api-and-cleaning:web/outbreakiq/src/pages/Population.tsx
       });
       const bounds = layer.getBounds();
       if (bounds.isValid()) map.fitBounds(bounds, { padding: [30, 30] });
@@ -150,6 +184,7 @@ const Population = () => {
     "#bfdbfe",
   ];
 
+<<<<<<< HEAD:App/outbreakiq/src/pages/Population.tsx
   const onEachFeature = (feature, layer) => {
     const name = feature.properties?.NAME_1?.toLowerCase();
     const color = densityColors[name] || "#93c5fd";
@@ -164,6 +199,22 @@ const Population = () => {
         Math.random() * 5 +
         2
       ).toFixed(1)}%`,
+=======
+  const onEachFeature = (feature: Feature<Geometry, any>, layer: Layer) => {
+    const label = (feature.properties?.region || feature.properties?.NAME_1 || "").toLowerCase();
+    const color = densityColors[label] || "#93c5fd";
+    if ((layer as any)?.setStyle) {
+      (layer as any).setStyle({
+        fillColor: color,
+        fillOpacity: 0.8,
+        color: "#fff",
+        weight: 1,
+      });
+    }
+    (layer as any).bindTooltip(
+      `${feature.properties?.NAME_1 || feature.properties?.region}<br/>Density: ${feature.properties?.density ?? "n/a"
+      }`,
+>>>>>>> linking-api-and-cleaning:web/outbreakiq/src/pages/Population.tsx
       { direction: "center", sticky: true }
     );
   };
@@ -208,16 +259,17 @@ const Population = () => {
                 onChange={(e) => setRegion(e.target.value)}
                 className="border rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               >
-                <option>All Regions</option>
-                <option>North</option>
-                <option>South</option>
-                <option>East</option>
-                <option>West</option>
+                <option>All Nigeria</option>
+                {(options?.regions || []).map((r) => {
+                  if (r === "All") return null;
+                  return <option key={r}>{r}</option>;
+                })}
               </select>
             </div>
           </div>
 
           <div className="flex gap-2 w-full sm:w-auto justify-end">
+<<<<<<< HEAD:App/outbreakiq/src/pages/Population.tsx
             <button className="bg-white border text-gray-700 px-4 py-2 rounded-md text-sm font-semibold hover:bg-gray-100 flex items-center gap-2 transition">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -253,16 +305,37 @@ const Population = () => {
               </svg>
               Apply Filters
             </button>
+=======
+            <button
+              onClick={() => {
+                const exportData = [
+                  ...growthData.map((d: GrowthEntry) => ({ region: d.region, metric: "Growth Rate", value: d.value })),
+                  ...dSeries.map((d: GrowthEntry) => ({ region: d.region, metric: "Density", value: d.value })),
+                ];
+                exportToCSV(exportData, `population_${region}_${formatDateForFilename()}.csv`);
+              }}
+              className="bg-white border text-gray-700 px-4 py-2 rounded-md text-sm font-semibold hover:bg-gray-100 flex items-center gap-2 transition"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
+              </svg>
+              Export
+            </button>
+>>>>>>> linking-api-and-cleaning:web/outbreakiq/src/pages/Population.tsx
           </div>
         </div>
       </header>
 
+<<<<<<< HEAD:App/outbreakiq/src/pages/Population.tsx
       {/* AI Insight */}
       <div className="bg-blue-50 border-l-4 border-green-600 p-4 rounded-md mb-8 text-sm text-gray-700 shadow-sm">
         💡 <b>Insight:</b> Northern regions continue to record the highest
         growth (4.2%) with increasing urban migration, while southern regions
         show stabilized density due to improved infrastructure.
       </div>
+=======
+      {/* Removed AI Insight to avoid hardcoded content */}
+>>>>>>> linking-api-and-cleaning:web/outbreakiq/src/pages/Population.tsx
 
       {/* Stats Overview */}
       <SectionHeader title="Population Overview" />
@@ -291,10 +364,18 @@ const Population = () => {
               className="h-[300px] w-full rounded"
               ref={mapRef}
             >
+<<<<<<< HEAD:App/outbreakiq/src/pages/Population.tsx
               <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
               {geoData && (
                 <GeoJSON data={geoData} onEachFeature={onEachFeature} />
               )}
+=======
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+
+              />
+              {geoData && <GeoJSON data={geoData} onEachFeature={onEachFeature} />}
+>>>>>>> linking-api-and-cleaning:web/outbreakiq/src/pages/Population.tsx
               <MapZoomHandler region={region} />
             </MapContainer>
           </div>
@@ -358,6 +439,29 @@ const Population = () => {
         </ResponsiveContainer>
       </div>
 
+      {/* Density Map Legend */}
+      <SectionHeader title="Population Density Legend" />
+      <div className="bg-white rounded-xl shadow p-6 mb-8">
+        <div className="flex items-center gap-4 text-sm">
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-[#bfdbfe] border border-gray-300"></div>
+            <span>&lt; 200/km²</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-[#60a5fa] border border-gray-300"></div>
+            <span>200-300/km²</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-[#2563eb] border border-gray-300"></div>
+            <span>300-400/km²</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-[#1e3a8a] border border-gray-300"></div>
+            <span>&gt; 400/km²</span>
+          </div>
+        </div>
+      </div>
+
       {/* Footer */}
       <footer className="pt-6 text-center text-gray-500 text-sm">
         © 2025 OutbreakIQ. All rights reserved.
@@ -367,14 +471,16 @@ const Population = () => {
 };
 
 /* 🔸 Reusable Components */
-const StatCard = ({ title, value }) => (
+type StatCardProps = { title: string; value: string };
+const StatCard = ({ title, value }: StatCardProps) => (
   <div className="bg-white rounded-xl shadow p-4 flex flex-col justify-between hover:shadow-md transition">
     <p className="text-sm text-gray-500">{title}</p>
     <h3 className="text-2xl font-bold text-gray-800 mt-1">{value}</h3>
   </div>
 );
 
-const SectionHeader = ({ title }) => (
+type SectionHeaderProps = { title: string };
+const SectionHeader = ({ title }: SectionHeaderProps) => (
   <h2 className="text-lg font-semibold text-[#0d2544] mb-3 mt-6 border-l-4 border-green-600 pl-3">
     {title}
   </h2>

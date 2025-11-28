@@ -30,7 +30,7 @@ const Home = () => {
                 </h2>
                 <p className="mt-3 text-base text-gray-400 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
                   OutbreakIQ uses advanced data analytics and AI to forecast
-                  malaria and cholera risks in Nigeria, empowering public health
+                  disease outbreak risks (cholera, malaria, ebola, COVID-19) in Nigeria, empowering public health
                   officials with actionable insights for proactive
                   interventions.
                 </p>
@@ -79,8 +79,8 @@ const Home = () => {
               Empowering Nigeria with Predictive Health Insights
             </h2>
             <p className="text-lg text-gray-500 mt-8">
-              OutbreakIQ uses advanced data analytics and AI to forecast Malaria
-              and Cholera risks in Nigeria. Our platform empowers public health
+              OutbreakIQ uses advanced data analytics and AI to forecast disease outbreak risks
+              (cholera, malaria, ebola, COVID-19) in Nigeria. Our platform empowers public health
               officials with actionable insights for proactive interventions.
             </p>
             <h1 className="text-9xl py-5 mx-28">🌍</h1>
@@ -127,7 +127,13 @@ const Home = () => {
 };
 
 /* Feature Card Component */
-const FeatureCard = ({ icon, title, text }) => (
+type FeatureCardProps = {
+  icon: React.ReactNode;
+  title: string;
+  text: string;
+};
+
+const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, text }) => (
   <div className="bg-gray-200 overflow-hidden shadow rounded-lg border border-green-700">
     <div className="p-4">
       <div className="flex items-center">

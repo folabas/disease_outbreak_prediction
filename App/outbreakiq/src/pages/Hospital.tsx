@@ -4,6 +4,9 @@ import "leaflet/dist/leaflet.css";
 import Loader from "../Components/Loader";
 import { motion } from "framer-motion";
 import { usePageAnimations } from "../hooks/usePageAnimations";
+import { useHospitals } from "../hooks/useHospitals";
+import { useDashboardStore } from "../store/useDashboardStore";
+import { useOptions } from "../hooks/useOptions";
 
 import {
   ResponsiveContainer,
@@ -18,6 +21,7 @@ import {
   Line,
 } from "recharts";
 
+<<<<<<< HEAD:App/outbreakiq/src/pages/Hospital.tsx
 /* ---------- Mock data ---------- */
 const allFacilities = [
   {
@@ -67,14 +71,26 @@ const allFacilities = [
   },
   
 ];
+=======
+/* ---------- Derived types ---------- */
+type FacilityRow = {
+  name: string;
+  type: string;
+  state: string;
+  lga: string;
+  beds: number | string;
+  staff: number | string;
+  coordinates: [number, number];
+};
+>>>>>>> linking-api-and-cleaning:web/outbreakiq/src/pages/Hospital.tsx
 
-const facilityTypes = [
-  { type: "Teaching Hospital", count: 340 },
-  { type: "General Hospital", count: 520 },
-  { type: "Primary Health Clinic", count: 680 },
-  { type: "Laboratory", count: 240 },
-  { type: "Specialist Center", count: 180 },
-];
+const typeColors: Record<string, string> = {
+  "Teaching Hospital": "#1e3a8a",
+  "General Hospital": "#2563eb",
+  "Primary Health Clinic": "#3b82f6",
+  Laboratory: "#10b981",
+  "Specialist Center": "#f59e0b",
+};
 
 const trendData = [
   { year: 2020, facilities: 28000, beds: 70000 },
@@ -86,52 +102,70 @@ const trendData = [
   { year: 2026, facilities: 38000, beds: 99000 },
 ];
 
-const typeColors = {
-  "Teaching Hospital": "#1e3a8a",
-  "General Hospital": "#2563eb",
-  "Primary Health Clinic": "#3b82f6",
-  Laboratory: "#10b981",
-  "Specialist Center": "#f59e0b",
-};
-
 /* ---------- Component ---------- */
 const Hospital = () => {
-  const [loading, setLoading] = useState(true);
-  const [state, setState] = useState("All States");
+  const { region: globalRegion, setRegion: setGlobalRegion } = useDashboardStore();
+  const [state, setState] = useState(globalRegion === "All" ? "All States" : globalRegion);
   const [facilityType, setFacilityType] = useState("All Types");
   const [metric, setMetric] = useState("Number of Beds");
-  const [filteredData, setFilteredData] = useState(allFacilities);
+  const [filteredData, setFilteredData] = useState<FacilityRow[]>([]);
   const [insight, setInsight] = useState("");
+  const { totals, facilitiesGeo, capacityTrends, loading, error } = useHospitals(state === "All States" || state === "All" ? undefined : state);
+  const { options } = useOptions({ source: "auto" });
+
+  // Sync with global state
+  useEffect(() => {
+    const normalized = state === "All States" ? "All" : state;
+    if (normalized !== globalRegion) {
+      setGlobalRegion(normalized);
+    }
+  }, [state, globalRegion, setGlobalRegion]);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 900);
-    return () => clearTimeout(timer);
-  }, []);
+    const rows: FacilityRow[] = (((facilitiesGeo as any)?.features) || []).map((f: any) => {
+      const props = f?.properties || {};
+      const coords = f?.geometry?.coordinates || [];
+      const [lon, lat] = Array.isArray(coords) && coords.length >= 2 ? [coords[0], coords[1]] : [0, 0];
+      const hc = String(props?.healthcare || props?.amenity || "Hospital");
+      const type = hc.charAt(0).toUpperCase() + hc.slice(1);
+      return {
+        name: String(props?.name || "Facility"),
+        type,
+        state: String(props?.region || "Unknown"),
+        lga: String(props?.lga || props?.district || "-"),
+        beds: props?.beds ?? "-",
+        staff: props?.staff ?? "-",
+        coordinates: [lat, lon],
+      };
+    });
 
-  useEffect(() => {
-    let filtered = [...allFacilities];
-    if (state !== "All States")
-      filtered = filtered.filter((f) => f.state === state);
-    if (facilityType !== "All Types")
-      filtered = filtered.filter((f) => f.type === facilityType);
+    const norm = (s: string) => s.trim().toLowerCase();
+    let filtered = rows;
+    if (state !== "All States" && state !== "All") filtered = filtered.filter((f) => norm(f.state) === norm(state));
+    if (facilityType !== "All Types") filtered = filtered.filter((f) => f.type === facilityType);
     setFilteredData(filtered);
 
-    const regionText = state === "All States" ? "nationally" : `in ${state}`;
-    const typeText =
-      facilityType === "All Types"
-        ? "across all facility types"
-        : `focused on ${facilityType.toLowerCase()}s`;
-
-    setInsight(
-      `There are ${filtered.length} facilities ${regionText}, ${typeText}. ${
-        filtered.length > 3
-          ? "Major states show capacity expansion with steady bed growth."
-          : "Facility density is limited in this selection; consider targeted investments."
-      }`
-    );
-  }, [state, facilityType]);
+    const regionText = state === "All States" || state === "All" ? "nationally" : `in ${state}`;
+    const typeText = facilityType === "All Types" ? "across all facility types" : `focused on ${facilityType.toLowerCase()}s`;
+    setInsight(`There are ${filtered.length} facilities ${regionText}, ${typeText}. ${filtered.length > 50 ? "High facility density in this selection." : "Facility density is limited in this selection."}`);
+  }, [state, facilityType, facilitiesGeo]);
 
   if (loading) return <Loader />;
+
+  // Calculate dynamic metrics
+  const totalFacilities = filteredData.length;
+  const totalBeds = filteredData.reduce((acc: number, curr: FacilityRow) => acc + (Number(curr.beds) || 0), 0);
+  const totalStaff = filteredData.reduce((acc: number, curr: FacilityRow) => acc + (Number(curr.staff) || 0), 0);
+
+  const avgBedCapacity = totalFacilities > 0 ? Math.round(totalBeds / totalFacilities) : 0;
+  const staffToBedRatio = totalBeds > 0 ? (totalStaff / totalBeds).toFixed(1) : "0";
+
+  // Calculate occupancy rate if capacity trends are available
+  const latestTrend = capacityTrends && capacityTrends.length > 0 ? capacityTrends[capacityTrends.length - 1] : null;
+  const availableBeds = latestTrend ? latestTrend.bedsAvailable : 0;
+  const occupancyRate = (totalBeds > 0 && latestTrend)
+    ? Math.round(((totalBeds - availableBeds) / totalBeds) * 100)
+    : 74; // Fallback/Mock if no trend data
 
   const barColors = ["#1e3a8a", "#2563eb", "#3b82f6", "#60a5fa", "#93c5fd"];
 
@@ -162,11 +196,9 @@ const Hospital = () => {
                 className="border rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               >
                 <option>All States</option>
-                <option>Lagos</option>
-                <option>FCT</option>
-                <option>Kano</option>
-                <option>Oyo</option>
-                <option>Rivers</option>
+                {(options?.regions || ["Lagos", "FCT", "Kano", "Oyo", "Rivers"]).filter((r) => r !== "All").map((r) => (
+                  <option key={r}>{r}</option>
+                ))}
               </select>
             </div>
 
@@ -227,12 +259,11 @@ const Hospital = () => {
       {/* Stats */}
       <SectionHeader title="Capacity Overview" />
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
-        <StatCard title="Total Healthcare Facilities" value="34,592" />
-        <StatCard title="Total Hospital Beds" value="87,104" />
-        <StatCard title="Avg. Facilities per 100k Pop." value="16.2" />
-        <StatCard title="Avg. Bed Capacity" value="82" />
-        <StatCard title="Staff-to-Bed Ratio" value="1.6:1" />
-        <StatCard title="Facility Occupancy Rate" value="74%" />
+        <StatCard title="Total Healthcare Facilities" value={totals ? String(totals.facilities) : String(totalFacilities)} />
+        <StatCard title="Avg. Bed Capacity" value={String(avgBedCapacity)} />
+        <StatCard title="Beds per 10k" value={totals ? String(totals.bedsPer10k) : "-"} />
+        <StatCard title="Staff-to-Bed Ratio" value={`${staffToBedRatio}:1`} />
+        <StatCard title="Facility Occupancy Rate" value={`${occupancyRate}%`} />
       </div>
 
       {/* Map + Charts */}
@@ -254,29 +285,37 @@ const Hospital = () => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution="&copy; OpenStreetMap contributors"
               />
-              {filteredData.map((h, i) => (
-                <CircleMarker
-                  key={i}
-                  center={h.coordinates}
-                  radius={8}
-                  fillOpacity={0.9}
-                  stroke={false}
-                  pathOptions={{
-                    color: typeColors[h.type] || "#2563eb",
-                    fillColor: typeColors[h.type] || "#2563eb",
-                  }}
-                >
-                  <Popup className="text-sm">
-                    <b>{h.name}</b>
-                    <br />
-                    {h.type}
-                    <br />
-                    Beds: {h.beds || "N/A"}
-                    <br />
-                    Staff: {h.staff}
-                  </Popup>
-                </CircleMarker>
-              ))}
+              {(((facilitiesGeo as any)?.features) || []).map((f: any, i: number) => {
+                const coords = f?.geometry?.coordinates || [];
+                const [lon, lat] = Array.isArray(coords) && coords.length >= 2 ? [coords[0], coords[1]] : [0, 0];
+                const props = f?.properties || {};
+                const label = props?.name || props?.region || "Facility";
+                const ftype: string = String(props?.healthcare || props?.amenity || props?.type || "Facility");
+                const beds = props?.capacity?.beds ?? props?.beds ?? "N/A";
+                const staff = props?.capacity?.staff ?? props?.staff ?? "N/A";
+                const color = typeColors[ftype] || "#2563eb";
+                return (
+                  <CircleMarker
+                    key={i}
+                    center={[lat, lon] as [number, number]}
+                    radius={8}
+                    fillOpacity={0.9}
+                    stroke={false}
+                    pathOptions={{ color, fillColor: color }}
+                  >
+                    <Popup className="text-sm">
+                      <b>{label}</b>
+                      <br />
+                      {ftype}
+                      <br />
+                      Beds: {beds}
+                      <br />
+                      Staff: {staff}
+                    </Popup>
+                  </CircleMarker>
+                );
+              })}
+
             </MapContainer>
           </div>
         </div>
@@ -289,7 +328,15 @@ const Hospital = () => {
           <div className="w-full h-[300px]">
             <ResponsiveContainer>
               <BarChart
-                data={facilityTypes}
+                data={(() => {
+                  const counts: Record<string, number> = {};
+                  (((facilitiesGeo as any)?.features) || []).forEach((f: any) => {
+                    const t = String(f?.properties?.healthcare || f?.properties?.amenity || "Facility");
+                    const type = t.charAt(0).toUpperCase() + t.slice(1);
+                    counts[type] = (counts[type] || 0) + 1;
+                  });
+                  return Object.keys(counts).map((k) => ({ type: k, count: counts[k] }));
+                })()}
                 layout="vertical"
                 margin={{ top: 10, right: 20, bottom: 10, left: 60 }}
               >
@@ -302,9 +349,20 @@ const Hospital = () => {
                 />
                 <Tooltip />
                 <Bar dataKey="count" radius={[6, 6, 6, 6]}>
-                  {facilityTypes.map((_, i) => (
-                    <Cell key={i} fill={barColors[i % barColors.length]} />
-                  ))}
+                  {(() => {
+                    const arr = (() => {
+                      const counts: Record<string, number> = {};
+                      (((facilitiesGeo as any)?.features) || []).forEach((f: any) => {
+                        const t = String(f?.properties?.healthcare || f?.properties?.amenity || "Facility");
+                        const type = t.charAt(0).toUpperCase() + t.slice(1);
+                        counts[type] = (counts[type] || 0) + 1;
+                      });
+                      return Object.keys(counts).map((k) => ({ type: k, count: counts[k] }));
+                    })();
+                    return arr.map((_, i) => (
+                      <Cell key={i} fill={barColors[i % barColors.length]} />
+                    ));
+                  })()}
                 </Bar>
               </BarChart>
             </ResponsiveContainer>
@@ -339,6 +397,9 @@ const Hospital = () => {
             />
           </LineChart>
         </ResponsiveContainer>
+        <p className="text-xs text-gray-500 mt-2 text-center">
+          *Data from 2025 onwards is projected.
+        </p>
       </div>
 
       {/* Facility Table */}
@@ -379,14 +440,14 @@ const Hospital = () => {
 };
 
 /* ---------- Reusable Components ---------- */
-const StatCard = ({ title, value }) => (
+const StatCard = ({ title, value }: { title: string; value: string }) => (
   <div className="bg-white rounded-xl shadow p-4 flex flex-col justify-between hover:shadow-md transition">
     <p className="text-sm text-gray-500">{title}</p>
     <h3 className="text-2xl font-bold text-gray-800 mt-1">{value}</h3>
   </div>
 );
 
-const SectionHeader = ({ title }) => (
+const SectionHeader = ({ title }: { title: string }) => (
   <h2 className="text-lg font-semibold text-[#0d2544] mb-3 mt-6 border-l-4 border-green-600 pl-3">
     {title}
   </h2>

@@ -3,9 +3,17 @@ from __future__ import annotations
 from pathlib import Path
 import time
 
+import numpy as np
 import pandas as pd
 
-from .utils import load_training, ensure_reports_dir, REPORTS_DIR
+from utils import load_training, ensure_reports_dir, REPORTS_DIR
+
+try:
+    from .features import FEATURES, TARGET
+except ImportError:
+    from features import FEATURES, TARGET  # type: ignore
+
+FEATURE_COLS = [c for c in FEATURES if c != TARGET]
 
 try:
     from sklearn.ensemble import RandomForestRegressor
@@ -18,31 +26,33 @@ def train_and_evaluate() -> Path:
     df = load_training()
     reports_dir = ensure_reports_dir()
 
+    missing = [c for c in FEATURE_COLS if c not in df.columns]
+    for col in missing:
+        df[col] = 0.0
+    df[FEATURE_COLS] = df[FEATURE_COLS].apply(pd.to_numeric, errors="coerce")
+
     # Baseline: predict next-week cases = last-week cases (lag-1)
     # Target: next-week cases
     df["true_cases_next_week"] = df.groupby(["disease", "state"]) ["cases"].shift(-1)
 
-    feature_cols = [
-        "cases_last_week","cases_2w_avg","cases_growth_rate","cases_per_100k",
-        "cases_mean_4w","cases_std_4w","deaths_last_week","deaths_mean_4w",
-        "temperature_2m_mean","relative_humidity_2m_mean","precipitation_sum",
-        "who_cases_national","population","urban_percent",
-    ]
+    # Clean infinities/NaNs before modeling
+    df = df.replace([np.inf, -np.inf], np.nan)
+    df = df.dropna(subset=FEATURE_COLS + ["true_cases_next_week"])
 
     results = []
     preds = []
 
     if SKLEARN_AVAILABLE:
         for disease, g in df.groupby("disease"):
-            g2 = g.dropna(subset=feature_cols + ["true_cases_next_week"]).copy()
-            if g2.empty:
+            if g.empty:
                 continue
-            X = g2[feature_cols]
-            y = g2["true_cases_next_week"]
+            X = g[FEATURE_COLS]
+            y = g["true_cases_next_week"]
 
             model = RandomForestRegressor(n_estimators=200, random_state=42)
             model.fit(X, y)
             yhat = model.predict(X)
+            g2 = g.copy()
             g2["pred_cases_next_week"] = yhat
             preds.append(g2[["disease","state","year","week","pred_cases_next_week","true_cases_next_week"]])
 

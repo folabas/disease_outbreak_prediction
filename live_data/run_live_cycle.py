@@ -9,16 +9,14 @@ from typing import Dict, Tuple, List
 import pandas as pd
 
 from ml.utils import load_training, ensure_reports_dir, next_week
+try:
+    from ml.features import FEATURES
+except ImportError:
+    from features import FEATURES  # type: ignore
 
 
 # Configuration aligned with deep model training
 WINDOW_SIZE = 8
-FEATURES = [
-    "cases",
-    "temperature_2m_mean",
-    "relative_humidity_2m_mean",
-    "precipitation_sum",
-]
 MODEL_PATH = Path("models/lstm_forecaster.h5")
 FEATURE_SCALER_PATH = Path("models/feature_scaler.joblib")
 TARGET_SCALER_PATH = Path("models/target_scaler.joblib")

@@ -1,0 +1,4 @@
+cholera: n=2550, pos=649, neg=1901, acc=69.88%, f1_w=69.87%, auc=0.596
+covid: n=2496, pos=677, neg=1819, acc=68.79%, f1_w=68.80%, auc=0.600
+ebola: n=2474, pos=660, neg=1814, acc=70.13%, f1_w=70.12%, auc=0.620
+malaria: n=2550, pos=667, neg=1883, acc=70.24%, f1_w=70.24%, auc=0.622
