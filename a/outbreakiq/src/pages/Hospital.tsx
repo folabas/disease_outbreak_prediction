@@ -218,7 +218,7 @@ const Hospital = () => {
       <SectionHeader title="Geographical & Analytical Breakdown" />
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         {/* Map */}
-        <div className="md:col-span-2 bg-white rounded-xl shadow p-6 flex flex-col">
+        <div className="md:col-span-2 bg-white rounded-2xl shadow-xl border border-gray-100 p-6 flex flex-col">
           <h3 className="font-semibold text-[#0d2544] mb-3">
             Facility Distribution Map
           </h3>
@@ -269,7 +269,7 @@ const Hospital = () => {
         </div>
 
         {/* Bar Chart */}
-        <div className="bg-white rounded-xl shadow p-6">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
           <h3 className="font-semibold text-[#0d2544] mb-3">
             Facility Type Distribution
           </h3>
@@ -320,7 +320,7 @@ const Hospital = () => {
 
       {/* Trend Chart */}
       <SectionHeader title="Healthcare Capacity Trends" />
-      <div className="bg-white rounded-xl shadow p-6 mb-8">
+      <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 mb-8">
         <h3 className="font-semibold text-[#0d2544] mb-3">
           Facility and Bed Growth (2020–2026)
         </h3>
@@ -352,7 +352,7 @@ const Hospital = () => {
 
       {/* Facility Table */}
       <SectionHeader title="Facility Records" />
-      <div className="bg-white rounded-xl shadow p-6 overflow-x-auto mb-8">
+      <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 overflow-x-auto mb-8">
         <table className="min-w-full text-sm text-left text-gray-700">
           <thead className="bg-gray-100 text-gray-600">
             <tr>
@@ -380,8 +380,11 @@ const Hospital = () => {
       </div>
 
       {/* Footer */}
-      <footer className="pt-6 text-center text-gray-500 text-sm">
-        © 2025 OutbreakIQ. All rights reserved.
+      <footer className="pt-6 pb-6 flex flex-col items-center gap-2 text-gray-500 text-sm">
+        <p>© {new Date().getFullYear()} OutbreakIQ. All rights reserved.</p>
+        <p className="text-gray-400 text-xs font-medium">
+          Sponsored by <span className="text-[#0d2544] font-bold">Waltik Labs</span>
+        </p>
       </footer>
     </motion.div>
   );
@@ -389,7 +392,7 @@ const Hospital = () => {
 
 /* ---------- Reusable Components ---------- */
 const StatCard = ({ title, value }: { title: string; value: string }) => (
-  <div className="bg-white rounded-xl shadow p-4 flex flex-col justify-between hover:shadow-md transition">
+  <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-4 flex flex-col justify-between hover:shadow-md transition">
     <p className="text-sm text-gray-500">{title}</p>
     <h3 className="text-2xl font-bold text-gray-800 mt-1">{value}</h3>
   </div>

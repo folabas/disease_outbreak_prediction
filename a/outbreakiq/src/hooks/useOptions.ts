@@ -36,7 +36,7 @@ export function useOptions(params?: OptionsParams, trigger?: number) {
         setError(undefined);
 
         const res = await outbreakAPI.metadata.getOptions({
-          source: params?.source ?? "auto",
+          source: (params?.source ?? "auto") as any,
           disease: params?.disease,
         });
 

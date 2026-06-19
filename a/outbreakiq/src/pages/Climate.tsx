@@ -213,7 +213,7 @@ const Climate = () => {
         {stats.map((stat) => (
           <div
             key={stat.name}
-            className="bg-white rounded-xl shadow p-4 flex flex-col justify-between hover:shadow-md transition"
+            className="bg-white rounded-2xl shadow-xl border border-gray-100 p-4 flex flex-col justify-between hover:shadow-md transition"
           >
             <p className="text-sm text-gray-500">{stat.name}</p>
             <h3 className="text-2xl font-bold text-gray-800 mt-1">
@@ -233,7 +233,7 @@ const Climate = () => {
       <SectionHeader title="Trends Over Time" />
       <div className="grid md:grid-cols-2 gap-6 mb-8">
         {/* Temperature Chart */}
-        <div className="bg-white rounded-xl shadow p-6">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
           <h3 className="font-semibold text-[#0d2544] mb-2">
             Temperature (°C) Over Time
           </h3>
@@ -261,7 +261,7 @@ const Climate = () => {
         </div>
 
         {/* Rainfall Chart */}
-        <div className="bg-white rounded-xl shadow p-6">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
           <h3 className="font-semibold text-[#0d2544] mb-2">
             Rainfall (mm) Over Time
           </h3>
@@ -298,7 +298,7 @@ const Climate = () => {
         <p>Note: This shows weather forecast data, not disease outbreak predictions. Weather forecasts are used as inputs for outbreak prediction models.</p>
       </div>
       <div className="grid md:grid-cols-2 gap-6 mb-8">
-        <div className="bg-white rounded-xl shadow p-6">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
           <h3 className="font-semibold text-[#0d2544] mb-2">Forecast Temperature (°C)</h3>
           <div className="w-full h-[240px]">
             <ResponsiveContainer>
@@ -312,7 +312,7 @@ const Climate = () => {
             </ResponsiveContainer>
           </div>
         </div>
-        <div className="bg-white rounded-xl shadow p-6">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
           <h3 className="font-semibold text-[#0d2544] mb-2">Forecast Rainfall (mm)</h3>
           <div className="w-full h-[240px]">
             <ResponsiveContainer>
@@ -330,7 +330,7 @@ const Climate = () => {
 
       {/* Table Section */}
       <SectionHeader title="Detailed Weather Data" />
-      <div className="bg-white rounded-xl shadow p-6 overflow-auto">
+      <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 overflow-auto">
         <table className="min-w-full text-sm">
           <thead className="text-left text-gray-600 border-b">
             <tr>
@@ -367,8 +367,11 @@ const Climate = () => {
         </table>
       </div>
       {/* Footer */}
-      <footer className="pt-6 text-center text-gray-500 text-sm">
-        © 2025 OutbreakIQ. All rights reserved.
+      <footer className="pt-6 pb-6 flex flex-col items-center gap-2 text-gray-500 text-sm">
+        <p>© {new Date().getFullYear()} OutbreakIQ. All rights reserved.</p>
+        <p className="text-gray-400 text-xs font-medium">
+          Sponsored by <span className="text-[#0d2544] font-bold">Waltik Labs</span>
+        </p>
       </footer>
     </div>
   );

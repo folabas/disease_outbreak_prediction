@@ -28,7 +28,7 @@ export function usePredictedActual(params: { disease: string; region: string; wi
             date: normalizeDate(item?.date || item?.name || ""),
             actual: typeof item?.actual === "number" ? item.actual : (item?.actual === null ? null : undefined),
             predicted: typeof item?.predicted === "number" ? item.predicted : (item?.predicted === null ? null : undefined),
-          })).filter((item) => item.date); // Filter out items without valid dates
+          })).filter((item: SeriesItem) => item.date); // Filter out items without valid dates
           
           // Sort by date
           const sorted = sortByDate(normalizedSeries);

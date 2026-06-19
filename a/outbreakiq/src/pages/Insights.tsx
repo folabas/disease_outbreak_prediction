@@ -161,7 +161,7 @@ const Insights = () => {
         </header>
 
         {/* About Section */}
-        <div className="bg-[#0d2544] text-white rounded-xl shadow p-6 mb-8">
+        <div className="bg-[#0d2544] text-white rounded-2xl shadow-xl border border-gray-100 p-6 mb-8">
           <div className="flex justify-between items-start mb-2">
             <h3 className="text-lg font-semibold">About Our AI Model</h3>
             {metricsData?.model?.model_version && (
@@ -253,7 +253,7 @@ const Insights = () => {
         {/* Visualization */}
         <SectionHeader title="Performance Visualization" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="md:col-span-2 bg-white rounded-xl shadow p-6">
+          <div className="md:col-span-2 bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
             <h3 className="font-semibold text-[#0d2544] mb-2">
               ROC Curve
               <span className="float-right text-sm text-gray-500">
@@ -279,7 +279,7 @@ const Insights = () => {
               />
             </div>
           </div>
-          <div className="bg-white rounded-xl shadow p-6 relative">
+          <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 relative">
             <h3 className="font-semibold text-[#0d2544] mb-3">Download Artifacts</h3>
             {reportsLoading ? (
               <p className="text-sm text-gray-500">Loading artifacts…</p>
@@ -315,7 +315,7 @@ const Insights = () => {
         {/* Feature Importance */}
         <SectionHeader title="Feature Importance & Confidence Breakdown" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <div className="bg-white rounded-xl shadow p-6">
+          <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
             <p className="text-sm text-gray-600 mb-4">
               This chart ranks influential features used for predictions.
             </p>
@@ -335,7 +335,7 @@ const Insights = () => {
               </ResponsiveContainer>
             </div>
           </div>
-          <div className="bg-white rounded-xl shadow p-6 flex flex-col">
+          <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 flex flex-col">
             <h3 className="font-semibold text-[#0d2544] mb-3">
               Model Confidence Breakdown
             </h3>
@@ -372,7 +372,7 @@ const Insights = () => {
         {metricsData?.model && (
           <>
             <SectionHeader title="Classification Performance Matrix" />
-            <div className="bg-white rounded-xl shadow p-6 mb-8">
+            <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 mb-8">
               <p className="text-sm text-gray-600 mb-4">
                 This matrix shows how well the model classifies outbreak alerts (high risk vs low risk).
               </p>
@@ -479,7 +479,7 @@ const Insights = () => {
 
         {/* Feature Correlation Heatmap */}
         <SectionHeader title="Feature Correlation Analysis" />
-        <div className="bg-white rounded-xl shadow p-6 mb-8">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 mb-8">
           <p className="text-sm text-gray-600 mb-4">
             This heatmap shows the relative importance of different features in predicting disease outbreaks.
             Darker colors indicate stronger correlation with outbreak risk.
@@ -516,7 +516,7 @@ const Insights = () => {
 
         {/* Prediction Error Distribution */}
         <SectionHeader title="Prediction Error Analysis" />
-        <div className="bg-white rounded-xl shadow p-6 mb-8">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 mb-8">
           <p className="text-sm text-gray-600 mb-4">
             This chart shows the distribution of prediction errors, helping identify if the model tends to over-predict or under-predict.
           </p>
@@ -527,11 +527,11 @@ const Insights = () => {
               <div className="w-full h-[200px]">
                 <ResponsiveContainer>
                   <BarChart data={[
-                    { range: '-10 to -5', count: metricsData?.model ? Math.round(metricsData.model.sample_size * 0.05) : 0 },
-                    { range: '-5 to 0', count: metricsData?.model ? Math.round(metricsData.model.sample_size * 0.20) : 0 },
-                    { range: '0 to 5', count: metricsData?.model ? Math.round(metricsData.model.sample_size * 0.50) : 0 },
-                    { range: '5 to 10', count: metricsData?.model ? Math.round(metricsData.model.sample_size * 0.20) : 0 },
-                    { range: '10+', count: metricsData?.model ? Math.round(metricsData.model.sample_size * 0.05) : 0 },
+                    { range: '-10 to -5', count: metricsData?.model ? Math.round((metricsData.model.sample_size || 0) * 0.05) : 0 },
+                    { range: '-5 to 0', count: metricsData?.model ? Math.round((metricsData.model.sample_size || 0) * 0.20) : 0 },
+                    { range: '0 to 5', count: metricsData?.model ? Math.round((metricsData.model.sample_size || 0) * 0.50) : 0 },
+                    { range: '5 to 10', count: metricsData?.model ? Math.round((metricsData.model.sample_size || 0) * 0.20) : 0 },
+                    { range: '10+', count: metricsData?.model ? Math.round((metricsData.model.sample_size || 0) * 0.05) : 0 },
                   ]}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="range" tick={{ fontSize: 11 }} />
@@ -577,7 +577,7 @@ const Insights = () => {
 
         {/* Disease Comparison */}
         <SectionHeader title="Cross-Disease Performance Comparison" />
-        <div className="bg-white rounded-xl shadow p-6 mb-8">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 mb-8">
           <p className="text-sm text-gray-600 mb-4">
             Compare model performance across all diseases to identify which diseases are easier or harder to predict.
           </p>
@@ -645,7 +645,7 @@ const Insights = () => {
 
         {/* Explanation Notes */}
         <SectionHeader title="Explanation Notes" />
-        <div className="bg-white rounded-xl shadow p-6 mb-8">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 mb-8">
           {Array.isArray(notes) && notes.length > 0 ? (
             <ul className="list-disc list-inside text-sm text-gray-700 space-y-2">
               {notes.map((n, i) => (
@@ -657,14 +657,17 @@ const Insights = () => {
           )}
         </div>
 
-        <footer className="pt-6 text-center text-gray-500 text-sm">
-          © 2025 OutbreakIQ. All rights reserved.
+        <footer className="pt-6 pb-6 flex flex-col items-center gap-2 text-gray-500 text-sm">
+          <p>© {new Date().getFullYear()} OutbreakIQ. All rights reserved.</p>
+          <p className="text-gray-400 text-xs font-medium">
+            Sponsored by <span className="text-[#0d2544] font-bold">Waltik Labs</span>
+          </p>
         </footer>
       </motion.div>
 
       {/* Explanation Logs */}
       <SectionHeader title="Explanation Logs" />
-      <div className="bg-white rounded-xl shadow p-6 mb-8">
+      <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 mb-8">
         <p className="text-sm text-gray-600 mb-4">
           Historical retraining updates and parameter optimizations for
           transparency.
@@ -765,7 +768,7 @@ const Insights = () => {
 
 /* ---------- Components ---------- */
 const MetricCard = ({ label, value }: { label: string; value: string }) => (
-  <div className="bg-white rounded-xl shadow p-4 text-center hover:shadow-md transition">
+  <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-4 text-center hover:shadow-md transition">
     <p className="text-sm text-gray-500">{label}</p>
     <h3 className="text-3xl font-bold text-green-700 mt-1">{value}</h3>
     <div className="mt-2 w-full bg-gray-100 h-2 rounded-full overflow-hidden">

@@ -255,7 +255,7 @@ const Population = () => {
       <SectionHeader title="Population Analysis" />
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         {/* Heatmap — larger */}
-        <div className="md:col-span-2 bg-white rounded-xl shadow p-6 flex flex-col">
+        <div className="md:col-span-2 bg-white rounded-2xl shadow-xl border border-gray-100 p-6 flex flex-col">
           <h3 className="font-semibold text-[#0d2544] mb-3">Population Density Heatmap</h3>
           <div className="flex-1 rounded-lg overflow-hidden">
             <MapContainer
@@ -281,7 +281,7 @@ const Population = () => {
         </div>
 
         {/* Bar Chart */}
-        <div className="bg-white rounded-xl shadow p-6">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
           <h3 className="font-semibold text-[#0d2544] mb-3">Population Growth by Region</h3>
           <div className="w-full h-[300px]">
             <ResponsiveContainer>
@@ -306,7 +306,7 @@ const Population = () => {
 
       {/* Trend Chart */}
       <SectionHeader title="Historical & Forecast Trends" />
-      <div className="bg-white rounded-xl shadow p-6 mb-8">
+      <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 mb-8">
         <h3 className="font-semibold text-[#0d2544] mb-3">
           Total Population Over Time
         </h3>
@@ -328,7 +328,7 @@ const Population = () => {
 
       {/* Density Map Legend */}
       <SectionHeader title="Population Density Legend" />
-      <div className="bg-white rounded-xl shadow p-6 mb-8">
+      <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 mb-8">
         <div className="flex items-center gap-4 text-sm">
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 bg-[#bfdbfe] border border-gray-300"></div>
@@ -350,8 +350,11 @@ const Population = () => {
       </div>
 
       {/* Footer */}
-      <footer className="pt-6 text-center text-gray-500 text-sm">
-        © 2025 OutbreakIQ. All rights reserved.
+      <footer className="pt-6 pb-6 flex flex-col items-center gap-2 text-gray-500 text-sm">
+        <p>© {new Date().getFullYear()} OutbreakIQ. All rights reserved.</p>
+        <p className="text-gray-400 text-xs font-medium">
+          Sponsored by <span className="text-[#0d2544] font-bold">Waltik Labs</span>
+        </p>
       </footer>
     </motion.div>
   );
@@ -360,7 +363,7 @@ const Population = () => {
 /* 🔸 Reusable Components */
 type StatCardProps = { title: string; value: string };
 const StatCard = ({ title, value }: StatCardProps) => (
-  <div className="bg-white rounded-xl shadow p-4 flex flex-col justify-between hover:shadow-md transition">
+  <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-4 flex flex-col justify-between hover:shadow-md transition">
     <p className="text-sm text-gray-500">{title}</p>
     <h3 className="text-2xl font-bold text-gray-800 mt-1">{value}</h3>
   </div>

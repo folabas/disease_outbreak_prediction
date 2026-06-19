@@ -24,7 +24,7 @@ export function useHotspots(disease: Disease, year: number | undefined, topNOrTr
         setError(undefined);
         const res = await outbreakAPI.analytics.getHotspots({ disease, year, top_n: topN });
         const payload = (res?.data?.data ?? res?.data) as { hotspots?: HotspotEntry[] } | undefined;
-        const arr = Array.isArray(payload?.hotspots) ? payload.hotspots : [];
+        const arr = Array.isArray(payload?.hotspots) ? payload!.hotspots : [];
         if (mounted) {
           setFeatures(arr.map((entry) => ({ 
             region: String(entry.region || ""), 

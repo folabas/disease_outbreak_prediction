@@ -33,7 +33,7 @@ const Loader: React.FC = () => {
       "+=0.6"
     );
 
-    return () => tl.kill();
+    return () => { tl.kill(); };
   }, []);
 
   return (

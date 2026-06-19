@@ -18,6 +18,8 @@ interface HospitalResponseData {
     bedsPer10k?: number;
   };
   facilitiesGeo?: GeoData;
+  facilities?: { total?: number };
+  capacity?: { beds?: number };
 }
 
 interface CapacityTrendsResponse {

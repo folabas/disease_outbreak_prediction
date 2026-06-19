@@ -8,6 +8,7 @@ import Climate from "./pages/Climate";
 import Population from "./pages/Population";
 import Hospital from "./pages/Hospital";
 import Insights from "./pages/Insights";
+import { About, Team, Documentation, ApiPage, Contact, FaqPage, Privacy, Terms } from "./pages/FooterPages";
 import { useDashboardStore } from "./store/useDashboardStore";
 
 const AppContent = () => {
@@ -29,6 +30,16 @@ const AppContent = () => {
           <Route path="/population" element={<ErrorBoundary><Population /></ErrorBoundary>} />
           <Route path="/hospital" element={<ErrorBoundary><Hospital /></ErrorBoundary>} />
           <Route path="/insights" element={<ErrorBoundary><Insights /></ErrorBoundary>} />
+          
+          {/* Footer Pages */}
+          <Route path="/about" element={<About />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/documentation" element={<Documentation />} />
+          <Route path="/api" element={<ApiPage />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/faq" element={<FaqPage />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
         </Route>
       </Routes>
     </ErrorBoundary>

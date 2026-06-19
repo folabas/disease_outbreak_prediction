@@ -276,7 +276,7 @@ const Dashboard = () => {
 
       <SectionHeader title="Reporting & Downloads" />
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-        <div className="lg:col-span-2 bg-white rounded-xl shadow p-4">
+        <div className="lg:col-span-2 bg-white rounded-2xl shadow-xl border border-gray-100 p-4">
           <div className="flex items-center justify-between mb-3">
             <h2 className="font-semibold text-[#0d2544]">Model Artifacts</h2>
             <button
@@ -360,7 +360,7 @@ const Dashboard = () => {
           )}
         </div>
 
-        <div className="bg-white rounded-xl shadow p-4">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-4">
           <h2 className="font-semibold mb-3 text-[#0d2544]">Pipeline Health</h2>
           {reportsLoading ? (
             <p className="text-sm text-gray-500">Loading…</p>
@@ -388,7 +388,7 @@ const Dashboard = () => {
 
       <SectionHeader title="Model Performance" />
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-8">
-        <div className="bg-white rounded-xl shadow p-4">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-4">
           <h2 className="font-semibold mb-3 text-[#0d2544]">LSTM Validation</h2>
           {metricsLoading ? (
             <p className="text-sm text-gray-500">Loading metrics…</p>
@@ -402,7 +402,7 @@ const Dashboard = () => {
             </div>
           )}
         </div>
-        <div className="bg-white rounded-xl shadow p-4">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-4">
           <h2 className="font-semibold mb-3 text-[#0d2544]">RandomForest Baseline</h2>
           {metricsLoading ? (
             <p className="text-sm text-gray-500">Loading metrics…</p>
@@ -413,7 +413,7 @@ const Dashboard = () => {
             </div>
           )}
         </div>
-        <div className="bg-white rounded-xl shadow p-4">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-4">
           <h2 className="font-semibold mb-3 text-[#0d2544]">Alert Classification</h2>
           {metricsLoading ? (
             <p className="text-sm text-gray-500">Loading metrics…</p>
@@ -427,7 +427,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl shadow p-4 mb-8">
+      <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-4 mb-8">
         <h2 className="font-semibold mb-3 text-[#0d2544]">Compare Models</h2>
         <div className="overflow-x-auto">
           <table className="min-w-full text-sm">
@@ -456,7 +456,7 @@ const Dashboard = () => {
       <SectionHeader title="Outbreak Visualization" />
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
         {/* Map */}
-        <div className="lg:col-span-2 bg-white rounded-xl shadow p-4">
+        <div className="lg:col-span-2 bg-white rounded-2xl shadow-xl border border-gray-100 p-4">
           <h2 className="font-semibold mb-3 text-[#0d2544]">
             Nigeria Outbreak Risk Map
           </h2>
@@ -494,7 +494,7 @@ const Dashboard = () => {
         </div>
 
         {/* Predicted vs Actual Chart */}
-        <div className="bg-white rounded-xl shadow p-4">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-4">
           <h2 className="font-semibold mb-3 text-[#0d2544]">
             Predicted vs Actual Cases
           </h2>
@@ -524,7 +524,7 @@ const Dashboard = () => {
         <>
       <SectionHeader title="Outbreak Insights" />
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-        <div className="lg:col-span-2 bg-white rounded-xl shadow p-4">
+        <div className="lg:col-span-2 bg-white rounded-2xl shadow-xl border border-gray-100 p-4">
           <h2 className="font-semibold mb-3 text-[#0d2544]">Insight Summary</h2>
           {insightsLoading ? (
             <p className="text-gray-500 text-sm">Loading insights…</p>
@@ -541,7 +541,7 @@ const Dashboard = () => {
           )}
         </div>
 
-        <div className="bg-white rounded-xl shadow p-4 flex flex-col items-center justify-center">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-4 flex flex-col items-center justify-center">
           <h2 className="font-semibold mb-3 text-[#0d2544]">Risk Summary</h2>
           <p className="text-sm text-gray-600">Predicted Risk Level</p>
           <h3 className={`text-2xl font-bold ${
@@ -557,7 +557,7 @@ const Dashboard = () => {
       {hasPrediction && (
         <>
       <SectionHeader title="Alert Probabilities by Region" />
-      <div className="bg-white rounded-xl shadow p-4 mb-8">
+      <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-4 mb-8">
         {alertsLoading ? (
           <p className="text-sm text-gray-500">Loading alerts…</p>
         ) : alertsError ? (
@@ -618,7 +618,7 @@ const Dashboard = () => {
       <SectionHeader title="Run New Prediction" />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Prediction Form */}
-        <div className="bg-white rounded-xl shadow p-6">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
           <h2 className="font-semibold mb-4 text-[#0d2544]">
             Run a New Prediction
           </h2>
@@ -697,7 +697,7 @@ const Dashboard = () => {
 
         {/* Prediction Result */}
         {hasPrediction && (
-        <div className="bg-white rounded-xl shadow p-6">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
           <h2 className="font-semibold mb-4 text-[#0d2544]">
             Prediction Result
           </h2>
@@ -738,8 +738,11 @@ const Dashboard = () => {
         )}
       </div>
       {/* Footer */}
-      <footer className="pt-6 text-center text-gray-500 text-sm">
-        © 2025 OutbreakIQ. All rights reserved.
+      <footer className="pt-6 pb-6 flex flex-col items-center gap-2 text-gray-500 text-sm">
+        <p>© {new Date().getFullYear()} OutbreakIQ. All rights reserved.</p>
+        <p className="text-gray-400 text-xs font-medium">
+          Sponsored by <span className="text-[#0d2544] font-bold">Waltik Labs</span>
+        </p>
       </footer>
     </div>
   );
@@ -749,7 +752,7 @@ const Dashboard = () => {
 
 type StatCardProps = { title: string; value: string };
 const StatCard = ({ title, value }: StatCardProps) => (
-  <div className="bg-white rounded-xl shadow p-4">
+  <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-4">
     <p className="text-sm text-gray-500">{title}</p>
     <h3 className="text-2xl font-bold text-gray-800 mt-1">{value}</h3>
   </div>

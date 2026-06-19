@@ -19,7 +19,7 @@ export function useRecommendations(params?: { disease?: Disease; region?: string
           year: params?.year 
         });
         const payload = (res?.data?.data ?? res?.data) as RecommendationsResponse | undefined;
-        const recs = Array.isArray(payload?.recommendations) ? payload.recommendations : [];
+        const recs = Array.isArray(payload?.recommendations) ? payload!.recommendations : [];
         if (mounted) setRecommendations(recs);
       } catch (e: unknown) {
         const errorMessage = e instanceof Error ? e.message : "Failed to load recommendations";

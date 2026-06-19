@@ -43,8 +43,10 @@ const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <div className="px-4 sm:px-10 md:px-20 lg:px-40 flex justify-center py-24 bg-[#0d2544]">
-      <div className="layout-content-container flex flex-col w-full max-w-6xl flex-1">
+    <div className="relative px-4 sm:px-10 md:px-20 lg:px-40 flex justify-center py-24 bg-[#0d2544] overflow-hidden">
+      {/* Grey Background Grid */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-20" style={{ backgroundImage: 'linear-gradient(to right, #808080 1px, transparent 1px), linear-gradient(to bottom, #808080 1px, transparent 1px)', backgroundSize: '80px 80px' }}></div>
+      <div className="layout-content-container flex flex-col w-full max-w-6xl flex-1 relative z-10">
         <div className="text-center mb-10">
           <h2 className="text-xl font-bold text-gray-300 sm:text-2xl">
             Frequently Asked Questions

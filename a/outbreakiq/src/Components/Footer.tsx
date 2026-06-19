@@ -111,11 +111,16 @@ const Footer = () => {
             </Link>
           </div>
 
-          {/* Copyright */}
-          <p className="text-[#0d2544] text-sm font-normal leading-normal">
-            © {new Date().getFullYear()} Outbreak
-            <span className="text-green-700">IQ</span>. All rights reserved.
-          </p>
+          {/* Copyright & Sponsorship */}
+          <div className="flex flex-col items-center gap-2">
+            <p className="text-[#0d2544] text-sm font-normal leading-normal">
+              © {new Date().getFullYear()} Outbreak
+              <span className="text-green-700">IQ</span>. All rights reserved.
+            </p>
+            <p className="text-[#6C757D] text-sm font-medium">
+              Sponsored by <span className="text-[#0d2544] font-bold">Waltik Labs</span>
+            </p>
+          </div>
         </footer>
       </div>
     </div>
